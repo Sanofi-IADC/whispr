@@ -1,0 +1,49 @@
+version: "3.7"
+services:
+  whispr:
+    image: node:12
+    container_name: whispr
+    ports:
+      - 3000:3000
+    working_dir: /usr/share
+    volumes:
+      - ./local.env:/usr/share/local.env:ro
+      - ./package.json:/usr/share/package.json:ro
+      - ./schema.gql:/usr/share/schema.gql
+      - ./tsconfig.build.json:/usr/share/tsconfig.build.json:ro
+      - ./tsconfig.json:/usr/share/tsconfig.json:ro
+      - ./src:/usr/share/src
+      - /usr/share/node_modules
+    networks: ["stack"]
+    command: [/bin/bash, -c, "cd /usr/share && npm i && npm run start:dev"]
+  mongo1:
+    hostname: mongo1
+    container_name: localmongo1
+    image: mongo
+    expose:
+      - 27017
+    restart: always
+    networks: ["stack"]
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
+    volumes:
+      - ./volumes/mongodb:/data/db
+  mongo2:
+    hostname: mongo2
+    container_name: localmongo2
+    image: mongo
+    expose:
+      - 27017
+    restart: always
+    networks: ["stack"]
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
+  redis:
+    image: redis
+    hostname: redis
+    container_name: redis
+    expose:
+      - 6379
+    volumes:
+      - ./volumes/redis:/var/lib/redis
+    networks: ["stack"]
+networks:
+  stack:
