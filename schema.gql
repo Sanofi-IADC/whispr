@@ -1,0 +1,94 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""
+The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSONObject
+
+type Mutation {
+  createWhisp(whisp: WhispInputType!): Whisp!
+  updateWhisp(whisp: WhispInputType!, id: String!): Whisp!
+  replaceWhisp(whisp: WhispInputType!, id: String!): Whisp!
+  deleteWhisp(id: String!): Boolean!
+  createTagGroup(tagGroup: TagGroupInputType!): TagGroup!
+  updateTagGroup(tagGroup: TagGroupInputType!, id: String!): TagGroup!
+  replaceTagGroup(tagGroup: TagGroupInputType!, id: String!): TagGroup!
+  deleteTagGroup(id: String!): Boolean!
+}
+
+type Query {
+  whispById(id: String!): Whisp
+  whisps(whisp: WhispInputType!): [Whisp!]
+  whispsCount(whisp: WhispInputType!): Float!
+  tagGroups(tagGroup: TagGroupInputType!): [TagGroup!]
+  tagGroupById(id: String!): TagGroup
+}
+
+type Subscription {
+  whispAdded(whisp: WhispInputType!): Whisp!
+}
+
+type TagGroup {
+  _id: ID!
+  title: String!
+  metalevel: String!
+  applicationID: String!
+  tags: [String!]!
+}
+
+"""New Tag Group"""
+input TagGroupInputType {
+  _id: String
+  title: String
+  metalevel: String
+  applicationID: String
+  tags: [String!]
+}
+
+type Whisp {
+  _id: ID!
+  readableID: String
+  type: String
+  severity: Int
+  description: String
+  closed: Boolean
+  applicationID: String
+  plantID: String
+  locationID: String
+  manual: Boolean
+  openedBy: String
+  openedById: String
+  closedBy: String
+  closedById: String
+  timestamp: String
+  updated: String
+  data: JSONObject
+}
+
+"""New whisp data"""
+input WhispInputType {
+  _id: String
+  readableID: String
+  type: String
+  severity: Int
+  description: String
+  closed: Boolean
+  applicationID: String
+  plantID: String
+  locationID: String
+  manual: Boolean
+  openedBy: String
+  openedById: String
+  closedBy: String
+  closedById: String
+  timestamp: DateTime
+  updated: DateTime
+  data: JSONObject
+}
