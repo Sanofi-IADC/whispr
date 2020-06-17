@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Installation | whispr</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    
+    <meta name="description" content="whispr">
+    <link rel="preload" href="/whispr/assets/css/0.styles.c59e018c.css" as="style"><link rel="preload" href="/whispr/assets/js/app.395c2b30.js" as="script"><link rel="preload" href="/whispr/assets/js/2.59a75250.js" as="script"><link rel="preload" href="/whispr/assets/js/13.fe48b91c.js" as="script"><link rel="prefetch" href="/whispr/assets/js/10.790c9471.js"><link rel="prefetch" href="/whispr/assets/js/11.2a1c8df2.js"><link rel="prefetch" href="/whispr/assets/js/12.9eb7c336.js"><link rel="prefetch" href="/whispr/assets/js/14.2e3f65ac.js"><link rel="prefetch" href="/whispr/assets/js/15.2ba4e5be.js"><link rel="prefetch" href="/whispr/assets/js/16.b52f4caa.js"><link rel="prefetch" href="/whispr/assets/js/17.090c2a4c.js"><link rel="prefetch" href="/whispr/assets/js/18.1b5eed8b.js"><link rel="prefetch" href="/whispr/assets/js/3.bb404bbf.js"><link rel="prefetch" href="/whispr/assets/js/4.8a6a982f.js"><link rel="prefetch" href="/whispr/assets/js/5.b4456057.js"><link rel="prefetch" href="/whispr/assets/js/6.0c87984e.js"><link rel="prefetch" href="/whispr/assets/js/7.337fd2c3.js"><link rel="prefetch" href="/whispr/assets/js/8.b9ef6b41.js"><link rel="prefetch" href="/whispr/assets/js/9.3a0bd1e5.js">
+    <link rel="stylesheet" href="/whispr/assets/css/0.styles.c59e018c.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/whispr/" class="home-link router-link-active"><!----> <span class="site-name">whispr</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/whispr/" class="nav-link">Introduction</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/whispr/" class="nav-link">Introduction</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="installation"><a href="#installation" class="header-anchor">#</a> Installation</h1> <h2 id="setup-with-docker"><a href="#setup-with-docker" class="header-anchor">#</a> Setup with Docker</h2> <p>Requirements:</p> <ul><li>Have Docker installed</li></ul> <h3 id="configuration"><a href="#configuration" class="header-anchor">#</a> Configuration</h3> <p>To configure the application, you need to provide a <code>local.env</code> file.</p> <div class="custom-block tip"><p class="custom-block-title">Help</p> <p>You can create your <code>local.env</code> file from the <code>example.env</code> file.</p></div> <h3 id="initialize-the-containers"><a href="#initialize-the-containers" class="header-anchor">#</a> Initialize the containers</h3> <p>On the first start up you need to open a bash and type in the following</p> <div class="language-bash extra-class"><pre class="language-bash"><code>$ docker-compose up -d
+$ docker <span class="token builtin class-name">exec</span> -it localmongo1 mongo
+</code></pre></div><p>Once in the mongoshell, run the following command to initiate the cluster.</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>rs<span class="token punctuation">.</span><span class="token function">initiate</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    _id <span class="token operator">:</span> <span class="token string">'rs0'</span><span class="token punctuation">,</span>
+    members<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> _id <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> host <span class="token operator">:</span> <span class="token string">&quot;mongo1:27017&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> _id <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> host <span class="token operator">:</span> <span class="token string">&quot;mongo2:27017&quot;</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+
+exit
+</code></pre></div><h3 id="running-the-app"><a href="#running-the-app" class="header-anchor">#</a> Running the app</h3> <div class="language-bash extra-class"><pre class="language-bash"><code>$ docker-compose up
+</code></pre></div><h2 id="installation-without-docker"><a href="#installation-without-docker" class="header-anchor">#</a> Installation without Docker</h2> <h3 id="install-the-whispr-node-application"><a href="#install-the-whispr-node-application" class="header-anchor">#</a> Install the whispr node application</h3> <div class="language-bash extra-class"><pre class="language-bash"><code>$ <span class="token function">npm</span> <span class="token function">install</span>
+</code></pre></div><h3 id="install-redis"><a href="#install-redis" class="header-anchor">#</a> Install Redis:</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">apt</span> update <span class="token operator">&amp;&amp;</span> <span class="token function">apt</span> upgrade
+<span class="token function">apt</span> <span class="token function">install</span> redis-server
+</code></pre></div><div class="custom-block warning"><p class="custom-block-title">Troubleshooting : Windows</p> <p>On Windows you have to install WSL Ubuntu before running the install commands</p></div> <p>Then start the server</p> <div class="language-bash extra-class"><pre class="language-bash"><code>redis-server
+</code></pre></div><h3 id="initialize-mongodb-as-a-cluster"><a href="#initialize-mongodb-as-a-cluster" class="header-anchor">#</a> Initialize MongoDB as a cluster:</h3> <p>Install current version of MongoDB from: https://www.mongodb.com/download-center/.</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># In an elevated cmd:</span>
+<span class="token builtin class-name">cd</span> C:<span class="token punctuation">\</span>Program Files<span class="token punctuation">\</span>MongoDB<span class="token punctuation">\</span>Server<span class="token punctuation">\</span><span class="token number">4.2</span><span class="token punctuation">\</span>bin
+<span class="token function">mkdir</span> .<span class="token punctuation">\</span>srv<span class="token punctuation">\</span>mongodb<span class="token punctuation">\</span>rs0-0<span class="token punctuation">;</span>
+<span class="token function">mkdir</span> .<span class="token punctuation">\</span>srv<span class="token punctuation">\</span>mongodb<span class="token punctuation">\</span>rs0-1<span class="token punctuation">;</span>
+mongod --replSet rs0 --port <span class="token number">27017</span> --bind_ip localhost --dbpath ./srv/mongodb/rs0-0
+mongod --replSet rs0 --port <span class="token number">27018</span> --bind_ip localhost --dbpath ./srv/mongodb/rs0-1
+
+<span class="token comment"># Connect to the first replicaset:</span>
+mongo --port <span class="token number">27017</span>
+</code></pre></div><p>In the mongo shell Create the following config:</p> <div class="language-javascript extra-class"><pre class="language-javascript"><code>rsconf <span class="token operator">=</span> <span class="token punctuation">{</span>
+  _id<span class="token operator">:</span> <span class="token string">&quot;rs0&quot;</span><span class="token punctuation">,</span>
+  members<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      _id<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      host<span class="token operator">:</span> <span class="token string">&quot;localhost:27017&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      _id<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      host<span class="token operator">:</span> <span class="token string">&quot;localhost:27018&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+rs<span class="token punctuation">.</span><span class="token function">initiate</span><span class="token punctuation">(</span> rsconf <span class="token punctuation">)</span>
+</code></pre></div><p>For all later startups of the database:</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># In an elevated cmd or create a .bat File:</span>
+start cmd.exe /k <span class="token string">&quot;cd C:\Program Files\MongoDB\Server<span class="token entity" title="\4">\4</span>.2<span class="token entity" title="\b">\b</span>in &amp; mongod --replSet rs0 --port 27017 --bind_ip localhost --dbpath ./srv/mongodb/rs0-0&quot;</span>
+
+start cmd.exe /k <span class="token string">&quot;cd C:\Program Files\MongoDB\Server<span class="token entity" title="\4">\4</span>.2<span class="token entity" title="\b">\b</span>in &amp; mongod --replSet rs0 --port 27018 --bind_ip localhost --dbpath ./srv/mongodb/rs0-1&quot;</span>
+
+start cmd.exe /k <span class="token string">&quot;wsl redis-server&quot;</span>
+</code></pre></div><h3 id="create-a-file-named-local-env-in-the-project-root-folder"><a href="#create-a-file-named-local-env-in-the-project-root-folder" class="header-anchor">#</a> Create a file named 'local.env' in the project root folder:</h3> <p>To configure the application, you need to provide a <code>local.env</code> file.</p> <p>You can create your <code>local.env</code> file from the <code>example.env</code> file. Most of the configuration is already done, however you will need to change the following lines.</p> <div class="language- extra-class"><pre class="language-text"><code>MONGOOSE_HOST = localhost
+MONGOOSE_HOST_READ = localhost
+MONGOOSE_PORT = 27017
+MONGOOSE_PORT_READ = 27018
+
+REDIS_HOST = localhost
+REDIS_HOST_READ = localhost
+</code></pre></div><h3 id="setup-a-local-aws-instance-with-localstack-optional"><a href="#setup-a-local-aws-instance-with-localstack-optional" class="header-anchor">#</a> Setup a local AWS instance with localstack (optional)</h3> <p>If you want to work with a local file storage instead of AWS use this:</p> <ul><li>Install Docker: https://www.docker.com/products/docker-desktop</li> <li>Install Python: https://www.python.org/downloads/</li> <li>Install Localstack: https://github.com/localstack/localstack</li> <li>Install AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># run the following parts in different shells</span>
+localstack start
+<span class="token comment"># wait until the first command is finished</span>
+aws --endpoint-url<span class="token operator">=</span>http://localhost:4572 s3 mb s3://demo-bucket
+aws --endpoint-url<span class="token operator">=</span>http://localhost:4572 s3api put-bucket-acl --bucket demo-bucket --acl public-read
+</code></pre></div><p>Add to your <code>local.env</code></p> <div class="language-bash extra-class"><pre class="language-bash"><code>AWS_S3_ENDPOINT <span class="token operator">=</span> http://localhost:4572/
+AWS_BUCKET_NAME <span class="token operator">=</span> demo-bucket
+</code></pre></div><h3 id="running-the-app-2"><a href="#running-the-app-2" class="header-anchor">#</a> Running the app</h3> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment"># development</span>
+$ <span class="token function">npm</span> run start
+
+<span class="token comment"># watch mode</span>
+$ <span class="token function">npm</span> run start:dev
+
+<span class="token comment"># production mode</span>
+$ <span class="token function">npm</span> run start:prod
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/whispr/assets/js/app.395c2b30.js" defer></script><script src="/whispr/assets/js/2.59a75250.js" defer></script><script src="/whispr/assets/js/13.fe48b91c.js" defer></script>
+  </body>
+</html>
