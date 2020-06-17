@@ -1,6 +1,7 @@
 import {
-  Resolver, Query, Mutation, Args, Subscription,
+  Resolver, Query, Mutation, Args, Subscription, Int,
 } from '@nestjs/graphql';
+import { GraphQLJSONObject } from 'graphql-type-json';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { Inject } from '@nestjs/common';
 import { Whisp } from './whisp.entity';
@@ -30,13 +31,24 @@ export class WhispResolver {
   }
 
   @Query(() => [Whisp], { nullable: true })
-  async whisps(@Args('whisp') whispFilter: WhispInputType) {
+  async whisps(
+    @Args('whisp') whispFilter: WhispInputType,
+    @Args('sort', { type: () => GraphQLJSONObject, nullable: true }) sort?: object,
+    @Args('limit', { type: () => Int, nullable: true }) limit?: number,
+  ) {
     const dataFilter = whispFilter.data;
     const filter = whispFilter;
     delete filter.data;
 
-    const allWhisps = await this.whispService.findAll(filter);
-    const filteredWhisps = allWhisps.filter((e) => WhispResolver.filter(dataFilter, e.data));
+    const allWhisps = await this.whispService.findAll(filter, sort);
+    const filteredWhisps = allWhisps.filter((whisp) => (
+      WhispResolver.filter(dataFilter, whisp.data)
+    ));
+
+    if (limit) {
+      return filteredWhisps.slice(0, limit);
+    }
+
     return filteredWhisps;
   }
 
