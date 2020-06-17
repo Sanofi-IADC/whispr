@@ -3,7 +3,7 @@ name: github pages
 on:
   push:
     branches:
-      - feature/add_vuepress
+      - master
 
 jobs:
   deploy:
