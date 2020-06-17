@@ -32,29 +32,18 @@ export class WhispResolver {
 
   @Query(() => [Whisp], { nullable: true })
   async whisps(
-    @Args('whisp') whispFilter: WhispInputType,
+    @Args('filter', { type: () => GraphQLJSONObject, nullable: true }) filter?: object,
     @Args('sort', { type: () => GraphQLJSONObject, nullable: true }) sort?: object,
     @Args('limit', { type: () => Int, nullable: true }) limit?: number,
   ) {
-    const dataFilter = whispFilter.data;
-    const filter = whispFilter;
-    delete filter.data;
-
-    const allWhisps = await this.whispService.findAll(filter, sort);
-    const filteredWhisps = allWhisps.filter((whisp) => (
-      WhispResolver.filter(dataFilter, whisp.data)
-    ));
-
-    if (limit) {
-      return filteredWhisps.slice(0, limit);
-    }
-
-    return filteredWhisps;
+    return this.whispService.findAll(filter, sort, limit);
   }
 
   @Query(() => Number)
-  async whispsCount(@Args('whisp') whispFilter: WhispInputType) {
-    return (await this.whisps(whispFilter)).length;
+  async whispsCount(
+    @Args('filter', { type: () => GraphQLJSONObject, nullable: true }) filter?: object
+  ) {
+    return (await this.whisps(filter)).length;
   }
 
   /**
