@@ -1,17 +1,19 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
-import { DistributionModule } from './distribution/distribution.module';
-import { ConfigService } from './config/config.service';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import { AWSCredsModule } from './auth/aws-creds.module';
 import { ConfigModule } from './config/config.module';
+import { DistributionModule } from './distribution/distribution.module';
+import { FileModule } from './file/file.module';
 import { PubSubModule } from './pubSub/pubSub.module';
 import { SequenceModule } from './sequence/sequence.module';
-import { FileModule } from './file/file.module';
-import { AWSCredsModule } from './auth/aws-creds.module';
-import { WhispModule } from './whisp/whisp.module';
 import { TagGroupModule } from './tagGroup/tagGroup.module';
+import { WhispModule } from './whisp/whisp.module';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { ConfigService } from './config/config.service';
 
 @Module({
   imports: [
