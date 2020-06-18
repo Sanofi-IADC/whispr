@@ -33,7 +33,7 @@
     "@nestjs/platform-socket.io": "7.1.3",
     "@nestjs/websockets": "7.1.3",
     "@types/graphql": "14.5.0",
-    "amazon-cognito-identity-js": "3.2.7",
+    "amazon-cognito-identity-js": "3.3.3",
     "apollo-server-fastify": "2.14.5",
     "aws-sdk": "2.640.0",
     "cross-fetch": "3.0.5",
