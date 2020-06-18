@@ -4,6 +4,7 @@ import {
 import { GraphQLJSONObject } from 'graphql-type-json';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { Inject } from '@nestjs/common';
+import { isEqual } from 'lodash';
 import { Whisp } from './whisp.entity';
 import { WhispService } from './whisp.service';
 import { WhispInputType } from './whisp.input';
@@ -82,10 +83,10 @@ export class WhispResolver {
    */
 
   @Subscription(() => Whisp, {
-    filter: (payload, variables) => WhispResolver.filter(variables.whisp, payload.whispAdded),
+    filter: (payload, variables) => WhispResolver.filter(variables.filter, payload.whispAdded),
   })
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  whispAdded(@Args('whisp') whisp: WhispInputType) {
+  whispAdded(@Args('filter', { type: () => GraphQLJSONObject }) filter: object) {
     return this.pubSub.asyncIterator('whispAdded');
   }
 
@@ -96,21 +97,43 @@ export class WhispResolver {
     if (!filter) {
       return true;
     }
+
     return Object.keys(filter).every((key) => {
-      if (
-        filter[key] !== undefined
-        && payload !== undefined
-        && payload[key] !== undefined
-      ) {
-        if (Array.isArray(filter[key])) {
-          return filter[key].some((filterValue) => this.filter(filterValue, payload[key]));
-        }
-        if (typeof filter[key] === 'object') {
-          return this.filter(filter[key], payload[key]);
-        }
-        return payload[key] === filter[key];
+      const filterValue = filter[key];
+
+      if (filterValue === undefined || payload === undefined) {
+        return false;
       }
-      return false;
+
+      const keyArray = key.split('.');
+      if (keyArray.length !== 1) {
+        return this.payloadMatchesNestedValue(keyArray, filterValue, payload);
+      }
+
+      return this.matches(filterValue, payload[key]);
     });
+  }
+
+  public static matches(filterValue, elementValue) {
+    if (Array.isArray(filterValue)) {
+      return filterValue.some((value) => this.matches(value, elementValue));
+    }
+
+    return isEqual(filterValue, elementValue);
+  }
+
+  public static payloadMatchesNestedValue(keyArray, nestedValue, payload) {
+    let currentObj = payload;
+
+    while (keyArray.length > 1) {
+      const key = keyArray.shift();
+
+      if (!currentObj[key]) {
+        return false;
+      }
+      currentObj = currentObj[key];
+    }
+
+    return this.matches(nestedValue, currentObj[keyArray.shift()]);
   }
 }
