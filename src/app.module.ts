@@ -43,11 +43,10 @@ import Redis = require('ioredis');
     ConfigModule,
     AWSCredsModule,
     FileModule,
+    DistributionModule,
   ],
   providers: [
     AppService,
-    ConfigService,
-    DistributionModule,
     {
       provide: 'PUB_SUB',
       inject: [ConfigService],
