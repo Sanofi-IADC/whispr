@@ -12,7 +12,7 @@ import { SequenceService } from './sequence/sequence.service';
 import { TagGroupController } from './tagGroup/tagGroup.controller';
 import { TagGroupService } from './tagGroup/tagGroup.service';
 import { TagGroupResolver } from './tagGroup/tagGroup.resolver';
-import { FileService } from './file/file.service';
+import { FileModule } from './file/file.module';
 import { FileController } from './file/file.controller';
 import { AWSCredsModule } from './auth/aws-creds.module';
 import { WhispModule } from './whisp/whisp.module';
@@ -33,7 +33,8 @@ import Redis = require('ioredis');
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => configService.getMongooseOptions(),
+      useFactory: async (configService: ConfigService) =>
+        configService.getMongooseOptions(),
       inject: [ConfigService],
     }),
     MongooseModule.forFeature([
@@ -43,30 +44,31 @@ import Redis = require('ioredis');
     WhispModule,
     ConfigModule,
     AWSCredsModule,
+    FileModule,
   ],
   providers: [
     AppService,
     ConfigService,
     DistributionService,
-    FileService,
     SequenceService,
     {
       provide: 'PUB_SUB',
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => new RedisPubSub({
-        publisher: new Redis({
-          host: configService.get('REDIS_HOST'),
-          port: configService.get('REDIS_PORT'),
+      useFactory: async (configService: ConfigService) =>
+        new RedisPubSub({
+          publisher: new Redis({
+            host: configService.get('REDIS_HOST'),
+            port: configService.get('REDIS_PORT'),
+          }),
+          subscriber: new Redis({
+            host: configService.get('REDIS_HOST_READ'),
+            port: configService.get('REDIS_PORT_READ'),
+          }),
         }),
-        subscriber: new Redis({
-          host: configService.get('REDIS_HOST_READ'),
-          port: configService.get('REDIS_PORT_READ'),
-        }),
-      }),
     },
     TagGroupService,
     TagGroupResolver,
   ],
-  controllers: [AppController, FileController, TagGroupController],
+  controllers: [AppController, TagGroupController],
 })
-export class AppModule { }
+export class AppModule {}
