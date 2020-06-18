@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
-import { DistributionService } from './distribution/distribution.service';
+import { DistributionModule } from './distribution/distribution.module';
 import { ConfigService } from './config/config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -47,7 +47,7 @@ import Redis = require('ioredis');
   providers: [
     AppService,
     ConfigService,
-    DistributionService,
+    DistributionModule,
     {
       provide: 'PUB_SUB',
       inject: [ConfigService],
