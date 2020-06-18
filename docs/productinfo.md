@@ -28,7 +28,7 @@ Using Whispr we’ve implemented a messaging service for users to communicate be
 
 ### Whispr in action
 
-![Chat application with whispr animated gif](./docs/assets/whisprcommentfast.gif "Chat with whispr")
+![Chat application with whispr animated gif](assets/whisprcommentfast.gif "Chat with whispr")
 
 *Demonstration of using whispr as a comment system. Each comment is a whisp with severity info, and tags are also defined as a separate object type in whispr. All user interface components you see are available for use in the whispr UI library.*
 
