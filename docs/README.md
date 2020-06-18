@@ -1,16 +1,18 @@
-# Table of Content
+---
+home: true
+heroImage: whispr_logo_charcoal_back.svg
+heroText:
+tagline:  Open source event, comment and alert processing pub sub hub
+actionText: Get Started →
+actionLink: /guide/
+features:
+- title: Easy pub sub
+  details: Easily implement whispr and integrate into your projects as a pub sub solution for event type data.
+- title: UI library
+  details: Get started quickly with some simple UI components to add cool whispr integrations to your app, or bbuild from them as samples.
+- title: Progressive
+  details: An open, extendable platform built using a modern, progressive tech stack using Nest.js, GraphQL.
 
-* [Installation](installation.md)
-* [Testing](testing.md)
-* GraphQl
-    * [Whisp](graphQl/whisp/index.md)
-    * [TagGroup](graphQl/tagGroup/index.md)
-* REST
-    * [Whisp](rest/whisp/index.md)
-    * [TagGroup](rest/tagGroup/index.md)
-* [File Upload](fileUpload.md) **#AWS_ONLY**
-* Contributing
-   * [Building](contributing/building.md)
-   * [Guidelines](contributing/guidelines.md)
-   * [Community](contributing/community.md)
-   * [Credits](contributing/credits.md)
+
+footer: MIT licensed, made by Sanofi IADC
+---
