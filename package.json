@@ -47,7 +47,7 @@
     "graphql-tools": "6.0.10",
     "graphql-type-json": "0.3.2",
     "ioredis": "4.14.4",
-    "mongoose": "5.7.11",
+    "mongoose": "5.7.14",
     "reflect-metadata": "0.1.13",
     "request": "2.88.0",
     "rimraf": "3.0.0",
