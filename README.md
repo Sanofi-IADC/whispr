@@ -10,7 +10,7 @@ Using Whispr we’ve implemented a messaging service for users to communicate be
 
 ## Links
 
-* [Documentation](docs/README.md)
+* [Documentation](https://sanofi-iadc.github.io/whispr/)
 
 ## Main features
 
