@@ -7,8 +7,8 @@ import { ConfigService } from './config/config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
-import { sequenceSchema, tagGroupSchema } from './schema';
-import { SequenceService } from './sequence/sequence.service';
+import { tagGroupSchema } from './schema';
+import { SequenceModule } from './sequence/sequence.module';
 import { TagGroupController } from './tagGroup/tagGroup.controller';
 import { TagGroupService } from './tagGroup/tagGroup.service';
 import { TagGroupResolver } from './tagGroup/tagGroup.resolver';
@@ -37,11 +37,9 @@ import Redis = require('ioredis');
         configService.getMongooseOptions(),
       inject: [ConfigService],
     }),
-    MongooseModule.forFeature([
-      { name: 'Sequence', schema: sequenceSchema },
-      { name: 'TagGroup', schema: tagGroupSchema },
-    ]),
+    MongooseModule.forFeature([{ name: 'TagGroup', schema: tagGroupSchema }]),
     WhispModule,
+    SequenceModule,
     ConfigModule,
     AWSCredsModule,
     FileModule,
@@ -50,7 +48,6 @@ import Redis = require('ioredis');
     AppService,
     ConfigService,
     DistributionService,
-    SequenceService,
     {
       provide: 'PUB_SUB',
       inject: [ConfigService],

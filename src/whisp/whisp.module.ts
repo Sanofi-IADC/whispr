@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DistributionService } from '../distribution/distribution.service';
 import { FileModule } from '../file/file.module';
-import { SequenceService } from '../sequence/sequence.service';
+import { SequenceModule } from '../sequence/sequence.module';
 
 import { whispSchema } from './whisp.schema';
 import { WhispService } from './whisp.service';
@@ -13,7 +13,7 @@ import { WhispController } from './whisp.controller';
     MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
     DistributionService,
     FileModule,
-    SequenceService,
+    SequenceModule,
   ],
   controllers: [WhispController],
   providers: [WhispService],
