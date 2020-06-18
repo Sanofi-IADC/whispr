@@ -3,14 +3,11 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RedisPubSub } from 'graphql-redis-subscriptions';
 import { DistributionService } from './distribution/distribution.service';
-import { WhispService } from './whisp/whisp.service';
-import { WhispController } from './whisp/whisp.controller';
 import { ConfigService } from './config/config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
-import { WhispResolver } from './whisp/whisp.resolver';
-import { whispSchema, sequenceSchema, tagGroupSchema } from './schema';
+import { sequenceSchema, tagGroupSchema } from './schema';
 import { SequenceService } from './sequence/sequence.service';
 import { TagGroupController } from './tagGroup/tagGroup.controller';
 import { TagGroupService } from './tagGroup/tagGroup.service';
@@ -18,6 +15,7 @@ import { TagGroupResolver } from './tagGroup/tagGroup.resolver';
 import { FileService } from './file/file.service';
 import { FileController } from './file/file.controller';
 import { AWSCredsModule } from './auth/aws-creds.module';
+import { WhispModule } from './whisp/whisp.module';
 
 import Redis = require('ioredis');
 
@@ -39,20 +37,18 @@ import Redis = require('ioredis');
       inject: [ConfigService],
     }),
     MongooseModule.forFeature([
-      { name: 'Whisp', schema: whispSchema },
       { name: 'Sequence', schema: sequenceSchema },
       { name: 'TagGroup', schema: tagGroupSchema },
     ]),
+    WhispModule,
     ConfigModule,
     AWSCredsModule,
   ],
   providers: [
     AppService,
     ConfigService,
-    WhispService,
     DistributionService,
     FileService,
-    WhispResolver,
     SequenceService,
     {
       provide: 'PUB_SUB',
@@ -71,6 +67,6 @@ import Redis = require('ioredis');
     TagGroupService,
     TagGroupResolver,
   ],
-  controllers: [AppController, WhispController, FileController, TagGroupController],
+  controllers: [AppController, FileController, TagGroupController],
 })
 export class AppModule { }
