@@ -13,7 +13,6 @@ import { TagGroupController } from './tagGroup/tagGroup.controller';
 import { TagGroupService } from './tagGroup/tagGroup.service';
 import { TagGroupResolver } from './tagGroup/tagGroup.resolver';
 import { FileModule } from './file/file.module';
-import { FileController } from './file/file.controller';
 import { AWSCredsModule } from './auth/aws-creds.module';
 import { WhispModule } from './whisp/whisp.module';
 
