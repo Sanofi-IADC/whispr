@@ -11,4 +11,4 @@ export const tagGroupSchema = new mongoose.Schema({
   ],
 });
 
-export const tagGroupModel = mongoose.model('TagGroup', tagGroupSchema);
+mongoose.model('TagGroup', tagGroupSchema);

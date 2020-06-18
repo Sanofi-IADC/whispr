@@ -7,17 +7,13 @@ import { ConfigService } from './config/config.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
-import { tagGroupSchema } from './schema';
 import { SequenceModule } from './sequence/sequence.module';
-import { TagGroupController } from './tagGroup/tagGroup.controller';
-import { TagGroupService } from './tagGroup/tagGroup.service';
-import { TagGroupResolver } from './tagGroup/tagGroup.resolver';
 import { FileModule } from './file/file.module';
 import { AWSCredsModule } from './auth/aws-creds.module';
 import { WhispModule } from './whisp/whisp.module';
+import { TagGroupModule } from './tagGroup/tagGroup.module';
 
 import Redis = require('ioredis');
-
 @Module({
   imports: [
     GraphQLModule.forRootAsync({
@@ -36,8 +32,8 @@ import Redis = require('ioredis');
         configService.getMongooseOptions(),
       inject: [ConfigService],
     }),
-    MongooseModule.forFeature([{ name: 'TagGroup', schema: tagGroupSchema }]),
     WhispModule,
+    TagGroupModule,
     SequenceModule,
     ConfigModule,
     AWSCredsModule,
@@ -61,9 +57,7 @@ import Redis = require('ioredis');
           }),
         }),
     },
-    TagGroupService,
-    TagGroupResolver,
   ],
-  controllers: [AppController, TagGroupController],
+  controllers: [AppController],
 })
 export class AppModule {}
