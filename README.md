@@ -1,4 +1,4 @@
-[<img  src="docs/.vuepress/public/whispr_logo_charcoal_back.svg" height=300>]((https://sanofi-iadc.github.io/whispr/))
+[<div style="text-align:center"><img  src="docs/.vuepress/public/whispr_logo_charcoal_back.svg" height=300></div>]((https://sanofi-iadc.github.io/whispr/))
 
 # Introduction
 
