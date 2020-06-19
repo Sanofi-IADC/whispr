@@ -71,7 +71,7 @@
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
     "cz-conventional-changelog": "3.2.0",
-    "eslint": "6.6.0",
+    "eslint": "7.2.0",
     "eslint-config-airbnb-base": "14.2.0",
     "eslint-config-standard": "14.1.1",
     "eslint-plugin-import": "2.21.2",
