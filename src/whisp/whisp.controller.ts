@@ -1,12 +1,20 @@
 import {
-  Controller, Post, Body, Get, Patch, Put, Delete, Param, HttpCode,
+  Controller,
+  Post,
+  Body,
+  Get,
+  Patch,
+  Put,
+  Delete,
+  Param,
+  HttpCode,
 } from '@nestjs/common';
 import { WhispService } from './whisp.service';
 import { IWhisp } from '../interfaces/whisp.interface';
 
 @Controller('whisp')
 export class WhispController {
-  constructor(private readonly whispService: WhispService) { }
+  constructor(private readonly whispService: WhispService) {}
 
   @Post()
   @HttpCode(201)
