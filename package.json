@@ -55,7 +55,7 @@
     "superagent": "5.1.4",
     "superagent-promise": "1.1.0",
     "superagent-proxy": "2.0.0",
-    "vuepress": "1.2.0"
+    "vuepress": "1.5.2"
   },
   "devDependencies": {
     "@nestjs/cli": "7.2.0",
