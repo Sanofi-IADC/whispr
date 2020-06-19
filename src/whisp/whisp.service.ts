@@ -111,13 +111,18 @@ export class WhispService {
     const updatedWhisp = await this.whispModel
       .findOneAndUpdate({ _id: id }, whisp, { new: true })
       .exec();
+    await this.whispEventsService.trigger(WhispEvent.AfterSave, updatedWhisp);
     this.logger.log(updatedWhisp, 'Updated Whisp');
     this.distributionService.distributeWhisp(updatedWhisp);
     return updatedWhisp;
   }
 
   async replace(id: string, whisp: any): Promise<any> {
-    return this.whispModel.replaceOne({ _id: id }, whisp).exec();
+    const replacedWhisp = await this.whispModel
+      .replaceOne({ _id: id }, whisp)
+      .exec();
+    await this.whispEventsService.trigger(WhispEvent.AfterSave, replacedWhisp);
+    return replacedWhisp;
   }
 
   async delete(id) {
