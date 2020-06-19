@@ -3,6 +3,7 @@ import { EventService } from '../event/event.service';
 
 export enum WhispEvent {
   AfterSave = 'AFTER_SAVE',
+  AfterDelete = 'AFTER_DELETE',
 }
 
 @Injectable()
