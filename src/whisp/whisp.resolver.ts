@@ -1,6 +1,4 @@
-import {
-  Resolver, Query, Mutation, Args, Subscription,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Subscription } from '@nestjs/graphql';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { Inject } from '@nestjs/common';
 import { Whisp } from './whisp.entity';
@@ -15,7 +13,7 @@ export class WhispResolver {
     private readonly distributionService: DistributionService,
     @Inject('PUB_SUB') private pubSub: PubSubEngine,
   ) {
-    this.distributionService.whispSubject.subscribe((whisp) => {
+    this.distributionService.whispSubject.subscribe(whisp => {
       pubSub.publish('whispAdded', { whispAdded: whisp });
     });
   }
@@ -36,7 +34,9 @@ export class WhispResolver {
     delete filter.data;
 
     const allWhisps = await this.whispService.findAll(filter);
-    const filteredWhisps = allWhisps.filter((e) => WhispResolver.filter(dataFilter, e.data));
+    const filteredWhisps = allWhisps.filter(e =>
+      WhispResolver.filter(dataFilter, e.data),
+    );
     return filteredWhisps;
   }
 
@@ -80,7 +80,8 @@ export class WhispResolver {
    */
 
   @Subscription(() => Whisp, {
-    filter: (payload, variables) => WhispResolver.filter(variables.whisp, payload.whispAdded),
+    filter: (payload, variables) =>
+      WhispResolver.filter(variables.whisp, payload.whispAdded),
   })
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   whispAdded(@Args('whisp') whisp: WhispInputType) {
@@ -94,14 +95,16 @@ export class WhispResolver {
     if (!filter) {
       return true;
     }
-    return Object.keys(filter).every((key) => {
+    return Object.keys(filter).every(key => {
       if (
-        filter[key] !== undefined
-        && payload !== undefined
-        && payload[key] !== undefined
+        filter[key] !== undefined &&
+        payload !== undefined &&
+        payload[key] !== undefined
       ) {
         if (Array.isArray(filter[key])) {
-          return filter[key].some((filterValue) => this.filter(filterValue, payload[key]));
+          return filter[key].some(filterValue =>
+            this.filter(filterValue, payload[key]),
+          );
         }
         if (typeof filter[key] === 'object') {
           return this.filter(filter[key], payload[key]);
