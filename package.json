@@ -52,7 +52,7 @@
     "request": "2.88.2",
     "rimraf": "3.0.2",
     "rxjs": "6.5.5",
-    "superagent": "5.1.4",
+    "superagent": "5.2.2",
     "superagent-promise": "1.1.0",
     "superagent-proxy": "2.0.0",
     "vuepress": "1.2.0"
