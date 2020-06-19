@@ -2,6 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type TagGroup {
+  _id: ID!
+  title: String!
+  metalevel: String!
+  applicationID: String!
+  tags: [String!]!
+}
+
 type Whisp {
   _id: ID!
   readableID: String
@@ -27,20 +35,21 @@ The `JSONObject` scalar type represents JSON objects as specified by [ECMA-404](
 """
 scalar JSONObject
 
-type TagGroup {
-  _id: ID!
-  title: String!
-  metalevel: String!
-  applicationID: String!
-  tags: [String!]!
-}
-
 type Query {
+  tagGroups(tagGroup: TagGroupInputType!): [TagGroup!]
+  tagGroupById(id: String!): TagGroup
   whispById(id: String!): Whisp
   whisps(whisp: WhispInputType!): [Whisp!]
   whispsCount(whisp: WhispInputType!): Float!
-  tagGroups(tagGroup: TagGroupInputType!): [TagGroup!]
-  tagGroupById(id: String!): TagGroup
+}
+
+"""New Tag Group"""
+input TagGroupInputType {
+  _id: String
+  title: String
+  metalevel: String
+  applicationID: String
+  tags: [String!]
 }
 
 """New whisp data"""
@@ -69,24 +78,15 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-"""New Tag Group"""
-input TagGroupInputType {
-  _id: String
-  title: String
-  metalevel: String
-  applicationID: String
-  tags: [String!]
-}
-
 type Mutation {
-  createWhisp(whisp: WhispInputType!): Whisp!
-  updateWhisp(whisp: WhispInputType!, id: String!): Whisp!
-  replaceWhisp(whisp: WhispInputType!, id: String!): Whisp!
-  deleteWhisp(id: String!): Boolean!
   createTagGroup(tagGroup: TagGroupInputType!): TagGroup!
   updateTagGroup(tagGroup: TagGroupInputType!, id: String!): TagGroup!
   replaceTagGroup(tagGroup: TagGroupInputType!, id: String!): TagGroup!
   deleteTagGroup(id: String!): Boolean!
+  createWhisp(whisp: WhispInputType!): Whisp!
+  updateWhisp(whisp: WhispInputType!, id: String!): Whisp!
+  replaceWhisp(whisp: WhispInputType!, id: String!): Whisp!
+  deleteWhisp(id: String!): Boolean!
 }
 
 type Subscription {
