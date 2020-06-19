@@ -1,16 +1,10 @@
-# whispr
-
-## Introduction
+# Introduction
 
 Whispr is an open source event, comment and alert processing hub created by Sanofi IADC. We created it to meet our need for a centralised comment and alerting service which could be easily integrated into our tech stack.
 
 In Whispr each event object is called a whisp. A whisp is classified with a severity level from info to critical, can have tags to further classify it, and has a generic data object which stores the detail of the whisp. As an example, a comment within an application could be a whisp of severity level info, with the comment text in the data object.
 
 Using Whispr we’ve implemented a messaging service for users to communicate between our apps, and a business process status pub/sub alerting solution - any system can send an alert to Whispr, and susbscribing applications and users are automatically notified to display the alert and take action.
-
-## Links
-
-* [Documentation](https://sanofi-iadc.github.io/whispr/)
 
 ## Main features
 
@@ -28,14 +22,15 @@ Using Whispr we’ve implemented a messaging service for users to communicate be
 
 ### Whispr in action
 
-![Chat application with whispr animated gif](assets/whisprcommentfast.gif "Chat with whispr")
+![Chat application with whispr animated gif](../assets/whisprcommentfast.gif "Chat with whispr")
 
 *Demonstration of using whispr as a comment system. Each comment is a whisp with severity info, and tags are also defined as a separate object type in whispr. All user interface components you see are available for use in the whispr UI library.*
 
-## Whispr consists of the following main elements
+## Key components
+Whispr consists of the following main elements:
 
-* Whispr core providing an whisp pub/sub system - publishing systems can register whisps in Whispr core when they need to share the status with. Whispr core can be used by any application capable of communicating with GraphQL or REST APIs
-* A front end component library for fast implementation of some common use cases within your Vue.js or React based web application.
+* **Whispr core:** providing an whisp pub/sub system - publishing systems can register whisps in Whispr core when they need to share the status with. Whispr core can be used by any application capable of communicating with GraphQL or REST APIs
+* **Whispr UI:** A front end component library for fast implementation of some common use cases within your Vue.js or React based web application.
 
 ## Roadmap
 
@@ -43,26 +38,3 @@ Using Whispr we’ve implemented a messaging service for users to communicate be
 Plugin system
 * Advanced filtering
 * Whisp schema registration and validation
-
-## Tech stack
-
-### Whispr core
-
-* Nest.js
-* GraphQL (out of the box with Nest.js)
-* Simple REST API
-
-### Whispr UI
-
-* Vue.js
-* Vuetify
-
-
-## Sponsorship
-
-We’re not looking for sponsorship, please checkout the pages of our favourite open source projects which make up our standard tech stack: (TODO add links and logos)
-
-* Nest
-* Vue.js
-* Vue apollo
-* Vuetify
