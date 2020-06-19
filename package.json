@@ -41,7 +41,7 @@
     "express": "4.17.1",
     "fastify-compress": "1.1.0",
     "graphql": "15.1.0",
-    "graphql-redis-subscriptions": "2.1.2",
+    "graphql-redis-subscriptions": "2.2.1",
     "graphql-subscriptions": "1.1.0",
     "graphql-tag-pluck": "0.8.7",
     "graphql-tools": "6.0.10",
