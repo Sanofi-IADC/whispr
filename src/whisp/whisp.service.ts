@@ -53,7 +53,7 @@ export class WhispService {
       } else if (typeof value === 'object') {
         if (whisp instanceof Array) {
           const replaceFilePromise = this.replaceFiles(value, path);
-          replaceFilePromise.then((obj) => {
+          replaceFilePromise.then(obj => {
             newObj[keys[i]] = obj;
           });
           promises.push(replaceFilePromise);
@@ -62,7 +62,7 @@ export class WhispService {
             value,
             `${path}/${keys[i]}`,
           );
-          replaceFilePromise.then((obj) => {
+          replaceFilePromise.then(obj => {
             newObj[keys[i]] = obj;
           });
           promises.push(replaceFilePromise);
@@ -73,15 +73,15 @@ export class WhispService {
     for (let i = 0; i < filePromises.length; i += 1) {
       const filePromise = filePromises[i];
       // ... wait until it is loaded ...
-      filePromise.file.then((file) => {
+      filePromise.file.then(file => {
         if (
-          file
-          && file.createReadStream
-          && {}.toString.call(file.createReadStream) === '[object Function]'
+          file &&
+          file.createReadStream &&
+          {}.toString.call(file.createReadStream) === '[object Function]'
         ) {
           // ... and save it in s3 ...
           const savePromise = this.imageService.saveFile(file, path);
-          savePromise.then((key) => {
+          savePromise.then(key => {
             // ... and replace the file with the s3 key
             newObj[filePromise.key] = key;
           });
@@ -90,7 +90,7 @@ export class WhispService {
       });
     }
     // Wait until all files are loaded
-    await Promise.all(filePromises.map((data) => data.file));
+    await Promise.all(filePromises.map(data => data.file));
     // Wait until all files are replaced & complete data is checked for files
     await Promise.all(promises);
     return newObj;
