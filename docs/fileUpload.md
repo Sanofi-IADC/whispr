@@ -2,7 +2,9 @@
 
 ## AWS Dependency
 
+::: warning
 This feature is currently **only available with AWS**.
+:::
 
 You need to provide the following environment variable.
 

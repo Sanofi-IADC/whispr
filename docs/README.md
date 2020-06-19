@@ -4,7 +4,7 @@ heroImage: whispr_logo_charcoal_back.svg
 heroText:
 tagline:  Open source event, comment and alert processing pub sub hub
 actionText: Get Started →
-actionLink: /guide/
+actionLink: /introduction/
 features:
 - title: Easy pub sub
   details: Easily implement whispr and integrate into your projects as a pub sub solution for event type data.
