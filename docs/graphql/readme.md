@@ -20,7 +20,7 @@ query getWhispById($whispId: String!) {
 
 Query variables
 
-```javascript
+```json
 { "whispId": "5ed644d46f91b10034d731f1" }
 ```
 
@@ -31,26 +31,36 @@ You can find the list of available fields [here](../../models/whisp.md).
 Retrieves all the whisps matching a set of conditions.
 
 ```GraphQL
-query getWhisps($whisp: WhispInputType!) {
-  whisps(whisp: $whisp) {
+query getWhisps($filter: JSONObject!, $sort: JSONObject, $limit: Int) {
+  whisps(filter: $filter, sort: $sort, limit: $limit) {
     _id # fields you want to retrieve from the whisp
   }
 }
 ```
 
+You can find the list of available fields [here](../../models/whisp.md).
+
 Query variables
 
-```javascript
+```json
 {
-    "whisp": {
-        "closed": false // fields you want to filter on
-    }
+  "filter": { "att1": "value1" },
+  "sort": { "att1": 1  },
+  "limit": 3
 }
 ```
 
-If you want to retrieve all the whisps you can set the `whisp` parameter to `{}`
+* The filtering options are described [here](./filters.md).
+* The `/whisps` query accepts mongoose filtering functionality.
+* The sort variable accepts two values `1` (ascending), and `-1` (descending)
+* You can sort on nested fields this way:
 
-You can find the list of available fields [here](../../models/whisp.md).
+
+```json
+{
+  "sort": { "att1.att2": 1  }
+}
+```
 
 ### whispsCount
 
@@ -59,22 +69,21 @@ Returns the count of matching whisps.
 It takes the same parameter as the query [whisps](#whisps)
 
 ```GraphQL
-query getWhispCount($whisp: WhispInputType!) {
-  whispsCount(whisp: $whisp)
+query getWhispCount($filter: JSONObject!) {
+  whispsCount(filter: $filter)
 }
 ```
 
 Query variables
 
-```javascript
+```json
 {
-    "whisp": {
-        "closed": false // fields you want to filter on
-    }
+  "filter": { "att1": "value1" }
 }
 ```
 
-You can find the list of available fields [here](../../models/whisp.md).
+* The filtering options are described [here](./filters.md).
+* The `/whispsCount` query accepts mongoose filtering functionality.
 
 ## Whisps: Mutation
 
@@ -92,7 +101,7 @@ mutation createWhisp($whisp: WhispInputType!) {
 
 Query variables
 
-```javascript
+```json
 {
     "whisp": {
         "closed": false // fields you want to populate
@@ -116,7 +125,7 @@ mutation updateWhisp($whisp: WhispInputType!, $id: String) {
 
 Query variables
 
-```javascript
+```json
 {
     "whisp": {
         "closed": false // fields you want to update
@@ -141,7 +150,7 @@ mutation replaceWhisp($whisp: WhispInputType!, $id: String) {
 
 Query variables
 
-```javascript
+```json
 {
     "whisp": {
         "closed": false // fields you want to populate
@@ -166,7 +175,7 @@ mutation deleteWhispById($whispId: String!) {
 
 Query variables
 
-```javascript
+```json
 { "whispId": "5ed644d46f91b10034d731f1" }
 ```
 
@@ -177,8 +186,8 @@ Query variables
 Subscribes the caller to the  'whispAdded' event. The caller will receive the new whisps that match the provided filter.
 
 ```GraphQL
-subscription whispSubscription($whisp: WhispInputType!) {
-  whispAdded(whisp: $whisp) {
+subscription whispSubscription($filter: JSONObject!) {
+  whispAdded(filter: $filter) {
     _id # fields you want to retrieve from the created whisp
   }
 }
@@ -186,13 +195,12 @@ subscription whispSubscription($whisp: WhispInputType!) {
 
 Query variables
 
-```javascript
+```json
 {
-    "whisp": {
-        "closed": false // fields you want to filter the created whisp on
-    }
+  "filter": { "att1": "value1" }
 }
 ```
+* The filtering options are described [here](./filters.md).
 
 > In this section we will be providing examples that you can use inside your very own playground available here [http://localhost:3000/graphql](http://localhost:3000/graphql) (if you activated it).
 
@@ -214,7 +222,7 @@ query getTagGroupById($tagGroupId: String!) {
 
 Query variables
 
-```javascript
+```json
 { "tagGroupId": "5ed644d46f91b10034d731f1" }
 ```
 
@@ -234,7 +242,7 @@ query getTagGroups($tagGroup: TagGroupInputType!) {
 
 Query variables
 
-```javascript
+```json
 {
     "tagGroup": {
         "title": "I'm looking for this specific title" // fields you want to filter on
@@ -262,7 +270,7 @@ mutation createTagGroup($tagGroup: TagGroupInputType!) {
 
 Query variables
 
-```javascript
+```json
 {
     "tagGroup": {
         "title": "A great title for a new tagGroup" // fields you want to populate
@@ -286,7 +294,7 @@ mutation updateTagGroup($tagGroup: TagGroupInputType!, $id: String) {
 
 Query variables
 
-```javascript
+```json
 {
     "tagGroup": {
         "title": "This title is definetly better" // fields you want to update
@@ -311,7 +319,7 @@ mutation replaceTagGroup($tagGroup: TagGroupInputType!, $id: String) {
 
 Query variables
 
-```javascript
+```json
 {
     "tagGroup": {
         "title": "A really cool title" // fields you want to populate
@@ -336,6 +344,80 @@ mutation deleteTagGroupById($tagGroupId: String!) {
 
 Query variables
 
-```javascript
+```json
 { "tagGroupId": "5ed644d46f91b10034d731f1" }
+```
+
+## Filters
+
+Our GraphQL query endpoints sometimes offer you the possibility to filter, here is 
+how this query variable works:
+
+#### No filter
+```json
+{
+  "filter": {}
+}
+```
+
+#### Simple filter
+```json
+{
+  "filter": { "att1": "value1" }
+}
+```
+
+#### Filter on nested field
+```json
+{
+  "filter": { "att1.att2": "value2" }
+}
+```
+
+#### Filter on object
+```json
+{
+  "filter": { "att1": { "att2": "value2" } }
+}
+```
+
+#### Differences between Filter on nested field and Filter on object
+
+This object will be returned by both the "Filter on nested field" and the "Filter on object":
+```json
+{
+  "att1": {
+    "att2": "value2",
+  }
+}
+```
+
+This object will be returned by the "Filter on nested field" but not by the "Filter on object":
+```json
+{
+  "att1": {
+    "att2": "value2",
+    "att3": "value3"
+  }
+}
+```
+
+#### Filter with array
+```json
+{
+  "filter": { "att1": [ "value1", "value2" ] }
+}
+```
+
+#### Additional filtering functionality
+Additionally some endpoints offer you the possibility to use all mongo
+filtering options. This is specified in the endpoint documentation.
+
+For example, to match all values that are not equal to a 
+specified value, you can do:
+
+```json
+{
+  "filter": { "att1": { "$ne": "value1" } }
+}
 ```
