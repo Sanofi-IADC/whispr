@@ -16,7 +16,7 @@ export class WhispEventsService {
     });
   }
 
-  public trigger(eventName: WhispEvent, payload: any) {
-    this.eventService.triggerEvent(eventName, payload);
+  public async trigger(eventName: WhispEvent, payload: any) {
+    await this.eventService.triggerEvent(eventName, payload);
   }
 }

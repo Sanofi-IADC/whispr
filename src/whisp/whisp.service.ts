@@ -28,7 +28,7 @@ export class WhispService {
     whisp = await this.replaceFiles(whisp, whisp.readableID);
     whisp.updated = whisp.timestamp;
     const createdWhisp = await this.whispModel.create(whisp);
-    this.whispEventsService.trigger(WhispEvent.AfterSave, whisp);
+    await this.whispEventsService.trigger(WhispEvent.AfterSave, createdWhisp);
     this.logger.log(createdWhisp, 'New Whisp');
     this.distributionService.distributeWhisp(createdWhisp);
     return createdWhisp;
