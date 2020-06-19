@@ -5,6 +5,7 @@ import { SequenceService } from '../sequence/sequence.service';
 import { IWhisp } from '../interfaces/whisp.interface';
 import { DistributionService } from '../distribution/distribution.service';
 import { FileService } from '../file/file.service';
+import { WhispEventsService, WhispEvent } from './whisp.events.service';
 
 @Injectable()
 export class WhispService {
@@ -15,6 +16,7 @@ export class WhispService {
     private readonly distributionService: DistributionService,
     private readonly imageService: FileService,
     private readonly sequenceService: SequenceService,
+    private readonly whispEventsService: WhispEventsService,
   ) {}
 
   async create(whispIn: any): Promise<IWhisp> {
@@ -26,6 +28,7 @@ export class WhispService {
     whisp = await this.replaceFiles(whisp, whisp.readableID);
     whisp.updated = whisp.timestamp;
     const createdWhisp = await this.whispModel.create(whisp);
+    this.whispEventsService.trigger(WhispEvent.AfterSave, whisp);
     this.logger.log(createdWhisp, 'New Whisp');
     this.distributionService.distributeWhisp(createdWhisp);
     return createdWhisp;

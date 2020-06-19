@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AWSCredsModule } from './auth/aws-creds.module';
 import { ConfigModule } from './config/config.module';
 import { DistributionModule } from './distribution/distribution.module';
+import { EventModule } from './event/event.module';
 import { FileModule } from './file/file.module';
 import { PubSubModule } from './pubSub/pubSub.module';
 import { SequenceModule } from './sequence/sequence.module';
@@ -41,6 +42,7 @@ import { ConfigService } from './config/config.service';
     AWSCredsModule,
     FileModule,
     DistributionModule,
+    EventModule,
   ],
   providers: [AppService],
   controllers: [AppController],
