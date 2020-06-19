@@ -5,12 +5,16 @@ module.exports = {
     dest: './docs_dist',
     themeConfig: {
         nav: [
-            { text: 'Introduction', link: '/' }
+            { text: 'Docs home', link: '/' },
+            { text: 'GitHub', link: 'https://github.com/Sanofi-IADC/whispr' },
         ],
         sidebar: [
-            '/',
-            '/page-a',
-            ['/page-b', 'Explicit link text']
-        ]
+            '/introduction/',
+            '/architecture/',
+            '/installation.html',
+            '/graphql/',
+            '/rest/',
+            '/testing.html',
+            '/fileupload.html']
     }
 }
