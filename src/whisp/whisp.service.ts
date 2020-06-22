@@ -93,8 +93,8 @@ export class WhispService {
     return newObj;
   }
 
-  async findAll(filter?: any): Promise<IWhisp[]> {
-    return this.whispModel.find(filter).exec();
+  async findAll(filter?: any, sort: object = {}, limit: number = null): Promise<IWhisp[]> {
+    return this.whispModel.find(filter).sort(sort).limit(limit).exec();
   }
 
   async findOne(id: string): Promise<IWhisp> {
