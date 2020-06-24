@@ -9,7 +9,7 @@ features:
 - title: Easy pub sub
   details: Easily implement whispr and integrate into your projects as a pub sub solution for event type data.
 - title: UI library
-  details: Get started quickly with some simple UI components to add cool whispr integrations to your app, or bbuild from them as samples.
+  details: Get started quickly with some simple UI components to add cool whispr integrations to your app, or build from them as samples.
 - title: Progressive
   details: An open, extendable platform built using a modern, progressive tech stack using Nest.js, GraphQL.
 
