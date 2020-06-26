@@ -4,11 +4,11 @@ import {
 import { GraphQLJSONObject } from 'graphql-type-json';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { Inject } from '@nestjs/common';
-import { isEqual } from 'lodash';
 import { Whisp } from './whisp.entity';
 import { WhispService } from './whisp.service';
 import { WhispInputType } from './whisp.input';
 import { DistributionService } from '../distribution/distribution.service';
+import { filterPayload } from '../utils/filterPayload.service';
 
 @Resolver(() => Whisp)
 export class WhispResolver {
@@ -34,9 +34,9 @@ export class WhispResolver {
   @Query(() => [Whisp], { nullable: true })
   async whisps(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
-      filter?: any,
+      filter?: Record<string, unknown>,
     @Args('sort', { type: () => GraphQLJSONObject, nullable: true })
-      sort?: string | any,
+      sort?: Record<string, unknown>,
     @Args('limit', { type: () => Int, nullable: true }) limit?: number,
   ) {
     return this.whispService.findAll(filter, sort, limit);
@@ -45,7 +45,7 @@ export class WhispResolver {
   @Query(() => Number)
   async whispsCount(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
-      filter?: any,
+      filter?: Record<string, unknown>,
   ) {
     return (await this.whisps(filter)).length;
   }
@@ -80,57 +80,10 @@ export class WhispResolver {
    */
 
   @Subscription(() => Whisp, {
-    filter: (payload, variables) => WhispResolver.filter(variables.filter, payload.whispAdded),
+    filter: (payload, variables) => filterPayload(variables.filter, payload.whispAdded),
   })
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  whispAdded(@Args('filter', { type: () => GraphQLJSONObject }) filter: any) {
+  whispAdded(@Args('filter', { type: () => GraphQLJSONObject }) filter: Record<string, unknown>) {
     return this.pubSub.asyncIterator('whispAdded');
-  }
-
-  /**
-   * functions
-   */
-  public static filter(filter, payload) {
-    if (!filter) {
-      return true;
-    }
-
-    return Object.keys(filter).every((key) => {
-      const filterValue = filter[key];
-
-      if (filterValue === undefined || payload === undefined) {
-        return false;
-      }
-
-      const keyArray = key.split('.');
-      if (keyArray.length !== 1) {
-        return this.payloadMatchesNestedValue(keyArray, filterValue, payload);
-      }
-
-      return this.matches(filterValue, payload[key]);
-    });
-  }
-
-  public static matches(filterValue, elementValue) {
-    if (Array.isArray(filterValue)) {
-      return filterValue.some((value) => this.matches(value, elementValue));
-    }
-
-    return isEqual(filterValue, elementValue);
-  }
-
-  public static payloadMatchesNestedValue(keyArray, nestedValue, payload) {
-    let currentObj = payload;
-
-    while (keyArray.length > 1) {
-      const key = keyArray.shift();
-
-      if (!currentObj[key]) {
-        return false;
-      }
-      currentObj = currentObj[key];
-    }
-
-    return this.matches(nestedValue, currentObj[keyArray.shift()]);
   }
 }
