@@ -1,4 +1,6 @@
-import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
+import {
+  Field, ID, Int, ObjectType,
+} from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
 
 @ObjectType()

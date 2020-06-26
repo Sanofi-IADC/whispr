@@ -1,13 +1,5 @@
 import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Patch,
-  Put,
-  Delete,
-  Param,
-  HttpCode,
+  Controller, Post, Body, Get, Patch, Put, Delete, Param, HttpCode,
 } from '@nestjs/common';
 import { WhispService } from './whisp.service';
 import { IWhisp } from '../interfaces/whisp.interface';

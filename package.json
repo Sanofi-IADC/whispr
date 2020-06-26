@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
-    "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
-    "format:check": "prettier --check \"src/**/*.ts\" \"tests/**/*.ts\"",
+    "format": "prettier-eslint --write $PWD/{src,tests}/**/*.ts",
+    "format:check": "prettier-eslint --list-different $PWD/{src,tests}/**/*.ts",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -88,6 +88,7 @@
     "husky": "^4.2.5",
     "jest": "26.1.0",
     "prettier": "2.0.5",
+    "prettier-eslint-cli": "^5.0.0",
     "semantic-release": "^17.1.0",
     "supertest": "4.0.2",
     "ts-jest": "26.1.1",

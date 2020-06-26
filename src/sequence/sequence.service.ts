@@ -5,9 +5,7 @@ import { ISequence } from './sequence.entity';
 import { Whisp } from '../whisp/whisp.entity';
 @Injectable()
 export class SequenceService {
-  constructor(
-    @InjectModel('Sequence') private sequenceModel: Model<ISequence>,
-  ) {}
+  constructor(@InjectModel('Sequence') private sequenceModel: Model<ISequence>) {}
 
   /**
    * Get next ID for a Whisp

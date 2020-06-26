@@ -1,4 +1,6 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver, Query, Mutation, Args,
+} from '@nestjs/graphql';
 import { TagGroup } from './tagGroup.entity';
 import { TagGroupService } from './tagGroup.service';
 import { TagGroupInputType } from './tagGroup.input';
@@ -34,18 +36,12 @@ export class TagGroupResolver {
   }
 
   @Mutation(() => TagGroup)
-  async updateTagGroup(
-    @Args('id') id: string,
-    @Args('tagGroup') tagGroup: TagGroupInputType,
-  ) {
+  async updateTagGroup(@Args('id') id: string, @Args('tagGroup') tagGroup: TagGroupInputType) {
     return this.tagGroupService.update(id, tagGroup);
   }
 
   @Mutation(() => TagGroup)
-  async replaceTagGroup(
-    @Args('id') id: string,
-    @Args('tagGroup') tagGroup: TagGroupInputType,
-  ) {
+  async replaceTagGroup(@Args('id') id: string, @Args('tagGroup') tagGroup: TagGroupInputType) {
     return this.tagGroupService.replace(id, tagGroup);
   }
 

@@ -8,9 +8,7 @@ import { TagGroupInputType } from './tagGroup.input';
 export class TagGroupService {
   private readonly logger = new Logger('TagGroup');
 
-  constructor(
-    @InjectModel('TagGroup') private readonly tagGroupModel: Model<ITagGroup>,
-  ) {}
+  constructor(@InjectModel('TagGroup') private readonly tagGroupModel: Model<ITagGroup>) {}
 
   async create(tagGroupIn: any): Promise<ITagGroup> {
     const createdTagGroup = await this.tagGroupModel.create(tagGroupIn);
