@@ -15,7 +15,7 @@
     "start:prod": "node dist/main",
     "lint": "npm run lint:es",
     "lint:ts": "tslint --fix -p tsconfig.json -c tslint.json",
-    "lint:es": "eslint --fix --ext .js,.ts src",
+    "lint:es": "eslint --max-warnings=55 --fix --ext .js,.ts src",
     "test": "npm run test:unit:cov && npm run test:e2e",
     "test:unit:watch": "jest --watch",
     "test:unit:cov": "jest --coverage",
