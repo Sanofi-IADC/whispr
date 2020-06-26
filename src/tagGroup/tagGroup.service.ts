@@ -10,7 +10,7 @@ export class TagGroupService {
 
   constructor(
     @InjectModel('TagGroup') private readonly tagGroupModel: Model<ITagGroup>,
-  ) { }
+  ) {}
 
   async create(tagGroupIn: any): Promise<ITagGroup> {
     const createdTagGroup = await this.tagGroupModel.create(tagGroupIn);

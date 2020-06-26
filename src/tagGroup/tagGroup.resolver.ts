@@ -1,13 +1,11 @@
-import {
-  Resolver, Query, Mutation, Args,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { TagGroup } from './tagGroup.entity';
 import { TagGroupService } from './tagGroup.service';
 import { TagGroupInputType } from './tagGroup.input';
 
 @Resolver(() => TagGroup)
 export class TagGroupResolver {
-  constructor(private tagGroupService: TagGroupService) { }
+  constructor(private tagGroupService: TagGroupService) {}
 
   /**
    * Queries

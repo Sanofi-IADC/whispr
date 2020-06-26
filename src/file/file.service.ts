@@ -17,8 +17,7 @@ export class FileService {
   constructor(
     private awsCredentialService: AWSCredsService,
     private configService: ConfigService,
-  ) {
-  }
+  ) {}
 
   async getFile(url: string): Promise<GetObjectOutput> {
     const aws = await this.awsCredentialService.getAWS();
@@ -27,16 +26,19 @@ export class FileService {
       s3ForcePathStyle: true,
     });
     return new Promise((resolve, reject) => {
-      s3client.getObject({
-        Bucket: this.configService.get('AWS_BUCKET_NAME'),
-        Key: url,
-      }, (err, data) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
+      s3client.getObject(
+        {
+          Bucket: this.configService.get('AWS_BUCKET_NAME'),
+          Key: url,
+        },
+        (err, data) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(data);
+          }
+        },
+      );
     });
   }
 

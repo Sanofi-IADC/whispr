@@ -1,5 +1,10 @@
 import {
-  Resolver, Query, Mutation, Args, Subscription, Int,
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Subscription,
+  Int,
 } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
 import { PubSubEngine } from 'graphql-subscriptions';
@@ -34,9 +39,9 @@ export class WhispResolver {
   @Query(() => [Whisp], { nullable: true })
   async whisps(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
-      filter?: any,
+    filter?: any,
     @Args('sort', { type: () => GraphQLJSONObject, nullable: true })
-      sort?: string | any,
+    sort?: string | any,
     @Args('limit', { type: () => Int, nullable: true }) limit?: number,
   ) {
     return this.whispService.findAll(filter, sort, limit);
@@ -45,7 +50,7 @@ export class WhispResolver {
   @Query(() => Number)
   async whispsCount(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
-      filter?: any,
+    filter?: any,
   ) {
     return (await this.whisps(filter)).length;
   }
@@ -86,7 +91,8 @@ export class WhispResolver {
    */
 
   @Subscription(() => Whisp, {
-    filter: (payload, variables) => WhispResolver.filter(variables.filter, payload.whispAdded),
+    filter: (payload, variables) =>
+      WhispResolver.filter(variables.filter, payload.whispAdded),
   })
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   whispAdded(@Args('filter', { type: () => GraphQLJSONObject }) filter: any) {

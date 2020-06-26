@@ -6,21 +6,28 @@ import validationSchema from './environmentValidationSchema';
 export class ConfigService {
   private readonly envConfig: { [key: string]: string };
 
-  private readonly logLevels: string[] = ['error', 'warn', 'log', 'verbose', 'debug'];
+  private readonly logLevels: string[] = [
+    'error',
+    'warn',
+    'log',
+    'verbose',
+    'debug',
+  ];
 
   constructor() {
-    const providedEnvConfig = dotenv.parse(fs.readFileSync(`${process.env.NODE_ENV || 'local'}.env`));
-    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(providedEnvConfig);
+    const providedEnvConfig = dotenv.parse(
+      fs.readFileSync(`${process.env.NODE_ENV || 'local'}.env`),
+    );
+    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(
+      providedEnvConfig,
+    );
   }
 
   static validateSchemaAndApplyDefaultValues(providedEnvConfig) {
-    const { value, error } = validationSchema.validate(
-      providedEnvConfig,
-      {
-        abortEarly: false,
-        allowUnknown: true,
-      },
-    );
+    const { value, error } = validationSchema.validate(providedEnvConfig, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
     if (error) {
       throw error;
     }
@@ -32,7 +39,9 @@ export class ConfigService {
   }
 
   getMongooseURI(): any {
-    return `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get('MONGOOSE_HOST_READ')}:${this.get('MONGOOSE_PORT_READ')}`;
+    return `mongodb://${this.get('MONGOOSE_HOST')}:${this.get(
+      'MONGOOSE_PORT',
+    )},${this.get('MONGOOSE_HOST_READ')}:${this.get('MONGOOSE_PORT_READ')}`;
   }
 
   getMongooseOptions(): any {

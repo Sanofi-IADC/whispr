@@ -1,12 +1,20 @@
 import {
-  Controller, Post, Body, Get, Put, Delete, Param, HttpCode, Patch,
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  Delete,
+  Param,
+  HttpCode,
+  Patch,
 } from '@nestjs/common';
 import { TagGroupService } from './tagGroup.service';
 import { ITagGroup } from '../interfaces/tagGroup.interface';
 
 @Controller('TagGroup')
 export class TagGroupController {
-  constructor(private readonly tagGroupService: TagGroupService) { }
+  constructor(private readonly tagGroupService: TagGroupService) {}
 
   @Post()
   @HttpCode(201)

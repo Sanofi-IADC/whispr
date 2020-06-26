@@ -27,7 +27,8 @@ import { TagGroupModule } from './tagGroup/tagGroup.module';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => configService.getMongooseOptions(),
+      useFactory: async (configService: ConfigService) =>
+        configService.getMongooseOptions(),
       inject: [ConfigService],
     }),
     PubSubModule,

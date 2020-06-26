@@ -72,9 +72,9 @@ export class WhispService {
       // ... wait until it is loaded ...
       filePromise.file.then((file) => {
         if (
-          file
-          && file.createReadStream
-          && {}.toString.call(file.createReadStream) === '[object Function]'
+          file &&
+          file.createReadStream &&
+          {}.toString.call(file.createReadStream) === '[object Function]'
         ) {
           // ... and save it in s3 ...
           const savePromise = this.imageService.saveFile(file, path);
