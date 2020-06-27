@@ -5,9 +5,7 @@ import { sequenceSchema } from './sequence.schema';
 import { SequenceService } from './sequence.service';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([{ name: 'Sequence', schema: sequenceSchema }]),
-  ],
+  imports: [MongooseModule.forFeature([{ name: 'Sequence', schema: sequenceSchema }])],
   providers: [SequenceService],
   exports: [SequenceService],
 })

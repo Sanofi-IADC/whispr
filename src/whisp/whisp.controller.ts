@@ -6,7 +6,7 @@ import { IWhisp } from '../interfaces/whisp.interface';
 
 @Controller('whisp')
 export class WhispController {
-  constructor(private readonly whispService: WhispService) { }
+  constructor(private readonly whispService: WhispService) {}
 
   @Post()
   @HttpCode(201)

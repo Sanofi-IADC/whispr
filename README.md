@@ -2,6 +2,9 @@
 
 # Introduction
 
+![CI](https://github.com/Sanofi-IADC/whispr/workflows/CI/badge.svg?branch=master&event=push)
+![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+
 Whispr is an open source event, comment and alert processing hub created by Sanofi IADC. We created it to meet our need for a centralised comment and alerting service which could be easily integrated into our tech stack.
 
 Using Whispr you can easily add an event based pub sub system to your ecosystem. We’ve implemented a messaging service for users to communicate between our apps, and a business process status pub/sub alerting solution - any system can send an alert to Whispr, and susbscribing applications and users are automatically notified to display the alert and take action.

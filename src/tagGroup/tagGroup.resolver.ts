@@ -7,7 +7,7 @@ import { TagGroupInputType } from './tagGroup.input';
 
 @Resolver(() => TagGroup)
 export class TagGroupResolver {
-  constructor(private tagGroupService: TagGroupService) { }
+  constructor(private tagGroupService: TagGroupService) {}
 
   /**
    * Queries
@@ -36,18 +36,12 @@ export class TagGroupResolver {
   }
 
   @Mutation(() => TagGroup)
-  async updateTagGroup(
-    @Args('id') id: string,
-    @Args('tagGroup') tagGroup: TagGroupInputType,
-  ) {
+  async updateTagGroup(@Args('id') id: string, @Args('tagGroup') tagGroup: TagGroupInputType) {
     return this.tagGroupService.update(id, tagGroup);
   }
 
   @Mutation(() => TagGroup)
-  async replaceTagGroup(
-    @Args('id') id: string,
-    @Args('tagGroup') tagGroup: TagGroupInputType,
-  ) {
+  async replaceTagGroup(@Args('id') id: string, @Args('tagGroup') tagGroup: TagGroupInputType) {
     return this.tagGroupService.replace(id, tagGroup);
   }
 

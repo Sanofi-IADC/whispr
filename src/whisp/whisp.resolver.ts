@@ -33,8 +33,10 @@ export class WhispResolver {
 
   @Query(() => [Whisp], { nullable: true })
   async whisps(
-    @Args('filter', { type: () => GraphQLJSONObject, nullable: true }) filter?: object,
-    @Args('sort', { type: () => GraphQLJSONObject, nullable: true }) sort?: object,
+    @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
+      filter?: any,
+    @Args('sort', { type: () => GraphQLJSONObject, nullable: true })
+      sort?: string | any,
     @Args('limit', { type: () => Int, nullable: true }) limit?: number,
   ) {
     return this.whispService.findAll(filter, sort, limit);
@@ -42,7 +44,8 @@ export class WhispResolver {
 
   @Query(() => Number)
   async whispsCount(
-    @Args('filter', { type: () => GraphQLJSONObject, nullable: true }) filter?: object
+    @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
+      filter?: any,
   ) {
     return (await this.whisps(filter)).length;
   }
@@ -57,18 +60,12 @@ export class WhispResolver {
   }
 
   @Mutation(() => Whisp)
-  async updateWhisp(
-    @Args('id') id: string,
-    @Args('whisp') whisp: WhispInputType,
-  ) {
+  async updateWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType) {
     return this.whispService.update(id, whisp);
   }
 
   @Mutation(() => Whisp)
-  async replaceWhisp(
-    @Args('id') id: string,
-    @Args('whisp') whisp: WhispInputType,
-  ) {
+  async replaceWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType) {
     return this.whispService.replace(id, whisp);
   }
 
@@ -86,7 +83,7 @@ export class WhispResolver {
     filter: (payload, variables) => WhispResolver.filter(variables.filter, payload.whispAdded),
   })
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  whispAdded(@Args('filter', { type: () => GraphQLJSONObject }) filter: object) {
+  whispAdded(@Args('filter', { type: () => GraphQLJSONObject }) filter: any) {
     return this.pubSub.asyncIterator('whispAdded');
   }
 

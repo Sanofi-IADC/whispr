@@ -26,7 +26,7 @@ services:
     networks: ["stack"]
     entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
     volumes:
-      - ./volumes/mongodb:/data/db
+      - mongodb1:/data/db
   mongo2:
     hostname: mongo2
     container_name: localmongo2
@@ -36,6 +36,8 @@ services:
     restart: always
     networks: ["stack"]
     entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
+    volumes:
+      - mongodb2:/data/db
   redis:
     image: redis
     hostname: redis
@@ -43,7 +45,11 @@ services:
     expose:
       - 6379
     volumes:
-      - ./volumes/redis:/var/lib/redis
+      - redis:/var/lib/redis
     networks: ["stack"]
 networks:
   stack:
+volumes:
+  mongodb1:
+  mongodb2:
+  redis:

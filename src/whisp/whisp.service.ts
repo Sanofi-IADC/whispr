@@ -55,10 +55,7 @@ export class WhispService {
           });
           promises.push(replaceFilePromise);
         } else {
-          const replaceFilePromise = this.replaceFiles(
-            value,
-            `${path}/${keys[i]}`,
-          );
+          const replaceFilePromise = this.replaceFiles(value, `${path}/${keys[i]}`);
           replaceFilePromise.then((obj) => {
             newObj[keys[i]] = obj;
           });
@@ -93,7 +90,7 @@ export class WhispService {
     return newObj;
   }
 
-  async findAll(filter?: any, sort: object = {}, limit: number = null): Promise<IWhisp[]> {
+  async findAll(filter?: any, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
     return this.whispModel.find(filter).sort(sort).limit(limit).exec();
   }
 

@@ -11,10 +11,7 @@ export default Joi.object({
     then: Joi.required(),
   }),
 
-  LOG_LEVEL: Joi.number()
-    .min(0)
-    .max(5)
-    .default(5),
+  LOG_LEVEL: Joi.number().min(0).max(5).default(5),
   REPLICASET: Joi.string().default('rs0'),
 
   MONGOOSE_HOST: Joi.string().required(),

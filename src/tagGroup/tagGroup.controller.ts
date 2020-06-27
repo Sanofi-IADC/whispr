@@ -6,7 +6,7 @@ import { ITagGroup } from '../interfaces/tagGroup.interface';
 
 @Controller('TagGroup')
 export class TagGroupController {
-  constructor(private readonly tagGroupService: TagGroupService) { }
+  constructor(private readonly tagGroupService: TagGroupService) {}
 
   @Post()
   @HttpCode(201)

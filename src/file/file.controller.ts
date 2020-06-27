@@ -6,7 +6,7 @@ import { FileService } from './file.service';
 
 @Controller('file')
 export class FileController {
-  constructor(private readonly fileService: FileService) { }
+  constructor(private readonly fileService: FileService) {}
 
   @Get('*')
   async getFile(@Param('*') key: string, @Res() response: Response) {
