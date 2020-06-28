@@ -6,6 +6,7 @@
     ":automergeTesters",
     ":automergeLinters",
     ":automergeTypes",
-    ":automergePatch"
+    ":automergePatch",
+    ":semanticCommits"
   ]
 }
