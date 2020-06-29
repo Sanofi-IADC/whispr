@@ -347,3 +347,62 @@ Query variables
 ```json
 { "tagGroupId": "5ed644d46f91b10034d731f1" }
 ```
+
+## Webhooks: Query
+
+You can find the list of available fields [here](../models/webhook.md).
+
+### webhooks
+
+Retrieves all the webhooks.
+
+```GraphQL
+query getWebhooks {
+  webhooks {
+    _id # fields you want to retrieve from the webhook
+  }
+}
+```
+
+## Webhooks: Mutation
+
+### createWebhook
+
+Creates a new webhook.
+
+```GraphQL
+mutation createWebhook($webhook: WebhookInputType!) {
+  createWebhook(webhook: $webhook) {
+    _id # fields you want to retrieve from the created webhook
+  }
+}
+```
+
+Query variables
+
+```json
+{
+    "webhook": {
+        "url": "https://webhook.url",
+        "events": ["EVENT_NAME"]
+    }
+}
+```
+### deleteWebhook
+
+Deletes the matching webhook by its [`_id`](../models/webhook.md#_id).
+
+
+```GraphQL
+mutation deleteWebhook($webhookId: String!) {
+  deleteWebhook (
+    id: $webhookId
+  )
+}
+```
+
+Query variables
+
+```json
+{ "webhookId": "5ef5f304a07efa0041904d52" }
+```
