@@ -2,8 +2,11 @@
 
 # Introduction
 
-![CI](https://github.com/Sanofi-IADC/whispr/workflows/CI/badge.svg?branch=master&event=push)
-![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![CI][ci-shield]][ci-url]
+[![semantic-release][semantic-release-shield]][semantic-release-url]
+[![MIT License][license-shield]][license-url]
+[![Sonarcloud quality][sonarcloud-shield]][sonarcloud-url]
+[![Renovate][renovate-shield]][renovate-url]
 
 Whispr is an open source event, comment and alert processing hub created by Sanofi IADC. We created it to meet our need for a centralised comment and alerting service which could be easily integrated into our tech stack.
 
@@ -55,3 +58,18 @@ We’re not looking for sponsorship, please check out the pages of our favourite
 
 ## Vuetify
 [<img src="docs/assets/vuetify_logo.svg" height = 150>](https://vuetifyjs.com/en/introduction/sponsors-and-backers/)
+
+[ci-shield]: https://github.com/Sanofi-IADC/whispr/workflows/CI/badge.svg?branch=master&event=push
+[ci-url]: https://github.com/Sanofi-IADC/whispr/actions
+
+[semantic-release-shield]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-release-url]: https://github.com/Sanofi-IADC/whispr/releases
+
+[license-shield]: https://img.shields.io/badge/License-MIT-green.svg
+[license-url]: https://github.com/Sanofi-IADC/whispr/blob/master/LICENSE
+
+[sonarcloud-shield]: https://sonarcloud.io/api/project_badges/measure?project=Sanofi-IADC_whispr&metric=alert_status
+[sonarcloud-url]: https://sonarcloud.io/dashboard?id=Sanofi-IADC_whispr
+
+[renovate-shield]: https://img.shields.io/badge/renovate-enabled-brightgreen.svg
+[renovate-url]: https://renovatebot.com
