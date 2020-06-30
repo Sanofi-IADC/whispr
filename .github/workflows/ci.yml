@@ -47,6 +47,8 @@ jobs:
     # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
     if: github.event_name == 'push' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-18.04
+    env:
+      CACHE_IMAGE: sanofiiadc/whispr
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -69,7 +71,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Log into Docker registry
+        uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.SANOFI_DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.SANOFI_DOCKER_HUB_TOKEN }}
+
+      - name: Pull Docker cache image
+        run: docker pull --quiet ${CACHE_IMAGE} 2>/dev/null || true
+
       - name: Semantic Release
         env:
+          MDF_BRANCH_TAG: latest
+          MDF_BUILD_PARAMS: --cache-from ${{ env.CACHE_IMAGE }}
           GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
         run: npx semantic-release

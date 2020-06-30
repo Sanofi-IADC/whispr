@@ -39,3 +39,7 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Dockermake
+Makedockfile.dist.conf
+Makedockfile.out
