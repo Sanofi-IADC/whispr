@@ -10,6 +10,7 @@ on:
 jobs:
   quality:
     name: Quality
+    if: "!contains(github.event.head_commit.message, 'chore(release):')"
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout code
@@ -43,7 +44,8 @@ jobs:
   release:
     name: Release
     needs: quality
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master' # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
+    # https://github.community/t/how-do-i-specify-job-dependency-running-in-another-workflow/16482
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && !contains(github.event.head_commit.message, 'chore(release):')
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout code
