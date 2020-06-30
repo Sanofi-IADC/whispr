@@ -1,0 +1,15 @@
+name: Docker Hub description
+on: release
+jobs:
+  UpdateDockerHubDescription:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Update Docker Hub description
+        uses: peter-evans/dockerhub-description@v2
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.SANOFI_DOCKER_HUB_USERNAME }}
+          DOCKERHUB_PASSWORD: ${{ secrets.SANOFI_DOCKER_HUB_TOKEN }}
+          DOCKERHUB_REPOSITORY: sanofiiadc/whispr

@@ -8,6 +8,9 @@
     ["@semantic-release/npm", {
       "npmPublish": false
     }],
+    ["@semantic-release/exec", {
+      "prepareCmd": "make release branch-tag version-tag"
+    }],
     ["@semantic-release/git", {
       "assets": ["package.json", "CHANGELOG.md"],
       "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
