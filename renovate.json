@@ -2,6 +2,8 @@
   "extends": [
     "config:base",
     ":rebaseStalePrs",
+    "group:allNonMajor",
+    "schedule:earlyMondays",
     ":automergeMinor",
     ":automergeTesters",
     ":automergeLinters",
