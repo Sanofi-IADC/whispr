@@ -4,18 +4,37 @@ import * as fs from 'fs';
 import validationSchema from './environmentValidationSchema';
 @Injectable()
 export class ConfigService {
-  private readonly envConfig: { [key: string]: string };
+  private readonly envConfig: Record<string, string>;
 
   private readonly logLevels: string[] = ['error', 'warn', 'log', 'verbose', 'debug'];
 
   constructor() {
-    const providedEnvConfig = dotenv.parse(
-      fs.readFileSync(`${process.env.NODE_ENV || 'local'}.env`),
-    );
-    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(providedEnvConfig);
+    const dotEnvFilename = `${process.env.NODE_ENV || 'local'}.env`;
+    const dotEnvConfig = fs.existsSync(dotEnvFilename)
+      ? dotenv.parse(fs.readFileSync(dotEnvFilename))
+      : {};
+    const configFromEnv = ConfigService.buildConfigFromEnv();
+    const mergedConfig = {
+      ...dotEnvConfig,
+      ...configFromEnv, // Environment variables override .env config
+    };
+    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
   }
 
-  static validateSchemaAndApplyDefaultValues(providedEnvConfig) {
+  static buildConfigFromEnv(): Record<string, string> {
+    const schemaKeys = Object.keys(validationSchema.describe().keys);
+    const res = {};
+    schemaKeys.forEach((key) => {
+      if (process.env[key] !== undefined) {
+        res[key] = process.env[key];
+      }
+    });
+    return res;
+  }
+
+  static validateSchemaAndApplyDefaultValues(
+    providedEnvConfig: Record<string, string>,
+  ): Record<string, string> {
     const { value, error } = validationSchema.validate(providedEnvConfig, {
       abortEarly: false,
       allowUnknown: true,
@@ -27,7 +46,7 @@ export class ConfigService {
   }
 
   get(key: string): any {
-    return process.env[key] ? process.env[key] : this.envConfig[key];
+    return this.envConfig[key];
   }
 
   getMongooseURI(): any {
