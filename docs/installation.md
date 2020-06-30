@@ -8,11 +8,8 @@ Requirements:
 
 ### Configuration
 
-To configure the application, you need to provide a `local.env` file.
-
-::: tip Help
-You can create your `local.env` file from the `example.env` file.
-:::
+Whispr is configured thanks to environment variables in `docker-compose.yml`.
+You can leave the default values for development.
 
 ### Initialize the containers
 
