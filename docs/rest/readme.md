@@ -4,7 +4,7 @@
 The whispr REST API is very limited compared to the GrahQL API. We will gradually make some improvements but we strongly recommend trying out GraphQL first. It's very simple, and more powerful than REST. You'll love it, we promise!
 :::
 
-## Get All Whisps
+## Get all Whisps
 
 * Method: `GET`
 * Path: '/whisp'
@@ -52,7 +52,7 @@ Replaces a whisp given identified by its [`_id`](../../models/whisp.md#_id) by a
 
 Deletes a whisp identified by its [`_id`](../../models/whisp.md#_id)
 
-## Get All TagGroups
+## Get all TagGroups
 
 * Method: `GET`
 * Path: '/TagGroup'
@@ -99,3 +99,27 @@ Replaces a tagGroup given identified by its [`_id`](../../models/tagGroup.md#_id
 * Success: `204`
 
 Deletes a tagGroup identified by its [`_id`](../../models/tagGroup.md#_id)
+
+## Get all Webhooks
+
+* Method: `GET`
+* Path: '/webhook'
+* Success: `200`
+
+Returns all the webhooks.
+
+## Create a Webhook
+
+* Method: `POST`
+* Path: '/webhook'
+* Success: `201`
+
+Creates a new webhook from the `body`. The available fields of the webhook entity are listed [here](../models/webhook.md)
+
+## Delete a Webhook
+
+* Method: `DELETE`
+* Path: '/webhook/**:id**'
+* Success: `204`
+
+Deletes a webhook identified by its [`_id`](../models/webhook.md#_id)

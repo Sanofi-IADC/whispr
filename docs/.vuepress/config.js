@@ -14,7 +14,9 @@ module.exports = {
             '/installation.html',
             '/graphql/',
             '/rest/',
+            '/filters/',
             '/testing.html',
+            '/events/',
             '/fileupload.html']
     }
 }

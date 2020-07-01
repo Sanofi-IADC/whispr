@@ -4,6 +4,7 @@ import { DistributionModule } from '../distribution/distribution.module';
 import { FileModule } from '../file/file.module';
 import { SequenceModule } from '../sequence/sequence.module';
 import { PubSubModule } from '../pubSub/pubSub.module';
+import { EventModule } from '../event/event.module';
 
 import { whispSchema } from './whisp.schema';
 import { WhispService } from './whisp.service';
@@ -17,6 +18,7 @@ import { WhispController } from './whisp.controller';
     DistributionModule,
     FileModule,
     SequenceModule,
+    EventModule,
   ],
   controllers: [WhispController],
   providers: [WhispService, WhispResolver],

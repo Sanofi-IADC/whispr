@@ -348,76 +348,62 @@ Query variables
 { "tagGroupId": "5ed644d46f91b10034d731f1" }
 ```
 
-## Filters
+## Webhooks: Query
 
-Our GraphQL query endpoints sometimes offer you the possibility to filter, here is 
-how this query variable works:
+You can find the list of available fields [here](../models/webhook.md).
 
-#### No filter
-```json
-{
-  "filter": {}
-}
-```
+### webhooks
 
-#### Simple filter
-```json
-{
-  "filter": { "att1": "value1" }
-}
-```
+Retrieves all the webhooks.
 
-#### Filter on nested field
-```json
-{
-  "filter": { "att1.att2": "value2" }
-}
-```
-
-#### Filter on object
-```json
-{
-  "filter": { "att1": { "att2": "value2" } }
-}
-```
-
-#### Differences between Filter on nested field and Filter on object
-
-This object will be returned by both the "Filter on nested field" and the "Filter on object":
-```json
-{
-  "att1": {
-    "att2": "value2",
+```GraphQL
+query getWebhooks {
+  webhooks {
+    _id # fields you want to retrieve from the webhook
   }
 }
 ```
 
-This object will be returned by the "Filter on nested field" but not by the "Filter on object":
-```json
-{
-  "att1": {
-    "att2": "value2",
-    "att3": "value3"
+## Webhooks: Mutation
+
+### createWebhook
+
+Creates a new webhook.
+
+```GraphQL
+mutation createWebhook($webhook: WebhookInputType!) {
+  createWebhook(webhook: $webhook) {
+    _id # fields you want to retrieve from the created webhook
   }
 }
 ```
 
-#### Filter with array
+Query variables
+
 ```json
 {
-  "filter": { "att1": [ "value1", "value2" ] }
+    "webhook": {
+        "url": "https://webhook.url",
+        "events": ["EVENT_NAME"],
+        "filter":  { "applicationId": "application1"}
+    }
+}
+```
+### deleteWebhook
+
+Deletes the matching webhook by its [`_id`](../models/webhook.md#_id).
+
+
+```GraphQL
+mutation deleteWebhook($webhookId: String!) {
+  deleteWebhook (
+    id: $webhookId
+  )
 }
 ```
 
-#### Additional filtering functionality
-Additionally some endpoints offer you the possibility to use all mongo
-filtering options. This is specified in the endpoint documentation.
-
-For example, to match all values that are not equal to a 
-specified value, you can do:
+Query variables
 
 ```json
-{
-  "filter": { "att1": { "$ne": "value1" } }
-}
+{ "webhookId": "5ef5f304a07efa0041904d52" }
 ```
