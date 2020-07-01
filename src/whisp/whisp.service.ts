@@ -7,6 +7,7 @@ import { DistributionService } from '../distribution/distribution.service';
 import { FileService } from '../file/file.service';
 import { Event, EventNames } from '../event/event.entity';
 import { EventService } from '../event/event.service';
+import { WhispInputType } from './whisp.input';
 
 @Injectable()
 export class WhispService {
@@ -20,7 +21,7 @@ export class WhispService {
     private readonly eventService: EventService,
   ) {}
 
-  async create(whispIn: any): Promise<IWhisp> {
+  async create(whispIn: WhispInputType): Promise<IWhisp> {
     let whisp = whispIn;
     if (!whisp.timestamp) {
       whisp.timestamp = new Date().toISOString();
@@ -32,6 +33,7 @@ export class WhispService {
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
     this.logger.log(createdWhisp, 'New Whisp');
     this.distributionService.distributeWhisp(createdWhisp);
+
     return createdWhisp;
   }
 
@@ -91,6 +93,7 @@ export class WhispService {
     await Promise.all(filePromises.map((data) => data.file));
     // Wait until all files are replaced & complete data is checked for files
     await Promise.all(promises);
+
     return newObj;
   }
 
@@ -112,12 +115,14 @@ export class WhispService {
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_UPDATED, updatedWhisp));
     this.logger.log(updatedWhisp, 'Updated Whisp');
     this.distributionService.distributeWhisp(updatedWhisp);
+
     return updatedWhisp;
   }
 
   async replace(id: string, whisp: any): Promise<any> {
     const replacedWhisp = await this.whispModel.replaceOne({ _id: id }, whisp).exec();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_REPLACED, replacedWhisp));
+
     return replacedWhisp;
   }
 
@@ -127,6 +132,7 @@ export class WhispService {
       return false;
     }
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_DELETED, id));
+
     return true;
   }
 }
