@@ -384,7 +384,8 @@ Query variables
 {
     "webhook": {
         "url": "https://webhook.url",
-        "events": ["EVENT_NAME"]
+        "events": ["EVENT_NAME"],
+        "filter":  { "applicationId": "application1"}
     }
 }
 ```

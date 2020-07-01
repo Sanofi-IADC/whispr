@@ -16,6 +16,7 @@ module.exports = {
             '/rest/',
             '/filters/',
             '/testing.html',
+            '/events/',
             '/fileupload.html']
     }
 }
