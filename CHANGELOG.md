@@ -1,3 +1,13 @@
+# [1.1.0](https://github.com/Sanofi-IADC/whispr/compare/v1.0.0...v1.1.0) (2020-07-01)
+
+
+### Features
+
+* **event:** Add packages ([e94f6e1](https://github.com/Sanofi-IADC/whispr/commit/e94f6e11d039f58052b90b42794336ea9063a749))
+* **event-webhook:** Add event and webhook module ([c88c322](https://github.com/Sanofi-IADC/whispr/commit/c88c322228c8926efc07a8ed8aa5dbe25e490b01))
+* **whisp:** make delete whisp function return boolean ([2a99daf](https://github.com/Sanofi-IADC/whispr/commit/2a99daf1cf1829c3aed823c98120590c4a2b0619))
+* **whisp:** update whisp interface ([36ae346](https://github.com/Sanofi-IADC/whispr/commit/36ae346b1965984857afb5d1976b41b4c92e0d8b))
+
 # 1.0.0 (2020-06-30)
 
 
