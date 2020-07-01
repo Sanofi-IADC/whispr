@@ -71,8 +71,7 @@ export class WhispResolver {
 
   @Mutation(() => Boolean)
   async deleteWhisp(@Args('id') id: string) {
-    await this.whispService.delete(id);
-    return true;
+    return this.whispService.delete(id);
   }
 
   /**

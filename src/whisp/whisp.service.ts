@@ -114,7 +114,11 @@ export class WhispService {
     return this.whispModel.replaceOne({ _id: id }, whisp).exec();
   }
 
-  async delete(id) {
-    return this.whispModel.deleteOne({ _id: id }).exec();
+  async delete(id: string) {
+    const { n: countOfDeletedWhisp } = await this.whispModel.deleteOne({ _id: id }).exec();
+    if (countOfDeletedWhisp <= 0) {
+      return false;
+    }
+    return true;
   }
 }
