@@ -4,6 +4,8 @@ import { IListener, ListenerCallback } from '../interfaces/listener.interface';
 import { filterPayload } from '../utils/filterPayload.service';
 import { Event, EventNames } from './event.entity';
 
+export const pluginNames = [];
+
 @Injectable()
 export class EventService {
   private registeredListeners: Record<string, IListener[]> = {};
@@ -26,11 +28,24 @@ export class EventService {
   private async registerListeners() {
     this.resetListeners();
     await this.registerWebhooks();
+    await this.registerPlugins();
   }
 
   private resetListeners() {
     Object.values(EventNames).forEach((eventName) => {
       this.registeredListeners[eventName] = [];
+    });
+  }
+
+  private async registerPlugins() {
+    const plugins: any[] = await Promise.all(
+      pluginNames.map((pluginName) => import(pluginName)), // NOSONAR
+    );
+
+    plugins.forEach((plugin) => {
+      plugin.listeners.forEach((listener) => {
+        this.registerListener(listener.eventName, listener.callback, listener.filter);
+      });
     });
   }
 
