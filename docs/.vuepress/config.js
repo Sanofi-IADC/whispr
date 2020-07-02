@@ -17,6 +17,8 @@ module.exports = {
             '/filters/',
             '/testing.html',
             '/events/',
+            '/webhooks/',
+            '/plugins/',
             '/fileupload.html']
     }
 }
