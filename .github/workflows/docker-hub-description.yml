@@ -1,5 +1,10 @@
 name: Docker Hub description
-on: release
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - README.md
 jobs:
   UpdateDockerHubDescription:
     runs-on: ubuntu-18.04
@@ -11,5 +16,5 @@ jobs:
         uses: peter-evans/dockerhub-description@v2
         env:
           DOCKERHUB_USERNAME: ${{ secrets.SANOFI_DOCKER_HUB_USERNAME }}
-          DOCKERHUB_PASSWORD: ${{ secrets.SANOFI_DOCKER_HUB_TOKEN }}
+          DOCKERHUB_PASSWORD: ${{ secrets.SANOFI_DOCKER_HUB_PASSWORD }}
           DOCKERHUB_REPOSITORY: sanofiiadc/whispr
