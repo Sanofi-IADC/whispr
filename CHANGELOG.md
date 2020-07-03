@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Sanofi-IADC/whispr/compare/v1.2.0...v1.3.0) (2020-07-03)
+
+
+### Features
+
+* **taggroup-whisp:** enable validation pipe for whisp and tagGroup ([11e0d3f](https://github.com/Sanofi-IADC/whispr/commit/11e0d3f82b2be278bb2c6e5f30eea0faacdc2168))
+
 # [1.2.0](https://github.com/Sanofi-IADC/whispr/compare/v1.1.0...v1.2.0) (2020-07-03)
 
 
