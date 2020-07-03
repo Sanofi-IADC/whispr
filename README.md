@@ -20,6 +20,7 @@ Using Whispr you can easily add an event based pub sub system to your ecosystem.
 * Whisp classification through severity types
 * Filtering using any of the base elements of a whisp
 * Tag management system for whisp classification
+* Webhooks
 * Subscriptions through GraphQL with Websockets (more subscription types coming up very soon in our roadmap)
 
 # Whispr consists of the following main elements
@@ -33,6 +34,7 @@ Using Whispr you can easily add an event based pub sub system to your ecosystem.
 * [Nest.js](https://docs.nestjs.com/)
 * GraphQL (out of the box with Nest.js)
 * Webbsockets for GraphQL pub sub
+* Webhook registration and triggering system for outgoing whisps
 * Simple REST API
 
 ## Whispr UI
