@@ -27,13 +27,13 @@ export class WhispController {
 
   @Patch(':id')
   @HttpCode(204)
-  async update(@Param('id') id: string, @Body() whisp: IWhisp) {
+  async update(@Param('id') id: string, @Body() whisp: WhispInputType) {
     await this.whispService.update(id, whisp);
   }
 
   @Put(':id')
   @HttpCode(204)
-  async replace(@Param('id') id: string, @Body() whisp: IWhisp) {
+  async replace(@Param('id') id: string, @Body() whisp: WhispInputType) {
     await this.whispService.replace(id, whisp);
   }
 

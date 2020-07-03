@@ -5,8 +5,8 @@ make a `POST` call to a url you provided, when an event is triggered.
 
 ## Webhook registration
 
-You can use [GraphQL](../graphql/readme.md#Webhooks:_Mutation) or 
-[REST](../rest/readme.md#Create_a_Webhook) to create or delete a webhook.
+You can use [GraphQL](../api/graphql.md#Webhooks:_Mutation) or 
+[REST](../api/rest.md#Create_a_Webhook) to create or delete a webhook.
 
 To create a webhook, you should provide:
 - the url that will be called when the event is triggered
