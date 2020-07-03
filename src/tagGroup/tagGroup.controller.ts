@@ -2,7 +2,7 @@ import {
   Controller, Post, Body, Get, Put, Delete, Param, HttpCode, Patch,
 } from '@nestjs/common';
 import { TagGroupService } from './tagGroup.service';
-import { ITagGroup } from '../interfaces/tagGroup.interface';
+import { TagGroupInputType } from './tagGroup.input';
 
 @Controller('TagGroup')
 export class TagGroupController {
@@ -10,7 +10,7 @@ export class TagGroupController {
 
   @Post()
   @HttpCode(201)
-  async createTagGroup(@Body() tagGroup: ITagGroup) {
+  async createTagGroup(@Body() tagGroup: TagGroupInputType) {
     return this.tagGroupService.create(tagGroup);
   }
 
@@ -26,13 +26,13 @@ export class TagGroupController {
 
   @Patch(':id')
   @HttpCode(204)
-  async updateTagGroup(@Param('id') id: string, @Body() tagGroup: ITagGroup) {
+  async updateTagGroup(@Param('id') id: string, @Body() tagGroup: TagGroupInputType) {
     await this.tagGroupService.update(id, tagGroup);
   }
 
   @Put(':id')
   @HttpCode(204)
-  async replaceTagGroup(@Param('id') id: string, @Body() tagGroup: ITagGroup) {
+  async replaceTagGroup(@Param('id') id: string, @Body() tagGroup: TagGroupInputType) {
     await this.tagGroupService.replace(id, tagGroup);
   }
 

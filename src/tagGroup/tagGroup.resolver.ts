@@ -15,10 +15,7 @@ export class TagGroupResolver {
 
   @Query(() => [TagGroup], { nullable: true })
   async tagGroups(@Args('tagGroup') tagGroupFilter: TagGroupInputType) {
-    const filter = tagGroupFilter;
-
-    const allTagGroups = await this.tagGroupService.findAll(filter);
-    return allTagGroups;
+    return this.tagGroupService.findAll(tagGroupFilter);
   }
 
   @Query(() => TagGroup, { nullable: true })
