@@ -12,13 +12,21 @@ module.exports = {
             '/introduction/',
             '/architecture/',
             '/installation.html',
-            '/graphql/',
-            '/rest/',
+            {
+                title: 'Api',
+                collapsable: false,
+                children: [
+                    '/api/introduction',
+                    '/api/graphql',
+                    '/api/rest',
+                ]
+            },
             '/filters/',
             '/testing.html',
             '/events/',
             '/webhooks/',
             '/plugins/',
-            '/fileupload.html']
+            '/fileupload.html',
+        ]
     }
 }
