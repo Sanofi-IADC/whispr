@@ -9,6 +9,7 @@
     ":automergeLinters",
     ":automergeTypes",
     ":automergePatch",
-    ":semanticCommits"
+    ":semanticCommits",
+    "semanticCommitScope": "dependency maintenance"
   ]
 }
