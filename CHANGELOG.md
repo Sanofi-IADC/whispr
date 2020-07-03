@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Sanofi-IADC/whispr/compare/v1.1.0...v1.2.0) (2020-07-03)
+
+
+### Features
+
+* **plugin:** add plugin system ([e58703f](https://github.com/Sanofi-IADC/whispr/commit/e58703fbfec8fb80cc888d93a156d4cfcd960acc))
+
 # [1.1.0](https://github.com/Sanofi-IADC/whispr/compare/v1.0.0...v1.1.0) (2020-07-01)
 
 
