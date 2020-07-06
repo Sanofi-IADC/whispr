@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/Sanofi-IADC/whispr/compare/v1.3.0...v1.3.1) (2020-07-06)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** pin dependencies ([0751ddd](https://github.com/Sanofi-IADC/whispr/commit/0751ddd770ce01915c832b9ba9a735c4caa8b501))
+
 # [1.3.0](https://github.com/Sanofi-IADC/whispr/compare/v1.2.0...v1.3.0) (2020-07-03)
 
 
