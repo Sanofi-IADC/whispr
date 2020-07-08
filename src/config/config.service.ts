@@ -66,7 +66,7 @@ export class ConfigService {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     };
-    if (this.get('SSL_VALIDATE') === 'true') {
+    if (this.get('SSL_VALIDATE') === true) {
       const ca = fs.readFileSync(this.get('PATH_TO_SSL_CERTIFICATE'));
       options.server = {
         ssl: true,
