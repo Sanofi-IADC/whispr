@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/Sanofi-IADC/whispr/compare/v1.3.3...v1.3.4) (2020-07-13)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @apollo/gateway to v0.16.11 ([765a248](https://github.com/Sanofi-IADC/whispr/commit/765a2489d314c66cdde08d107afda795859888c0))
+
 ## [1.3.3](https://github.com/Sanofi-IADC/whispr/compare/v1.3.2...v1.3.3) (2020-07-09)
 
 
