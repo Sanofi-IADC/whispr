@@ -2,7 +2,7 @@
 home: true
 heroImage: whispr_logo_charcoal_back.svg
 heroText:
-tagline:  Open source event, comment and alert processing pub sub hub
+tagline:  Simple, pluggable, open source event, comment and alert pub sub microservice
 actionText: Get Started →
 actionLink: /introduction/
 features:
