@@ -1,3 +1,10 @@
+## [1.3.7](https://github.com/Sanofi-IADC/whispr/compare/v1.3.6...v1.3.7) (2020-07-20)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency apollo-server-fastify to v2.15.1 ([04c134c](https://github.com/Sanofi-IADC/whispr/commit/04c134c7041f650c6f71db1fe230445c953da381))
+
 ## [1.3.6](https://github.com/Sanofi-IADC/whispr/compare/v1.3.5...v1.3.6) (2020-07-19)
 
 
