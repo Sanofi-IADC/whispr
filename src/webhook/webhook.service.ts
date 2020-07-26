@@ -29,15 +29,22 @@ export class WebhookService {
     return async (event: Event): Promise<void> => {
       Logger.log(`Trying to send webhook to ${webhook.url}`, 'Webhook');
 
-      await axios.post(webhook.url, {
-        eventName: event.name,
-        content: event.payload,
-      })
-        .then((response) => {
-          Logger.log(`Webhook post response status: ${response.status} | statusText: ${response.statusText} | url: ${response.config.url}`, 'Webhook');
-        }, (error) => {
-          Logger.error(error, error.stack, 'Webhook');
-        });
+      await axios
+        .post(webhook.url, {
+          eventName: event.name,
+          content: event.payload,
+        })
+        .then(
+          (response) => {
+            Logger.log(
+              `Webhook post response status: ${response.status} | statusText: ${response.statusText} | url: ${response.config.url}`,
+              'Webhook',
+            );
+          },
+          (error) => {
+            Logger.error(error, error.stack, 'Webhook');
+          },
+        );
     };
   }
 }
