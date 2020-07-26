@@ -1,4 +1,4 @@
-import { Injectable, Param } from '@nestjs/common';
+import { Injectable, Param, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import axios from 'axios';
@@ -27,10 +27,17 @@ export class WebhookService {
 
   static getCallFunction(webhook: IWebhook) {
     return async (event: Event): Promise<void> => {
+      Logger.log(`Trying to send webhook to ${webhook.url}`, 'Webhook');
+
       await axios.post(webhook.url, {
         eventName: event.name,
         content: event.payload,
-      });
+      })
+        .then((response) => {
+          Logger.log(`Webhook post response status: ${response.status} | statusText: ${response.statusText} | url: ${response.config.url}`, 'Webhook');
+        }, (error) => {
+          Logger.error(error, error.stack, 'Webhook');
+        });
     };
   }
 }
