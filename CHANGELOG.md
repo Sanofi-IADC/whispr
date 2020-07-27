@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/Sanofi-IADC/whispr/compare/v1.3.9...v1.4.0) (2020-07-27)
+
+
+### Features
+
+* added simple logging for webhook ([3247198](https://github.com/Sanofi-IADC/whispr/commit/32471987459e7755f5b8a1d3c3bc5c875c0bdb2e))
+
 ## [1.3.9](https://github.com/Sanofi-IADC/whispr/compare/v1.3.8...v1.3.9) (2020-07-27)
 
 
