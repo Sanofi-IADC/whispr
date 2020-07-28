@@ -12,18 +12,24 @@ export default Joi.object({
   }),
 
   LOG_LEVEL: Joi.number().min(0).max(5).default(5),
-  REPLICASET: Joi.string().default('rs0'),
+  REPLICASET: Joi.string(),
 
   MONGOOSE_HOST: Joi.string().required(),
   MONGOOSE_PORT: Joi.number().default(27017),
-  MONGOOSE_HOST_READ: Joi.string().required(),
+  MONGOOSE_HOST_READ: Joi.string().when('REPLICASET', {
+    is: Joi.exist(),
+    then: Joi.required(),
+  }),
   MONGOOSE_PORT_READ: Joi.number().default(27017),
   MONGOOSE_USERNAME: Joi.string(),
   MONGOOSE_PASSWORD: Joi.string(),
 
   REDIS_HOST: Joi.string().required(),
   REDIS_PORT: Joi.number().default(6379),
-  REDIS_HOST_READ: Joi.string().required(),
+  REDIS_HOST_READ: Joi.string().when('REPLICASET', {
+    is: Joi.exist(),
+    then: Joi.required(),
+  }),
   REDIS_PORT_READ: Joi.number().default(6379),
 
   COGNITO_ADMIN_USER: Joi.string(),
