@@ -51,7 +51,9 @@ export class ConfigService {
 
   getMongooseURI(): any {
     return this.get('REPLICASET') !== undefined
-      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get('MONGOOSE_HOST_READ')}:${this.get('MONGOOSE_PORT_READ')}`
+      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get(
+        'MONGOOSE_HOST_READ',
+      )}:${this.get('MONGOOSE_PORT_READ')}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
 
