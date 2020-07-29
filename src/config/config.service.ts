@@ -50,7 +50,7 @@ export class ConfigService {
   }
 
   getMongooseURI(): any {
-    return this.get('REPLICASET') === null
+    return this.get('REPLICASET') !== undefined
       ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get('MONGOOSE_HOST_READ')}:${this.get('MONGOOSE_PORT_READ')}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
@@ -59,7 +59,7 @@ export class ConfigService {
     const options: any = {
       uri: this.getMongooseURI(),
       dbName: 'whisps',
-      readPreference: this.get('REPLICASET') === null ? 'primary' : null,
+      readPreference: this.get('REPLICASET') !== undefined ? 'primary' : null,
       user: this.get('MONGOOSE_USERNAME'),
       pass: this.get('MONGOOSE_PASSWORD'),
       replicaSet: this.get('REPLICASET'),
