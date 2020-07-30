@@ -4,7 +4,7 @@
 
 Requirements:
 
-* Have Docker installed
+- Have Docker installed
 
 ### Configuration
 
@@ -12,6 +12,26 @@ Whispr is configured thanks to environment variables in `docker-compose.yml`.
 You can leave the default values for development.
 
 ### Initialize the containers
+
+#### Quickstart
+
+Comment out the second MongoDB instance labled as mongo2 in the `docker-compose.yml` and remove
+
+```javascript
+REPLICASET: rs0;
+MONGOOSE_HOST_READ: mongo2;
+MONGOOSE_PORT_READ: 27017;
+```
+
+from the environment.
+
+After that you can just excecute
+
+```bash
+$ docker-compose up
+```
+
+#### Using MongoDB Replicatsets
 
 On the first start up you need to open a bash and type in the following
 
@@ -23,17 +43,15 @@ $ docker exec -it localmongo1 mongo
 Once in the mongoshell, run the following command to initiate the cluster.
 
 ```javascript
-rs.initiate(
-  {
-    _id : 'rs0',
-    members: [
-      { _id : 0, host : "mongo1:27017" },
-      { _id : 1, host : "mongo2:27017" }
-    ]
-  }
-)
+rs.initiate({
+  _id: "rs0",
+  members: [
+    { _id: 0, host: "mongo1:27017" },
+    { _id: 1, host: "mongo2:27017" },
+  ],
+});
 
-exit
+exit;
 ```
 
 ### Running the app
@@ -91,16 +109,16 @@ rsconf = {
   members: [
     {
       _id: 0,
-      host: "localhost:27017"
+      host: "localhost:27017",
     },
     {
       _id: 1,
-      host: "localhost:27018"
-    }
-  ]
-}
+      host: "localhost:27018",
+    },
+  ],
+};
 
-rs.initiate( rsconf )
+rs.initiate(rsconf);
 ```
 
 For all later startups of the database:
@@ -132,12 +150,12 @@ REDIS_HOST_READ = localhost
 
 ### Setup a local AWS instance with localstack (optional)
 
-If you want to work with a local file storage instead of AWS use this:  
+If you want to work with a local file storage instead of AWS use this:
 
-* Install Docker: https://www.docker.com/products/docker-desktop
-* Install Python: https://www.python.org/downloads/
-* Install Localstack: https://github.com/localstack/localstack
-* Install AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
+- Install Docker: https://www.docker.com/products/docker-desktop
+- Install Python: https://www.python.org/downloads/
+- Install Localstack: https://github.com/localstack/localstack
+- Install AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
 
 ```bash
 # run the following parts in different shells
