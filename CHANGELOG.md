@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/Sanofi-IADC/whispr/compare/v1.4.1...v1.4.2) (2020-07-31)
+
+
+### Bug Fixes
+
+* **file-upload:** fixed file-upload for GQL-Requests ([b65cb15](https://github.com/Sanofi-IADC/whispr/commit/b65cb15cb4d1e87f918644b285da7c5f10a1abab))
+
 ## [1.4.1](https://github.com/Sanofi-IADC/whispr/compare/v1.4.0...v1.4.1) (2020-07-27)
 
 
