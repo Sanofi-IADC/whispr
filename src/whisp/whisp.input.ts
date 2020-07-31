@@ -1,12 +1,14 @@
 import { Field, Int, InputType } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
 import {
-  IsBoolean, IsInt, IsObject, IsOptional, IsString,
+  IsBoolean, IsInt, IsObject, IsOptional, IsString, ValidateNested,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 import { Whisp } from './whisp.entity';
+import { WhispAttachmentInput } from './whisp-attachment.input';
 
 @InputType({ description: 'New whisp data' })
-export class WhispInputType implements Partial<Whisp> {
+export class WhispInputType {
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
@@ -91,4 +93,11 @@ export class WhispInputType implements Partial<Whisp> {
   @IsObject()
   @IsOptional()
   data: any;
+
+  @Field(() => [WhispAttachmentInput], { nullable: true })
+  @IsObject({ each: true })
+  @IsOptional({ each: true })
+  @ValidateNested({ each: true })
+  @Type(() => WhispAttachmentInput)
+  attachments: WhispAttachmentInput[];
 }

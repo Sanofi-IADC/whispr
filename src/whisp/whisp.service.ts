@@ -8,6 +8,8 @@ import { FileService } from '../file/file.service';
 import { Event, EventNames } from '../event/event.entity';
 import { EventService } from '../event/event.service';
 import { WhispInputType } from './whisp.input';
+import { WhispAttachment } from './whisp-attachment.entity';
+import { WhispAttachmentInput } from './whisp-attachment.input';
 
 @Injectable()
 export class WhispService {
@@ -22,14 +24,15 @@ export class WhispService {
   ) {}
 
   async create(whispIn: WhispInputType): Promise<IWhisp> {
-    let whisp = whispIn;
+    const whisp: any = whispIn;
     if (!whisp.timestamp) {
       whisp.timestamp = new Date().toISOString();
     }
+    this.logger.debug({ whispIn });
     whisp.readableID = await this.sequenceService.getNextWhispID(whisp);
-    whisp = await this.replaceFiles(whisp, whisp.readableID);
-    whisp.updated = whisp.timestamp;
-    const createdWhisp = await this.whispModel.create(whisp);
+    whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
+    whisp.updated = new Date().toISOString();
+    const createdWhisp = await this.whispModel.create(whisp as any);
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
     this.logger.log(createdWhisp, 'New Whisp');
     this.distributionService.distributeWhisp(createdWhisp);
@@ -37,64 +40,38 @@ export class WhispService {
     return createdWhisp;
   }
 
-  async replaceFiles<T>(whisp: T, path = ''): Promise<T> {
-    let newObj;
-    if (Array.isArray(whisp)) {
-      newObj = [...whisp];
-    } else {
-      newObj = { ...whisp };
+  async replaceFiles(
+    attachments: WhispAttachmentInput[],
+    readableId: string,
+  ): Promise<WhispAttachment[]> {
+    this.logger.debug({ attachments });
+    if (!attachments || !Array.isArray(attachments)) {
+      return undefined;
     }
-    const keys = Object.keys(newObj);
-    const promises: Promise<any>[] = [];
-    const filePromises: { file: Promise<any>; key: string }[] = [];
-
-    for (let i = 0; i < keys.length; i += 1) {
-      const value = newObj[keys[i]];
-      // Get all potential files from the request
-      if (value instanceof Promise) {
-        filePromises.push({ file: value, key: keys[i] });
-      } else if (typeof value === 'object') {
-        if (whisp instanceof Array) {
-          const replaceFilePromise = this.replaceFiles(value, path);
-          replaceFilePromise.then((obj) => {
-            newObj[keys[i]] = obj;
-          });
-          promises.push(replaceFilePromise);
-        } else {
-          const replaceFilePromise = this.replaceFiles(value, `${path}/${keys[i]}`);
-          replaceFilePromise.then((obj) => {
-            newObj[keys[i]] = obj;
-          });
-          promises.push(replaceFilePromise);
-        }
-      }
-    }
-    // For every potential file ...
-    for (let i = 0; i < filePromises.length; i += 1) {
-      const filePromise = filePromises[i];
-      // ... wait until it is loaded ...
-      filePromise.file.then((file) => {
-        if (
-          file
-          && file.createReadStream
-          && {}.toString.call(file.createReadStream) === '[object Function]'
-        ) {
-          // ... and save it in s3 ...
-          const savePromise = this.imageService.saveFile(file, path);
-          savePromise.then((key) => {
-            // ... and replace the file with the s3 key
-            newObj[filePromise.key] = key;
-          });
-          promises.push(savePromise);
-        }
-      });
-    }
-    // Wait until all files are loaded
-    await Promise.all(filePromises.map((data) => data.file));
-    // Wait until all files are replaced & complete data is checked for files
-    await Promise.all(promises);
-
-    return newObj;
+    return Promise.all(
+      attachments
+        .map((attachment) => ({
+          dataMappingPath: attachment.dataMappingPath,
+          file: attachment.file.newFile || attachment.file.oldFile,
+        }))
+        .map(async (attachment) => {
+          let filePath: string;
+          if (attachment.file instanceof Promise) {
+            const file = await attachment.file;
+            let s3Path = readableId;
+            if (attachment.dataMappingPath) {
+              s3Path += `/${attachment.dataMappingPath}`;
+            }
+            filePath = await this.imageService.saveFile(file, s3Path);
+          } else {
+            filePath = attachment.file;
+          }
+          return {
+            dataMappingPath: attachment.dataMappingPath,
+            file: filePath,
+          };
+        }),
+    );
   }
 
   async findAll(filter?: any, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
@@ -106,9 +83,11 @@ export class WhispService {
   }
 
   async update(id: string, whispIn: any): Promise<IWhisp> {
-    let whisp = whispIn;
+    const whisp = whispIn;
     whisp.updated = new Date().toISOString();
-    whisp = await this.replaceFiles(whisp);
+    if (whisp.attachments) {
+      whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
+    }
     const updatedWhisp = await this.whispModel
       .findOneAndUpdate({ _id: id }, whisp, { new: true })
       .exec();

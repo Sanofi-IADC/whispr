@@ -1,5 +1,13 @@
 import {
-  Controller, Post, Get, Body, HttpCode, Delete, Param,
+  Controller,
+  Post,
+  Get,
+  Body,
+  HttpCode,
+  Delete,
+  Param,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { WebhookService } from './webhook.service';
 import { WebhookInputType } from './webhook.input';
@@ -11,6 +19,7 @@ export class WebhookController {
 
   @Post()
   @HttpCode(201)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   async create(@Body() webhook: WebhookInputType) {
     return this.webhookService.create(webhook);
   }
