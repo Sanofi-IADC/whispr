@@ -15,28 +15,32 @@ You can leave the default values for development.
 
 #### Quickstart
 
-Comment out the second MongoDB instance labled as mongo2 in the `docker-compose.yml` and remove
-
-```javascript
-REPLICASET: rs0;
-MONGOOSE_HOST_READ: mongo2;
-MONGOOSE_PORT_READ: 27017;
-```
-
-from the environment.
-
-After that you can just excecute
-
 ```bash
 $ docker-compose up
 ```
 
+This spins up whispr, a mongoDB, redis and a localstack environment with an s3 instance.
+
+Nothing to configure, easy to use
+
+#### Quickstart for developers
+
+```bash
+$ docker-compose -f docker-compose.dev.yml up
+```
+
+This spins up whispr in development mode with hot reload, a mongoDB, redis and a localstack environment with an s3 instance.
+
 #### Using MongoDB Replicatsets
+
+If you want to use mongoDB replicasets use `docker-compose.rep.yml` or `docker-compose.dev.rep.yml`
+
+Both include two mongoDB instances which need to be connected on the first startup.
 
 On the first start up you need to open a bash and type in the following
 
 ```bash
-$ docker-compose up -d
+$ docker-compose -f docker-compose.rep.yml up (or docker-compose -f docker-compose.dev.rep.yml up)
 $ docker exec -it localmongo1 mongo
 ```
 
@@ -53,6 +57,10 @@ rs.initiate({
 
 exit;
 ```
+
+::: warning Localstack
+`docker-compose.rep.yml` and `docker-compose.dev.rep.yml` don't include a localstack instance. But these can easily be added
+:::
 
 ### Running the app
 

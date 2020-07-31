@@ -10,9 +10,12 @@ services:
       INTROSPECTION: "true"
       PLAYGROUND: "true"
       SSL_VALIDATE: "false"
+      REPLICASET: rs0
       LOG_LEVEL: 5
       MONGOOSE_HOST: mongo1
       MONGOOSE_PORT: 27017
+      MONGOOSE_HOST_READ: mongo2
+      MONGOOSE_PORT_READ: 27017
       # MONGOOSE_USERNAME:
       # MONGOOSE_PASSWORD:
       REDIS_HOST: redis
@@ -46,8 +49,20 @@ services:
       - 27017
     restart: always
     networks: ["stack"]
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
     volumes:
       - mongodb1:/data/db
+  mongo2:
+    hostname: mongo2
+    container_name: localmongo2
+    image: mongo
+    expose:
+      - 27017
+    restart: always
+    networks: ["stack"]
+    entrypoint: ["/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0"]
+    volumes:
+      - mongodb2:/data/db
   redis:
     image: redis
     hostname: redis
@@ -57,24 +72,9 @@ services:
     volumes:
       - redis:/var/lib/redis
     networks: ["stack"]
-  localstack:
-    hostname: localstack
-    container_name: localstack
-    image: localstack/localstack
-    environment:
-      - SERVICES=s3
-    ports:
-      - "4566"
-    restart: always
-    volumes:
-      - ./aws:/docker-entrypoint-initaws.d
-      - localstack:/tmp/localstack
-      - localstackdata:/tmp/localstack/data
-    networks: ["stack"]
 networks:
   stack:
 volumes:
   mongodb1:
+  mongodb2:
   redis:
-  localstack:
-  localstackdata:
