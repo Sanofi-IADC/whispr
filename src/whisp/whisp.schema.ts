@@ -17,6 +17,12 @@ export const whispSchema = new mongoose.Schema({
   timestamp: String,
   updated: String,
   data: Object,
+  attachments: [
+    {
+      dataMappingPath: String,
+      file: String,
+    },
+  ],
 });
 
 mongoose.model('Whisp', whispSchema);

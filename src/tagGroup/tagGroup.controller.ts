@@ -1,5 +1,15 @@
 import {
-  Controller, Post, Body, Get, Put, Delete, Param, HttpCode, Patch,
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  Delete,
+  Param,
+  HttpCode,
+  Patch,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { TagGroupService } from './tagGroup.service';
 import { TagGroupInputType } from './tagGroup.input';
@@ -10,6 +20,7 @@ export class TagGroupController {
 
   @Post()
   @HttpCode(201)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   async createTagGroup(@Body() tagGroup: TagGroupInputType) {
     return this.tagGroupService.create(tagGroup);
   }
@@ -26,12 +37,14 @@ export class TagGroupController {
 
   @Patch(':id')
   @HttpCode(204)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   async updateTagGroup(@Param('id') id: string, @Body() tagGroup: TagGroupInputType) {
     await this.tagGroupService.update(id, tagGroup);
   }
 
   @Put(':id')
   @HttpCode(204)
+  @UsePipes(new ValidationPipe({ whitelist: true }))
   async replaceTagGroup(@Param('id') id: string, @Body() tagGroup: TagGroupInputType) {
     await this.tagGroupService.replace(id, tagGroup);
   }

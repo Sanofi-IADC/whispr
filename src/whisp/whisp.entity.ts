@@ -2,6 +2,7 @@ import {
   Field, ID, Int, ObjectType,
 } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
+import { WhispAttachment } from './whisp-attachment.entity';
 
 @ObjectType()
 export class Whisp {
@@ -55,4 +56,7 @@ export class Whisp {
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   data: any;
+
+  @Field(() => [WhispAttachment], { nullable: true })
+  attachments: WhispAttachment[];
 }
