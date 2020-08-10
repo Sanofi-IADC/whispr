@@ -1,3 +1,10 @@
+## [1.4.7](https://github.com/Sanofi-IADC/whispr/compare/v1.4.6...v1.4.7) (2020-08-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency vuepress to v1.5.3 ([ffe34a5](https://github.com/Sanofi-IADC/whispr/commit/ffe34a5519b04e99bf3ba282919314d6f1f57ce9))
+
 ## [1.4.6](https://github.com/Sanofi-IADC/whispr/compare/v1.4.5...v1.4.6) (2020-08-10)
 
 
