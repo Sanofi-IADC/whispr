@@ -76,7 +76,7 @@
     "@semantic-release/github": "7.0.7",
     "@types/express": "4.17.7",
     "@types/hapi__joi": "17.1.4",
-    "@types/jest": "26.0.8",
+    "@types/jest": "26.0.9",
     "@types/mongoose": "5.7.34",
     "@types/node": "12.12.7",
     "@types/socket.io": "2.1.10",
