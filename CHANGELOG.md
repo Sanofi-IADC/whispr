@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/Sanofi-IADC/whispr/compare/v1.4.5...v1.4.6) (2020-08-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency mongoose to v5.9.28 ([360030c](https://github.com/Sanofi-IADC/whispr/commit/360030c5332078cbfb4676c0c2cea0be0d6a4baf))
+
 ## [1.4.5](https://github.com/Sanofi-IADC/whispr/compare/v1.4.4...v1.4.5) (2020-08-10)
 
 
