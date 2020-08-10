@@ -1,3 +1,10 @@
+## [1.4.4](https://github.com/Sanofi-IADC/whispr/compare/v1.4.3...v1.4.4) (2020-08-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency graphql-redis-subscriptions to v2.2.2 ([7d16656](https://github.com/Sanofi-IADC/whispr/commit/7d166568e3654d01f37ea4229320f1771fc741e3))
+
 ## [1.4.3](https://github.com/Sanofi-IADC/whispr/compare/v1.4.2...v1.4.3) (2020-08-03)
 
 
