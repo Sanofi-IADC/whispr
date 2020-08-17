@@ -1,3 +1,10 @@
+## [1.4.9](https://github.com/Sanofi-IADC/whispr/compare/v1.4.8...v1.4.9) (2020-08-17)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency lodash to v4.17.20 ([352d41a](https://github.com/Sanofi-IADC/whispr/commit/352d41a1e3a2af60d7a22963956fa95261b0a685))
+
 ## [1.4.8](https://github.com/Sanofi-IADC/whispr/compare/v1.4.7...v1.4.8) (2020-08-17)
 
 
