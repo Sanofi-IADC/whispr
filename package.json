@@ -53,7 +53,7 @@
     "graphql-tools": "6.0.18",
     "graphql-type-json": "0.3.2",
     "ioredis": "4.17.3",
-    "lodash": "4.17.19",
+    "lodash": "4.17.20",
     "mongoose": "5.9.28",
     "reflect-metadata": "0.1.13",
     "request": "2.88.2",
