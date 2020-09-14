@@ -54,7 +54,7 @@
     "graphql-type-json": "0.3.2",
     "ioredis": "4.17.3",
     "lodash": "4.17.20",
-    "mongoose": "5.10.3",
+    "mongoose": "5.10.5",
     "reflect-metadata": "0.1.13",
     "request": "2.88.2",
     "rimraf": "3.0.2",
