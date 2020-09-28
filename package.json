@@ -25,7 +25,7 @@
     "docs:dev": "vuepress dev docs"
   },
   "dependencies": {
-    "@apollo/gateway": "0.20.1",
+    "@apollo/gateway": "0.20.4",
     "@hapi/joi": "17.1.1",
     "@nestjs/common": "7.4.4",
     "@nestjs/core": "7.4.4",
