@@ -36,7 +36,7 @@
     "@nestjs/websockets": "7.4.4",
     "@types/graphql": "14.5.0",
     "amazon-cognito-identity-js": "4.4.0",
-    "apollo-server-fastify": "2.18.1",
+    "apollo-server-fastify": "2.18.2",
     "aws-sdk": "2.766.0",
     "axios": "0.20.0",
     "class-transformer": "0.3.1",
