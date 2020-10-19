@@ -97,7 +97,7 @@
     "jest": "26.5.3",
     "prettier": "2.1.2",
     "prettier-eslint-cli": "5.0.0",
-    "semantic-release": "17.2.0",
+    "semantic-release": "17.2.1",
     "supertest": "5.0.0",
     "ts-jest": "26.4.1",
     "ts-loader": "7.0.5",
