@@ -35,9 +35,9 @@
     "@nestjs/platform-socket.io": "7.4.4",
     "@nestjs/websockets": "7.4.4",
     "@types/graphql": "14.5.0",
-    "amazon-cognito-identity-js": "4.4.0",
+    "amazon-cognito-identity-js": "4.5.0",
     "apollo-server-fastify": "2.18.2",
-    "aws-sdk": "2.771.0",
+    "aws-sdk": "2.773.0",
     "axios": "0.20.0",
     "class-transformer": "0.3.1",
     "class-validator": "0.12.2",
@@ -61,8 +61,8 @@
     "rxjs": "6.6.3",
     "superagent": "5.3.1",
     "superagent-promise": "1.1.0",
-    "superagent-proxy": "2.0.0",
-    "vuepress": "1.6.0"
+    "superagent-proxy": "2.1.0",
+    "vuepress": "1.7.1"
   },
   "devDependencies": {
     "@commitlint/cli": "9.1.2",
@@ -86,7 +86,7 @@
     "cz-conventional-changelog": "3.3.0",
     "eslint": "7.11.0",
     "eslint-config-airbnb-base": "14.2.0",
-    "eslint-config-prettier": "6.12.0",
+    "eslint-config-prettier": "6.13.0",
     "eslint-config-standard": "14.1.1",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-node": "11.1.0",
