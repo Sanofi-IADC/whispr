@@ -1,49 +1,49 @@
 version: "3.7"
 services:
-  whispr:
-    image: sanofiiadc/whispr:latest
-    container_name: whispr
-    ports:
-      - 3000:3000
-    environment:
-      AUTO_SCHEMA_FILE: schema.gql
-      INTROSPECTION: "true"
-      PLAYGROUND: "true"
-      SSL_VALIDATE: "false"
-      LOG_LEVEL: 5
-      MONGOOSE_HOST: mongo1
-      MONGOOSE_PORT: 27017
-      # MONGOOSE_USERNAME:
-      # MONGOOSE_PASSWORD:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_HOST_READ: redis
-      REDIS_PORT_READ: 6379
-      # COGNITO_ADMIN_USER:
-      # COGNITO_ADMIN_PW:
-      # COGNITO_USER_POOL_ID:
-      # COGNITO_CLIENT_ID_ADMIN:
-      # COGNITO_REGION:
-      # COGNITO_IDENTITY_POOL_ID:
-      # AWS_CONTAINER_CREDENTIALS_RELATIVE_URI:
-      # AWS_S3_ENDPOINT:
-      # AWS_BUCKET_NAME:
-    volumes:
-      - ./package.json:/app/package.json:ro
-      - ./package-lock.json:/app/package-lock.json:ro
-      - ./schema.gql:/app/schema.gql
-      - ./tsconfig.build.json:/app/tsconfig.build.json:ro
-      - ./tsconfig.json:/app/tsconfig.json:ro
-      - ./src:/app/src
-      - /app/node_modules
-    networks: ["stack"]
-    command: [/bin/sh, -c, "npm ci --quiet && npm run start:dev"]
+  # whispr:
+  #   image: sanofiiadc/whispr:latest
+  #   container_name: whispr
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     AUTO_SCHEMA_FILE: schema.gql
+  #     INTROSPECTION: "true"
+  #     PLAYGROUND: "true"
+  #     SSL_VALIDATE: "false"
+  #     LOG_LEVEL: 5
+  #     MONGOOSE_HOST: mongo1
+  #     MONGOOSE_PORT: 27017
+  #     # MONGOOSE_USERNAME:
+  #     # MONGOOSE_PASSWORD:
+  #     REDIS_HOST: redis
+  #     REDIS_PORT: 6379
+  #     REDIS_HOST_READ: redis
+  #     REDIS_PORT_READ: 6379
+  #     # COGNITO_ADMIN_USER:
+  #     # COGNITO_ADMIN_PW:
+  #     # COGNITO_USER_POOL_ID:
+  #     # COGNITO_CLIENT_ID_ADMIN:
+  #     # COGNITO_REGION:
+  #     # COGNITO_IDENTITY_POOL_ID:
+  #     # AWS_CONTAINER_CREDENTIALS_RELATIVE_URI:
+  #     # AWS_S3_ENDPOINT:
+  #     # AWS_BUCKET_NAME:
+  #   volumes:
+  #     - ./package.json:/app/package.json:ro
+  #     - ./package-lock.json:/app/package-lock.json:ro
+  #     - ./schema.gql:/app/schema.gql
+  #     - ./tsconfig.build.json:/app/tsconfig.build.json:ro
+  #     - ./tsconfig.json:/app/tsconfig.json:ro
+  #     - ./src:/app/src
+  #     - /app/node_modules
+  #   networks: ["stack"]
+  #   command: [/bin/sh, -c, "npm ci --quiet && npm run start:dev"]
   mongo1:
     hostname: mongo1
     container_name: localmongo1
     image: mongo
-    expose:
-      - 27017
+    ports: 
+      - 27017:27017
     restart: always
     networks: ["stack"]
     volumes:
@@ -52,8 +52,8 @@ services:
     image: redis
     hostname: redis
     container_name: redis
-    expose:
-      - 6379
+    ports: 
+      - 6379:6379
     volumes:
       - redis:/var/lib/redis
     networks: ["stack"]
