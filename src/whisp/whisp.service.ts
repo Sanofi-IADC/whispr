@@ -82,6 +82,10 @@ export class WhispService {
     return this.whispModel.findById(id).exec();
   }
 
+  async countWhisps(filter?: any): Promise<number> {
+    return this.whispModel.countDocuments(filter).exec();
+  }
+
   async update(id: string, whispIn: any): Promise<IWhisp> {
     const whisp = whispIn;
     whisp.updated = new Date().toISOString();
