@@ -47,7 +47,7 @@ export class WhispResolver {
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
       filter?: Record<string, unknown>,
   ) {
-    return (await this.whisps(filter)).length;
+    return this.whispService.countWhisps(filter);
   }
 
   /**
