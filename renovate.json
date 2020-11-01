@@ -4,11 +4,9 @@
     ":rebaseStalePrs",
     "group:allNonMajor",
     "schedule:earlyMondays",
-    ":automergeMinor",
     ":automergeTesters",
     ":automergeLinters",
     ":automergeTypes",
-    ":automergePatch",
     ":semanticCommits"
   ],
   "semanticCommitScope": "dependency maintenance"
