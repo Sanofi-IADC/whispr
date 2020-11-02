@@ -1,3 +1,39 @@
+## [1.4.13](https://github.com/Sanofi-IADC/whispr/compare/v1.4.12...v1.4.13) (2020-11-02)
+
+
+### Bug Fixes
+
+* reverted dependencies to last working release ([93b92a1](https://github.com/Sanofi-IADC/whispr/commit/93b92a152e3b5f64875f29d56512a537783c5f4f))
+* **dependency maintenance:** update all non-major dependencies ([f5bac54](https://github.com/Sanofi-IADC/whispr/commit/f5bac54a5252eecc69fa2fb1bcc7fb20e5c04ea4))
+* **dependency maintenance:** update all non-major dependencies ([345988a](https://github.com/Sanofi-IADC/whispr/commit/345988a2eb35d8f0e43559f4faf8516a1112450a))
+* **dependency maintenance:** update all non-major dependencies ([1fcad2b](https://github.com/Sanofi-IADC/whispr/commit/1fcad2b341b8c81387416190e9e9e4395ec90087))
+* **dependency maintenance:** update all non-major dependencies ([0218274](https://github.com/Sanofi-IADC/whispr/commit/0218274eb3e2d0d3bd83148e2fe198d4b454ed69))
+* **dependency maintenance:** update all non-major dependencies ([1fde00f](https://github.com/Sanofi-IADC/whispr/commit/1fde00f3460e4153d587d6fab8acc6a7f41a1458))
+* **dependency maintenance:** update all non-major dependencies ([29e4d69](https://github.com/Sanofi-IADC/whispr/commit/29e4d69e2a2446fe2d8dfecac8acbce6bb359859))
+* **dependency maintenance:** update dependency @apollo/gateway to v0.20.1 ([2898ed9](https://github.com/Sanofi-IADC/whispr/commit/2898ed985c770beebc0b4c63609665f5fc3f7513))
+* **dependency maintenance:** update dependency @apollo/gateway to v0.20.4 ([6ecbecd](https://github.com/Sanofi-IADC/whispr/commit/6ecbecd98afd307576991bc1a3baff7b62bb8a90))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.3.5 ([4053fe4](https://github.com/Sanofi-IADC/whispr/commit/4053fe4849c1a6168cd81c3dfc2819c9f8326306))
+* **dependency maintenance:** update dependency apollo-server-fastify to v2.18.2 ([343df48](https://github.com/Sanofi-IADC/whispr/commit/343df484e8a65d1663ff2dcb12353e06cf16ced3))
+* **dependency maintenance:** update dependency cross-fetch to v3.0.6 ([cb5fc7f](https://github.com/Sanofi-IADC/whispr/commit/cb5fc7f23dd29ff6e381138fa7db687660dc4f81))
+* **dependency maintenance:** update dependency graphql-tools to v6.2.3 ([27843bc](https://github.com/Sanofi-IADC/whispr/commit/27843bc0af3bf69f4d69aa073154c7afb8972498))
+* **dependency maintenance:** update dependency graphql-tools to v6.2.4 ([7d365e5](https://github.com/Sanofi-IADC/whispr/commit/7d365e5e6cdcf91109dbe4ce3fcd8e74ef648de1))
+* **dependency maintenance:** update dependency graphql-tools to v6.2.6 ([dc0396b](https://github.com/Sanofi-IADC/whispr/commit/dc0396bf90e3241bc9a8c3f1cc66fca39ec9671a))
+* **dependency maintenance:** update dependency mongoose to v5.10.10 ([c20d808](https://github.com/Sanofi-IADC/whispr/commit/c20d808fb5b06bd9ce6256d81bea8833cf6228a0))
+* **dependency maintenance:** update dependency mongoose to v5.10.2 ([91f29f1](https://github.com/Sanofi-IADC/whispr/commit/91f29f1974c9f8e09cac58d9888cea5b0e354ef3))
+* **dependency maintenance:** update dependency mongoose to v5.10.3 ([0d7e207](https://github.com/Sanofi-IADC/whispr/commit/0d7e207600d72549ca9fb58884b12b75375cb0da))
+* **dependency maintenance:** update dependency mongoose to v5.10.5 ([f621ae5](https://github.com/Sanofi-IADC/whispr/commit/f621ae57e6fe3a9aceceb6cc8b942bfef971a2c8))
+* **dependency maintenance:** update dependency mongoose to v5.10.6 ([ec803ff](https://github.com/Sanofi-IADC/whispr/commit/ec803ff12071b41d7ae3fdfa9dbce0aeca7b17e5))
+* **dependency maintenance:** update dependency mongoose to v5.10.7 ([362dd55](https://github.com/Sanofi-IADC/whispr/commit/362dd55410c88f3223ed854ea076dca6ff84089a))
+* **dependency maintenance:** update dependency mongoose to v5.10.9 ([515cc5d](https://github.com/Sanofi-IADC/whispr/commit/515cc5dc520cf6c85c9883e8ecb23759d5973814))
+* **dependency maintenance:** update dependency rxjs to v6.6.3 ([59b97ef](https://github.com/Sanofi-IADC/whispr/commit/59b97ef88c05353795f3708affb073a5f9e2193d))
+* **dependency maintenance:** update nest monorepo to v7.4.3 ([bb95005](https://github.com/Sanofi-IADC/whispr/commit/bb9500525d41a66c38bd3845cf6ad5864511a42c))
+* **dependency maintenance:** update nest monorepo to v7.4.4 ([70eeca5](https://github.com/Sanofi-IADC/whispr/commit/70eeca51ef21a329ce4925e03cf1992f31413a5a))
+
+
+### Performance Improvements
+
+* whispsCount uses mongo documentCount ([9b7cb4e](https://github.com/Sanofi-IADC/whispr/commit/9b7cb4eb081f987f50528dfa17b284628b0cd0fa))
+
 ## [1.4.12](https://github.com/Sanofi-IADC/whispr/compare/v1.4.11...v1.4.12) (2020-08-24)
 
 
