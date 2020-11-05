@@ -7,7 +7,7 @@ describe('ConfigService', () => {
   });
   describe('get', () => {
     beforeEach(() => {
-      process.env.HTTPS_PROXY = 'http://test.proxxy.com:3128';
+      process.env.HTTPS_PROXY = 'http://test.proxy.com:3128';
       configService = new ConfigService();
     });
     it('should return var from process.env', () => {
@@ -26,12 +26,12 @@ describe('ConfigService', () => {
   describe('getProxyConfig', () => {
     describe('with proxy set', () => {
       beforeEach(() => {
-        process.env.HTTPS_PROXY = 'http://test.proxxy.com:3128';
+        process.env.HTTPS_PROXY = 'http://test.proxy.com:3128';
         configService = new ConfigService();
       });
       it('should return proxy config', () => {
         const expectedResult = {
-          host: 'test.proxxy.com',
+          host: 'test.proxy.com',
           port: 3128,
         };
         const result = configService.getProxyConfig();
