@@ -12,7 +12,7 @@ export class WebhookService {
   constructor(
     @InjectModel('Webhook') private readonly webhookModel: Model<IWebhook>,
     private readonly httpService: HttpService,
-  ) { }
+  ) {}
 
   async create(webhook: WebhookInputType): Promise<IWebhook> {
     return this.webhookModel.create(webhook);
@@ -36,7 +36,8 @@ export class WebhookService {
         .post(webhook.url, {
           eventName: event.name,
           content: event.payload,
-        }).toPromise()
+        })
+        .toPromise()
         .then(
           (response) => {
             Logger.log(
