@@ -40,3 +40,11 @@ In the case of our example above, it would be:
      "content": whispEntity
  }
  ```
+
+### Webhook proxy / CA
+
+In order to use a proxy or a custom CA in your webhook calls, the respective environment variables have to be set.
+These are: 
+* HTTP_PROXY
+* HTTPS_PROXY
+* CA_CERTIFICATE

@@ -79,6 +79,18 @@ export class ConfigService {
     return options;
   }
 
+  getProxyConfig(): { host: string, port: number } | undefined {
+    const proxy = this.get('HTTP_PROXY') || this.get('HTTPS_PROXY');
+    if (!proxy) {
+      return undefined;
+    }
+    const host = proxy.split(':')[1].slice(2);
+    const port = parseInt(proxy.split(':')[2], 10);
+    return {
+      host, port,
+    };
+  }
+
   getLogLevel(): any {
     return this.logLevels.slice(0, this.get('LOG_LEVEL'));
   }

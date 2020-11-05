@@ -1,15 +1,19 @@
-import { Injectable, Param, Logger } from '@nestjs/common';
+import {
+  Injectable, Param, Logger, HttpService,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import axios from 'axios';
-
+import { ConfigService } from '../config/config.service';
 import { IWebhook } from '../interfaces/webhook.interface';
 import { Event } from '../event/event.entity';
 import { WebhookInputType } from './webhook.input';
 
 @Injectable()
 export class WebhookService {
-  constructor(@InjectModel('Webhook') private readonly webhookModel: Model<IWebhook>) {}
+  constructor(
+    @InjectModel('Webhook') private readonly webhookModel: Model<IWebhook>,
+    private readonly httpService: HttpService,
+  ) { }
 
   async create(webhook: WebhookInputType): Promise<IWebhook> {
     return this.webhookModel.create(webhook);
@@ -25,15 +29,15 @@ export class WebhookService {
     return countOfDeletedWebhooks === 1;
   }
 
-  static getCallFunction(webhook: IWebhook) {
+  getCallFunction(webhook: IWebhook) {
     return async (event: Event): Promise<void> => {
       Logger.log(`Trying to send webhook to ${webhook.url}`, 'Webhook');
 
-      await axios
+      await this.httpService
         .post(webhook.url, {
           eventName: event.name,
           content: event.payload,
-        })
+        }).toPromise()
         .then(
           (response) => {
             Logger.log(

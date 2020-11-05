@@ -54,7 +54,11 @@ export class EventService {
 
     webhooks.forEach((webhook) => {
       webhook.events.forEach((eventName) => {
-        this.registerListener(eventName, WebhookService.getCallFunction(webhook), webhook.filter);
+        this.registerListener(
+          eventName,
+          this.webhookService.getCallFunction(webhook),
+          webhook.filter,
+        );
       });
     });
   }
