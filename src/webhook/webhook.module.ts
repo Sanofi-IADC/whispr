@@ -18,18 +18,16 @@ import { ConfigService } from '../config/config.service';
       useFactory: (configService: ConfigService) => ({
         proxy: false,
         httpsAgent: tunnel.httpsOverHttp({
-          ca: configService.get('CA_CERTIFICATE') ? [Buffer.from(configService.get('CA_CERTIFICATE'))] : undefined,
+          ca: configService.get('CA_CERTIFICATE')
+            ? [Buffer.from(configService.get('CA_CERTIFICATE'))]
+            : undefined,
           proxy: configService.getProxyConfig(),
         }),
       }),
     }),
   ],
   controllers: [WebhookController],
-  providers: [
-    WebhookService,
-    WebhookResolver,
-    ConfigService,
-  ],
+  providers: [WebhookService, WebhookResolver, ConfigService],
   exports: [WebhookService],
 })
-export class WebhookModule { }
+export class WebhookModule {}
