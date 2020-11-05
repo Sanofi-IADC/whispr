@@ -1,3 +1,11 @@
+## [1.4.14](https://github.com/Sanofi-IADC/whispr/compare/v1.4.13...v1.4.14) (2020-11-05)
+
+
+### Bug Fixes
+
+* fix linting issues with prettier-eslint ([f3c4b20](https://github.com/Sanofi-IADC/whispr/commit/f3c4b201e538e93e5209bbc28194b52cc658e43e))
+* **webhooks:** set https-Agent to correctly use Proxy & CA_Certificate for Webhook calls ([d8e4baf](https://github.com/Sanofi-IADC/whispr/commit/d8e4bafa1855f42a696d34712ca8b21e31fcb2c6))
+
 ## [1.4.13](https://github.com/Sanofi-IADC/whispr/compare/v1.4.12...v1.4.13) (2020-11-02)
 
 
