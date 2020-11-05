@@ -79,7 +79,7 @@ export class ConfigService {
     return options;
   }
 
-  getProxyConfig(): { host: string, port: number } | undefined {
+  getProxyConfig(): { host: string; port: number } | undefined {
     const proxy = this.get('HTTP_PROXY') || this.get('HTTPS_PROXY');
     if (!proxy) {
       return undefined;
@@ -87,7 +87,8 @@ export class ConfigService {
     const host = proxy.split(':')[1].slice(2);
     const port = parseInt(proxy.split(':')[2], 10);
     return {
-      host, port,
+      host,
+      port,
     };
   }
 
