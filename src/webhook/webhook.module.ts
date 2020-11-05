@@ -30,4 +30,4 @@ import { ConfigService } from '../config/config.service';
   providers: [WebhookService, WebhookResolver, ConfigService],
   exports: [WebhookService],
 })
-export class WebhookModule {}
+export class WebhookModule { }
