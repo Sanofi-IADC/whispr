@@ -1,3 +1,10 @@
+## [1.4.16](https://github.com/Sanofi-IADC/whispr/compare/v1.4.15...v1.4.16) (2020-11-06)
+
+
+### Bug Fixes
+
+* **webhooks:** read ca-file from filesystem instead of env ([e1d654a](https://github.com/Sanofi-IADC/whispr/commit/e1d654a706e3adbc42dfca2fada4031bb475bbf7))
+
 ## [1.4.15](https://github.com/Sanofi-IADC/whispr/compare/v1.4.14...v1.4.15) (2020-11-06)
 
 
