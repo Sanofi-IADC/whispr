@@ -47,4 +47,4 @@ In order to use a proxy or a custom CA in your webhook calls, the respective env
 These are: 
 * HTTP_PROXY
 * HTTPS_PROXY
-* CA_CERTIFICATE
+* CA_CERTIFICATE_PATH
