@@ -1,6 +1,6 @@
 import { HttpModule, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-
+import * as fs from 'fs';
 import * as tunnel from 'tunnel';
 import { ConfigModule } from '../config/config.module';
 import { WebhookController } from './webhook.controller';
@@ -18,8 +18,8 @@ import { ConfigService } from '../config/config.service';
       useFactory: (configService: ConfigService) => ({
         proxy: false,
         httpsAgent: tunnel.httpsOverHttp({
-          ca: configService.get('CA_CERTIFICATE')
-            ? [Buffer.from(configService.get('CA_CERTIFICATE'))]
+          ca: configService.get('CA_CERTIFICATE_PATH')
+            ? [fs.readFileSync(configService.get('CA_CERTIFICATE_PATH'))]
             : undefined,
           proxy: configService.getProxyConfig(),
         }),
