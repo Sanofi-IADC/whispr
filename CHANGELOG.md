@@ -1,3 +1,10 @@
+## [1.4.17](https://github.com/Sanofi-IADC/whispr/compare/v1.4.16...v1.4.17) (2020-11-09)
+
+
+### Bug Fixes
+
+* **webhook:** added CA_CERTIFICATE_PATH to validationSchema ([7730bcc](https://github.com/Sanofi-IADC/whispr/commit/7730bccdb7801d06be666eff16658d3dcc610668))
+
 ## [1.4.16](https://github.com/Sanofi-IADC/whispr/compare/v1.4.15...v1.4.16) (2020-11-06)
 
 
