@@ -15,8 +15,8 @@ describe('ConfigService', () => {
       expect(proxy).toEqual(process.env.HTTPS_PROXY);
     });
     it('should return var from config-file', () => {
-      const proxy = configService.get('MONGOOSE_HOST');
-      expect(proxy).toEqual('mongo1');
+      const proxy = configService.get('EXAMPLE_TEST');
+      expect(proxy).toEqual('test');
     });
     it('should return undefined if var is not set', () => {
       const result = configService.get('HTTP_PROXY');
