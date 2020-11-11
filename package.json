@@ -20,7 +20,8 @@
     "test:unit:watch": "jest --watch",
     "test:unit:cov": "jest --coverage",
     "test:unit:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config jest-e2e.json",
+    "test:e2e": "jest --config jest-e2e.json --runInBand --forceExit",
+    "test:e2e:debug": "node --inspect-brk=0.0.0.0 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config jest-e2e.json",
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs"
   },
