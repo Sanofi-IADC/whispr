@@ -12,6 +12,15 @@ jobs:
     name: Quality
     if: "!contains(github.event.head_commit.message, 'chore(release):')"
     runs-on: ubuntu-18.04
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -39,6 +48,9 @@ jobs:
         run: npm run format:check
 
       - name: Tests
+        env:
+          MONGOOSE_HOST: localhost
+          REDIS_HOST: localhost
         run: npm test
 
   release:
