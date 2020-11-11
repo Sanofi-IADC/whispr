@@ -6,6 +6,15 @@
     "configurations": [
         {
             "type": "node",
+            "request": "attach",
+            "name": "Attach to Node process",
+            "remoteRoot": "/usr/src/app",
+            "localRoot": "${workspaceFolder}",
+            "port": 9229,
+            "protocol": "inspector"
+        },
+        {
+            "type": "node",
             "request": "launch",
             "name": "Launch Program",
             "skipFiles": [
