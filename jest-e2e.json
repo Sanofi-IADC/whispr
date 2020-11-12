@@ -1,13 +1,29 @@
 {
-  "moduleFileExtensions": ["js", "json", "ts"],
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
   "rootDir": "./",
   "testEnvironment": "node",
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "collectCoverageFrom": ["**/*.{js,ts}", "!**/node_modules/**", "!**/tests/**", "!**/cache/**", "!**/coverage/**"],
+  "setupFilesAfterEnv": [
+    "./tests/e2e/setup.ts"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,ts}",
+    "!**/node_modules/**",
+    "!**/tests/**",
+    "!**/cache/**",
+    "!**/coverage/**"
+  ],
   "collectCoverage": false,
   "coverageDirectory": "tests/e2e/coverage",
-  "testPathIgnorePatterns": ["/dist/", "node_modules"]
+  "testPathIgnorePatterns": [
+    "/dist/",
+    "node_modules"
+  ]
 }
