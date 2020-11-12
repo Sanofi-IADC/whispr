@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Sanofi-IADC/whispr/compare/v1.4.17...v1.5.0) (2020-11-12)
+
+
+### Features
+
+* **index:** add compound index to applicationID and closed ([f8adce2](https://github.com/Sanofi-IADC/whispr/commit/f8adce2dcccf4a104a4812b0105baae784f30d9f))
+
 ## [1.4.17](https://github.com/Sanofi-IADC/whispr/compare/v1.4.16...v1.4.17) (2020-11-09)
 
 
