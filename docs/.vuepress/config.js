@@ -27,6 +27,7 @@ module.exports = {
             '/webhooks/',
             '/plugins/',
             '/fileupload.html',
+            '/indexing.html',
         ]
     }
 }
