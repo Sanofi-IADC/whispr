@@ -22,7 +22,8 @@ import { ConfigService } from '../config/config.service';
             ? [fs.readFileSync(configService.get('CA_CERTIFICATE_PATH'))]
             : undefined,
           proxy: configService.getProxyConfig(),
-        }),
+          rejectUnauthorized: false,
+        } as any),
       }),
     }),
   ],
