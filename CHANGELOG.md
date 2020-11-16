@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/Sanofi-IADC/whispr/compare/v1.6.0...v1.7.0) (2020-11-16)
+
+
+### Bug Fixes
+
+* **webhook:** allow communication without a proxy ([387280c](https://github.com/Sanofi-IADC/whispr/commit/387280c32fec18ea093e169bd8d209b8449ca26f))
+
+
+### Features
+
+* **webhook:** multiple CAs can be added by using a comma separated list ([c1c6073](https://github.com/Sanofi-IADC/whispr/commit/c1c6073edccea2f67958b4ab51577495d8b59860))
+
 # [1.6.0](https://github.com/Sanofi-IADC/whispr/compare/v1.5.0...v1.6.0) (2020-11-16)
 
 
