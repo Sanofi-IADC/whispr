@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/Sanofi-IADC/whispr/compare/v1.5.0...v1.6.0) (2020-11-16)
+
+
+### Features
+
+* **dev:** expose localstack port for debugging purpose ([e497962](https://github.com/Sanofi-IADC/whispr/commit/e497962923f9acf57e644adf9f0456942fa836ec))
+
 # [1.5.0](https://github.com/Sanofi-IADC/whispr/compare/v1.4.17...v1.5.0) (2020-11-12)
 
 
