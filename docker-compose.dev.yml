@@ -4,7 +4,7 @@ services:
     hostname: mongo1
     container_name: localmongo1
     image: mongo
-    ports: 
+    ports:
       - 27017:27017
     restart: always
     networks: ["stack"]
@@ -14,7 +14,7 @@ services:
     image: redis
     hostname: redis
     container_name: redis
-    ports: 
+    ports:
       - 6379:6379
     volumes:
       - redis:/var/lib/redis
@@ -26,7 +26,7 @@ services:
     environment:
       - SERVICES=s3
     ports:
-      - "4566"
+      - "4566:4566"
     restart: always
     volumes:
       - ./aws:/docker-entrypoint-initaws.d
