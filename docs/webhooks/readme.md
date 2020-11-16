@@ -48,3 +48,5 @@ These are:
 * HTTP_PROXY
 * HTTPS_PROXY
 * CA_CERTIFICATE_PATH
+
+CA_CERTIFICATE_PATH can contain a single item or a comma separated list
