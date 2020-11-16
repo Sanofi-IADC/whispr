@@ -17,21 +17,7 @@ import { ConfigService } from '../config/config.service';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         proxy: false,
-        httpsAgent: tunnel.httpsOverHttp({
-          ca: configService.get('CA_CERTIFICATE_PATH')
-            ? [
-              configService
-                .get('CA_CERTIFICATE_PATH')
-                .split(',')
-                .map((path: string) => path.trim())
-                .map((path) => {
-                  console.log(path);
-                  return fs.readFileSync(path);
-                }),
-            ]
-            : undefined,
-          proxy: configService.getProxyConfig(),
-        }),
+        httpsAgent: configService.getHttpsTunnel(),
       }),
     }),
   ],
