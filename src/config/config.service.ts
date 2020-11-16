@@ -1,7 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
+import { Agent } from 'http';
+import * as tunnel from 'tunnel';
 import validationSchema from './environmentValidationSchema';
+
 @Injectable()
 export class ConfigService {
   private readonly envConfig: Record<string, string>;
@@ -79,17 +82,27 @@ export class ConfigService {
     return options;
   }
 
-  getProxyConfig(): { host: string; port: number } | undefined {
+  getHttpsTunnel(): Agent | undefined {
     const proxy = this.get('HTTP_PROXY') || this.get('HTTPS_PROXY');
     if (!proxy) {
       return undefined;
     }
     const host = proxy.split(':')[1].slice(2);
     const port = parseInt(proxy.split(':')[2], 10);
-    return {
-      host,
-      port,
-    };
+    return tunnel.httpsOverHttp({
+      ca: this.get('CA_CERTIFICATE_PATH')
+        ? [
+          this.get('CA_CERTIFICATE_PATH')
+            .split(',')
+            .map((path: string) => path.trim())
+            .map((path) => fs.readFileSync(path)),
+        ]
+        : undefined,
+      proxy: {
+        host,
+        port,
+      },
+    });
   }
 
   getLogLevel(): any {

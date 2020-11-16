@@ -43,10 +43,6 @@ In the case of our example above, it would be:
 
 ### Webhook proxy / CA
 
-In order to use a proxy or a custom CA in your webhook calls, the respective environment variables have to be set.
-These are: 
-* HTTP_PROXY
-* HTTPS_PROXY
-* CA_CERTIFICATE_PATH
+In order to use a proxy set the `HTTP_PROXY` or `HTTPS_PROXY` environment variables.
 
-CA_CERTIFICATE_PATH can contain a single item or a comma separated list
+You can pass a custom `CA_CERTIFICATE` by setting the variable. It can contains the path to one or multiple certificates in the Docker File, separated by comma. 

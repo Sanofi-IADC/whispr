@@ -1,3 +1,4 @@
+import * as tunnel from 'tunnel';
 import { ConfigService } from '../../../src/config/config.service';
 
 describe('ConfigService', () => {
@@ -23,19 +24,22 @@ describe('ConfigService', () => {
       expect(result).toBeUndefined();
     });
   });
-  describe('getProxyConfig', () => {
+  describe('getHttpsTunnel', () => {
     describe('with proxy set', () => {
       beforeEach(() => {
         process.env.HTTPS_PROXY = 'http://test.proxy.com:3128';
         configService = new ConfigService();
       });
       it('should return proxy config', () => {
-        const expectedResult = {
-          host: 'test.proxy.com',
-          port: 3128,
-        };
-        const result = configService.getProxyConfig();
-        expect(result).toEqual(expectedResult);
+        const expectedResult = tunnel.httpsOverHttp({
+          ca: undefined,
+          proxy: {
+            host: 'test.proxy.com',
+            port: 3128,
+          },
+        });
+        const result = configService.getHttpsTunnel();
+        expect(JSON.stringify(result)).toEqual(JSON.stringify(expectedResult));
       });
     });
     describe('without proxy set', () => {
@@ -44,7 +48,7 @@ describe('ConfigService', () => {
         configService = new ConfigService();
       });
       it('should return undefined', () => {
-        const result = configService.getProxyConfig();
+        const result = configService.getHttpsTunnel();
         expect(result).toBeUndefined();
       });
     });
