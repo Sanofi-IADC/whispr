@@ -21,7 +21,7 @@ export class WhispService {
     private readonly imageService: FileService,
     private readonly sequenceService: SequenceService,
     private readonly eventService: EventService,
-  ) { }
+  ) {}
 
   async create(whispIn: WhispInputType): Promise<IWhisp> {
     const whisp: any = whispIn;
