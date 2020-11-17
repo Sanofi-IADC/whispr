@@ -21,7 +21,6 @@ export class ConfigService {
       ...dotEnvConfig,
       ...configFromEnv, // Environment variables override .env config
     };
-    console.log(mergedConfig);
     this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
   }
 
