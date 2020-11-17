@@ -91,12 +91,10 @@ export class ConfigService {
     const port = parseInt(proxy.split(':')[2], 10);
     return tunnel.httpsOverHttp({
       ca: this.get('CA_CERTIFICATE_PATH')
-        ? [
-          this.get('CA_CERTIFICATE_PATH')
-            .split(',')
-            .map((path: string) => path.trim())
-            .map((path) => fs.readFileSync(path)),
-        ]
+        ? this.get('CA_CERTIFICATE_PATH')
+          .split(',')
+          .map((path: string) => path.trim())
+          .map((path) => fs.readFileSync(path))
         : undefined,
       proxy: {
         host,
