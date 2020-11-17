@@ -1,3 +1,10 @@
+## [1.7.1](https://github.com/Sanofi-IADC/whispr/compare/v1.7.0...v1.7.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* **webhook:** fixed ca-array in tunnel ([348da19](https://github.com/Sanofi-IADC/whispr/commit/348da19fc98f69a377fe7e76ca290a7270244d79))
+
 # [1.7.0](https://github.com/Sanofi-IADC/whispr/compare/v1.6.0...v1.7.0) (2020-11-16)
 
 
