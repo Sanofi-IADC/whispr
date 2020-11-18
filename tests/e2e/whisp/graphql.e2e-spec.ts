@@ -55,8 +55,6 @@ describe('GRAPHQL WhispModule (e2e)', () => {
     });
 
     it('should upload a file to S3 when attached', async () => {
-      console.log(process.env);
-
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
         .field(
