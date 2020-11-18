@@ -21,6 +21,12 @@ jobs:
         image: redis
         ports:
           - 6379:6379
+      localstack:
+        image: localstack/localstack
+        ports:
+          - 4566:4566
+        options: >-
+          --env "SERVICES=s3"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -48,9 +54,6 @@ jobs:
         run: npm run format:check
 
       - name: Tests
-        env:
-          MONGOOSE_HOST: localhost
-          REDIS_HOST: localhost
         run: npm test
 
   release:
