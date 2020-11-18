@@ -54,6 +54,9 @@ jobs:
         run: npm run format:check
 
       - name: Tests
+        env:
+          AWS_ACCESS_KEY_ID: dummy
+          AWS_SECRET_ACCESS_KEY: dummy
         run: npm test
 
   release:
