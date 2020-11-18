@@ -25,9 +25,10 @@ jobs:
         image: localstack/localstack
         ports:
           - 4566:4566
-        options: >-
-          --env "SERVICES=s3"
-          -v "${{ github.workspace }}/aws:/docker-entrypoint-initaws.d"
+        env:
+          SERVICES: s3
+        volumes:
+          - ${{ github.workspace }}/aws:/docker-entrypoint-initaws.d
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
