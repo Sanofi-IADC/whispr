@@ -9,6 +9,9 @@ export const tagGroupSchema = new mongoose.Schema({
       type: String,
     },
   ],
+  closed: Boolean,
+  closedBy: String,
+  closedById: String,
 });
 
 mongoose.model('TagGroup', tagGroupSchema);

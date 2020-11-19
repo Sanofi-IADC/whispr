@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { IsOptional, IsString } from 'class-validator';
+import { IsOptional, IsString, IsBoolean } from 'class-validator';
 import { TagGroup } from './tagGroup.entity';
 
 @InputType({ description: 'New Tag Group' })
@@ -28,4 +28,17 @@ export class TagGroupInputType implements Partial<TagGroup> {
   @IsString({ each: true })
   @IsOptional()
   tags: string[];
+
+  @Field({ nullable: true })
+  @IsBoolean()
+  @IsOptional()
+  closed: boolean;
+  @Field({ nullable: true })
+  @IsString()
+  @IsOptional()
+  closedBy: string;
+  @Field({ nullable: true })
+  @IsString()
+  @IsOptional()
+  closedById: string;
 }

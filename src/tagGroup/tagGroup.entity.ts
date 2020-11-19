@@ -16,4 +16,11 @@ export class TagGroup {
 
   @Field(() => [String])
   tags: string[];
+
+  @Field()
+  closed: boolean;
+  @Field()
+  closedBy: string;
+  @Field()
+  closedById: string;
 }

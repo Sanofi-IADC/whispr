@@ -5,4 +5,7 @@ export interface ITagGroup extends Document {
   metalevel: string;
   applicationID: string;
   tags: string[];
+  closed: boolean;
+  closedBy: string;
+  closedById: string;
 }
