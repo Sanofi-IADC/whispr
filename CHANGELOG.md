@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/Sanofi-IADC/whispr/compare/v1.7.1...v1.7.2) (2020-11-19)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** manually update some non-major dependencies ([c7e3f6a](https://github.com/Sanofi-IADC/whispr/commit/c7e3f6ace6a22573515ec22f31aaf4e025b13fb1))
+
 ## [1.7.1](https://github.com/Sanofi-IADC/whispr/compare/v1.7.0...v1.7.1) (2020-11-17)
 
 
