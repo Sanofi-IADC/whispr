@@ -54,6 +54,9 @@ jobs:
       - name: Format
         run: npm run format:check
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
       - name: Tests
         env:
           AWS_ACCESS_KEY_ID: dummy
