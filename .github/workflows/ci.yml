@@ -27,8 +27,7 @@ jobs:
           - 4566:4566
         env:
           SERVICES: s3
-        volumes:
-          - ${{ github.workspace }}/aws:/docker-entrypoint-initaws.d
+        options: -v "${{ github.workspace }}/aws:/docker-entrypoint-initaws.d:rw"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -54,9 +53,6 @@ jobs:
 
       - name: Format
         run: npm run format:check
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
 
       - name: Tests
         env:
