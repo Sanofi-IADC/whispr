@@ -12,6 +12,9 @@ jobs:
     name: Quality
     if: "!contains(github.event.head_commit.message, 'chore(release):')"
     runs-on: ubuntu-18.04
+    env:
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
     services:
       mongo:
         image: mongo
@@ -27,7 +30,6 @@ jobs:
           - 4566:4566
         env:
           SERVICES: s3
-        options: -v "${{ github.workspace }}/aws:/docker-entrypoint-initaws.d:rw"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -54,13 +56,11 @@ jobs:
       - name: Format
         run: npm run format:check
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # We need execute the script manually because the code is mounted after the container is created
+      - name: Create s3 bucket on localstack
+        run: docker exec ${{job.services.localstack.id}} bash -c "`cat aws/bucket.sh`"
 
       - name: Tests
-        env:
-          AWS_ACCESS_KEY_ID: dummy
-          AWS_SECRET_ACCESS_KEY: dummy
         run: npm test
 
   release:
