@@ -7,7 +7,6 @@
     ":automergeTypes",
     "group:monorepos",
     "group:recommended",
-    "group:allNonMajor",
     ":semanticCommits"
   ],
   "semanticCommitScope": "dependency maintenance"
