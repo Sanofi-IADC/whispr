@@ -2,12 +2,12 @@
   "extends": [
     "config:base",
     ":rebaseStalePrs",
-    "group:monorepos",
-    "group:recommended",
-    "schedule:earlyMondays",
     ":automergeTesters",
     ":automergeLinters",
     ":automergeTypes",
+    "group:monorepos",
+    "group:recommended",
+    "group:allNonMajor",
     ":semanticCommits"
   ],
   "semanticCommitScope": "dependency maintenance"
