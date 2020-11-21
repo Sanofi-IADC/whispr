@@ -3,7 +3,6 @@
     "config:base",
     ":rebaseStalePrs",
     "group:nestMonorepo",
-    "group:allNonMajor",
     "schedule:earlyMondays",
     ":automergeTesters",
     ":automergeLinters",
