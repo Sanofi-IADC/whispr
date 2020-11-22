@@ -1,3 +1,11 @@
+## [1.7.4](https://github.com/Sanofi-IADC/whispr/compare/v1.7.3...v1.7.4) (2020-11-22)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @apollo/gateway to v0.21.3 ([49f18f9](https://github.com/Sanofi-IADC/whispr/commit/49f18f97353ad6695cce959915d9b5727bf8255e))
+* **dependency maintenance:** update dependency @nestjs/graphql to v7.8.2 ([ec734a6](https://github.com/Sanofi-IADC/whispr/commit/ec734a6ff3243e989568c797c1283baf50b29cdc))
+
 ## [1.7.3](https://github.com/Sanofi-IADC/whispr/compare/v1.7.2...v1.7.3) (2020-11-22)
 
 
