@@ -1,3 +1,12 @@
+## [1.7.3](https://github.com/Sanofi-IADC/whispr/compare/v1.7.2...v1.7.3) (2020-11-22)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.1.0 ([6f44c46](https://github.com/Sanofi-IADC/whispr/commit/6f44c46dfc8f771bf611e9be3cf5c1018cb55bfd))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.5.5 ([55c20bf](https://github.com/Sanofi-IADC/whispr/commit/55c20bf3535dd67b91a3020b12108892f1c55737))
+* **dependency maintenance:** update dependency aws-sdk to v2.797.0 ([d3c8171](https://github.com/Sanofi-IADC/whispr/commit/d3c8171cb3e85dfaf727f3df16216c0d52648013))
+
 ## [1.7.2](https://github.com/Sanofi-IADC/whispr/compare/v1.7.1...v1.7.2) (2020-11-19)
 
 
