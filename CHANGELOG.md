@@ -1,3 +1,10 @@
+## [1.7.5](https://github.com/Sanofi-IADC/whispr/compare/v1.7.4...v1.7.5) (2020-11-23)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.1.1 ([d98a4c6](https://github.com/Sanofi-IADC/whispr/commit/d98a4c6c11f29247b67f192fb8a5196d6beb73ca))
+
 ## [1.7.4](https://github.com/Sanofi-IADC/whispr/compare/v1.7.3...v1.7.4) (2020-11-22)
 
 
