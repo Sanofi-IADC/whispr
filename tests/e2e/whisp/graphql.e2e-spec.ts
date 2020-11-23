@@ -13,12 +13,27 @@ mutation createWhisp($whisp: WhispInputType!) {
 }
 `;
 
+const UPDATE_WHISP_GQL = `
+mutation updateWhisp($id: String!, $whisp: WhispInputType!) {
+  updateWhisp(id: $id, whisp: $whisp) {
+    _id
+  }
+}
+`;
+
+const DELETE_WHISP_GQL = `
+mutation deleteWhisp($id: String!) {
+  deleteWhisp(id: $id)
+}
+`;
+
 const WHISP_TEST_TYPE = 'E2E_TEST';
 const TEST_ATTACHED_FILE_PATH = 'tests/e2e/whisp/attached-file-1.png';
 const TEST_ATTACHED_FILE_CONTENT_LENGTH = 14948;
 
 let fileService: FileService;
 let whispService: WhispService;
+let createdWhispId: string;
 
 beforeAll(async () => {
   whispService = global.app.get<WhispService>('WhispService');
@@ -47,11 +62,8 @@ describe('GRAPHQL WhispModule (e2e)', () => {
         });
 
       expect(result.status).toBe(200);
-      expect(result.body).toEqual(
-        expect.objectContaining({
-          data: { createWhisp: { _id: expect.any(String) } },
-        }),
-      );
+      createdWhispId = result.body.data.createWhisp._id;
+      expect(createdWhispId).toEqual(expect.any(String));
     });
 
     it('should upload a file to S3 when attached', async () => {
@@ -83,6 +95,44 @@ describe('GRAPHQL WhispModule (e2e)', () => {
       const file = await fileService.getFile(whisp.attachments[0].file);
 
       expect(file.ContentLength).toBe(TEST_ATTACHED_FILE_CONTENT_LENGTH);
+    });
+  });
+
+  describe('updateWhisp', () => {
+    it('should change any field on a whisp and return a 200', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: UPDATE_WHISP_GQL,
+          variables: {
+            id: createdWhispId,
+            whisp: {
+              description: WHISP_TEST_TYPE,
+            },
+          },
+        });
+
+      expect(result.status).toBe(200);
+
+      const whisp = await whispService.findOne(createdWhispId);
+      expect(whisp.description).toBe(WHISP_TEST_TYPE);
+    });
+  });
+
+  describe('deleteWhisp', () => {
+    it('should delete the whisp and return a 200', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: DELETE_WHISP_GQL,
+          variables: {
+            id: createdWhispId,
+          },
+        });
+
+      expect(result.status).toBe(200);
+      const whisp = await whispService.findOne(createdWhispId);
+      expect(whisp).toBeNull();
     });
   });
 });
