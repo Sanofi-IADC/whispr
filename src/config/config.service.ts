@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { MongooseModuleOptions } from '@nestjs/mongoose';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import { Agent } from 'http';
@@ -13,9 +14,7 @@ export class ConfigService {
 
   constructor() {
     const dotEnvFilename = `${process.env.NODE_ENV || 'local'}.env`;
-    const dotEnvConfig = fs.existsSync(dotEnvFilename)
-      ? dotenv.parse(fs.readFileSync(dotEnvFilename))
-      : {};
+    const dotEnvConfig = fs.existsSync(dotEnvFilename) ? dotenv.parse(fs.readFileSync(dotEnvFilename)) : {};
     const configFromEnv = ConfigService.buildConfigFromEnv();
     const mergedConfig = {
       ...dotEnvConfig,
@@ -35,9 +34,7 @@ export class ConfigService {
     return res;
   }
 
-  static validateSchemaAndApplyDefaultValues(
-    providedEnvConfig: Record<string, string>,
-  ): Record<string, string> {
+  static validateSchemaAndApplyDefaultValues(providedEnvConfig: Record<string, string>): Record<string, string> {
     const { value, error } = validationSchema.validate(providedEnvConfig, {
       abortEarly: false,
       allowUnknown: true,
@@ -52,16 +49,16 @@ export class ConfigService {
     return this.envConfig[key];
   }
 
-  getMongooseURI(): any {
+  getMongooseURI(): string {
     return this.get('REPLICASET') !== undefined
-      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get(
-        'MONGOOSE_HOST_READ',
-      )}:${this.get('MONGOOSE_PORT_READ')}`
+      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get('MONGOOSE_HOST_READ')}:${this.get(
+        'MONGOOSE_PORT_READ',
+      )}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
 
-  getMongooseOptions(): any {
-    const options: any = {
+  getMongooseOptions(): MongooseModuleOptions {
+    const options: MongooseModuleOptions = {
       uri: this.getMongooseURI(),
       dbName: 'whisps',
       readPreference: this.get('REPLICASET') !== undefined ? 'primary' : null,
@@ -70,6 +67,8 @@ export class ConfigService {
       replicaSet: this.get('REPLICASET'),
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      connectTimeoutMS: 1000,
+      retryAttempts: 0,
     };
     if (this.get('SSL_VALIDATE') === true) {
       const ca = fs.readFileSync(this.get('PATH_TO_SSL_CERTIFICATE'));

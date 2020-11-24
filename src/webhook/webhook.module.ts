@@ -1,7 +1,5 @@
 import { HttpModule, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import * as fs from 'fs';
-import * as tunnel from 'tunnel';
 import { ConfigModule } from '../config/config.module';
 import { WebhookController } from './webhook.controller';
 import { WebhookService } from './webhook.service';

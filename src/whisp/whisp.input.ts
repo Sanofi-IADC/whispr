@@ -4,7 +4,6 @@ import {
   IsBoolean, IsInt, IsObject, IsOptional, IsString, ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Whisp } from './whisp.entity';
 import { WhispAttachmentInput } from './whisp-attachment.input';
 
 @InputType({ description: 'New whisp data' })

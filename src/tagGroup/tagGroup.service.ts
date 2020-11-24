@@ -25,9 +25,7 @@ export class TagGroupService {
   }
 
   async update(id: string, tagGroupIn: TagGroupInputType): Promise<ITagGroup> {
-    const updatedTagGroup = await this.tagGroupModel
-      .findOneAndUpdate({ _id: id }, tagGroupIn, { new: true })
-      .exec();
+    const updatedTagGroup = await this.tagGroupModel.findOneAndUpdate({ _id: id }, tagGroupIn, { new: true }).exec();
     this.logger.log(updatedTagGroup, 'Updated TagGroup');
     return updatedTagGroup;
   }
@@ -36,7 +34,7 @@ export class TagGroupService {
     return this.tagGroupModel.replaceOne({ _id: id }, tagGroup).exec();
   }
 
-  async delete(id: string) {
+  async delete(id: string): Promise<{ ok?: number; n?: number } & { deletedCount?: number }> {
     return this.tagGroupModel.deleteOne({ _id: id }).exec();
   }
 }

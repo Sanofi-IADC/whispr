@@ -1,16 +1,17 @@
-import { Scalar } from '@nestjs/graphql';
+/* eslint-disable class-methods-use-this */
+// TODO : remove when this issue is fixed https://github.com/typescript-eslint/typescript-eslint/issues/1103
+
+import { CustomScalar, Scalar } from '@nestjs/graphql';
 import { isUndefined } from 'util';
-import { GraphQLError } from 'graphql';
+import { GraphQLError, ValueNode } from 'graphql';
 import * as FileType from 'file-type';
 import { FileUpload } from '../file/file.service';
 
 @Scalar('Upload')
-export class UploadScalar {
+export class UploadScalar implements CustomScalar<Promise<FileUpload>, Promise<FileUpload>> {
   description = 'File upload scalar type';
 
-  // TODO: remove eslint-disable during code cleaned-up
-  /* eslint-disable class-methods-use-this */
-  async parseValue(value: Promise<FileUpload>) {
+  async parseValue(value: Promise<FileUpload>): Promise<FileUpload> {
     const upload = await value;
     const stream = upload.createReadStream();
     const fileType = await FileType.fromStream(stream);
@@ -22,11 +23,11 @@ export class UploadScalar {
     return upload;
   }
 
-  parseLiteral(ast): void {
+  parseLiteral(ast: ValueNode): Promise<FileUpload> {
     throw new GraphQLError('Upload literal unsupported.', ast);
   }
 
-  serialize(): void {
+  serialize(): Promise<FileUpload> {
     throw new GraphQLError('Upload serialization unsupported.');
   }
 }

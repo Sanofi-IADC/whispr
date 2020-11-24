@@ -3,6 +3,11 @@
     "es6": true,
     "node": true
   },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
   "extends": [
     "airbnb-base",
     "plugin:import/typescript",
@@ -18,18 +23,25 @@
     "project": "tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "import"],
   "rules": {
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-namespace": "off",
     "no-useless-constructor": "off",
     "@typescript-eslint/no-useless-constructor": "error",
-    "import/no-extraneous-dependencies": [
-      "error",
-      { "devDependencies": ["**/*spec.ts"] }
-    ],
     "import/prefer-default-export": "off",
-    "import/extensions": "off"
-  }
+    "import/extensions": "off",
+    "max-len": ["error", {"code": 130}]
+  },
+  "overrides": [
+    {
+     "files": ["tests/**/*.ts"],
+        "rules": {
+           "no-console": "off", // allows logging in tests
+           "import/no-extraneous-dependencies": "off" // allows dev dep in tests
+        }
+    }],
+  "ignorePatterns": ["dist/", "node_modules/", "*.config.js"]
 }

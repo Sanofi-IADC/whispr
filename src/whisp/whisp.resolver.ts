@@ -4,6 +4,7 @@ import {
 import { GraphQLJSONObject } from 'graphql-type-json';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { Inject } from '@nestjs/common';
+import { IWhisp } from '../interfaces/whisp.interface';
 import { Whisp } from './whisp.entity';
 import { WhispService } from './whisp.service';
 import { WhispInputType } from './whisp.input';
@@ -27,7 +28,7 @@ export class WhispResolver {
    */
 
   @Query(() => Whisp, { nullable: true })
-  async whispById(@Args('id') id: string) {
+  async whispById(@Args('id') id: string): Promise<IWhisp> {
     return this.whispService.findOne(id);
   }
 
@@ -38,7 +39,7 @@ export class WhispResolver {
     @Args('sort', { type: () => GraphQLJSONObject, nullable: true })
       sort?: Record<string, unknown>,
     @Args('limit', { type: () => Int, nullable: true }) limit?: number,
-  ) {
+  ): Promise<IWhisp[]> {
     return this.whispService.findAll(filter, sort, limit);
   }
 
@@ -46,7 +47,7 @@ export class WhispResolver {
   async whispsCount(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
       filter?: Record<string, unknown>,
-  ) {
+  ): Promise<number> {
     return this.whispService.countWhisps(filter);
   }
 
@@ -55,22 +56,22 @@ export class WhispResolver {
    */
 
   @Mutation(() => Whisp)
-  async createWhisp(@Args('whisp') whisp: WhispInputType) {
+  async createWhisp(@Args('whisp') whisp: WhispInputType): Promise<IWhisp> {
     return this.whispService.create(whisp);
   }
 
   @Mutation(() => Whisp)
-  async updateWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType) {
+  async updateWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType): Promise<IWhisp> {
     return this.whispService.update(id, whisp);
   }
 
   @Mutation(() => Whisp)
-  async replaceWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType) {
+  async replaceWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType): Promise<IWhisp> {
     return this.whispService.replace(id, whisp);
   }
 
   @Mutation(() => Boolean)
-  async deleteWhisp(@Args('id') id: string) {
+  async deleteWhisp(@Args('id') id: string): Promise<boolean> {
     return this.whispService.delete(id);
   }
 
@@ -81,8 +82,10 @@ export class WhispResolver {
   @Subscription(() => Whisp, {
     filter: (payload, variables) => filterPayload(variables.filter, payload.whispAdded),
   })
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  whispAdded(@Args('filter', { type: () => GraphQLJSONObject }) filter: Record<string, unknown>) {
+  whispAdded(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    @Args('filter', { type: () => GraphQLJSONObject }) filter: Record<string, unknown>,
+  ): AsyncIterator<IWhisp> {
     return this.pubSub.asyncIterator('whispAdded');
   }
 }

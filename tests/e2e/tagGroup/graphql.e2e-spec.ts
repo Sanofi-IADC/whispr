@@ -7,7 +7,7 @@ import request from 'supertest';
 const CREATE_TAG_GROUP_GQL = `
 mutation createTagGroup($tagGroup: TagGroupInputType!) {
     createTagGroup(tagGroup: $tagGroup) {
-    _id
+    id: _id
   }
 }
 `;
@@ -15,7 +15,7 @@ mutation createTagGroup($tagGroup: TagGroupInputType!) {
 const UPDATE_TAG_GROUP_GQL = `
 mutation updateTagGroup($id: String!, $tagGroup: TagGroupInputType!) {
     updateTagGroup(id: $id, tagGroup: $tagGroup) {
-    _id
+    id: _id
   }
 }
 `;
@@ -39,7 +39,9 @@ afterAll(async () => {
   try {
     const model = global.app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
     await model.deleteMany({ title: TAG_GROUP_TYPE });
-  } catch {}
+  } catch (e) {
+    console.info('Could not deleted created Tag Groups during tests', e);
+  }
 });
 
 describe('createTagGroup', () => {
@@ -56,7 +58,7 @@ describe('createTagGroup', () => {
       });
 
     expect(result.status).toBe(200);
-    createdTagGroupId = result.body.data.createTagGroup._id;
+    createdTagGroupId = result.body.data.createTagGroup.id;
     const tagGroup = await tagGroupService.findOne(createdTagGroupId);
     expect(tagGroup).toBeTruthy();
   });

@@ -42,7 +42,9 @@ export class WebhookService {
         .then(
           (response) => {
             Logger.log(
-              `Webhook post response status: ${response.status} | statusText: ${response.statusText} | url: ${response.config.url}`,
+              `Webhook post response status: ${response.status} | 
+              statusText: ${response.statusText} | 
+              url: ${response.config.url}`,
               'Webhook',
             );
           },

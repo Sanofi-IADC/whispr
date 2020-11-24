@@ -17,10 +17,8 @@ export interface IWhisp extends Document {
   timestamp: Date;
   updated: Date;
   data: Record<string, unknown>;
-  attachments: [
-    {
-      path: string;
-      file: string;
-    },
-  ];
+  attachments: {
+    dataMappingPath?: string;
+    file: string;
+  }[];
 }
