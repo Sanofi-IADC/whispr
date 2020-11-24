@@ -67,8 +67,6 @@ export class ConfigService {
       replicaSet: this.get('REPLICASET'),
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      connectTimeoutMS: 1000,
-      retryAttempts: 0,
     };
     if (this.get('SSL_VALIDATE') === true) {
       const ca = fs.readFileSync(this.get('PATH_TO_SSL_CERTIFICATE'));
