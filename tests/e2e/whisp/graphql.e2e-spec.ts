@@ -9,6 +9,7 @@ const CREATE_WHISP_GQL = `
 mutation createWhisp($whisp: WhispInputType!) {
   createWhisp(whisp: $whisp) {
     _id
+    timestamp
   }
 }
 `;
@@ -64,6 +65,24 @@ describe('GRAPHQL WhispModule (e2e)', () => {
       expect(result.status).toBe(200);
       createdWhispId = result.body.data.createWhisp._id;
       expect(createdWhispId).toEqual(expect.any(String));
+    });
+    it('should keep ISO-String when a timestamp is provided', async () => {
+      const now = new Date();
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: CREATE_WHISP_GQL,
+          variables: {
+            whisp: {
+              type: WHISP_TEST_TYPE,
+              timestamp: now,
+            },
+          },
+        });
+
+      expect(result.status).toBe(200);
+      const createdWhispTimestamp = result.body.data.createWhisp.timestamp;
+      expect(createdWhispTimestamp).toEqual(now.toISOString());
     });
 
     it('should upload a file to S3 when attached', async () => {
