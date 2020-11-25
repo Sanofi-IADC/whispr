@@ -41,4 +41,8 @@ export default Joi.object({
   AWS_CONTAINER_CREDENTIALS_RELATIVE_URI: Joi.string(),
   AWS_S3_ENDPOINT: Joi.string(),
   AWS_BUCKET_NAME: Joi.string(),
+
+  HTTP_PROXY: Joi.string(),
+  HTTPS_PROXY: Joi.string(),
+  CA_CERTIFICATE_PATH: Joi.string(),
 });

@@ -12,6 +12,24 @@ jobs:
     name: Quality
     if: "!contains(github.event.head_commit.message, 'chore(release):')"
     runs-on: ubuntu-18.04
+    env:
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+      localstack:
+        image: localstack/localstack
+        ports:
+          - 4566:4566
+        env:
+          SERVICES: s3
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -37,6 +55,10 @@ jobs:
 
       - name: Format
         run: npm run format:check
+
+      # We need execute the script manually because the code is mounted after the container is created
+      - name: Create s3 bucket on localstack
+        run: docker exec ${{job.services.localstack.id}} bash -c "`cat aws/bucket.sh`"
 
       - name: Tests
         run: npm test

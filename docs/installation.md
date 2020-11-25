@@ -25,11 +25,16 @@ Nothing to configure, easy to use
 
 #### Quickstart for developers
 
+Start mongoDB, redis and localstack environment dockers with an s3 instance and ports exposed to your development machine
 ```bash
 $ docker-compose -f docker-compose.dev.yml up
 ```
 
-This spins up whispr in development mode with hot reload, a mongoDB, redis and a localstack environment with an s3 instance.
+Install node packages then run the project in watch mode
+```bash
+$ npm install
+$ npm run start:dev
+```
 
 #### Using MongoDB Replicatsets
 

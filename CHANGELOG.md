@@ -1,3 +1,134 @@
+## [1.7.5](https://github.com/Sanofi-IADC/whispr/compare/v1.7.4...v1.7.5) (2020-11-23)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.1.1 ([d98a4c6](https://github.com/Sanofi-IADC/whispr/commit/d98a4c6c11f29247b67f192fb8a5196d6beb73ca))
+
+## [1.7.4](https://github.com/Sanofi-IADC/whispr/compare/v1.7.3...v1.7.4) (2020-11-22)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @apollo/gateway to v0.21.3 ([49f18f9](https://github.com/Sanofi-IADC/whispr/commit/49f18f97353ad6695cce959915d9b5727bf8255e))
+* **dependency maintenance:** update dependency @nestjs/graphql to v7.8.2 ([ec734a6](https://github.com/Sanofi-IADC/whispr/commit/ec734a6ff3243e989568c797c1283baf50b29cdc))
+
+## [1.7.3](https://github.com/Sanofi-IADC/whispr/compare/v1.7.2...v1.7.3) (2020-11-22)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.1.0 ([6f44c46](https://github.com/Sanofi-IADC/whispr/commit/6f44c46dfc8f771bf611e9be3cf5c1018cb55bfd))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.5.5 ([55c20bf](https://github.com/Sanofi-IADC/whispr/commit/55c20bf3535dd67b91a3020b12108892f1c55737))
+* **dependency maintenance:** update dependency aws-sdk to v2.797.0 ([d3c8171](https://github.com/Sanofi-IADC/whispr/commit/d3c8171cb3e85dfaf727f3df16216c0d52648013))
+
+## [1.7.2](https://github.com/Sanofi-IADC/whispr/compare/v1.7.1...v1.7.2) (2020-11-19)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** manually update some non-major dependencies ([c7e3f6a](https://github.com/Sanofi-IADC/whispr/commit/c7e3f6ace6a22573515ec22f31aaf4e025b13fb1))
+
+## [1.7.1](https://github.com/Sanofi-IADC/whispr/compare/v1.7.0...v1.7.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* **webhook:** fixed ca-array in tunnel ([348da19](https://github.com/Sanofi-IADC/whispr/commit/348da19fc98f69a377fe7e76ca290a7270244d79))
+
+# [1.7.0](https://github.com/Sanofi-IADC/whispr/compare/v1.6.0...v1.7.0) (2020-11-16)
+
+
+### Bug Fixes
+
+* **webhook:** allow communication without a proxy ([387280c](https://github.com/Sanofi-IADC/whispr/commit/387280c32fec18ea093e169bd8d209b8449ca26f))
+
+
+### Features
+
+* **webhook:** multiple CAs can be added by using a comma separated list ([c1c6073](https://github.com/Sanofi-IADC/whispr/commit/c1c6073edccea2f67958b4ab51577495d8b59860))
+
+# [1.6.0](https://github.com/Sanofi-IADC/whispr/compare/v1.5.0...v1.6.0) (2020-11-16)
+
+
+### Features
+
+* **dev:** expose localstack port for debugging purpose ([e497962](https://github.com/Sanofi-IADC/whispr/commit/e497962923f9acf57e644adf9f0456942fa836ec))
+
+# [1.5.0](https://github.com/Sanofi-IADC/whispr/compare/v1.4.17...v1.5.0) (2020-11-12)
+
+
+### Features
+
+* **index:** add compound index to applicationID and closed ([f8adce2](https://github.com/Sanofi-IADC/whispr/commit/f8adce2dcccf4a104a4812b0105baae784f30d9f))
+
+## [1.4.17](https://github.com/Sanofi-IADC/whispr/compare/v1.4.16...v1.4.17) (2020-11-09)
+
+
+### Bug Fixes
+
+* **webhook:** added CA_CERTIFICATE_PATH to validationSchema ([7730bcc](https://github.com/Sanofi-IADC/whispr/commit/7730bccdb7801d06be666eff16658d3dcc610668))
+
+## [1.4.16](https://github.com/Sanofi-IADC/whispr/compare/v1.4.15...v1.4.16) (2020-11-06)
+
+
+### Bug Fixes
+
+* **webhooks:** read ca-file from filesystem instead of env ([e1d654a](https://github.com/Sanofi-IADC/whispr/commit/e1d654a706e3adbc42dfca2fada4031bb475bbf7))
+
+## [1.4.15](https://github.com/Sanofi-IADC/whispr/compare/v1.4.14...v1.4.15) (2020-11-06)
+
+
+### Bug Fixes
+
+* **webhook:** flatten error-log of webhook calls, because they are circular objects ([3af072b](https://github.com/Sanofi-IADC/whispr/commit/3af072bb1830a79c6dc57ba52f63ff3ac58c1830))
+* fix linting issues with prettier-eslint ([f697231](https://github.com/Sanofi-IADC/whispr/commit/f697231f3a70f52f7d22051e7751ab5f8134cade))
+* **webhooks:** set https-Agent to correctly use Proxy & CA_Certificate for Webhook calls ([2d732a8](https://github.com/Sanofi-IADC/whispr/commit/2d732a8fb9b136c6eb47983e2a34ad7ded6cd17a))
+
+## [1.4.14](https://github.com/Sanofi-IADC/whispr/compare/v1.4.13...v1.4.14) (2020-11-05)
+
+
+### Bug Fixes
+
+* fix linting issues with prettier-eslint ([f3c4b20](https://github.com/Sanofi-IADC/whispr/commit/f3c4b201e538e93e5209bbc28194b52cc658e43e))
+* **webhooks:** set https-Agent to correctly use Proxy & CA_Certificate for Webhook calls ([d8e4baf](https://github.com/Sanofi-IADC/whispr/commit/d8e4bafa1855f42a696d34712ca8b21e31fcb2c6))
+
+## [1.4.13](https://github.com/Sanofi-IADC/whispr/compare/v1.4.12...v1.4.13) (2020-11-02)
+
+
+### Bug Fixes
+
+* reverted dependencies to last working release ([93b92a1](https://github.com/Sanofi-IADC/whispr/commit/93b92a152e3b5f64875f29d56512a537783c5f4f))
+* **dependency maintenance:** update all non-major dependencies ([f5bac54](https://github.com/Sanofi-IADC/whispr/commit/f5bac54a5252eecc69fa2fb1bcc7fb20e5c04ea4))
+* **dependency maintenance:** update all non-major dependencies ([345988a](https://github.com/Sanofi-IADC/whispr/commit/345988a2eb35d8f0e43559f4faf8516a1112450a))
+* **dependency maintenance:** update all non-major dependencies ([1fcad2b](https://github.com/Sanofi-IADC/whispr/commit/1fcad2b341b8c81387416190e9e9e4395ec90087))
+* **dependency maintenance:** update all non-major dependencies ([0218274](https://github.com/Sanofi-IADC/whispr/commit/0218274eb3e2d0d3bd83148e2fe198d4b454ed69))
+* **dependency maintenance:** update all non-major dependencies ([1fde00f](https://github.com/Sanofi-IADC/whispr/commit/1fde00f3460e4153d587d6fab8acc6a7f41a1458))
+* **dependency maintenance:** update all non-major dependencies ([29e4d69](https://github.com/Sanofi-IADC/whispr/commit/29e4d69e2a2446fe2d8dfecac8acbce6bb359859))
+* **dependency maintenance:** update dependency @apollo/gateway to v0.20.1 ([2898ed9](https://github.com/Sanofi-IADC/whispr/commit/2898ed985c770beebc0b4c63609665f5fc3f7513))
+* **dependency maintenance:** update dependency @apollo/gateway to v0.20.4 ([6ecbecd](https://github.com/Sanofi-IADC/whispr/commit/6ecbecd98afd307576991bc1a3baff7b62bb8a90))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.3.5 ([4053fe4](https://github.com/Sanofi-IADC/whispr/commit/4053fe4849c1a6168cd81c3dfc2819c9f8326306))
+* **dependency maintenance:** update dependency apollo-server-fastify to v2.18.2 ([343df48](https://github.com/Sanofi-IADC/whispr/commit/343df484e8a65d1663ff2dcb12353e06cf16ced3))
+* **dependency maintenance:** update dependency cross-fetch to v3.0.6 ([cb5fc7f](https://github.com/Sanofi-IADC/whispr/commit/cb5fc7f23dd29ff6e381138fa7db687660dc4f81))
+* **dependency maintenance:** update dependency graphql-tools to v6.2.3 ([27843bc](https://github.com/Sanofi-IADC/whispr/commit/27843bc0af3bf69f4d69aa073154c7afb8972498))
+* **dependency maintenance:** update dependency graphql-tools to v6.2.4 ([7d365e5](https://github.com/Sanofi-IADC/whispr/commit/7d365e5e6cdcf91109dbe4ce3fcd8e74ef648de1))
+* **dependency maintenance:** update dependency graphql-tools to v6.2.6 ([dc0396b](https://github.com/Sanofi-IADC/whispr/commit/dc0396bf90e3241bc9a8c3f1cc66fca39ec9671a))
+* **dependency maintenance:** update dependency mongoose to v5.10.10 ([c20d808](https://github.com/Sanofi-IADC/whispr/commit/c20d808fb5b06bd9ce6256d81bea8833cf6228a0))
+* **dependency maintenance:** update dependency mongoose to v5.10.2 ([91f29f1](https://github.com/Sanofi-IADC/whispr/commit/91f29f1974c9f8e09cac58d9888cea5b0e354ef3))
+* **dependency maintenance:** update dependency mongoose to v5.10.3 ([0d7e207](https://github.com/Sanofi-IADC/whispr/commit/0d7e207600d72549ca9fb58884b12b75375cb0da))
+* **dependency maintenance:** update dependency mongoose to v5.10.5 ([f621ae5](https://github.com/Sanofi-IADC/whispr/commit/f621ae57e6fe3a9aceceb6cc8b942bfef971a2c8))
+* **dependency maintenance:** update dependency mongoose to v5.10.6 ([ec803ff](https://github.com/Sanofi-IADC/whispr/commit/ec803ff12071b41d7ae3fdfa9dbce0aeca7b17e5))
+* **dependency maintenance:** update dependency mongoose to v5.10.7 ([362dd55](https://github.com/Sanofi-IADC/whispr/commit/362dd55410c88f3223ed854ea076dca6ff84089a))
+* **dependency maintenance:** update dependency mongoose to v5.10.9 ([515cc5d](https://github.com/Sanofi-IADC/whispr/commit/515cc5dc520cf6c85c9883e8ecb23759d5973814))
+* **dependency maintenance:** update dependency rxjs to v6.6.3 ([59b97ef](https://github.com/Sanofi-IADC/whispr/commit/59b97ef88c05353795f3708affb073a5f9e2193d))
+* **dependency maintenance:** update nest monorepo to v7.4.3 ([bb95005](https://github.com/Sanofi-IADC/whispr/commit/bb9500525d41a66c38bd3845cf6ad5864511a42c))
+* **dependency maintenance:** update nest monorepo to v7.4.4 ([70eeca5](https://github.com/Sanofi-IADC/whispr/commit/70eeca51ef21a329ce4925e03cf1992f31413a5a))
+
+
+### Performance Improvements
+
+* whispsCount uses mongo documentCount ([9b7cb4e](https://github.com/Sanofi-IADC/whispr/commit/9b7cb4eb081f987f50528dfa17b284628b0cd0fa))
+
 ## [1.4.12](https://github.com/Sanofi-IADC/whispr/compare/v1.4.11...v1.4.12) (2020-08-24)
 
 

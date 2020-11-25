@@ -40,3 +40,9 @@ In the case of our example above, it would be:
      "content": whispEntity
  }
  ```
+
+### Webhook proxy / CA
+
+In order to use a proxy set the `HTTP_PROXY` or `HTTPS_PROXY` environment variables.
+
+You can pass a custom `CA_CERTIFICATE` by setting the variable. It can contains the path to one or multiple certificates in the Docker File, separated by comma. 
