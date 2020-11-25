@@ -4,7 +4,6 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { stringify } from 'flatted';
-import { ConfigService } from '../config/config.service';
 import { IWebhook } from '../interfaces/webhook.interface';
 import { Event } from '../event/event.entity';
 import { WebhookInputType } from './webhook.input';
