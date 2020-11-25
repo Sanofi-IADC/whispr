@@ -4,6 +4,7 @@
 ./schema.gql
 local.env
 docs_dist
+docker-compose.local.yml
 
 #docker
 /volumes
