@@ -64,71 +64,40 @@ describe('GRAPHQL WhispModule (e2e)', () => {
       expect(createdWhispId).toEqual(expect.any(String));
     });
 
-    it('should upload a file to S3 when attached', async () => {
-      const TEST_ATTACHED_FILE_PATH = 'tests/e2e/whisp/attached-file-1.png';
-      const TEST_ATTACHED_FILE_CONTENT_LENGTH = 14948;
-      const result = await request(global.app.getHttpServer())
-        .post('/graphql')
-        .field(
-          'operations',
-          JSON.stringify({
-            query: CREATE_WHISP_GQL,
-            variables: {
-              whisp: {
-                type: WHISP_TEST_TYPE,
-                attachments: [{ file: { newFile: null } }],
+    function runFileTest(fileName: string, filePath: string, fileLength: number) {
+      it(`should upload ${fileName} to S3 when attached`, async () => {
+        const result = await request(global.app.getHttpServer())
+          .post('/graphql')
+          .field(
+            'operations',
+            JSON.stringify({
+              query: CREATE_WHISP_GQL,
+              variables: {
+                whisp: {
+                  type: WHISP_TEST_TYPE,
+                  attachments: [{ file: { newFile: null } }],
+                },
               },
-            },
-          }),
-        )
-        .field(
-          'map',
-          JSON.stringify({
-            file: ['variables.whisp.attachments.0.file.newFile'],
-          }),
-        )
-        .attach('file', TEST_ATTACHED_FILE_PATH);
+            }),
+          )
+          .field(
+            'map',
+            JSON.stringify({
+              file: ['variables.whisp.attachments.0.file.newFile'],
+            }),
+          )
+          .attach('file', filePath);
 
-      expect(result.status).toBe(200);
+        expect(result.status).toBe(200);
 
-      const whisp = await whispService.findOne(result.body.data.createWhisp._id);
-      const file = await fileService.getFile(whisp.attachments[0].file);
+        const whisp = await whispService.findOne(result.body.data.createWhisp._id);
+        const file = await fileService.getFile(whisp.attachments[0].file);
 
-      expect(file.ContentLength).toBe(TEST_ATTACHED_FILE_CONTENT_LENGTH);
-    });
-
-    it('should upload a file which has no MimeType', async () => {
-      const TEST_ATTACHED_FILE_PATH = 'tests/e2e/whisp/attached-file-2.txt';
-      const TEST_ATTACHED_FILE_CONTENT_LENGTH = 19;
-      const result = await request(global.app.getHttpServer())
-        .post('/graphql')
-        .field(
-          'operations',
-          JSON.stringify({
-            query: CREATE_WHISP_GQL,
-            variables: {
-              whisp: {
-                type: WHISP_TEST_TYPE,
-                attachments: [{ file: { newFile: null } }],
-              },
-            },
-          }),
-        )
-        .field(
-          'map',
-          JSON.stringify({
-            file: ['variables.whisp.attachments.0.file.newFile'],
-          }),
-        )
-        .attach('file', TEST_ATTACHED_FILE_PATH);
-
-      expect(result.status).toBe(200);
-
-      const whisp = await whispService.findOne(result.body.data.createWhisp._id);
-      const file = await fileService.getFile(whisp.attachments[0].file);
-
-      expect(file.ContentLength).toBe(TEST_ATTACHED_FILE_CONTENT_LENGTH);
-    });
+        expect(file.ContentLength).toBe(fileLength);
+      });
+    }
+    runFileTest('attached-file-1.png', 'tests/e2e/whisp/attached-file-1.png', 14948);
+    runFileTest('attached-file-2.txt', 'tests/e2e/whisp/attached-file-2.txt', 19);
   });
 
   describe('updateWhisp', () => {
