@@ -1,14 +1,24 @@
 import * as tunnel from 'tunnel';
 import { ConfigService } from '../../../src/config/config.service';
 
+const httpProxy = process.env.HTTP_PROXY;
+const httpsProxy = process.env.HTTPS_PROXY;
+
 describe('ConfigService', () => {
   let configService: ConfigService;
-  beforeEach(() => {
+  beforeAll(() => {
     process.env.NODE_ENV = 'example';
+    delete process.env.HTTP_PROXY;
+    delete process.env.HTTPS_PROXY;
+  });
+  afterAll(() => {
+    process.env.HTTP_PROXY = httpProxy;
+    process.env.HTTPS_PROXY = httpsProxy;
   });
   describe('get', () => {
     beforeEach(() => {
       process.env.HTTPS_PROXY = 'http://test.proxy.com:3128';
+      delete process.env.HTTP_PROXY;
       configService = new ConfigService();
     });
     it('should return var from process.env', () => {
@@ -45,6 +55,7 @@ describe('ConfigService', () => {
     describe('without proxy set', () => {
       beforeEach(() => {
         delete process.env.HTTPS_PROXY;
+        delete process.env.HTTP_PROXY;
         configService = new ConfigService();
       });
       it('should return undefined', () => {
