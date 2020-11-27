@@ -5,7 +5,9 @@ import { ISequence } from './sequence.entity';
 import { Whisp } from '../whisp/whisp.entity';
 @Injectable()
 export class SequenceService {
-  constructor(@InjectModel('Sequence') private sequenceModel: Model<ISequence>) {}
+  constructor(
+    @InjectModel('Sequence') private sequenceModel: Model<ISequence>,
+  ) {}
 
   /**
    * Get next ID for a Whisp
@@ -15,7 +17,7 @@ export class SequenceService {
    * Every combination of <ApplicationID> & <Type> has its own <SequenceID> counter
    * @param whisp
    */
-  async getNextWhispID(whisp: Whisp) {
+  async getNextWhispID(whisp: Whisp): Promise<string> {
     const sequencePrefix = `${whisp.applicationID}-${whisp.type}`;
     const nextSequence = await this.getNextSequence(sequencePrefix);
     return `${sequencePrefix}-${nextSequence}`;
@@ -25,7 +27,7 @@ export class SequenceService {
    * Get next value of a sequence
    * @param sequenceName
    */
-  async getNextSequence(sequenceName: string) {
+  async getNextSequence(sequenceName: string): Promise<number> {
     const sequence = await this.sequenceModel
       .findOneAndUpdate(
         { sequenceName },

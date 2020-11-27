@@ -1,6 +1,4 @@
-import {
-  Controller, Get, Param, Res, Logger,
-} from '@nestjs/common';
+import { Controller, Get, Param, Res, Logger } from '@nestjs/common';
 import { Response } from 'express';
 import { FileService } from './file.service';
 
@@ -9,7 +7,10 @@ export class FileController {
   constructor(private readonly fileService: FileService) {}
 
   @Get('*')
-  async getFile(@Param('*') key: string, @Res() response: Response) {
+  async getFile(
+    @Param('*') key: string,
+    @Res() response: Response,
+  ): Promise<void> {
     try {
       const file = await this.fileService.getFile(key);
       response.type(file.ContentType);

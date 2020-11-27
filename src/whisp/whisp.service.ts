@@ -30,10 +30,15 @@ export class WhispService {
     }
     this.logger.debug({ whispIn });
     whisp.readableID = await this.sequenceService.getNextWhispID(whisp);
-    whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
+    whisp.attachments = await this.replaceFiles(
+      whisp.attachments,
+      whisp.readableID,
+    );
     whisp.updated = new Date().toISOString();
     const createdWhisp = await this.whispModel.create(whisp as any);
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
+    await this.eventService.triggerEvent(
+      new Event(EventNames.WHISP_CREATED, createdWhisp),
+    );
     this.logger.log(createdWhisp, 'New Whisp');
     this.distributionService.distributeWhisp(createdWhisp);
 
@@ -74,7 +79,11 @@ export class WhispService {
     );
   }
 
-  async findAll(filter?: any, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
+  async findAll(
+    filter?: any,
+    sort: string | any = {},
+    limit: number = null,
+  ): Promise<IWhisp[]> {
     return this.whispModel.find(filter).sort(sort).limit(limit).exec();
   }
 
@@ -90,12 +99,17 @@ export class WhispService {
     const whisp = whispIn;
     whisp.updated = new Date().toISOString();
     if (whisp.attachments) {
-      whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
+      whisp.attachments = await this.replaceFiles(
+        whisp.attachments,
+        whisp.readableID,
+      );
     }
     const updatedWhisp = await this.whispModel
       .findOneAndUpdate({ _id: id }, whisp, { new: true })
       .exec();
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_UPDATED, updatedWhisp));
+    await this.eventService.triggerEvent(
+      new Event(EventNames.WHISP_UPDATED, updatedWhisp),
+    );
     this.logger.log(updatedWhisp, 'Updated Whisp');
     this.distributionService.distributeWhisp(updatedWhisp);
 
@@ -103,18 +117,26 @@ export class WhispService {
   }
 
   async replace(id: string, whisp: any): Promise<any> {
-    const replacedWhisp = await this.whispModel.replaceOne({ _id: id }, whisp).exec();
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_REPLACED, replacedWhisp));
+    const replacedWhisp = await this.whispModel
+      .replaceOne({ _id: id }, whisp)
+      .exec();
+    await this.eventService.triggerEvent(
+      new Event(EventNames.WHISP_REPLACED, replacedWhisp),
+    );
 
     return replacedWhisp;
   }
 
   async delete(id: string) {
-    const { n: countOfDeletedWhisp } = await this.whispModel.deleteOne({ _id: id }).exec();
+    const { n: countOfDeletedWhisp } = await this.whispModel
+      .deleteOne({ _id: id })
+      .exec();
     if (countOfDeletedWhisp <= 0) {
       return false;
     }
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_DELETED, id));
+    await this.eventService.triggerEvent(
+      new Event(EventNames.WHISP_DELETED, id),
+    );
 
     return true;
   }

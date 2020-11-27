@@ -1,9 +1,8 @@
-import {
-  Resolver, Query, Mutation, Args,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { WebhookService } from './webhook.service';
 import { Webhook } from './webhook.entity';
 import { WebhookInputType } from './webhook.input';
+import { IWebhook } from '../interfaces/webhook.interface';
 
 @Resolver(() => Webhook)
 export class WebhookResolver {
@@ -13,7 +12,7 @@ export class WebhookResolver {
    * Queries
    */
   @Query(() => [Webhook], { nullable: true })
-  async webhooks() {
+  async webhooks(): Promise<IWebhook[]> {
     return this.webhookService.findAll();
   }
 
@@ -21,12 +20,14 @@ export class WebhookResolver {
    * Mutations
    */
   @Mutation(() => Webhook)
-  async createWebhook(@Args('webhook') webhook: WebhookInputType) {
+  async createWebhook(
+    @Args('webhook') webhook: WebhookInputType,
+  ): Promise<IWebhook> {
     return this.webhookService.create(webhook);
   }
 
   @Mutation(() => Boolean)
-  async deleteWebhook(@Args('id') id: string) {
+  async deleteWebhook(@Args('id') id: string): Promise<boolean> {
     return this.webhookService.delete(id);
   }
 }

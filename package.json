@@ -14,7 +14,6 @@
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "npm run lint:es",
-    "lint:ts": "tslint --fix -p tsconfig.json -c tslint.json",
     "lint:es": "eslint --max-warnings=55 --fix --ext .js,.ts src",
     "test": "npm run test:unit:cov && npm run test:e2e",
     "test:unit:watch": "jest --watch",
@@ -44,6 +43,7 @@
     "class-validator": "0.12.2",
     "cross-fetch": "3.0.5",
     "dotenv": "8.2.0",
+    "eslint-plugin-graphql": "^4.0.0",
     "express": "4.17.1",
     "fastify-compress": "1.1.0",
     "file-type": "14.6.2",
@@ -107,7 +107,6 @@
     "ts-loader": "7.0.5",
     "ts-node": "8.10.2",
     "tsconfig-paths": "3.9.0",
-    "tslint": "5.20.1",
     "typescript": "3.9.7"
   },
   "config": {

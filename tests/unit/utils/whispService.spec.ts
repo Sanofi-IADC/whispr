@@ -20,7 +20,13 @@ describe('Whisp-Service', () => {
   let whispService: WhispService;
   beforeEach(async () => {
     fileService = new MockFileService(undefined, undefined);
-    whispService = new WhispService(undefined, undefined, fileService, undefined, undefined);
+    whispService = new WhispService(
+      undefined,
+      undefined,
+      fileService,
+      undefined,
+      undefined,
+    );
   });
 
   describe('replaceFiles', () => {

@@ -20,7 +20,7 @@ export class WebhookController {
   @Post()
   @HttpCode(201)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async create(@Body() webhook: WebhookInputType) {
+  async create(@Body() webhook: WebhookInputType): Promise<IWebhook> {
     return this.webhookService.create(webhook);
   }
 

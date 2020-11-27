@@ -21,6 +21,6 @@ export interface IWhisp extends Document {
     {
       path: string;
       file: string;
-    },
+    }
   ];
 }

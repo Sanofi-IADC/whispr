@@ -9,7 +9,13 @@ import validationSchema from './environmentValidationSchema';
 export class ConfigService {
   private readonly envConfig: Record<string, string>;
 
-  private readonly logLevels: string[] = ['error', 'warn', 'log', 'verbose', 'debug'];
+  private readonly logLevels: string[] = [
+    'error',
+    'warn',
+    'log',
+    'verbose',
+    'debug',
+  ];
 
   constructor() {
     const dotEnvFilename = `${process.env.NODE_ENV || 'local'}.env`;
@@ -21,7 +27,9 @@ export class ConfigService {
       ...dotEnvConfig,
       ...configFromEnv, // Environment variables override .env config
     };
-    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
+    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(
+      mergedConfig,
+    );
   }
 
   static buildConfigFromEnv(): Record<string, string> {
@@ -54,9 +62,9 @@ export class ConfigService {
 
   getMongooseURI(): any {
     return this.get('REPLICASET') !== undefined
-      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get(
-        'MONGOOSE_HOST_READ',
-      )}:${this.get('MONGOOSE_PORT_READ')}`
+      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get(
+          'MONGOOSE_PORT',
+        )},${this.get('MONGOOSE_HOST_READ')}:${this.get('MONGOOSE_PORT_READ')}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
 
@@ -92,9 +100,9 @@ export class ConfigService {
     return tunnel.httpsOverHttp({
       ca: this.get('CA_CERTIFICATE_PATH')
         ? this.get('CA_CERTIFICATE_PATH')
-          .split(',')
-          .map((path: string) => path.trim())
-          .map((path) => fs.readFileSync(path))
+            .split(',')
+            .map((path: string) => path.trim())
+            .map((path) => fs.readFileSync(path))
         : undefined,
       proxy: {
         host,

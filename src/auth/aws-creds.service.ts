@@ -44,7 +44,9 @@ export class AWSCredsService {
       Logins: {},
     };
     cognitoConfig.Logins[
-      `cognito-idp.eu-west-1.amazonaws.com/${this.configService.get('COGNITO_USER_POOL_ID')}`
+      `cognito-idp.eu-west-1.amazonaws.com/${this.configService.get(
+        'COGNITO_USER_POOL_ID',
+      )}`
     ] = authDetails.getIdToken().getJwtToken();
     const credentials = new AWS.CognitoIdentityCredentials(cognitoConfig);
     this.aws.config.credentials = credentials;
@@ -79,12 +81,13 @@ export class AWSCredsService {
   }
 
   async getAWS(): Promise<typeof AWS> {
-    const credentials = this.aws.config.credentials as AWS.CognitoIdentityCredentials;
+    const credentials = this.aws.config
+      .credentials as AWS.CognitoIdentityCredentials;
     if (
-      !credentials
-      || !credentials.needsRefresh
-      || credentials.needsRefresh()
-      || !credentials.expireTime
+      !credentials ||
+      !credentials.needsRefresh ||
+      credentials.needsRefresh() ||
+      !credentials.expireTime
     ) {
       if (!this.configService.get('AWS_CONTAINER_CREDENTIALS_RELATIVE_URI')) {
         await this.authenticate();

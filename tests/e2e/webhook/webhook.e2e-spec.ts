@@ -35,7 +35,9 @@ beforeAll(async () => {
 afterAll(async () => {
   // delete created webhooks
   try {
-    const webhookModel = global.app.get<Model<IWebhook>>(getModelToken('Webhook'));
+    const webhookModel = global.app.get<Model<IWebhook>>(
+      getModelToken('Webhook'),
+    );
     await webhookModel.deleteMany({ url: WEBHOOK_TEST_URL });
   } catch {}
 
@@ -59,7 +61,11 @@ describe('webhooks', () => {
         variables: {
           webhook: {
             url: WEBHOOK_TEST_URL,
-            events: [EventNames.WHISP_CREATED, EventNames.WHISP_DELETED, EventNames.WHISP_UPDATED],
+            events: [
+              EventNames.WHISP_CREATED,
+              EventNames.WHISP_DELETED,
+              EventNames.WHISP_UPDATED,
+            ],
           },
         },
       });
@@ -93,7 +99,9 @@ describe('webhooks', () => {
 function configWebhookListener() {
   webhookListener.post(WEBHOOK_TEST_ROUTE, async (request) => {
     try {
-      expect(request.body).toEqual(expect.objectContaining({ eventName: expectedEventName }));
+      expect(request.body).toEqual(
+        expect.objectContaining({ eventName: expectedEventName }),
+      );
       doneCallback();
     } catch (error) {
       doneCallback(error);

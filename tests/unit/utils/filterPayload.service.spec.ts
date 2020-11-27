@@ -1,15 +1,22 @@
-import { filterPayload, payloadMatchesNestedValue } from '../../../src/utils/filterPayload.service';
+import {
+  filterPayload,
+  payloadMatchesNestedValue,
+} from '../../../src/utils/filterPayload.service';
 
 describe('WhispFilter', () => {
   describe('filter', () => {
     it('should return false if there is no value attach to the filter key', () => {
-      expect(filterPayload({ aKey: undefined }, { aKey: 'aValue' })).toEqual(false);
+      expect(filterPayload({ aKey: undefined }, { aKey: 'aValue' })).toEqual(
+        false,
+      );
     });
     it('should return false if there is no payload', () => {
       expect(filterPayload({ aKey: 'a value' }, undefined)).toEqual(false);
     });
     it('should return false if there is no corresponding key in the payload', () => {
-      expect(filterPayload({ aKey: 'aValue' }, { notTheSameKey: 'aValue' })).toEqual(false);
+      expect(
+        filterPayload({ aKey: 'aValue' }, { notTheSameKey: 'aValue' }),
+      ).toEqual(false);
     });
     it('should return true if all conditions are true', () => {
       expect(
@@ -29,29 +36,45 @@ describe('WhispFilter', () => {
     });
     it('should go recursive and return true if all conditions are true', () => {
       expect(
-        filterPayload({ aKey: { anotherKey: 'aValue' } }, { aKey: { anotherKey: 'aValue' } }),
+        filterPayload(
+          { aKey: { anotherKey: 'aValue' } },
+          { aKey: { anotherKey: 'aValue' } },
+        ),
       ).toEqual(true);
     });
     it('should go recursive and return false if a condition is not met', () => {
       expect(
-        filterPayload({ aKey: { anotherKey: 'aValue' } }, { aKey: { anotherKey: 'anotherValue' } }),
+        filterPayload(
+          { aKey: { anotherKey: 'aValue' } },
+          { aKey: { anotherKey: 'anotherValue' } },
+        ),
       ).toEqual(false);
     });
     it('should return true if at least one condition of the array is met', () => {
-      expect(filterPayload({ aKey: ['valueA', 'valueB', 'valueC'] }, { aKey: 'valueB' })).toEqual(
-        true,
-      );
+      expect(
+        filterPayload(
+          { aKey: ['valueA', 'valueB', 'valueC'] },
+          { aKey: 'valueB' },
+        ),
+      ).toEqual(true);
     });
     it('should return false if not a condition of the array is met', () => {
-      expect(filterPayload({ aKey: ['valueA', 'valueB', 'valueC'] }, { aKey: 'valueD' })).toEqual(
-        false,
-      );
+      expect(
+        filterPayload(
+          { aKey: ['valueA', 'valueB', 'valueC'] },
+          { aKey: 'valueD' },
+        ),
+      ).toEqual(false);
     });
     it('should go recursive and return true if at least a condition of the array is met', () => {
       expect(
         filterPayload(
           {
-            aKey: [{ anotherKey: 'anotherValue' }, { yetAnotherKey: 'yetAnotherValue' }, 'valueC'],
+            aKey: [
+              { anotherKey: 'anotherValue' },
+              { yetAnotherKey: 'yetAnotherValue' },
+              'valueC',
+            ],
           },
           { aKey: { yetAnotherKey: 'yetAnotherValue' } },
         ),
@@ -61,7 +84,11 @@ describe('WhispFilter', () => {
       expect(
         filterPayload(
           {
-            aKey: [{ anotherKey: 'anotherValue' }, { yetAnotherKey: 'yetAnotherValue' }, 'valueC'],
+            aKey: [
+              { anotherKey: 'anotherValue' },
+              { yetAnotherKey: 'yetAnotherValue' },
+              'valueC',
+            ],
           },
           { aKey: { yetAnotherKey: 'notTheExpectedValue' } },
         ),
@@ -69,7 +96,10 @@ describe('WhispFilter', () => {
     });
     it('should return true if nested value matches', () => {
       expect(
-        filterPayload({ 'aKey.anotherKey': 'valueA' }, { aKey: { anotherKey: 'valueA' } }),
+        filterPayload(
+          { 'aKey.anotherKey': 'valueA' },
+          { aKey: { anotherKey: 'valueA' } },
+        ),
       ).toEqual(true);
     });
     it('should return true if several nested values match', () => {
@@ -80,9 +110,12 @@ describe('WhispFilter', () => {
         ),
       ).toEqual(true);
     });
-    it("should not return an object if it doesn't match fully", () => {
+    it('should not return an object if it doesn\'t match fully', () => {
       expect(
-        filterPayload({ key1: { key2: 'ValueA' } }, { key1: { key2: 'ValueA', key3: 'ValueB' } }),
+        filterPayload(
+          { key1: { key2: 'ValueA' } },
+          { key1: { key2: 'ValueA', key3: 'ValueB' } },
+        ),
       ).toEqual(false);
     });
   });

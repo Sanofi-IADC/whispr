@@ -17,7 +17,8 @@ export class UploadScalar {
 
     if (isUndefined(fileType)) throw new GraphQLError('Mime type is unknown.');
 
-    if (fileType?.mime !== upload.mimetype) throw new GraphQLError('Mime type does not match file content.');
+    if (fileType?.mime !== upload.mimetype)
+      throw new GraphQLError('Mime type does not match file content.');
 
     return upload;
   }

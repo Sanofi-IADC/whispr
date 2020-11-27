@@ -44,7 +44,11 @@ export class EventService {
 
     plugins.forEach((plugin) => {
       plugin.listeners.forEach((listener) => {
-        this.registerListener(listener.eventName, listener.callback, listener.filter);
+        this.registerListener(
+          listener.eventName,
+          listener.callback,
+          listener.filter,
+        );
       });
     });
   }
@@ -69,13 +73,18 @@ export class EventService {
     filter: Record<string, unknown> = {},
   ) {
     if (!EventService.doesEventExist(eventName)) {
-      Logger.error(`Could not register listener, Event ${eventName} does not exist.`);
+      Logger.error(
+        `Could not register listener, Event ${eventName} does not exist.`,
+      );
       return;
     }
 
     const listener = { callback, filter };
 
-    this.registeredListeners[eventName] = [...this.registeredListeners[eventName], listener];
+    this.registeredListeners[eventName] = [
+      ...this.registeredListeners[eventName],
+      listener,
+    ];
   }
 
   private static doesEventExist(eventName: string): boolean {
