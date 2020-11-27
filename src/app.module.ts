@@ -17,6 +17,7 @@ import { AppService } from './app.service';
 import { ConfigService } from './config/config.service';
 import { WebhookModule } from './webhook/webhook.module';
 import { UploadScalar } from './scalarTypes/upload.scalar';
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
@@ -32,12 +33,14 @@ import { UploadScalar } from './scalarTypes/upload.scalar';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => configService.getMongooseOptions(),
+      useFactory: async (configService: ConfigService) =>
+        configService.getMongooseOptions(),
       inject: [ConfigService],
     }),
     PubSubModule,
     WhispModule,
     TagGroupModule,
+    TagModule,
     SequenceModule,
     ConfigModule,
     AWSCredsModule,

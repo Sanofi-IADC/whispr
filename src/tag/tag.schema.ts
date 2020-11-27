@@ -1,14 +1,13 @@
 import * as mongoose from 'mongoose';
 import { TagStatuses } from '../interfaces/status.enum';
 
-export const tagGroupSchema = new mongoose.Schema({
+export const tagSchema = new mongoose.Schema({
   title: String,
-  metalevel: String,
-  applicationID: String,
+  tagGroup: { type: mongoose.Schema.Types.ObjectId, ref: 'TagGroup' },
   status: {
     type: String,
     enum: [TagStatuses.ACTIVE, TagStatuses.ARCHIVED],
   },
 });
 
-mongoose.model('TagGroup', tagGroupSchema);
+mongoose.model('Tag', tagSchema);

@@ -1,11 +1,9 @@
 import { Document } from 'mongoose';
+import { TagStatuses } from './status.enum';
 
 export interface ITagGroup extends Document {
   title: string;
   metalevel: string;
   applicationID: string;
-  tags: string[];
-  closed: boolean;
-  closedBy: string;
-  closedById: string;
+  status: TagStatuses;
 }

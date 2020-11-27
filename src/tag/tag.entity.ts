@@ -1,24 +1,21 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Tag } from '../tag/tag.entity';
+import { TagGroup } from '../tagGroup/tagGroup.entity';
 import { TagStatuses } from '../interfaces/status.enum';
 
 @ObjectType()
-export class TagGroup {
+export class Tag {
   @Field(() => ID)
   _id: string;
 
-  @Field()
+  @Field(() => String)
   title: string;
-
-  @Field()
-  metalevel: string;
-
-  @Field()
-  applicationID: string;
 
   @Field(() => String)
   status: TagStatuses;
 
-  @Field(() => [Tag])
-  tags: Tag[];
+  // @Field(() => String)
+  // tagGroupId: string;
+
+  @Field(() => TagGroup)
+  tagGroup: TagGroup;
 }
