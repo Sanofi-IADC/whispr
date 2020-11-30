@@ -1,3 +1,41 @@
+## [1.7.6](https://github.com/Sanofi-IADC/whispr/compare/v1.7.5...v1.7.6) (2020-11-26)
+
+
+### Bug Fixes
+
+* **file-upload:** removed custom FileUpload-Scalar and use the one from apollo-server ([3380ab9](https://github.com/Sanofi-IADC/whispr/commit/3380ab931d3fd353a3f270fe8c4abb084049bec1))
+
+## [1.7.5](https://github.com/Sanofi-IADC/whispr/compare/v1.7.4...v1.7.5) (2020-11-23)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.1.1 ([d98a4c6](https://github.com/Sanofi-IADC/whispr/commit/d98a4c6c11f29247b67f192fb8a5196d6beb73ca))
+
+## [1.7.4](https://github.com/Sanofi-IADC/whispr/compare/v1.7.3...v1.7.4) (2020-11-22)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @apollo/gateway to v0.21.3 ([49f18f9](https://github.com/Sanofi-IADC/whispr/commit/49f18f97353ad6695cce959915d9b5727bf8255e))
+* **dependency maintenance:** update dependency @nestjs/graphql to v7.8.2 ([ec734a6](https://github.com/Sanofi-IADC/whispr/commit/ec734a6ff3243e989568c797c1283baf50b29cdc))
+
+## [1.7.3](https://github.com/Sanofi-IADC/whispr/compare/v1.7.2...v1.7.3) (2020-11-22)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.1.0 ([6f44c46](https://github.com/Sanofi-IADC/whispr/commit/6f44c46dfc8f771bf611e9be3cf5c1018cb55bfd))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.5.5 ([55c20bf](https://github.com/Sanofi-IADC/whispr/commit/55c20bf3535dd67b91a3020b12108892f1c55737))
+* **dependency maintenance:** update dependency aws-sdk to v2.797.0 ([d3c8171](https://github.com/Sanofi-IADC/whispr/commit/d3c8171cb3e85dfaf727f3df16216c0d52648013))
+
+## [1.7.2](https://github.com/Sanofi-IADC/whispr/compare/v1.7.1...v1.7.2) (2020-11-19)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** manually update some non-major dependencies ([c7e3f6a](https://github.com/Sanofi-IADC/whispr/commit/c7e3f6ace6a22573515ec22f31aaf4e025b13fb1))
+
 ## [1.7.1](https://github.com/Sanofi-IADC/whispr/compare/v1.7.0...v1.7.1) (2020-11-17)
 
 

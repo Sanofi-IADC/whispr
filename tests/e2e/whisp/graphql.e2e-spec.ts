@@ -1,6 +1,8 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { FileService } from 'src/file/file.service';
 import { IWhisp } from 'src/interfaces/whisp.interface';
+import { WhispService } from 'src/whisp/whisp.service';
 import request from 'supertest';
 
 const CREATE_WHISP_GQL = `
@@ -11,7 +13,30 @@ mutation createWhisp($whisp: WhispInputType!) {
 }
 `;
 
+const UPDATE_WHISP_GQL = `
+mutation updateWhisp($id: String!, $whisp: WhispInputType!) {
+  updateWhisp(id: $id, whisp: $whisp) {
+    _id
+  }
+}
+`;
+
+const DELETE_WHISP_GQL = `
+mutation deleteWhisp($id: String!) {
+  deleteWhisp(id: $id)
+}
+`;
+
 const WHISP_TEST_TYPE = 'E2E_TEST';
+
+let fileService: FileService;
+let whispService: WhispService;
+let createdWhispId: string;
+
+beforeAll(async () => {
+  whispService = global.app.get<WhispService>('WhispService');
+  fileService = global.app.get<FileService>('FileService');
+});
 
 afterAll(async () => {
   try {
@@ -35,11 +60,95 @@ describe('GRAPHQL WhispModule (e2e)', () => {
         });
 
       expect(result.status).toBe(200);
-      expect(result.body).toEqual(
-        expect.objectContaining({
-          data: { createWhisp: { _id: expect.any(String) } },
-        }),
-      );
+      createdWhispId = result.body.data.createWhisp._id;
+      expect(createdWhispId).toEqual(expect.any(String));
+    });
+
+    function runFileTest(
+      fileName: string,
+      filePath: string,
+      fileLength: number,
+    ) {
+      it(`should upload ${fileName} to S3 when attached`, async () => {
+        const result = await request(global.app.getHttpServer())
+          .post('/graphql')
+          .field(
+            'operations',
+            JSON.stringify({
+              query: CREATE_WHISP_GQL,
+              variables: {
+                whisp: {
+                  type: WHISP_TEST_TYPE,
+                  attachments: [{ file: { newFile: null } }],
+                },
+              },
+            }),
+          )
+          .field(
+            'map',
+            JSON.stringify({
+              file: ['variables.whisp.attachments.0.file.newFile'],
+            }),
+          )
+          .attach('file', filePath);
+
+        expect(result.status).toBe(200);
+
+        const whisp = await whispService.findOne(
+          result.body.data.createWhisp._id,
+        );
+        const file = await fileService.getFile(whisp.attachments[0].file);
+
+        expect(file.ContentLength).toBe(fileLength);
+      });
+    }
+    runFileTest(
+      'attached-file-1.png',
+      'tests/e2e/whisp/attached-file-1.png',
+      14948,
+    );
+    runFileTest(
+      'attached-file-2.txt',
+      'tests/e2e/whisp/attached-file-2.txt',
+      19,
+    );
+  });
+
+  describe('updateWhisp', () => {
+    it('should change any field on a whisp and return a 200', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: UPDATE_WHISP_GQL,
+          variables: {
+            id: createdWhispId,
+            whisp: {
+              description: WHISP_TEST_TYPE,
+            },
+          },
+        });
+
+      expect(result.status).toBe(200);
+
+      const whisp = await whispService.findOne(createdWhispId);
+      expect(whisp.description).toBe(WHISP_TEST_TYPE);
+    });
+  });
+
+  describe('deleteWhisp', () => {
+    it('should delete the whisp and return a 200', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: DELETE_WHISP_GQL,
+          variables: {
+            id: createdWhispId,
+          },
+        });
+
+      expect(result.status).toBe(200);
+      const whisp = await whispService.findOne(createdWhispId);
+      expect(whisp).toBeNull();
     });
   });
 });
