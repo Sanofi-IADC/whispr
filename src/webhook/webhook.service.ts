@@ -10,7 +10,7 @@ import { WebhookInputType } from './webhook.input';
 export class WebhookService {
   constructor(
     @InjectModel('Webhook') private readonly webhookModel: Model<IWebhook>,
-    private readonly httpService: HttpService,
+    private readonly httpService: HttpService
   ) {}
 
   async create(webhook: WebhookInputType): Promise<IWebhook> {
@@ -22,9 +22,7 @@ export class WebhookService {
   }
 
   async delete(@Param('id') id: string): Promise<boolean> {
-    const { n: countOfDeletedWebhooks } = await this.webhookModel
-      .deleteOne({ _id: id })
-      .exec();
+    const { n: countOfDeletedWebhooks } = await this.webhookModel.deleteOne({ _id: id }).exec();
 
     return countOfDeletedWebhooks === 1;
   }
@@ -36,19 +34,21 @@ export class WebhookService {
       await this.httpService
         .post(webhook.url, {
           eventName: event.name,
-          content: event.payload,
+          content: event.payload
         })
         .toPromise()
         .then(
           (response) => {
             Logger.log(
-              `Webhook post response status: ${response.status} | statusText: ${response.statusText} | url: ${response.config.url}`,
-              'Webhook',
+              `Webhook post response status: ${response.status} | 
+              statusText: ${response.statusText} | 
+              url: ${response.config.url}`,
+              'Webhook'
             );
           },
           (error) => {
             Logger.error(stringify(error), error.stack, 'Webhook');
-          },
+          }
         );
     };
   }

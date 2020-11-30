@@ -7,7 +7,7 @@ import { WhispFileUpload } from './whisp-file-upload.input';
 export class WhispAttachmentInput {
   @Field({
     description: 'Mapping of the file to a location in the data attribute',
-    nullable: true,
+    nullable: true
   })
   @IsString()
   @IsOptional()

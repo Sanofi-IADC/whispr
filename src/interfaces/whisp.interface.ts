@@ -1,5 +1,5 @@
 import { Document } from 'mongoose';
-import { ITag } from './tag.interface';
+import { TagInputType } from '../tag/tag.input';
 
 export interface IWhisp extends Document {
   readableID: string;
@@ -18,11 +18,9 @@ export interface IWhisp extends Document {
   timestamp: Date;
   updated: Date;
   data: Record<string, unknown>;
-  attachments: [
-    {
-      path: string;
-      file: string;
-    }
-  ];
-  tags: ITag[];
+  tags: TagInputType[];
+  attachments: {
+    dataMappingPath?: string;
+    file: string;
+  }[];
 }

@@ -1,14 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Field, Int, InputType } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
-import {
-  IsBoolean,
-  IsInt,
-  IsObject,
-  IsOptional,
-  IsString,
-  ValidateNested,
-} from 'class-validator';
+import { IsBoolean, IsInt, IsObject, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 import { WhispAttachmentInput } from './whisp-attachment.input';
 import { TagInputType } from '../tag/tag.input';

@@ -5,6 +5,6 @@ import { ConfigModule } from '../config/config.module';
 @Module({
   imports: [ConfigModule],
   providers: [AWSCredsService],
-  exports: [AWSCredsService],
+  exports: [AWSCredsService]
 })
 export class AWSCredsModule {}

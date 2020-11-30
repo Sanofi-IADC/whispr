@@ -25,5 +25,8 @@
   "testPathIgnorePatterns": [
     "/dist/",
     "node_modules"
+  ],
+  "modulePaths": [
+    "<rootDir>"
   ]
 }

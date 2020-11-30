@@ -1,34 +1,22 @@
-import {
-  Resolver,
-  Query,
-  Mutation,
-  Args,
-  ResolveField,
-  Root,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Root } from '@nestjs/graphql';
+import { ITagGroup } from '../interfaces/tagGroup.interface';
 import { TagGroup } from './tagGroup.entity';
 import { TagGroupService } from './tagGroup.service';
 import { TagGroupInputType } from './tagGroup.input';
 import { Tag } from '../tag/tag.entity';
 import { TagService } from '../tag/tag.service';
-import { ITagGroup } from '../interfaces/tagGroup.interface';
 import { ITag } from '../interfaces/tag.interface';
 
 @Resolver(() => TagGroup)
 export class TagGroupResolver {
-  constructor(
-    private readonly tagGroupService: TagGroupService,
-    private readonly tagService: TagService,
-  ) {}
+  constructor(private readonly tagGroupService: TagGroupService, private readonly tagService: TagService) {}
 
   /**
    * Queries
    */
 
   @Query(() => [TagGroup], { nullable: true })
-  async tagGroups(
-    @Args('tagGroup') tagGroupFilter: TagGroupInputType,
-  ): Promise<ITagGroup[]> {
+  async tagGroups(@Args('tagGroup') tagGroupFilter: TagGroupInputType): Promise<ITagGroup[]> {
     return this.tagGroupService.findAll(tagGroupFilter);
   }
 
@@ -42,25 +30,17 @@ export class TagGroupResolver {
    */
 
   @Mutation(() => TagGroup)
-  async createTagGroup(
-    @Args('tagGroup') tagGroup: TagGroupInputType,
-  ): Promise<ITagGroup> {
+  async createTagGroup(@Args('tagGroup') tagGroup: TagGroupInputType): Promise<ITagGroup> {
     return this.tagGroupService.create(tagGroup);
   }
 
   @Mutation(() => TagGroup)
-  async updateTagGroup(
-    @Args('id') id: string,
-    @Args('tagGroup') tagGroup: TagGroupInputType,
-  ): Promise<ITagGroup> {
+  async updateTagGroup(@Args('id') id: string, @Args('tagGroup') tagGroup: TagGroupInputType): Promise<ITagGroup> {
     return this.tagGroupService.update(id, tagGroup);
   }
 
   @Mutation(() => TagGroup)
-  async replaceTagGroup(
-    @Args('id') id: string,
-    @Args('tagGroup') tagGroup: TagGroupInputType,
-  ): Promise<ITagGroup> {
+  async replaceTagGroup(@Args('id') id: string, @Args('tagGroup') tagGroup: TagGroupInputType): Promise<ITagGroup> {
     return this.tagGroupService.replace(id, tagGroup);
   }
 

@@ -21,9 +21,9 @@ export const whispSchema = new mongoose.Schema({
   attachments: [
     {
       dataMappingPath: String,
-      file: String,
-    },
-  ],
+      file: String
+    }
+  ]
 });
 
 whispSchema.index({ applicationID: 1, closed: -1 });

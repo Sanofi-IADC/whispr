@@ -14,15 +14,15 @@ import { ConfigService } from '../config/config.service';
         new RedisPubSub({
           publisher: new Redis({
             host: configService.get('REDIS_HOST'),
-            port: configService.get('REDIS_PORT'),
+            port: configService.get('REDIS_PORT')
           }),
           subscriber: new Redis({
             host: configService.get('REDIS_HOST_READ'),
-            port: configService.get('REDIS_PORT_READ'),
-          }),
-        }),
-    },
+            port: configService.get('REDIS_PORT_READ')
+          })
+        })
+    }
   ],
-  exports: ['PUB_SUB'],
+  exports: ['PUB_SUB']
 })
 export class PubSubModule {}

@@ -17,10 +17,10 @@ import { tagGroupSchema } from '../tagGroup/tagGroup.schema';
     MongooseModule.forFeature([{ name: 'TagGroup', schema: tagGroupSchema }]),
     DistributionModule,
     FileModule,
-    SequenceModule,
+    SequenceModule
   ],
   controllers: [TagController],
   providers: [TagService, TagGroupService, TagResolver],
-  exports: [TagService],
+  exports: [TagService]
 })
 export class TagModule {}

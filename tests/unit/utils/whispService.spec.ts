@@ -6,10 +6,12 @@ import { WhispService } from '../../../src/whisp/whisp.service';
 import { WhispAttachmentInput } from '../../../src/whisp/whisp-attachment.input';
 
 class MockFileService extends FileService {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async getFile(url: string): Promise<GetObjectOutput> {
     throw Error('This function should me mocked');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async saveFile(file: FileUpload, path: string): Promise<string> {
     throw Error('this function should be mocked');
   }
@@ -20,13 +22,7 @@ describe('Whisp-Service', () => {
   let whispService: WhispService;
   beforeEach(async () => {
     fileService = new MockFileService(undefined, undefined);
-    whispService = new WhispService(
-      undefined,
-      undefined,
-      fileService,
-      undefined,
-      undefined,
-    );
+    whispService = new WhispService(undefined, undefined, fileService, undefined, undefined);
   });
 
   describe('replaceFiles', () => {
@@ -50,15 +46,15 @@ describe('Whisp-Service', () => {
         {
           dataMappingPath: 'TestPath',
           file: {
-            oldFile: 'OldFile.jpg',
-          },
-        },
+            oldFile: 'OldFile.jpg'
+          }
+        }
       ];
       const expectedResult: WhispAttachment[] = [
         {
           dataMappingPath: 'TestPath',
-          file: 'OldFile.jpg',
-        },
+          file: 'OldFile.jpg'
+        }
       ];
 
       const result = await whispService.replaceFiles(attachments, readableId);
@@ -72,18 +68,15 @@ describe('Whisp-Service', () => {
         {
           dataMappingPath: 'TestPath',
           file: {
-            newFile: Promise.resolve(file),
-          },
-        },
+            newFile: Promise.resolve(file)
+          }
+        }
       ];
 
       await whispService.replaceFiles(attachments, readableId);
 
       expect(fileService.saveFile).toHaveBeenCalledTimes(1);
-      expect(fileService.saveFile).toHaveBeenCalledWith(
-        file,
-        `${readableId}/${attachments[0].dataMappingPath}`,
-      );
+      expect(fileService.saveFile).toHaveBeenCalledWith(file, `${readableId}/${attachments[0].dataMappingPath}`);
     });
 
     it('should return attachment if "new"-AttachmentInput is passed', async () => {
@@ -92,15 +85,15 @@ describe('Whisp-Service', () => {
         {
           dataMappingPath: 'TestPath',
           file: {
-            newFile: Promise.resolve(file),
-          },
-        },
+            newFile: Promise.resolve(file)
+          }
+        }
       ];
       const expectedResult: WhispAttachment[] = [
         {
           dataMappingPath: 'TestPath',
-          file: S3Key,
-        },
+          file: S3Key
+        }
       ];
 
       const result = await whispService.replaceFiles(attachments, readableId);

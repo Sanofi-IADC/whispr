@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { MongooseModuleOptions } from '@nestjs/mongoose';
 import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import { Agent } from 'http';
@@ -9,27 +10,17 @@ import validationSchema from './environmentValidationSchema';
 export class ConfigService {
   private readonly envConfig: Record<string, string>;
 
-  private readonly logLevels: string[] = [
-    'error',
-    'warn',
-    'log',
-    'verbose',
-    'debug',
-  ];
+  private readonly logLevels: string[] = ['error', 'warn', 'log', 'verbose', 'debug'];
 
   constructor() {
     const dotEnvFilename = `${process.env.NODE_ENV || 'local'}.env`;
-    const dotEnvConfig = fs.existsSync(dotEnvFilename)
-      ? dotenv.parse(fs.readFileSync(dotEnvFilename))
-      : {};
+    const dotEnvConfig = fs.existsSync(dotEnvFilename) ? dotenv.parse(fs.readFileSync(dotEnvFilename)) : {};
     const configFromEnv = ConfigService.buildConfigFromEnv();
     const mergedConfig = {
       ...dotEnvConfig,
-      ...configFromEnv, // Environment variables override .env config
+      ...configFromEnv // Environment variables override .env config
     };
-    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(
-      mergedConfig,
-    );
+    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
   }
 
   static buildConfigFromEnv(): Record<string, string> {
@@ -43,12 +34,10 @@ export class ConfigService {
     return res;
   }
 
-  static validateSchemaAndApplyDefaultValues(
-    providedEnvConfig: Record<string, string>,
-  ): Record<string, string> {
+  static validateSchemaAndApplyDefaultValues(providedEnvConfig: Record<string, string>): Record<string, string> {
     const { value, error } = validationSchema.validate(providedEnvConfig, {
       abortEarly: false,
-      allowUnknown: true,
+      allowUnknown: true
     });
     if (error) {
       throw error;
@@ -60,16 +49,16 @@ export class ConfigService {
     return this.envConfig[key];
   }
 
-  getMongooseURI(): any {
+  getMongooseURI(): string {
     return this.get('REPLICASET') !== undefined
-      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get(
-          'MONGOOSE_PORT',
-        )},${this.get('MONGOOSE_HOST_READ')}:${this.get('MONGOOSE_PORT_READ')}`
+      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get('MONGOOSE_HOST_READ')}:${this.get(
+          'MONGOOSE_PORT_READ'
+        )}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
 
-  getMongooseOptions(): any {
-    const options: any = {
+  getMongooseOptions(): MongooseModuleOptions {
+    const options: MongooseModuleOptions = {
       uri: this.getMongooseURI(),
       dbName: 'whisps',
       readPreference: this.get('REPLICASET') !== undefined ? 'primary' : null,
@@ -77,14 +66,14 @@ export class ConfigService {
       pass: this.get('MONGOOSE_PASSWORD'),
       replicaSet: this.get('REPLICASET'),
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     };
     if (this.get('SSL_VALIDATE') === true) {
       const ca = fs.readFileSync(this.get('PATH_TO_SSL_CERTIFICATE'));
       options.server = {
         ssl: true,
         sslValidate: true,
-        sslCA: ca,
+        sslCA: ca
       };
     }
     return options;
@@ -106,8 +95,8 @@ export class ConfigService {
         : undefined,
       proxy: {
         host,
-        port,
-      },
+        port
+      }
     });
   }
 

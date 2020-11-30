@@ -1,11 +1,4 @@
-import {
-  Resolver,
-  Query,
-  Mutation,
-  Args,
-  Root,
-  ResolveField,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Root, ResolveField } from '@nestjs/graphql';
 import { Tag } from './tag.entity';
 import { TagService } from './tag.service';
 import { TagInputType } from './tag.input';
@@ -15,10 +8,7 @@ import { ITag } from '../interfaces/tag.interface';
 
 @Resolver(() => Tag)
 export class TagResolver {
-  constructor(
-    private readonly tagService: TagService,
-    private readonly tagGroupService: TagGroupService,
-  ) {}
+  constructor(private readonly tagService: TagService, private readonly tagGroupService: TagGroupService) {}
 
   /**
    * Queries
@@ -44,18 +34,12 @@ export class TagResolver {
   }
 
   @Mutation(() => Tag)
-  async updateTag(
-    @Args('id') id: string,
-    @Args('tag') tag: TagInputType,
-  ): Promise<ITag> {
+  async updateTag(@Args('id') id: string, @Args('tag') tag: TagInputType): Promise<ITag> {
     return this.tagService.update(id, tag);
   }
 
   @Mutation(() => Tag)
-  async replaceTag(
-    @Args('id') id: string,
-    @Args('tag') tag: TagInputType,
-  ): Promise<ITag> {
+  async replaceTag(@Args('id') id: string, @Args('tag') tag: TagInputType): Promise<ITag> {
     return this.tagService.replace(id, tag);
   }
 

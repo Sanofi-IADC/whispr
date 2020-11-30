@@ -1,19 +1,7 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Put,
-  Delete,
-  Param,
-  HttpCode,
-  Patch,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Delete, Param, HttpCode, Patch, UsePipes, ValidationPipe } from '@nestjs/common';
+import { ITagGroup } from '../interfaces/tagGroup.interface';
 import { TagGroupService } from './tagGroup.service';
 import { TagGroupInputType } from './tagGroup.input';
-import { ITagGroup } from '../interfaces/tagGroup.interface';
 
 @Controller('TagGroup')
 export class TagGroupController {
@@ -22,9 +10,7 @@ export class TagGroupController {
   @Post()
   @HttpCode(201)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async createTagGroup(
-    @Body() tagGroup: TagGroupInputType,
-  ): Promise<ITagGroup> {
+  async createTagGroup(@Body() tagGroup: TagGroupInputType): Promise<ITagGroup> {
     return this.tagGroupService.create(tagGroup);
   }
 
@@ -41,20 +27,14 @@ export class TagGroupController {
   @Patch(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async updateTagGroup(
-    @Param('id') id: string,
-    @Body() tagGroup: TagGroupInputType,
-  ): Promise<ITagGroup> {
+  async updateTagGroup(@Param('id') id: string, @Body() tagGroup: TagGroupInputType): Promise<ITagGroup> {
     return this.tagGroupService.update(id, tagGroup);
   }
 
   @Put(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async replaceTagGroup(
-    @Param('id') id: string,
-    @Body() tagGroup: TagGroupInputType,
-  ): Promise<ITagGroup> {
+  async replaceTagGroup(@Param('id') id: string, @Body() tagGroup: TagGroupInputType): Promise<ITagGroup> {
     return this.tagGroupService.replace(id, tagGroup);
   }
 

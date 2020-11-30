@@ -26,15 +26,14 @@ import { TagModule } from './tag/tag.module';
         autoSchemaFile: configService.get('AUTO_SCHEMA_FILE'),
         introspection: configService.get('INTROSPECTION'),
         playground: configService.get('PLAYGROUND'),
-        installSubscriptionHandlers: true,
+        installSubscriptionHandlers: true
       }),
-      inject: [ConfigService],
+      inject: [ConfigService]
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) =>
-        configService.getMongooseOptions(),
-      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => configService.getMongooseOptions(),
+      inject: [ConfigService]
     }),
     PubSubModule,
     WhispModule,
@@ -46,9 +45,9 @@ import { TagModule } from './tag/tag.module';
     FileModule,
     DistributionModule,
     EventModule,
-    WebhookModule,
+    WebhookModule
   ],
   providers: [AppService],
-  controllers: [AppController],
+  controllers: [AppController]
 })
 export class AppModule {}

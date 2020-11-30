@@ -1,19 +1,7 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Patch,
-  Put,
-  Delete,
-  Param,
-  HttpCode,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Controller, Post, Body, Get, Patch, Put, Delete, Param, HttpCode, UsePipes, ValidationPipe } from '@nestjs/common';
+import { IWhisp } from '../interfaces/whisp.interface';
 import { WhispService } from './whisp.service';
 import { WhispInputType } from './whisp.input';
-import { IWhisp } from '../interfaces/whisp.interface';
 
 @Controller('whisp')
 export class WhispController {
@@ -39,20 +27,14 @@ export class WhispController {
   @Patch(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async update(
-    @Param('id') id: string,
-    @Body() whisp: WhispInputType,
-  ): Promise<IWhisp> {
+  async update(@Param('id') id: string, @Body() whisp: WhispInputType): Promise<IWhisp> {
     return this.whispService.update(id, whisp);
   }
 
   @Put(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async replace(
-    @Param('id') id: string,
-    @Body() whisp: WhispInputType,
-  ): Promise<IWhisp> {
+  async replace(@Param('id') id: string, @Body() whisp: WhispInputType): Promise<IWhisp> {
     return this.whispService.replace(id, whisp);
   }
 

@@ -8,7 +8,7 @@ export default Joi.object({
   SSL_VALIDATE: Joi.boolean().default(false),
   PATH_TO_SSL_CERTIFICATE: Joi.string().when('SSL_VALIDATE', {
     is: true,
-    then: Joi.required(),
+    then: Joi.required()
   }),
 
   LOG_LEVEL: Joi.number().min(0).max(5).default(5),
@@ -18,7 +18,7 @@ export default Joi.object({
   MONGOOSE_PORT: Joi.number().default(27017),
   MONGOOSE_HOST_READ: Joi.string().when('REPLICASET', {
     is: Joi.exist(),
-    then: Joi.required(),
+    then: Joi.required()
   }),
   MONGOOSE_PORT_READ: Joi.number().default(27017),
   MONGOOSE_USERNAME: Joi.string(),
@@ -28,7 +28,7 @@ export default Joi.object({
   REDIS_PORT: Joi.number().default(6379),
   REDIS_HOST_READ: Joi.string().when('REPLICASET', {
     is: Joi.exist(),
-    then: Joi.required(),
+    then: Joi.required()
   }),
   REDIS_PORT_READ: Joi.number().default(6379),
 
@@ -44,5 +44,5 @@ export default Joi.object({
 
   HTTP_PROXY: Joi.string(),
   HTTPS_PROXY: Joi.string(),
-  CA_CERTIFICATE_PATH: Joi.string(),
+  CA_CERTIFICATE_PATH: Joi.string()
 });

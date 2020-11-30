@@ -1,16 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Put,
-  Delete,
-  Param,
-  HttpCode,
-  Patch,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Delete, Param, HttpCode, Patch, UsePipes, ValidationPipe } from '@nestjs/common';
 import { TagService } from './tag.service';
 import { TagInputType } from './tag.input';
 import { ITag } from '../interfaces/tag.interface';
@@ -39,20 +27,14 @@ export class TagController {
   @Patch(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async updateTag(
-    @Param('id') id: string,
-    @Body() tag: TagInputType,
-  ): Promise<ITag> {
+  async updateTag(@Param('id') id: string, @Body() tag: TagInputType): Promise<ITag> {
     return this.tagService.update(id, tag);
   }
 
   @Put(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async replaceTag(
-    @Param('id') id: string,
-    @Body() tag: TagInputType,
-  ): Promise<ITag> {
+  async replaceTag(@Param('id') id: string, @Body() tag: TagInputType): Promise<ITag> {
     return this.tagService.replace(id, tag);
   }
 

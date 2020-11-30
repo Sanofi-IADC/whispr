@@ -4,6 +4,11 @@
     "node": true,
     "jest": true
   },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -19,37 +24,26 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "@typescript-eslint", "graphql"],
+  "plugins": ["@typescript-eslint", "import"],
   "rules": {
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
-    "space-before-function-paren": [
-      "error",
-      {
-        "anonymous": "never",
-        "named": "never",
-        "asyncArrow": "always"
-      }
-    ],
-    "comma-dangle": ["error", "always-multiline"],
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-namespace": "off",
     "no-useless-constructor": "off",
-    // must disable the base rule as it can report incorrect errors and use typscript rule
-    "no-return-await": "error",
-    "no-use-before-define": "off",
-    "no-path-concat": "off",
-    "no-async-promise-executor": "off",
-    "no-undef": "off"
+    "@typescript-eslint/no-useless-constructor": "error",
+    "import/prefer-default-export": "off",
+    "import/extensions": "off",
+    "max-len": ["error", {"code": 130}],
+    "quotes": ["error", "single"]
   },
   "overrides": [
     {
-      "files": [
-        "**/__tests__/*.{j,t}s?(x)",
-        "**/tests/unit/**/*.spec.{j,t}s?(x)",
-        "**/tests/e2e/**/*.spec.{j,t}s?(x)"
-      ],
-      "env": {
-        "jest": true
-      }
-    }
-  ]
+     "files": ["tests/**/*.ts"],
+        "rules": {
+           "no-console": "off", // allows logging in tests
+           "import/no-extraneous-dependencies": "off" // allows dev dep in tests
+        }
+    }],
+  "ignorePatterns": ["dist/", "node_modules/", "*.config.js"]
 }

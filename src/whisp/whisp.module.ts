@@ -18,10 +18,10 @@ import { WhispController } from './whisp.controller';
     DistributionModule,
     FileModule,
     SequenceModule,
-    EventModule,
+    EventModule
   ],
   controllers: [WhispController],
   providers: [WhispService, WhispResolver],
-  exports: [WhispService],
+  exports: [WhispService]
 })
 export class WhispModule {}

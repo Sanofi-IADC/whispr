@@ -8,6 +8,6 @@ import { AWSCredsModule } from '../auth/aws-creds.module';
   imports: [ConfigModule, AWSCredsModule],
   controllers: [FileController],
   providers: [FileService],
-  exports: [FileService],
+  exports: [FileService]
 })
 export class FileModule {}

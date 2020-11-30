@@ -7,10 +7,7 @@ export class FileController {
   constructor(private readonly fileService: FileService) {}
 
   @Get('*')
-  async getFile(
-    @Param('*') key: string,
-    @Res() response: Response,
-  ): Promise<void> {
+  async getFile(@Param('*') key: string, @Res() response: Response): Promise<void> {
     try {
       const file = await this.fileService.getFile(key);
       response.type(file.ContentType);

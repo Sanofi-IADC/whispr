@@ -15,12 +15,12 @@ import { ConfigService } from '../config/config.service';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         proxy: false,
-        httpsAgent: configService.getHttpsTunnel(),
-      }),
-    }),
+        httpsAgent: configService.getHttpsTunnel()
+      })
+    })
   ],
   controllers: [WebhookController],
   providers: [WebhookService, WebhookResolver, ConfigService],
-  exports: [WebhookService],
+  exports: [WebhookService]
 })
 export class WebhookModule {}

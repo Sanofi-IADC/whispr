@@ -20,9 +20,7 @@ export class WebhookResolver {
    * Mutations
    */
   @Mutation(() => Webhook)
-  async createWebhook(
-    @Args('webhook') webhook: WebhookInputType,
-  ): Promise<IWebhook> {
+  async createWebhook(@Args('webhook') webhook: WebhookInputType): Promise<IWebhook> {
     return this.webhookService.create(webhook);
   }
 
