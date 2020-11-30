@@ -92,7 +92,7 @@ export class WhispService {
   async update(id: string, whispIn: WhispInputType): Promise<IWhisp> {
     const whisp: Partial<IWhisp> = {
       ...whispIn,
-      tags: whispIn.tags?.map(t => ({...t})),
+      tags: whispIn.tags?.map((t) => ({ ...t })),
       timestamp: new Date(whispIn.timestamp),
       updated: new Date(),
       attachments: whispIn.attachments && [...(await this.replaceFiles(whispIn.attachments, whispIn.readableID))]
