@@ -1,14 +1,14 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import request from 'supertest';
 import { FileService } from 'src/file/file.service';
 import { IWhisp } from 'src/interfaces/whisp.interface';
 import { WhispService } from 'src/whisp/whisp.service';
-import request from 'supertest';
 
 const CREATE_WHISP_GQL = `
 mutation createWhisp($whisp: WhispInputType!) {
   createWhisp(whisp: $whisp) {
-    _id
+    id: _id
   }
 }
 `;
@@ -16,7 +16,7 @@ mutation createWhisp($whisp: WhispInputType!) {
 const UPDATE_WHISP_GQL = `
 mutation updateWhisp($id: String!, $whisp: WhispInputType!) {
   updateWhisp(id: $id, whisp: $whisp) {
-    _id
+    id: _id
   }
 }
 `;
@@ -42,7 +42,9 @@ afterAll(async () => {
   try {
     const model = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
     await model.deleteMany({ type: WHISP_TEST_TYPE });
-  } catch {}
+  } catch (e) {
+    console.warn('Could not delete created whisps', e);
+  }
 });
 
 describe('GRAPHQL WhispModule (e2e)', () => {
@@ -60,7 +62,7 @@ describe('GRAPHQL WhispModule (e2e)', () => {
         });
 
       expect(result.status).toBe(200);
-      createdWhispId = result.body.data.createWhisp._id;
+      createdWhispId = result.body.data.createWhisp.id;
       expect(createdWhispId).toEqual(expect.any(String));
     });
 
@@ -89,8 +91,7 @@ describe('GRAPHQL WhispModule (e2e)', () => {
           .attach('file', filePath);
 
         expect(result.status).toBe(200);
-
-        const whisp = await whispService.findOne(result.body.data.createWhisp._id);
+        const whisp = await whispService.findOne(result.body.data.createWhisp.id);
         const file = await fileService.getFile(whisp.attachments[0].file);
 
         expect(file.ContentLength).toBe(fileLength);

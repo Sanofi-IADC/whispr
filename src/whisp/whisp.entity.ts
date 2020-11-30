@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Field, ID, Int, ObjectType,
 } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
+import { Tag } from '../tag/tag.entity';
 import { WhispAttachment } from './whisp-attachment.entity';
 
 @ObjectType()
@@ -10,53 +12,56 @@ export class Whisp {
   _id: string;
 
   @Field({ nullable: true })
-  readableID: string;
+  readableID?: string;
 
   @Field({ nullable: true })
-  type: string;
+  type?: string;
 
   @Field(() => Int, { nullable: true })
-  severity: number;
+  severity?: number;
 
   @Field({ nullable: true })
-  description: string;
+  description?: string;
 
   @Field({ nullable: true })
-  closed: boolean;
+  closed?: boolean;
 
   @Field({ nullable: true })
-  applicationID: string;
+  applicationID?: string;
 
   @Field({ nullable: true })
-  plantID: string;
+  plantID?: string;
 
   @Field({ nullable: true })
-  locationID: string;
+  locationID?: string;
 
   @Field({ nullable: true })
-  manual: boolean;
+  manual?: boolean;
 
   @Field({ nullable: true })
-  openedBy: string;
+  openedBy?: string;
 
   @Field({ nullable: true })
-  openedById: string;
+  openedById?: string;
 
   @Field({ nullable: true })
-  closedBy: string;
+  closedBy?: string;
 
   @Field({ nullable: true })
-  closedById: string;
+  closedById?: string;
 
   @Field({ nullable: true })
-  timestamp: string;
+  timestamp?: string;
 
   @Field({ nullable: true })
-  updated: string;
+  updated?: string;
+
+  @Field(() => [Tag], { nullable: true })
+  tags?: Tag[];
 
   @Field(() => GraphQLJSONObject, { nullable: true })
-  data: any;
+  data?: any;
 
   @Field(() => [WhispAttachment], { nullable: true })
-  attachments: WhispAttachment[];
+  attachments?: WhispAttachment[];
 }

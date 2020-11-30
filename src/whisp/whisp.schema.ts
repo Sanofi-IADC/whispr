@@ -17,6 +17,7 @@ export const whispSchema = new mongoose.Schema({
   timestamp: String,
   updated: String,
   data: Object,
+  tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
   attachments: [
     {
       dataMappingPath: String,

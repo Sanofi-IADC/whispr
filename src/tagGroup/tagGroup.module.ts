@@ -8,16 +8,19 @@ import { tagGroupSchema } from './tagGroup.schema';
 import { TagGroupService } from './tagGroup.service';
 import { TagGroupResolver } from './tagGroup.resolver';
 import { TagGroupController } from './tagGroup.controller';
+import { TagService } from '../tag/tag.service';
+import { tagSchema } from '../tag/tag.schema';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'TagGroup', schema: tagGroupSchema }]),
+    MongooseModule.forFeature([{ name: 'Tag', schema: tagSchema }]),
     DistributionModule,
     FileModule,
     SequenceModule,
   ],
   controllers: [TagGroupController],
-  providers: [TagGroupService, TagGroupResolver],
+  providers: [TagGroupService, TagService, TagGroupResolver],
   exports: [TagGroupService],
 })
 export class TagGroupModule {}

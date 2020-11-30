@@ -2,10 +2,7 @@
 // https://www.npmjs.com/package/amazon-cognito-identity-js#setup
 import 'cross-fetch/polyfill';
 import {
-  CognitoUserPool,
-  CognitoUser,
-  AuthenticationDetails,
-  CognitoUserSession,
+  CognitoUserPool, CognitoUser, AuthenticationDetails, CognitoUserSession,
 } from 'amazon-cognito-identity-js';
 import * as AWS from 'aws-sdk';
 import { Logger, Injectable } from '@nestjs/common';
@@ -18,7 +15,7 @@ export class AWSCredsService {
     this.aws = AWS;
   }
 
-  public async authenticate() {
+  public async authenticate(): Promise<void> {
     const authenticationData = {
       Username: this.configService.get('COGNITO_ADMIN_USER'),
       Password: this.configService.get('COGNITO_ADMIN_PW'),
@@ -34,10 +31,7 @@ export class AWSCredsService {
       Pool: userPool,
     };
     const cognitoUser = new CognitoUser(userData);
-    const authDetails = await AWSCredsService.getCognitoUserSession(
-      cognitoUser,
-      authenticationDetails,
-    );
+    const authDetails = await AWSCredsService.getCognitoUserSession(cognitoUser, authenticationDetails);
     this.aws.config.region = this.configService.get('COGNITO_REGION');
     const cognitoConfig = {
       IdentityPoolId: this.configService.get('COGNITO_IDENTITY_POOL_ID'), // your identity pool id here
@@ -80,12 +74,7 @@ export class AWSCredsService {
 
   async getAWS(): Promise<typeof AWS> {
     const credentials = this.aws.config.credentials as AWS.CognitoIdentityCredentials;
-    if (
-      !credentials
-      || !credentials.needsRefresh
-      || credentials.needsRefresh()
-      || !credentials.expireTime
-    ) {
+    if (!credentials || !credentials.needsRefresh || credentials.needsRefresh() || !credentials.expireTime) {
       if (!this.configService.get('AWS_CONTAINER_CREDENTIALS_RELATIVE_URI')) {
         await this.authenticate();
       }

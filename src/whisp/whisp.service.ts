@@ -10,6 +10,7 @@ import { EventService } from '../event/event.service';
 import { WhispInputType } from './whisp.input';
 import { WhispAttachment } from './whisp-attachment.entity';
 import { WhispAttachmentInput } from './whisp-attachment.input';
+import { TagInputType } from '../tag/tag.input';
 
 @Injectable()
 export class WhispService {
@@ -40,10 +41,7 @@ export class WhispService {
     return createdWhisp;
   }
 
-  async replaceFiles(
-    attachments: WhispAttachmentInput[],
-    readableId: string,
-  ): Promise<WhispAttachment[]> {
+  async replaceFiles(attachments: WhispAttachmentInput[], readableId: string): Promise<WhispAttachment[]> {
     this.logger.debug({ attachments });
     if (!attachments || !Array.isArray(attachments)) {
       return undefined;
@@ -74,7 +72,7 @@ export class WhispService {
     );
   }
 
-  async findAll(filter?: any, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
+  async findAll(filter?: Partial<IWhisp>, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
     return this.whispModel.find(filter).sort(sort).limit(limit).exec();
   }
 
@@ -82,19 +80,24 @@ export class WhispService {
     return this.whispModel.findById(id).exec();
   }
 
-  async countWhisps(filter?: any): Promise<number> {
+  async findTagsByWhispId(whispId: string): Promise<TagInputType[]> {
+    const whisps = await this.whispModel.findById(whispId).populate('tags').exec();
+    return whisps.tags;
+  }
+
+  async countWhisps(filter?: Partial<IWhisp>): Promise<number> {
     return this.whispModel.countDocuments(filter).exec();
   }
 
-  async update(id: string, whispIn: any): Promise<IWhisp> {
-    const whisp = whispIn;
-    whisp.updated = new Date().toISOString();
-    if (whisp.attachments) {
-      whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
-    }
-    const updatedWhisp = await this.whispModel
-      .findOneAndUpdate({ _id: id }, whisp, { new: true })
-      .exec();
+  async update(id: string, whispIn: WhispInputType): Promise<IWhisp> {
+    const whisp: Partial<IWhisp> = {
+      ...whispIn,
+      tags: whispIn.tags?.map((t) => ({ ...t })),
+      timestamp: new Date(whispIn.timestamp),
+      updated: new Date(),
+      attachments: whispIn.attachments && [...(await this.replaceFiles(whispIn.attachments, whispIn.readableID))],
+    };
+    const updatedWhisp = await this.whispModel.findOneAndUpdate({ _id: id }, whisp, { new: true }).exec();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_UPDATED, updatedWhisp));
     this.logger.log(updatedWhisp, 'Updated Whisp');
     this.distributionService.distributeWhisp(updatedWhisp);
@@ -102,14 +105,14 @@ export class WhispService {
     return updatedWhisp;
   }
 
-  async replace(id: string, whisp: any): Promise<any> {
+  async replace(id: string, whisp: WhispInputType): Promise<any> {
     const replacedWhisp = await this.whispModel.replaceOne({ _id: id }, whisp).exec();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_REPLACED, replacedWhisp));
 
     return replacedWhisp;
   }
 
-  async delete(id: string) {
+  async delete(id: string): Promise<boolean> {
     const { n: countOfDeletedWhisp } = await this.whispModel.deleteOne({ _id: id }).exec();
     if (countOfDeletedWhisp <= 0) {
       return false;

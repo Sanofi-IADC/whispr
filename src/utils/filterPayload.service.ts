@@ -8,11 +8,7 @@ export const matches = (filterValue: unknown, elementValue: unknown): boolean =>
   return isEqual(filterValue, elementValue);
 };
 
-export const payloadMatchesNestedValue = (
-  keyArray: string[],
-  nestedValue: unknown,
-  payload: Record<string, unknown>,
-) => {
+export const payloadMatchesNestedValue = (keyArray: string[], nestedValue: unknown, payload: unknown): boolean => {
   let currentObj: unknown = payload;
 
   while (keyArray.length > 1) {
@@ -27,7 +23,6 @@ export const payloadMatchesNestedValue = (
   return matches(nestedValue, currentObj[keyArray.shift()]);
 };
 
-// eslint-disable-next-line max-len
 export const filterPayload = (filter: Record<string, unknown>, payload: unknown): boolean => Object.keys(filter).every((key) => {
   const filterValue = filter[key];
 
@@ -37,7 +32,7 @@ export const filterPayload = (filter: Record<string, unknown>, payload: unknown)
 
   const keyArray = key.split('.');
   if (keyArray.length !== 1) {
-    return this.payloadMatchesNestedValue(keyArray, filterValue, payload);
+    return payloadMatchesNestedValue(keyArray, filterValue, payload);
   }
 
   return matches(filterValue, payload[key]);

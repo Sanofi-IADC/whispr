@@ -15,7 +15,7 @@ export class SequenceService {
    * Every combination of <ApplicationID> & <Type> has its own <SequenceID> counter
    * @param whisp
    */
-  async getNextWhispID(whisp: Whisp) {
+  async getNextWhispID(whisp: Whisp): Promise<string> {
     const sequencePrefix = `${whisp.applicationID}-${whisp.type}`;
     const nextSequence = await this.getNextSequence(sequencePrefix);
     return `${sequencePrefix}-${nextSequence}`;
@@ -25,13 +25,9 @@ export class SequenceService {
    * Get next value of a sequence
    * @param sequenceName
    */
-  async getNextSequence(sequenceName: string) {
+  async getNextSequence(sequenceName: string): Promise<number> {
     const sequence = await this.sequenceModel
-      .findOneAndUpdate(
-        { sequenceName },
-        { $inc: { sequenceValue: 1 } },
-        { new: true, upsert: true },
-      )
+      .findOneAndUpdate({ sequenceName }, { $inc: { sequenceValue: 1 } }, { new: true, upsert: true })
       .exec();
     return sequence.sequenceValue;
   }

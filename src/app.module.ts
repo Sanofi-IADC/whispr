@@ -16,6 +16,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigService } from './config/config.service';
 import { WebhookModule } from './webhook/webhook.module';
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { WebhookModule } from './webhook/webhook.module';
     PubSubModule,
     WhispModule,
     TagGroupModule,
+    TagModule,
     SequenceModule,
     ConfigModule,
     AWSCredsModule,
