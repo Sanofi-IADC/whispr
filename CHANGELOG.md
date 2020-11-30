@@ -1,3 +1,13 @@
+# [1.8.0](https://github.com/Sanofi-IADC/whispr/compare/v1.7.6...v1.8.0) (2020-11-30)
+
+
+### Features
+
+* add tags to whisps ([f3a4ee9](https://github.com/Sanofi-IADC/whispr/commit/f3a4ee993272f2ecf18ff6eaf877297e9a580a55))
+* changed linting rules & fixed linting warning ([7c488a9](https://github.com/Sanofi-IADC/whispr/commit/7c488a91c0e4d5ff81760da6a2b2b57f52d61bfb))
+* create own tag collection ([d06ae7a](https://github.com/Sanofi-IADC/whispr/commit/d06ae7a09c94f71bff7926f6f8e430c3949dd8d5))
+* **tagGroup:** added closed, closedBy and ClosedById to TagGroup ([00eca58](https://github.com/Sanofi-IADC/whispr/commit/00eca58a6ae6b8389c7a0acad856d8ff7271494b))
+
 ## [1.7.6](https://github.com/Sanofi-IADC/whispr/compare/v1.7.5...v1.7.6) (2020-11-26)
 
 
