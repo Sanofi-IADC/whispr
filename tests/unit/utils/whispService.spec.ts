@@ -46,15 +46,15 @@ describe('Whisp-Service', () => {
         {
           dataMappingPath: 'TestPath',
           file: {
-            oldFile: 'OldFile.jpg'
-          }
-        }
+            oldFile: 'OldFile.jpg',
+          },
+        },
       ];
       const expectedResult: WhispAttachment[] = [
         {
           dataMappingPath: 'TestPath',
-          file: 'OldFile.jpg'
-        }
+          file: 'OldFile.jpg',
+        },
       ];
 
       const result = await whispService.replaceFiles(attachments, readableId);
@@ -68,9 +68,9 @@ describe('Whisp-Service', () => {
         {
           dataMappingPath: 'TestPath',
           file: {
-            newFile: Promise.resolve(file)
-          }
-        }
+            newFile: Promise.resolve(file),
+          },
+        },
       ];
 
       await whispService.replaceFiles(attachments, readableId);
@@ -85,15 +85,15 @@ describe('Whisp-Service', () => {
         {
           dataMappingPath: 'TestPath',
           file: {
-            newFile: Promise.resolve(file)
-          }
-        }
+            newFile: Promise.resolve(file),
+          },
+        },
       ];
       const expectedResult: WhispAttachment[] = [
         {
           dataMappingPath: 'TestPath',
-          file: S3Key
-        }
+          file: S3Key,
+        },
       ];
 
       const result = await whispService.replaceFiles(attachments, readableId);

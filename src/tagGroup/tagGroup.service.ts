@@ -13,6 +13,7 @@ export class TagGroupService {
 
   async create(tagGroupIn: TagGroupInputType): Promise<ITagGroup> {
     const tagGroup = new TagGroup();
+    // eslint-disable-next-line no-underscore-dangle
     tagGroup._id = tagGroupIn._id;
     tagGroup.applicationID = tagGroupIn.applicationID;
     tagGroup.metalevel = tagGroupIn.metalevel;

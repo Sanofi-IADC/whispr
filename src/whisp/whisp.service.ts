@@ -21,7 +21,7 @@ export class WhispService {
     private readonly distributionService: DistributionService,
     private readonly imageService: FileService,
     private readonly sequenceService: SequenceService,
-    private readonly eventService: EventService
+    private readonly eventService: EventService,
   ) {}
 
   async create(whispIn: WhispInputType): Promise<IWhisp> {
@@ -50,7 +50,7 @@ export class WhispService {
       attachments
         .map((attachment) => ({
           dataMappingPath: attachment.dataMappingPath,
-          file: attachment.file.newFile || attachment.file.oldFile
+          file: attachment.file.newFile || attachment.file.oldFile,
         }))
         .map(async (attachment) => {
           let filePath: string;
@@ -66,9 +66,9 @@ export class WhispService {
           }
           return {
             dataMappingPath: attachment.dataMappingPath,
-            file: filePath
+            file: filePath,
           };
-        })
+        }),
     );
   }
 
@@ -95,7 +95,7 @@ export class WhispService {
       tags: whispIn.tags?.map((t) => ({ ...t })),
       timestamp: new Date(whispIn.timestamp),
       updated: new Date(),
-      attachments: whispIn.attachments && [...(await this.replaceFiles(whispIn.attachments, whispIn.readableID))]
+      attachments: whispIn.attachments && [...(await this.replaceFiles(whispIn.attachments, whispIn.readableID))],
     };
     const updatedWhisp = await this.whispModel.findOneAndUpdate({ _id: id }, whisp, { new: true }).exec();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_UPDATED, updatedWhisp));

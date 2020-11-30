@@ -1,4 +1,6 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Root } from '@nestjs/graphql';
+import {
+  Resolver, Query, Mutation, Args, ResolveField, Root,
+} from '@nestjs/graphql';
 import { ITagGroup } from '../interfaces/tagGroup.interface';
 import { TagGroup } from './tagGroup.entity';
 import { TagGroupService } from './tagGroup.service';
@@ -54,6 +56,7 @@ export class TagGroupResolver {
    */
   @ResolveField(() => [Tag])
   async tags(@Root() tagGroup: TagGroup): Promise<ITag[]> {
+    // eslint-disable-next-line no-underscore-dangle
     return this.tagService.findAll({ tagGroup: { _id: tagGroup._id } });
   }
 }

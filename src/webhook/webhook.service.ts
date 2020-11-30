@@ -1,4 +1,6 @@
-import { Injectable, Param, Logger, HttpService } from '@nestjs/common';
+import {
+  Injectable, Param, Logger, HttpService,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { stringify } from 'flatted';
@@ -10,7 +12,7 @@ import { WebhookInputType } from './webhook.input';
 export class WebhookService {
   constructor(
     @InjectModel('Webhook') private readonly webhookModel: Model<IWebhook>,
-    private readonly httpService: HttpService
+    private readonly httpService: HttpService,
   ) {}
 
   async create(webhook: WebhookInputType): Promise<IWebhook> {
@@ -34,7 +36,7 @@ export class WebhookService {
       await this.httpService
         .post(webhook.url, {
           eventName: event.name,
-          content: event.payload
+          content: event.payload,
         })
         .toPromise()
         .then(
@@ -43,12 +45,12 @@ export class WebhookService {
               `Webhook post response status: ${response.status} | 
               statusText: ${response.statusText} | 
               url: ${response.config.url}`,
-              'Webhook'
+              'Webhook',
             );
           },
           (error) => {
             Logger.error(stringify(error), error.stack, 'Webhook');
-          }
+          },
         );
     };
   }

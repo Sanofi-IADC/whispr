@@ -17,7 +17,7 @@ export default global;
 beforeAll(async () => {
   try {
     const moduleRef = await Test.createTestingModule({
-      imports: [AppModule]
+      imports: [AppModule],
     }).compile();
     global.app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
     await global.app.init();

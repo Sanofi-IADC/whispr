@@ -16,6 +16,7 @@ export class TagService {
     const tag = new Tag();
     tag.status = tagIn.status;
     tag.tagGroup = new TagGroup();
+    // eslint-disable-next-line no-underscore-dangle
     tag.tagGroup._id = tagIn.tagGroup._id;
     tag.title = tagIn.title;
 

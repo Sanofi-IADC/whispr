@@ -85,9 +85,9 @@ describe('webhooks', () => {
         variables: {
           webhook: {
             url: WEBHOOK_TEST_URL,
-            events: [EventNames.WHISP_CREATED, EventNames.WHISP_DELETED, EventNames.WHISP_UPDATED]
-          }
-        }
+            events: [EventNames.WHISP_CREATED, EventNames.WHISP_DELETED, EventNames.WHISP_UPDATED],
+          },
+        },
       });
 
     expect(result.status).toBe(200);

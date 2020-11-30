@@ -23,18 +23,17 @@ export const payloadMatchesNestedValue = (keyArray: string[], nestedValue: unkno
   return matches(nestedValue, currentObj[keyArray.shift()]);
 };
 
-export const filterPayload = (filter: Record<string, unknown>, payload: unknown): boolean =>
-  Object.keys(filter).every((key) => {
-    const filterValue = filter[key];
+export const filterPayload = (filter: Record<string, unknown>, payload: unknown): boolean => Object.keys(filter).every((key) => {
+  const filterValue = filter[key];
 
-    if (filterValue === undefined || payload === undefined) {
-      return false;
-    }
+  if (filterValue === undefined || payload === undefined) {
+    return false;
+  }
 
-    const keyArray = key.split('.');
-    if (keyArray.length !== 1) {
-      return payloadMatchesNestedValue(keyArray, filterValue, payload);
-    }
+  const keyArray = key.split('.');
+  if (keyArray.length !== 1) {
+    return payloadMatchesNestedValue(keyArray, filterValue, payload);
+  }
 
-    return matches(filterValue, payload[key]);
-  });
+  return matches(filterValue, payload[key]);
+});

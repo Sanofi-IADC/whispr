@@ -5,6 +5,6 @@ import { WebhookModule } from '../webhook/webhook.module';
 @Module({
   imports: [WebhookModule],
   providers: [EventService],
-  exports: [EventService]
+  exports: [EventService],
 })
 export class EventModule {}

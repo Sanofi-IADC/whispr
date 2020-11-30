@@ -1,4 +1,6 @@
-import { Controller, Post, Get, Body, HttpCode, Delete, Param, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller, Post, Get, Body, HttpCode, Delete, Param, UsePipes, ValidationPipe,
+} from '@nestjs/common';
 import { WebhookService } from './webhook.service';
 import { WebhookInputType } from './webhook.input';
 import { IWebhook } from '../interfaces/webhook.interface';

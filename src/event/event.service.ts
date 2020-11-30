@@ -39,7 +39,7 @@ export class EventService {
 
   private async registerPlugins() {
     const plugins: any[] = await Promise.all(
-      pluginNames.map((pluginName) => import(pluginName)) // NOSONAR
+      pluginNames.map((pluginName) => import(pluginName)), // NOSONAR
     );
 
     plugins.forEach((plugin) => {

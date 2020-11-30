@@ -7,6 +7,6 @@ import { SequenceService } from './sequence.service';
 @Module({
   imports: [MongooseModule.forFeature([{ name: 'Sequence', schema: sequenceSchema }])],
   providers: [SequenceService],
-  exports: [SequenceService]
+  exports: [SequenceService],
 })
 export class SequenceModule {}

@@ -20,13 +20,13 @@ export class FileService {
     const aws = await this.awsCredentialService.getAWS();
     const s3client = new aws.S3({
       endpoint: this.configService.get('AWS_S3_ENDPOINT'),
-      s3ForcePathStyle: true
+      s3ForcePathStyle: true,
     });
     return new Promise((resolve, reject) => {
       s3client.getObject(
         {
           Bucket: this.configService.get('AWS_BUCKET_NAME'),
-          Key: url
+          Key: url,
         },
         (err, data) => {
           if (err) {
@@ -34,7 +34,7 @@ export class FileService {
           } else {
             resolve(data);
           }
-        }
+        },
       );
     });
   }
@@ -43,7 +43,7 @@ export class FileService {
     const aws = await this.awsCredentialService.getAWS();
     const s3client = new aws.S3({
       endpoint: this.configService.get('AWS_S3_ENDPOINT'),
-      s3ForcePathStyle: true
+      s3ForcePathStyle: true,
     });
     return new Promise((resolve, reject) => {
       s3client.upload(
@@ -52,7 +52,7 @@ export class FileService {
           Key: `${path}/${file.filename}`,
           Body: file.createReadStream(),
           ContentType: file.mimetype,
-          ContentEncoding: file.encoding
+          ContentEncoding: file.encoding,
         },
         (err, response) => {
           if (err) {
@@ -61,7 +61,7 @@ export class FileService {
           } else {
             resolve(response.Key);
           }
-        }
+        },
       );
     });
   }

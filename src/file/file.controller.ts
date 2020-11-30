@@ -1,4 +1,6 @@
-import { Controller, Get, Param, Res, Logger } from '@nestjs/common';
+import {
+  Controller, Get, Param, Res, Logger,
+} from '@nestjs/common';
 import { Response } from 'express';
 import { FileService } from './file.service';
 

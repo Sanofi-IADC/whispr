@@ -52,9 +52,9 @@ describe('createTagGroup', () => {
         query: CREATE_TAG_GROUP_GQL,
         variables: {
           tagGroup: {
-            title: TAG_GROUP_TYPE
-          }
-        }
+            title: TAG_GROUP_TYPE,
+          },
+        },
       });
 
     expect(result.status).toBe(200);
@@ -74,9 +74,9 @@ describe('updateTagGroup', () => {
         variables: {
           id: createdTagGroupId,
           tagGroup: {
-            title: NEW_TITLE
-          }
-        }
+            title: NEW_TITLE,
+          },
+        },
       });
 
     expect(result.status).toBe(200);
@@ -92,8 +92,8 @@ describe('deleteTagGroup', () => {
       .send({
         query: DELETE_TAG_GROUP_GQL,
         variables: {
-          id: createdTagGroupId
-        }
+          id: createdTagGroupId,
+        },
       });
 
     expect(result.status).toBe(200);

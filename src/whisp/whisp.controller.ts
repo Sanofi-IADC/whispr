@@ -1,4 +1,6 @@
-import { Controller, Post, Body, Get, Patch, Put, Delete, Param, HttpCode, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller, Post, Body, Get, Patch, Put, Delete, Param, HttpCode, UsePipes, ValidationPipe,
+} from '@nestjs/common';
 import { IWhisp } from '../interfaces/whisp.interface';
 import { WhispService } from './whisp.service';
 import { WhispInputType } from './whisp.input';

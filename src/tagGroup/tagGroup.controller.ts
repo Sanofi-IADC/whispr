@@ -1,4 +1,6 @@
-import { Controller, Post, Body, Get, Put, Delete, Param, HttpCode, Patch, UsePipes, ValidationPipe } from '@nestjs/common';
+import {
+  Controller, Post, Body, Get, Put, Delete, Param, HttpCode, Patch, UsePipes, ValidationPipe,
+} from '@nestjs/common';
 import { ITagGroup } from '../interfaces/tagGroup.interface';
 import { TagGroupService } from './tagGroup.service';
 import { TagGroupInputType } from './tagGroup.input';

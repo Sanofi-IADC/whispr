@@ -1,4 +1,6 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver, Query, Mutation, Args,
+} from '@nestjs/graphql';
 import { WebhookService } from './webhook.service';
 import { Webhook } from './webhook.entity';
 import { WebhookInputType } from './webhook.input';

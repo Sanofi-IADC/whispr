@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+// eslint-disable-next-line import/no-cycle
 import { Tag } from '../tag/tag.entity';
 import { TagStatuses } from '../interfaces/status.enum';
 

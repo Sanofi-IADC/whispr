@@ -45,8 +45,8 @@ describe('ConfigService', () => {
           ca: undefined,
           proxy: {
             host: 'test.proxy.com',
-            port: 3128
-          }
+            port: 3128,
+          },
         });
         const result = configService.getHttpsTunnel();
         expect(JSON.stringify(result)).toEqual(JSON.stringify(expectedResult));

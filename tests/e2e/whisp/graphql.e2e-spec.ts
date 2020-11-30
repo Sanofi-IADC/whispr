@@ -8,7 +8,7 @@ import { WhispService } from 'src/whisp/whisp.service';
 const CREATE_WHISP_GQL = `
 mutation createWhisp($whisp: WhispInputType!) {
   createWhisp(whisp: $whisp) {
-    _id
+    id: _id
   }
 }
 `;
@@ -16,7 +16,7 @@ mutation createWhisp($whisp: WhispInputType!) {
 const UPDATE_WHISP_GQL = `
 mutation updateWhisp($id: String!, $whisp: WhispInputType!) {
   updateWhisp(id: $id, whisp: $whisp) {
-    _id
+    id: _id
   }
 }
 `;
@@ -56,13 +56,13 @@ describe('GRAPHQL WhispModule (e2e)', () => {
           query: CREATE_WHISP_GQL,
           variables: {
             whisp: {
-              type: WHISP_TEST_TYPE
-            }
-          }
+              type: WHISP_TEST_TYPE,
+            },
+          },
         });
 
       expect(result.status).toBe(200);
-      createdWhispId = result.body.data.createWhisp._id;
+      createdWhispId = result.body.data.createWhisp.id;
       expect(createdWhispId).toEqual(expect.any(String));
     });
 
@@ -77,22 +77,21 @@ describe('GRAPHQL WhispModule (e2e)', () => {
               variables: {
                 whisp: {
                   type: WHISP_TEST_TYPE,
-                  attachments: [{ file: { newFile: null } }]
-                }
-              }
-            })
+                  attachments: [{ file: { newFile: null } }],
+                },
+              },
+            }),
           )
           .field(
             'map',
             JSON.stringify({
-              file: ['variables.whisp.attachments.0.file.newFile']
-            })
+              file: ['variables.whisp.attachments.0.file.newFile'],
+            }),
           )
           .attach('file', filePath);
 
         expect(result.status).toBe(200);
-
-        const whisp = await whispService.findOne(result.body.data.createWhisp._id);
+        const whisp = await whispService.findOne(result.body.data.createWhisp.id);
         const file = await fileService.getFile(whisp.attachments[0].file);
 
         expect(file.ContentLength).toBe(fileLength);
@@ -111,9 +110,9 @@ describe('GRAPHQL WhispModule (e2e)', () => {
           variables: {
             id: createdWhispId,
             whisp: {
-              description: WHISP_TEST_TYPE
-            }
-          }
+              description: WHISP_TEST_TYPE,
+            },
+          },
         });
 
       expect(result.status).toBe(200);
@@ -130,8 +129,8 @@ describe('GRAPHQL WhispModule (e2e)', () => {
         .send({
           query: DELETE_WHISP_GQL,
           variables: {
-            id: createdWhispId
-          }
+            id: createdWhispId,
+          },
         });
 
       expect(result.status).toBe(200);

@@ -18,7 +18,7 @@ export class ConfigService {
     const configFromEnv = ConfigService.buildConfigFromEnv();
     const mergedConfig = {
       ...dotEnvConfig,
-      ...configFromEnv // Environment variables override .env config
+      ...configFromEnv, // Environment variables override .env config
     };
     this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
   }
@@ -37,7 +37,7 @@ export class ConfigService {
   static validateSchemaAndApplyDefaultValues(providedEnvConfig: Record<string, string>): Record<string, string> {
     const { value, error } = validationSchema.validate(providedEnvConfig, {
       abortEarly: false,
-      allowUnknown: true
+      allowUnknown: true,
     });
     if (error) {
       throw error;
@@ -52,8 +52,8 @@ export class ConfigService {
   getMongooseURI(): string {
     return this.get('REPLICASET') !== undefined
       ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get('MONGOOSE_HOST_READ')}:${this.get(
-          'MONGOOSE_PORT_READ'
-        )}`
+        'MONGOOSE_PORT_READ',
+      )}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
 
@@ -66,14 +66,14 @@ export class ConfigService {
       pass: this.get('MONGOOSE_PASSWORD'),
       replicaSet: this.get('REPLICASET'),
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     };
     if (this.get('SSL_VALIDATE') === true) {
       const ca = fs.readFileSync(this.get('PATH_TO_SSL_CERTIFICATE'));
       options.server = {
         ssl: true,
         sslValidate: true,
-        sslCA: ca
+        sslCA: ca,
       };
     }
     return options;
@@ -89,14 +89,14 @@ export class ConfigService {
     return tunnel.httpsOverHttp({
       ca: this.get('CA_CERTIFICATE_PATH')
         ? this.get('CA_CERTIFICATE_PATH')
-            .split(',')
-            .map((path: string) => path.trim())
-            .map((path) => fs.readFileSync(path))
+          .split(',')
+          .map((path: string) => path.trim())
+          .map((path) => fs.readFileSync(path))
         : undefined,
       proxy: {
         host,
-        port
-      }
+        port,
+      },
     });
   }
 

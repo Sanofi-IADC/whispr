@@ -9,7 +9,7 @@ const configService = new ConfigService();
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter({ logger: configService.getLogLevel() })
+    new FastifyAdapter({ logger: configService.getLogLevel() }),
   );
   app.enableCors();
   app.register(Fastify);
