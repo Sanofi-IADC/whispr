@@ -1,9 +1,9 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import request from 'supertest';
 import { FileService } from 'src/file/file.service';
 import { IWhisp } from 'src/interfaces/whisp.interface';
 import { WhispService } from 'src/whisp/whisp.service';
-import request from 'supertest';
 
 const CREATE_WHISP_GQL = `
 mutation createWhisp($whisp: WhispInputType!) {
@@ -17,7 +17,7 @@ mutation createWhisp($whisp: WhispInputType!) {
 const UPDATE_WHISP_GQL = `
 mutation updateWhisp($id: String!, $whisp: WhispInputType!) {
   updateWhisp(id: $id, whisp: $whisp) {
-    _id
+    id: _id
   }
 }
 `;
@@ -29,8 +29,6 @@ mutation deleteWhisp($id: String!) {
 `;
 
 const WHISP_TEST_TYPE = 'E2E_TEST';
-const TEST_ATTACHED_FILE_PATH = 'tests/e2e/whisp/attached-file-1.png';
-const TEST_ATTACHED_FILE_CONTENT_LENGTH = 14948;
 
 let fileService: FileService;
 let whispService: WhispService;
@@ -45,7 +43,9 @@ afterAll(async () => {
   try {
     const model = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
     await model.deleteMany({ type: WHISP_TEST_TYPE });
-  } catch {}
+  } catch (e) {
+    console.warn('Could not delete created whisps', e);
+  }
 });
 
 describe('GRAPHQL WhispModule (e2e)', () => {
@@ -63,7 +63,7 @@ describe('GRAPHQL WhispModule (e2e)', () => {
         });
 
       expect(result.status).toBe(200);
-      createdWhispId = result.body.data.createWhisp._id;
+      createdWhispId = result.body.data.createWhisp.id;
       expect(createdWhispId).toEqual(expect.any(String));
     });
     it('should keep ISO-String when a timestamp is provided', async () => {
@@ -85,36 +85,39 @@ describe('GRAPHQL WhispModule (e2e)', () => {
       expect(createdWhispTimestamp).toEqual(now.toISOString());
     });
 
-    it('should upload a file to S3 when attached', async () => {
-      const result = await request(global.app.getHttpServer())
-        .post('/graphql')
-        .field(
-          'operations',
-          JSON.stringify({
-            query: CREATE_WHISP_GQL,
-            variables: {
-              whisp: {
-                type: WHISP_TEST_TYPE,
-                attachments: [{ file: { newFile: null } }],
+    function runFileTest(fileName: string, filePath: string, fileLength: number) {
+      it(`should upload ${fileName} to S3 when attached`, async () => {
+        const result = await request(global.app.getHttpServer())
+          .post('/graphql')
+          .field(
+            'operations',
+            JSON.stringify({
+              query: CREATE_WHISP_GQL,
+              variables: {
+                whisp: {
+                  type: WHISP_TEST_TYPE,
+                  attachments: [{ file: { newFile: null } }],
+                },
               },
-            },
-          }),
-        )
-        .field(
-          'map',
-          JSON.stringify({
-            file: ['variables.whisp.attachments.0.file.newFile'],
-          }),
-        )
-        .attach('file', TEST_ATTACHED_FILE_PATH);
+            }),
+          )
+          .field(
+            'map',
+            JSON.stringify({
+              file: ['variables.whisp.attachments.0.file.newFile'],
+            }),
+          )
+          .attach('file', filePath);
 
-      expect(result.status).toBe(200);
+        expect(result.status).toBe(200);
+        const whisp = await whispService.findOne(result.body.data.createWhisp.id);
+        const file = await fileService.getFile(whisp.attachments[0].file);
 
-      const whisp = await whispService.findOne(result.body.data.createWhisp._id);
-      const file = await fileService.getFile(whisp.attachments[0].file);
-
-      expect(file.ContentLength).toBe(TEST_ATTACHED_FILE_CONTENT_LENGTH);
-    });
+        expect(file.ContentLength).toBe(fileLength);
+      });
+    }
+    runFileTest('attached-file-1.png', 'tests/e2e/whisp/attached-file-1.png', 14948);
+    runFileTest('attached-file-2.txt', 'tests/e2e/whisp/attached-file-2.txt', 19);
   });
 
   describe('updateWhisp', () => {

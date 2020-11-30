@@ -13,39 +13,25 @@ describe('WhispFilter', () => {
     });
     it('should return true if all conditions are true', () => {
       expect(
-        filterPayload(
-          { aKey: 'aValue', anotherKey: 'anotherValue' },
-          { aKey: 'aValue', anotherKey: 'anotherValue' },
-        ),
+        filterPayload({ aKey: 'aValue', anotherKey: 'anotherValue' }, { aKey: 'aValue', anotherKey: 'anotherValue' }),
       ).toEqual(true);
     });
     it('should return false if all conditions are not true', () => {
       expect(
-        filterPayload(
-          { aKey: 'aValue', anotherKey: 'anotherValue' },
-          { aKey: 'aValue', anotherKey: 'notTheExpectedValue' },
-        ),
+        filterPayload({ aKey: 'aValue', anotherKey: 'anotherValue' }, { aKey: 'aValue', anotherKey: 'notTheExpectedValue' }),
       ).toEqual(false);
     });
     it('should go recursive and return true if all conditions are true', () => {
-      expect(
-        filterPayload({ aKey: { anotherKey: 'aValue' } }, { aKey: { anotherKey: 'aValue' } }),
-      ).toEqual(true);
+      expect(filterPayload({ aKey: { anotherKey: 'aValue' } }, { aKey: { anotherKey: 'aValue' } })).toEqual(true);
     });
     it('should go recursive and return false if a condition is not met', () => {
-      expect(
-        filterPayload({ aKey: { anotherKey: 'aValue' } }, { aKey: { anotherKey: 'anotherValue' } }),
-      ).toEqual(false);
+      expect(filterPayload({ aKey: { anotherKey: 'aValue' } }, { aKey: { anotherKey: 'anotherValue' } })).toEqual(false);
     });
     it('should return true if at least one condition of the array is met', () => {
-      expect(filterPayload({ aKey: ['valueA', 'valueB', 'valueC'] }, { aKey: 'valueB' })).toEqual(
-        true,
-      );
+      expect(filterPayload({ aKey: ['valueA', 'valueB', 'valueC'] }, { aKey: 'valueB' })).toEqual(true);
     });
     it('should return false if not a condition of the array is met', () => {
-      expect(filterPayload({ aKey: ['valueA', 'valueB', 'valueC'] }, { aKey: 'valueD' })).toEqual(
-        false,
-      );
+      expect(filterPayload({ aKey: ['valueA', 'valueB', 'valueC'] }, { aKey: 'valueD' })).toEqual(false);
     });
     it('should go recursive and return true if at least a condition of the array is met', () => {
       expect(
@@ -68,22 +54,15 @@ describe('WhispFilter', () => {
       ).toEqual(false);
     });
     it('should return true if nested value matches', () => {
-      expect(
-        filterPayload({ 'aKey.anotherKey': 'valueA' }, { aKey: { anotherKey: 'valueA' } }),
-      ).toEqual(true);
+      expect(filterPayload({ 'aKey.anotherKey': 'valueA' }, { aKey: { anotherKey: 'valueA' } })).toEqual(true);
     });
     it('should return true if several nested values match', () => {
       expect(
-        filterPayload(
-          { 'key1.key2': 'valueA', 'key1.key3': 'valueB' },
-          { key1: { key2: 'valueA', key3: 'valueB' } },
-        ),
+        filterPayload({ 'key1.key2': 'valueA', 'key1.key3': 'valueB' }, { key1: { key2: 'valueA', key3: 'valueB' } }),
       ).toEqual(true);
     });
-    it("should not return an object if it doesn't match fully", () => {
-      expect(
-        filterPayload({ key1: { key2: 'ValueA' } }, { key1: { key2: 'ValueA', key3: 'ValueB' } }),
-      ).toEqual(false);
+    it('should not return an object if it doesn\'t match fully', () => {
+      expect(filterPayload({ key1: { key2: 'ValueA' } }, { key1: { key2: 'ValueA', key3: 'ValueB' } })).toEqual(false);
     });
   });
 

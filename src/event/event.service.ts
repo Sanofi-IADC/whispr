@@ -54,20 +54,12 @@ export class EventService {
 
     webhooks.forEach((webhook) => {
       webhook.events.forEach((eventName) => {
-        this.registerListener(
-          eventName,
-          this.webhookService.getCallFunction(webhook),
-          webhook.filter,
-        );
+        this.registerListener(eventName, this.webhookService.getCallFunction(webhook), webhook.filter);
       });
     });
   }
 
-  private registerListener(
-    eventName: string,
-    callback: ListenerCallback,
-    filter: Record<string, unknown> = {},
-  ) {
+  private registerListener(eventName: string, callback: ListenerCallback, filter: Record<string, unknown> = {}) {
     if (!EventService.doesEventExist(eventName)) {
       Logger.error(`Could not register listener, Event ${eventName} does not exist.`);
       return;

@@ -6,11 +6,11 @@ import { IWhisp } from '../interfaces/whisp.interface';
 export class DistributionService {
   private readonly WHISP_SUBJECT = new Subject();
 
-  public get whispSubject() {
+  public get whispSubject(): Subject<unknown> {
     return this.WHISP_SUBJECT;
   }
 
-  public distributeWhisp(newWhisp: IWhisp) {
+  public distributeWhisp(newWhisp: IWhisp): void {
     this.whispSubject.next(newWhisp);
   }
 }
