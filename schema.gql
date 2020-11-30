@@ -126,7 +126,7 @@ input WhispFileUpload {
   newFile: Upload
 }
 
-"""File upload scalar type"""
+"""The `Upload` scalar type represents a file upload."""
 scalar Upload
 
 type Subscription {

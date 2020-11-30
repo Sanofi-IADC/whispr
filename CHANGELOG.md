@@ -1,3 +1,10 @@
+## [1.7.6](https://github.com/Sanofi-IADC/whispr/compare/v1.7.5...v1.7.6) (2020-11-26)
+
+
+### Bug Fixes
+
+* **file-upload:** removed custom FileUpload-Scalar and use the one from apollo-server ([3380ab9](https://github.com/Sanofi-IADC/whispr/commit/3380ab931d3fd353a3f270fe8c4abb084049bec1))
+
 ## [1.7.5](https://github.com/Sanofi-IADC/whispr/compare/v1.7.4...v1.7.5) (2020-11-23)
 
 

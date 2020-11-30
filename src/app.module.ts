@@ -16,7 +16,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigService } from './config/config.service';
 import { WebhookModule } from './webhook/webhook.module';
-import { UploadScalar } from './scalarTypes/upload.scalar';
 
 @Module({
   imports: [
@@ -45,7 +44,6 @@ import { UploadScalar } from './scalarTypes/upload.scalar';
     DistributionModule,
     EventModule,
     WebhookModule,
-    UploadScalar,
   ],
   providers: [AppService],
   controllers: [AppController],

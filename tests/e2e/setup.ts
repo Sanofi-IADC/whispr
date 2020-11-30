@@ -3,7 +3,7 @@ import { Test } from '@nestjs/testing';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { INestApplication } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
-import { AppModule } from 'src/app.module';
+import { AppModule } from '../../src/app.module';
 
 declare global {
   namespace NodeJS {
