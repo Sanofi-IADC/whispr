@@ -17,8 +17,8 @@ import { WhispInputType } from './whisp.input';
 import { DistributionService } from '../distribution/distribution.service';
 import { filterPayload } from '../utils/filterPayload.service';
 import { IWhisp } from '../interfaces/whisp.interface';
-import { Tag } from 'src/tag/tag.entity';
-import { ITag } from 'src/interfaces/tag.interface';
+import { Tag } from '../tag/tag.entity';
+import { ITag } from '../interfaces/tag.interface';
 
 @Resolver(() => Whisp)
 export class WhispResolver {
