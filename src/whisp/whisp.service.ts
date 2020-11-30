@@ -10,6 +10,7 @@ import { EventService } from '../event/event.service';
 import { WhispInputType } from './whisp.input';
 import { WhispAttachment } from './whisp-attachment.entity';
 import { WhispAttachmentInput } from './whisp-attachment.input';
+import { ITag } from '../interfaces/tag.interface';
 
 @Injectable()
 export class WhispService {
@@ -89,6 +90,14 @@ export class WhispService {
 
   async findOne(id: string): Promise<IWhisp> {
     return this.whispModel.findById(id).exec();
+  }
+
+  async findTagsByWhispId(whispId: string): Promise<ITag[]> {
+    const whisps = await this.whispModel
+      .findById(whispId)
+      .populate('tags')
+      .exec();
+    return whisps.tags;
   }
 
   async countWhisps(filter?: any): Promise<number> {

@@ -1,4 +1,5 @@
 import { Document } from 'mongoose';
+import { ITag } from './tag.interface';
 
 export interface IWhisp extends Document {
   readableID: string;
@@ -23,4 +24,5 @@ export interface IWhisp extends Document {
       file: string;
     }
   ];
+  tags: ITag[];
 }

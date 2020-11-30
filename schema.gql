@@ -55,6 +55,7 @@ type Whisp {
   closedById: String
   timestamp: String
   updated: String
+  tags: [Tag!]
   data: JSONObject
   attachments: [WhispAttachment!]
 }
@@ -130,6 +131,7 @@ input WhispInputType {
   updated: DateTime
   data: JSONObject
   attachments: [WhispAttachmentInput!]
+  tags: [TagInputType!]
 }
 
 """

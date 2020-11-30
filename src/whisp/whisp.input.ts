@@ -11,6 +11,7 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { WhispAttachmentInput } from './whisp-attachment.input';
+import { TagInputType } from '../tag/tag.input';
 
 @InputType({ description: 'New whisp data' })
 export class WhispInputType {
@@ -105,4 +106,9 @@ export class WhispInputType {
   @ValidateNested({ each: true })
   @Type(() => WhispAttachmentInput)
   attachments: WhispAttachmentInput[];
+
+  @Field(() => [TagInputType], { nullable: true })
+  @IsObject()
+  @IsOptional()
+  tags: TagInputType[];
 }
