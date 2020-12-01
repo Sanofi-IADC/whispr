@@ -1,3 +1,11 @@
+## [1.8.1](https://github.com/Sanofi-IADC/whispr/compare/v1.8.0...v1.8.1) (2020-12-01)
+
+
+### Bug Fixes
+
+* revert test.env ([edc53e5](https://github.com/Sanofi-IADC/whispr/commit/edc53e551fe1b64f9ad15d6b501669b07e57edb1))
+* test.env ([df56000](https://github.com/Sanofi-IADC/whispr/commit/df56000b3293b87fbad7301fcd4c9e60a0779771))
+
 # [1.8.0](https://github.com/Sanofi-IADC/whispr/compare/v1.7.6...v1.8.0) (2020-11-30)
 
 
