@@ -11,7 +11,7 @@ export class Tag {
   @Field(() => String)
   title: string;
 
-  @Field(() => String)
+  @Field(() => String, { defaultValue: TagStatuses.ACTIVE })
   status: TagStatuses;
 
   // @Field(() => String)

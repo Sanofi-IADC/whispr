@@ -7,6 +7,7 @@ export const tagGroupSchema = new mongoose.Schema({
   applicationID: String,
   status: {
     type: String,
+    default: TagStatuses.ACTIVE,
     enum: [TagStatuses.ACTIVE, TagStatuses.ARCHIVED],
   },
 });
