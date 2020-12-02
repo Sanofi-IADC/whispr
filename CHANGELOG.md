@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/Sanofi-IADC/whispr/compare/v1.8.1...v1.8.2) (2020-12-02)
+
+
+### Bug Fixes
+
+* assign default values ([5e5e6ac](https://github.com/Sanofi-IADC/whispr/commit/5e5e6ac5025bfb72486c3fbe09e53944241c52ed))
+
 ## [1.8.1](https://github.com/Sanofi-IADC/whispr/compare/v1.8.0...v1.8.1) (2020-12-01)
 
 
