@@ -83,12 +83,12 @@ export class WhispInputType {
   @Field(() => Date, { nullable: true })
   @IsString()
   @IsOptional()
-  timestamp: string;
+  timestamp: Date;
 
   @Field(() => Date, { nullable: true })
   @IsString()
   @IsOptional()
-  updated: string;
+  updated: Date;
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @IsObject()

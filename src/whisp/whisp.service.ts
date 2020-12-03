@@ -27,10 +27,14 @@ export class WhispService {
   async create(whispIn: WhispInputType): Promise<IWhisp> {
     const whisp: any = whispIn;
     if (!whisp.timestamp) {
-      whisp.timestamp = new Date().toISOString();
-    } else {
-      whisp.timestamp = new Date(whisp.timestamp).toISOString();
+      whisp.timestamp = new Date();
     }
+
+    //   whisp.timestamp = new Date().toISOString();
+    // } else {
+    //   whisp.timestamp = new Date(whisp.timestamp).toISOString();
+    // }
+
     this.logger.debug({ whispIn });
     whisp.readableID = await this.sequenceService.getNextWhispID(whisp);
     whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
@@ -94,8 +98,6 @@ export class WhispService {
   async update(id: string, whispIn: WhispInputType): Promise<IWhisp> {
     const whisp: Partial<IWhisp> = {
       ...whispIn,
-      tags: whispIn.tags?.map((t) => ({ ...t })),
-      timestamp: new Date(whispIn.timestamp),
       updated: new Date(),
       attachments: whispIn.attachments && [...(await this.replaceFiles(whispIn.attachments, whispIn.readableID))],
     };
