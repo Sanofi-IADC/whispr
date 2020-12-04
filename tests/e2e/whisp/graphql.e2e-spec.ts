@@ -61,9 +61,8 @@ describe('GRAPHQL WhispModule (e2e)', () => {
             },
           },
         });
-
       expect(result.status).toBe(200);
-      createdWhispId = result.body.data.createWhisp.id;
+      createdWhispId = result.body.data.createWhisp._id;
       expect(createdWhispId).toEqual(expect.any(String));
     });
     it('should keep ISO-String when a timestamp is provided', async () => {
@@ -110,7 +109,7 @@ describe('GRAPHQL WhispModule (e2e)', () => {
           .attach('file', filePath);
 
         expect(result.status).toBe(200);
-        const whisp = await whispService.findOne(result.body.data.createWhisp.id);
+        const whisp = await whispService.findOne(result.body.data.createWhisp._id);
         const file = await fileService.getFile(whisp.attachments[0].file);
 
         expect(file.ContentLength).toBe(fileLength);
