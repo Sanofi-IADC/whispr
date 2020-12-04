@@ -8,7 +8,8 @@ import { WhispService } from 'src/whisp/whisp.service';
 const CREATE_WHISP_GQL = `
 mutation createWhisp($whisp: WhispInputType!) {
   createWhisp(whisp: $whisp) {
-    id: _id
+    _id
+    timestamp
   }
 }
 `;
@@ -60,10 +61,27 @@ describe('GRAPHQL WhispModule (e2e)', () => {
             },
           },
         });
+      expect(result.status).toBe(200);
+      createdWhispId = result.body.data.createWhisp._id;
+      expect(createdWhispId).toEqual(expect.any(String));
+    });
+    it('should keep ISO-String when a timestamp is provided', async () => {
+      const now = new Date();
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: CREATE_WHISP_GQL,
+          variables: {
+            whisp: {
+              type: WHISP_TEST_TYPE,
+              timestamp: now,
+            },
+          },
+        });
 
       expect(result.status).toBe(200);
-      createdWhispId = result.body.data.createWhisp.id;
-      expect(createdWhispId).toEqual(expect.any(String));
+      const createdWhispTimestamp = result.body.data.createWhisp.timestamp;
+      expect(createdWhispTimestamp).toEqual(now.toISOString());
     });
 
     function runFileTest(fileName: string, filePath: string, fileLength: number) {
@@ -91,7 +109,7 @@ describe('GRAPHQL WhispModule (e2e)', () => {
           .attach('file', filePath);
 
         expect(result.status).toBe(200);
-        const whisp = await whispService.findOne(result.body.data.createWhisp.id);
+        const whisp = await whispService.findOne(result.body.data.createWhisp._id);
         const file = await fileService.getFile(whisp.attachments[0].file);
 
         expect(file.ContentLength).toBe(fileLength);
