@@ -4,6 +4,17 @@ import Redis from 'ioredis';
 import { ConfigModule } from '../config/config.module';
 import { ConfigService } from '../config/config.service';
 
+const dateReviver = (key, value) => {
+  const isISO8601Z = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)Z$/;
+  if (typeof value === 'string' && isISO8601Z.test(value)) {
+    const tempDateNumber = Date.parse(value);
+    if (!Number.isNaN(tempDateNumber)) {
+      return new Date(tempDateNumber);
+    }
+  }
+  return value;
+};
+
 @Module({
   imports: [ConfigModule],
   providers: [
@@ -19,6 +30,7 @@ import { ConfigService } from '../config/config.service';
           host: configService.get('REDIS_HOST_READ'),
           port: configService.get('REDIS_PORT_READ'),
         }),
+        reviver: dateReviver,
       }),
     },
   ],
