@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/Sanofi-IADC/whispr/compare/v2.0.0...v2.0.1) (2020-12-04)
+
+
+### Bug Fixes
+
+* **subscriptions:** added parser to Redis to handle Dates ([f95bf85](https://github.com/Sanofi-IADC/whispr/commit/f95bf8508f707b0c08e288be645249ecd4f02375))
+
 # [2.0.0](https://github.com/Sanofi-IADC/whispr/compare/v1.8.2...v2.0.0) (2020-12-04)
 
 
