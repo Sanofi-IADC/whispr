@@ -17,7 +17,7 @@ export class TagGroup {
   @Field()
   applicationID: string;
 
-  @Field(() => String)
+  @Field(() => String, { defaultValue: TagStatuses.ACTIVE })
   status: TagStatuses;
 
   @Field(() => [Tag])
