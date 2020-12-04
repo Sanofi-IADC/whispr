@@ -2,9 +2,9 @@
 import { Field, Int, InputType } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
 import {
-  IsBoolean, IsInt, IsObject, IsOptional, IsString, ValidateNested,
+  IsBoolean, IsInt, IsObject, IsOptional, IsString, ValidateNested, IsDate,
 } from 'class-validator';
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
 import { WhispAttachmentInput } from './whisp-attachment.input';
 import { TagInputType } from '../tag/tag.input';
 
@@ -13,97 +13,99 @@ export class WhispInputType {
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  _id: string;
+  _id?: string;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  readableID: string;
+  readableID?: string;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  type: string;
+  type?: string;
 
   @Field(() => Int, { nullable: true })
   @IsInt()
   @IsOptional()
-  severity: number;
+  severity?: number;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  description: string;
+  description?: string;
 
   @Field(() => Boolean, { nullable: true })
   @IsBoolean()
   @IsOptional()
-  closed: boolean;
+  closed?: boolean;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  applicationID: string;
+  applicationID?: string;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  plantID: string;
+  plantID?: string;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  locationID: string;
+  locationID?: string;
 
   @Field(() => Boolean, { nullable: true })
   @IsBoolean()
   @IsOptional()
-  manual: boolean;
+  manual?: boolean;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  openedBy: string;
+  openedBy?: string;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  openedById: string;
+  openedById?: string;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  closedBy: string;
+  closedBy?: string;
 
   @Field(() => String, { nullable: true })
   @IsString()
   @IsOptional()
-  closedById: string;
+  closedById?: string;
 
   @Field(() => Date, { nullable: true })
-  @IsString()
+  @IsDate()
   @IsOptional()
-  timestamp: Date;
+  @Transform((val: string) => new Date(val))
+  timestamp?: Date;
 
   @Field(() => Date, { nullable: true })
-  @IsString()
+  @IsDate()
   @IsOptional()
-  updated: Date;
+  @Transform((val: string) => new Date(val))
+  updated?: Date;
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @IsObject()
   @IsOptional()
-  data: any;
+  data?: any;
 
   @Field(() => [WhispAttachmentInput], { nullable: true })
   @IsObject({ each: true })
   @IsOptional({ each: true })
   @ValidateNested({ each: true })
   @Type(() => WhispAttachmentInput)
-  attachments: WhispAttachmentInput[];
+  attachments?: WhispAttachmentInput[];
 
   @Field(() => [TagInputType], { nullable: true })
   @IsObject()
   @IsOptional()
-  tags: TagInputType[];
+  tags?: TagInputType[];
 }

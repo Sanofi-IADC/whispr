@@ -53,12 +53,17 @@ type Whisp {
   openedById: String
   closedBy: String
   closedById: String
-  timestamp: String
-  updated: String
+  timestamp: DateTime
+  updated: DateTime
   tags: [Tag!]
   data: JSONObject
   attachments: [WhispAttachment!]
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Query {
   webhooks: [Webhook!]
@@ -133,11 +138,6 @@ input WhispInputType {
   attachments: [WhispAttachmentInput!]
   tags: [TagInputType!]
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 input WhispAttachmentInput {
   """Mapping of the file to a location in the data attribute"""

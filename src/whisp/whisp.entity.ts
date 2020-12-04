@@ -51,10 +51,10 @@ export class Whisp {
   closedById?: string;
 
   @Field({ nullable: true })
-  timestamp?: string;
+  timestamp?: Date;
 
   @Field({ nullable: true })
-  updated?: string;
+  updated?: Date;
 
   @Field(() => [Tag], { nullable: true })
   tags?: Tag[];

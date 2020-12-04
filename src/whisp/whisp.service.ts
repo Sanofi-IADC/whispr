@@ -29,12 +29,6 @@ export class WhispService {
     if (!whisp.timestamp) {
       whisp.timestamp = new Date();
     }
-
-    //   whisp.timestamp = new Date().toISOString();
-    // } else {
-    //   whisp.timestamp = new Date(whisp.timestamp).toISOString();
-    // }
-
     this.logger.debug({ whispIn });
     whisp.readableID = await this.sequenceService.getNextWhispID(whisp);
     whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
