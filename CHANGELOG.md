@@ -1,3 +1,53 @@
+# [2.0.0](https://github.com/Sanofi-IADC/whispr/compare/v1.8.2...v2.0.0) (2020-12-04)
+
+
+### Bug Fixes
+
+* **server-port:** reverted port of the server to 3000 ([b4f84ff](https://github.com/Sanofi-IADC/whispr/commit/b4f84ffedebb57a6db8e1f7845394a013ed965fd))
+* **timestamp:** fixed multiple bugs related to timestamp ([3bbcff6](https://github.com/Sanofi-IADC/whispr/commit/3bbcff67c421f3e545fb16fa093e915c8d7c4b45))
+* add access keys to test.env ([7c58ee0](https://github.com/Sanofi-IADC/whispr/commit/7c58ee0ad6280116c331cceeb341c6f2f2a578b0))
+* save timestamp and updated as dates ([c2df52d](https://github.com/Sanofi-IADC/whispr/commit/c2df52d68480c56beb6cf67665df01503750b845))
+* **dependency maintenance:** manually update some non-major dependencies ([f5d8ed6](https://github.com/Sanofi-IADC/whispr/commit/f5d8ed6b5905cc52229eaef33bd6b2922b80df42))
+* **dependency maintenance:** update all non-major dependencies ([efa12ed](https://github.com/Sanofi-IADC/whispr/commit/efa12ed911deea49acdb72a35c327e60aa46392c))
+* **dependency maintenance:** update all non-major dependencies ([d608abc](https://github.com/Sanofi-IADC/whispr/commit/d608abc333792e2c7ec7de66a5ba9fb3dbd7e3b3))
+* **dependency maintenance:** update dependency @apollo/gateway to v0.21.3 ([7470f66](https://github.com/Sanofi-IADC/whispr/commit/7470f66eba205444d29559e822fb198422250a8a))
+* **dependency maintenance:** update dependency @nestjs/graphql to v7.8.2 ([0ffe628](https://github.com/Sanofi-IADC/whispr/commit/0ffe6287b1b2343f95cd0981e960aebe062507d5))
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.1.0 ([ea18eaa](https://github.com/Sanofi-IADC/whispr/commit/ea18eaac5d4e7155b1fd43ddc4162c84f8b804b1))
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.1.1 ([e1f6e6a](https://github.com/Sanofi-IADC/whispr/commit/e1f6e6add01ca334e0aa5f7fb3387bc32bff66de))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.5.5 ([8e5d867](https://github.com/Sanofi-IADC/whispr/commit/8e5d8675a28ed33f5ca0997c8d5161a56ab7c5c4))
+* **dependency maintenance:** update dependency aws-sdk to v2.797.0 ([7852f99](https://github.com/Sanofi-IADC/whispr/commit/7852f999231522ebcfd05a012ec6e7a335e7c751))
+* **dependency maintenance:** update dependency mongoose to v5.10.10 ([a5a4e63](https://github.com/Sanofi-IADC/whispr/commit/a5a4e635911fff30b44318d32a66bc9dabccf8d4))
+* **webhook:** added CA_CERTIFICATE_PATH to validationSchema ([7cc6460](https://github.com/Sanofi-IADC/whispr/commit/7cc64603c0eed9a1a26713a9aff12d3c1df49555))
+* **webhook:** allow communication without a proxy ([9faa436](https://github.com/Sanofi-IADC/whispr/commit/9faa4363b0a8d1b072f5f2db0f3b0827094b1527))
+* **webhook:** fixed ca-array in tunnel ([4d09565](https://github.com/Sanofi-IADC/whispr/commit/4d0956554b625fcba78bce9a70024efa3b587ae6))
+* **webhooks:** read ca-file from filesystem instead of env ([5f59a25](https://github.com/Sanofi-IADC/whispr/commit/5f59a25605ea81620b3d9176460ac33afdf25079))
+* fix linting issues with prettier-eslint ([18a999f](https://github.com/Sanofi-IADC/whispr/commit/18a999fd466093354c830786a87073c3fc11d125))
+* **webhook:** flatten error-log of webhook calls, because they are circular objects ([69dd670](https://github.com/Sanofi-IADC/whispr/commit/69dd67056368bcd9cca529136e9b6dc8d41e38eb))
+* **webhooks:** set https-Agent to correctly use Proxy & CA_Certificate for Webhook calls ([d0521bb](https://github.com/Sanofi-IADC/whispr/commit/d0521bb0d6a2b220c2a7e187bd1f740548340f4b))
+* fix linting issues with prettier-eslint ([a0fccdf](https://github.com/Sanofi-IADC/whispr/commit/a0fccdf28e3cadcab83a1efedfe1dc3d16f154b7))
+* **webhooks:** set https-Agent to correctly use Proxy & CA_Certificate for Webhook calls ([f513f85](https://github.com/Sanofi-IADC/whispr/commit/f513f857017718eaf18b855f9f7f8e1229bbd9e1))
+* reverted dependencies to last working release ([201f390](https://github.com/Sanofi-IADC/whispr/commit/201f390284e5817cd116b99b19aab7ec09a6ee28))
+* **dependency maintenance:** update dependency graphql-tools to v6.2.6 ([c73b024](https://github.com/Sanofi-IADC/whispr/commit/c73b02488b3c6698590709a2273fe9f2b3089be7))
+* **whisp:** convert timestamp to ISO-Timestamp when provided in new whisp ([95b35ea](https://github.com/Sanofi-IADC/whispr/commit/95b35ea9eb4b6b2b51b21462b8a2818aad4a4ece))
+* **whisp:** convert timestamp to ISO-Timestamp when provided in new whisp ([5a98d81](https://github.com/Sanofi-IADC/whispr/commit/5a98d81c48bca2c24d6db745496f0b0ea9910301))
+
+
+### Features
+
+* **dev:** expose localstack port for debugging purpose ([e6c6a4e](https://github.com/Sanofi-IADC/whispr/commit/e6c6a4e24a357ab1da9ba56d4deee34bb697c9a4))
+* **index:** add compound index to applicationID and closed ([e5747e0](https://github.com/Sanofi-IADC/whispr/commit/e5747e0cb657d6cc906eea4df29cded9cdedc22e))
+* **webhook:** multiple CAs can be added by using a comma separated list ([acda58f](https://github.com/Sanofi-IADC/whispr/commit/acda58fc7faa801919af980b0d1a6d9209c31913))
+
+
+### Performance Improvements
+
+* whispsCount uses mongo documentCount ([2e2a0d5](https://github.com/Sanofi-IADC/whispr/commit/2e2a0d515ad1ea5bc80ee26b15a420370fdb0508))
+
+
+### BREAKING CHANGES
+
+* **whisp:** When a timestamp is provided in createWhisp, it will be converted to ISO-Timestamp instead of UTC-Timestamp
+
 ## [1.8.2](https://github.com/Sanofi-IADC/whispr/compare/v1.8.1...v1.8.2) (2020-12-02)
 
 
