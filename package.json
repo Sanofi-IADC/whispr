@@ -81,7 +81,7 @@
     "@types/jest": "26.0.16",
     "@types/mongoose": "5.10.1",
     "@types/node": "12.12.7",
-    "@types/socket.io": "2.1.11",
+    "@types/socket.io": "2.1.12",
     "@types/supertest": "2.0.10",
     "@types/tunnel": "0.0.1",
     "@typescript-eslint/eslint-plugin": "3.5.0",
