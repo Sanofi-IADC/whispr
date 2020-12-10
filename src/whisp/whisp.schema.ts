@@ -26,6 +26,11 @@ export const whispSchema = new mongoose.Schema({
   ],
 });
 
-whispSchema.index({ applicationID: 1, closed: -1 });
+whispSchema.index({
+  applicationID: 1,
+  closed: 1,
+  timestamp: 1,
+  type: 1,
+});
 
 mongoose.model('Whisp', whispSchema);
