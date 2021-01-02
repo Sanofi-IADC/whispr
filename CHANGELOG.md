@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/Sanofi-IADC/whispr/compare/v2.0.1...v2.0.2) (2021-01-02)
+
+
+### Bug Fixes
+
+* **index:** add compound index on timestamp and type ([02ae7d8](https://github.com/Sanofi-IADC/whispr/commit/02ae7d86fc43a31fc7fac59a9464feb800d70596))
+
 ## [2.0.1](https://github.com/Sanofi-IADC/whispr/compare/v2.0.0...v2.0.1) (2020-12-04)
 
 
