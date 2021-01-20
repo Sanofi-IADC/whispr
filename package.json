@@ -40,7 +40,7 @@
     "apollo-server-fastify": "2.19.0",
     "aws-sdk": "2.797.0",
     "class-transformer": "0.3.1",
-    "class-validator": "0.12.2",
+    "class-validator": "0.13.1",
     "cross-fetch": "3.0.6",
     "dotenv": "8.2.0",
     "eslint-plugin-graphql": "4.0.0",
