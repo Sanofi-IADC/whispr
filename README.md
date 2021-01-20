@@ -7,6 +7,7 @@
 [![MIT License][license-shield]][license-url]
 [![Sonarcloud quality][sonarcloud-shield]][sonarcloud-url]
 [![Renovate][renovate-shield]][renovate-url]
+[![Gitpod ready-to-code](gitpod-shield)](gitpod-url)
 
 Whispr is an open source event, comment and alert processing hub created by Sanofi IADC. We created it to meet our need for a centralised comment and alerting service which could be easily integrated into our tech stack.
 
@@ -75,3 +76,6 @@ We’re not looking for sponsorship, please check out the pages of our favourite
 
 [renovate-shield]: https://img.shields.io/badge/renovate-enabled-brightgreen.svg
 [renovate-url]: https://renovatebot.com
+
+[gitpod-shield]: https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod
+[gitpod-url]: https://gitpod.io/#https://github.com/Sanofi-IADC/whispr
