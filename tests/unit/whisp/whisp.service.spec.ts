@@ -17,10 +17,6 @@ jest.mock('../../../src/file/file.service');
 jest.mock('../../../src/sequence/sequence.service');
 dotenv.config({ path: 'test.env' });
 describe('WhispService', () => {
-  let distributionService: DistributionService;
-  let eventService: EventService;
-  let fileService: FileService;
-  let sequenceService: SequenceService;
   let whispService: WhispService;
   let whispModel: Model<IWhisp>;
   let dbConnection: Connection;
@@ -35,10 +31,6 @@ describe('WhispService', () => {
       ],
       providers: [WhispService, Logger, DistributionService, FileService, SequenceService, EventService],
     }).compile();
-    distributionService = moduleRef.get<DistributionService>(DistributionService);
-    eventService = moduleRef.get<EventService>(EventService);
-    fileService = moduleRef.get<FileService>(FileService);
-    sequenceService = moduleRef.get<SequenceService>(SequenceService);
     whispService = moduleRef.get<WhispService>(WhispService);
     whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
     dbConnection = moduleRef.get<Connection>(getConnectionToken());
