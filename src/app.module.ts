@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { TerminusModule } from '@nestjs/terminus';
 import { AWSCredsModule } from './auth/aws-creds.module';
 import { ConfigModule } from './config/config.module';
 import { DistributionModule } from './distribution/distribution.module';
@@ -17,9 +18,11 @@ import { AppService } from './app.service';
 import { ConfigService } from './config/config.service';
 import { WebhookModule } from './webhook/webhook.module';
 import { TagModule } from './tag/tag.module';
+import { HealthController } from './health/health.controller';
 
 @Module({
   imports: [
+    TerminusModule,
     GraphQLModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
@@ -48,6 +51,6 @@ import { TagModule } from './tag/tag.module';
     WebhookModule,
   ],
   providers: [AppService],
-  controllers: [AppController],
+  controllers: [AppController, HealthController],
 })
 export class AppModule {}
