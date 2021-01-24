@@ -1,4 +1,4 @@
-read -t 5 -p "Waiting for a few seconds for docker to be ready before spinning everything up..."
+read -t 2 -p "Waiting for a few seconds for docker to be ready before spinning everything up..."
 echo
 echo
 echo "Starting up dev environment dockers (mongo, redis, localstack)..."
@@ -11,8 +11,11 @@ echo
 if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ]
 then
     echo "AWS access keys do not appear to be configured. Setting dummy value for both so you can run tests. You can overwrite this by exporting a new value or setting it in your GitPod env vars."
-    export AWS_ACCESS_KEY_ID=dummy && export AWS_SECRET_ACCESS_KEY=dummy
+    export AWS_ACCESS_KEY_ID=dummy
+    export AWS_SECRET_ACCESS_KEY=dummy
 fi
-
+echo
+echo "Setting node version just in case..."
+nvm install 12.13.0
 echo
 echo "Dev environment setup complete. You should be ready to code! npm run start to launch, or npm run test to run tests."

@@ -2,8 +2,14 @@ image:
   file: .gitpod.Dockerfile
 
 tasks:
-  
-  - init: npm install && npm run build && make && nvm install 12.13.0
+  - init: |
+      touch /tmp/.npm-lock
+      npm install && npm run build && make && nvm install 12.13.0
+      rm /tmp/.npm-lock
+    name: init
+  - init: |
+      echo "Waiting for init script to complete before spinning things up. Check the init terminal window for progress..."
+      sleep 1 && while [ -f /tmp/.npm-lock ]; do echo "..." && sleep 2; done
     command: ./gitpod.spin-up.sh
     name: terminal
   - command: sudo docker-up
