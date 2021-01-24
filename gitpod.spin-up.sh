@@ -16,7 +16,7 @@ echo
 echo "Setting node version just in case..."
 nvm install 12.13.0
 echo
-echo -n "Waiting for init script to complete before spinning things up. This might take a few minutes due to npm package installation. Check the init terminal window for progress..."
+echo -n "Waiting for init script to complete. This might take a few minutes due to npm package installation. Check the init terminal window for progress..."
 sleep 1 && while [ -f /tmp/.npm-lock ]; do echo -n "." && sleep 1; done
 echo "Init script done :)"
 echo
