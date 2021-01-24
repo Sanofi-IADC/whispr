@@ -1,6 +1,3 @@
-read -t 2 -p "Waiting for a few seconds for docker to be ready before spinning everything up..."
-echo
-echo
 echo "Starting up dev environment dockers (mongo, redis, localstack)..."
 echo
 docker-compose -f docker-compose.dev.yml up -d
