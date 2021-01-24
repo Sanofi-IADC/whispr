@@ -20,6 +20,7 @@ sleep 1 && while [ -f /tmp/.npm-lock ]; do echo -n "." && sleep 1; done
 echo "Init script done :)"
 echo
 echo "Dev environment setup complete. You should be ready to code!"
+echo "Please be aware that commits can take a few seconds to complete as we use Husky pre-commit hooks to lint, format and check the commit message complies to our standards."
 echo "  > npm run start to launch"
 echo "  > npm run test to run tests"
 echo
