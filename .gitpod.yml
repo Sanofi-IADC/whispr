@@ -10,7 +10,7 @@ tasks:
   - command: sudo docker-up
     name: docker
   - init: |
-      echo "Waiting for init script to complete before spinning things up. Check the init terminal window for progress..."
+      echo -n "Waiting for init script to complete before spinning things up. This can take a few minutes due to npm package installation. Check the init terminal window for progress..."
       sleep 1 && while [ -f /tmp/.npm-lock ]; do echo -n "..." && sleep 2; done
-    command: source ./gitpod.spin-up.sh
+    command: echo && source ./gitpod.spin-up.sh
     name: terminal
