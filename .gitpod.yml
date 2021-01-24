@@ -4,6 +4,8 @@ image:
 tasks:
   
   - init: npm install && npm run build && make && nvm install 12.13.0
+    name: init
   - command: sudo docker-up
     name: docker
-  - command: docker-compose -f docker-compose.dev.yml up -d && echo Environment setup complete. If you're running E2E tests or developing with localstack you need to export aws keys for localstack. E.g. export AWS_ACCESS_KEY_ID=dummy and export AWS_ACCESS_KEY_ID=dummy
+  - command: ./gitpod.spin-up.sh
+    name: terminal
