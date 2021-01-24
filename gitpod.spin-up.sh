@@ -1,3 +1,4 @@
+echo -n "Waiting for a few seconds to ensure that docker has started before spinning everything up..." && sleep 1 && echo -n . && sleep 1 && echo -n . && sleep 1 && echo -n .
 echo "Starting up dev environment dockers (mongo, redis, localstack)..."
 echo
 docker-compose -f docker-compose.dev.yml up -d
