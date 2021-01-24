@@ -13,4 +13,7 @@ then
     echo "AWS access keys do not appear to be configured. Setting dummy value for both so you can run tests. You can overwrite this by exporting a new value or setting it in your GitPod env vars."
     export AWS_ACCESS_KEY_ID=dummy && export AWS_SECRET_ACCESS_KEY=dummy
 fi
+echo "Setting node version..."
+.nvm install 12.13.0
+echo
 echo "Dev environment setup complete. You should be ready to code! npm run start to launch, or npm run test to run tests."

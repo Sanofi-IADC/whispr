@@ -4,8 +4,7 @@ image:
 tasks:
   
   - init: npm install && npm run build && make && nvm install 12.13.0
-    name: init
+    command: ./gitpod.spin-up.sh
+    name: terminal
   - command: sudo docker-up
     name: docker
-  - command: ./gitpod.spin-up.sh
-    name: terminal
