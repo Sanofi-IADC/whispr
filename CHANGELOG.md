@@ -1,3 +1,17 @@
+## [2.0.3](https://github.com/Sanofi-IADC/whispr/compare/v2.0.2...v2.0.3) (2021-01-24)
+
+
+### Bug Fixes
+
+* mongoose deps error ([b725109](https://github.com/Sanofi-IADC/whispr/commit/b725109c9cb06a06844d83ab3ea150191598784b))
+* **dependency maintenance:** update dependency @nestjs/mongoose to v7.2.2 ([7a7b9d1](https://github.com/Sanofi-IADC/whispr/commit/7a7b9d12d05cb955f39b536327f88981743a6294))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.5.7 ([7a42fc8](https://github.com/Sanofi-IADC/whispr/commit/7a42fc81113c921044c2066b02d84f647a4e541d))
+* **dependency maintenance:** update dependency aws-sdk to v2.829.0 ([d21a439](https://github.com/Sanofi-IADC/whispr/commit/d21a439f7f4bee17077d95fbf81e82ae4cc2b4fb))
+* **dependency maintenance:** update dependency class-validator to v0.13.1 ([cdd3d17](https://github.com/Sanofi-IADC/whispr/commit/cdd3d171c335f45bf8e321edc5ed991a4124ee46))
+* **dependency maintenance:** update dependency flatted to v3.1.1 ([50e74d3](https://github.com/Sanofi-IADC/whispr/commit/50e74d3d46b02838360706d099ec46f3c7c80390))
+* **dependency maintenance:** update dependency ioredis to v4.19.4 ([6826df4](https://github.com/Sanofi-IADC/whispr/commit/6826df404e35869bce05f428da6d47edc7c4495f))
+* **dependency maintenance:** update dependency vuepress to v1.8.0 ([cb0e402](https://github.com/Sanofi-IADC/whispr/commit/cb0e402fd667489e3ed46ef5dfbc74437ced97d2))
+
 ## [2.0.2](https://github.com/Sanofi-IADC/whispr/compare/v2.0.1...v2.0.2) (2021-01-02)
 
 
