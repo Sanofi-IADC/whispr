@@ -1,3 +1,15 @@
+# [2.1.0](https://github.com/Sanofi-IADC/whispr/compare/v2.0.3...v2.1.0) (2021-01-25)
+
+
+### Bug Fixes
+
+* set controller return type ([8aab1a7](https://github.com/Sanofi-IADC/whispr/commit/8aab1a71fcba1892938c1a7b3d582cfe0bec663f))
+
+
+### Features
+
+* add health check endpoint ([83e336f](https://github.com/Sanofi-IADC/whispr/commit/83e336f264253a691a493aa64f6e8f946a469a59))
+
 ## [2.0.3](https://github.com/Sanofi-IADC/whispr/compare/v2.0.2...v2.0.3) (2021-01-24)
 
 
