@@ -1,3 +1,10 @@
+## [2.1.2](https://github.com/Sanofi-IADC/whispr/compare/v2.1.1...v2.1.2) (2021-01-26)
+
+
+### Bug Fixes
+
+* **file-upload:** fixed a bug where attachments where removed when not provided in an update ([06128bb](https://github.com/Sanofi-IADC/whispr/commit/06128bbe076b19458e8b56d3713b5d991345985c))
+
 ## [2.1.1](https://github.com/Sanofi-IADC/whispr/compare/v2.1.0...v2.1.1) (2021-01-25)
 
 
