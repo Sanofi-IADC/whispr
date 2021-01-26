@@ -138,6 +138,44 @@ describe('GRAPHQL WhispModule (e2e)', () => {
       const whisp = await whispService.findOne(createdWhispId);
       expect(whisp.description).toBe(WHISP_TEST_TYPE);
     });
+
+    it('should preserve attachment field when not provided', async () => {
+      const createResult = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .field(
+          'operations',
+          JSON.stringify({
+            query: CREATE_WHISP_GQL,
+            variables: {
+              whisp: {
+                type: WHISP_TEST_TYPE,
+                attachments: [{ file: { newFile: null } }],
+              },
+            },
+          }),
+        )
+        .field(
+          'map',
+          JSON.stringify({
+            file: ['variables.whisp.attachments.0.file.newFile'],
+          }),
+        )
+        .attach('file', 'tests/e2e/whisp/attached-file-1.png');
+
+      const updateResult = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: UPDATE_WHISP_GQL,
+          variables: {
+            id: createResult.body.data.createWhisp._id,
+            whisp: {
+              description: WHISP_TEST_TYPE,
+            },
+          },
+        });
+
+      expect(updateResult.body.data.updateWhisp.attachment).toHaveLength(1);
+    });
   });
 
   describe('deleteWhisp', () => {
