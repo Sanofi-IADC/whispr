@@ -162,7 +162,7 @@ describe('GRAPHQL WhispModule (e2e)', () => {
         )
         .attach('file', 'tests/e2e/whisp/attached-file-1.png');
 
-      const updateResult = await request(global.app.getHttpServer())
+      await request(global.app.getHttpServer())
         .post('/graphql')
         .send({
           query: UPDATE_WHISP_GQL,
@@ -174,7 +174,8 @@ describe('GRAPHQL WhispModule (e2e)', () => {
           },
         });
 
-      expect(updateResult.body.data.updateWhisp.attachment).toHaveLength(1);
+      const whisp = await whispService.findOne(createResult.body.data.createWhisp._id);
+      expect(whisp.attachments).toHaveLength(1);
     });
   });
 
