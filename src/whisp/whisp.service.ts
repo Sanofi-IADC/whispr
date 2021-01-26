@@ -93,8 +93,10 @@ export class WhispService {
     const whisp: Partial<IWhisp> = {
       ...whispIn,
       updated: new Date(),
-      attachments: whispIn.attachments && [...(await this.replaceFiles(whispIn.attachments, whispIn.readableID))],
-    };
+    } as Partial<IWhisp>;
+    if (whispIn.attachments) {
+      whisp.attachments = await this.replaceFiles(whispIn.attachments, whispIn.readableID);
+    }
     const updatedWhisp = await this.whispModel.findOneAndUpdate({ _id: id }, whisp, { new: true }).exec();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_UPDATED, updatedWhisp));
     this.logger.log(updatedWhisp, 'Updated Whisp');
