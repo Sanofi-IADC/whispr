@@ -4,6 +4,11 @@ import Fastify from 'fastify-compress';
 import { AppModule } from './app.module';
 import { ConfigService } from './config/config.service';
 
+if (process.env.NODE_ENV !== 'local' && process.env.NODE_ENV !== 'test' && process.env.INSTANA_ENDPOINT_URL) {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+  require('@instana/collector')();
+}
+
 const configService = new ConfigService();
 
 async function bootstrap() {

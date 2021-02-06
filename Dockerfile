@@ -31,6 +31,11 @@ RUN npm install -g pm2
 COPY package*.json ./
 RUN npm ci --quiet --only=production
 
+# Add the Instana APM layer
+COPY --from=instana/aws-fargate-nodejs /instana /instana
+RUN /instana/setup.sh
+ENV NODE_OPTIONS="--require /instana/node_modules/@instana/aws-fargate"
+
 # Build artifacts
 COPY --from=builder /app/pm2.config.js ./pm2.config.js
 COPY --from=builder /app/dist ./dist
