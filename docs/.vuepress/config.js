@@ -28,6 +28,7 @@ module.exports = {
             '/plugins/',
             '/fileupload.html',
             '/indexing.html',
+            '/apm.html',
         ]
     }
 }
