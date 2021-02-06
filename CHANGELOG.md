@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/Sanofi-IADC/whispr/compare/v2.1.2...v2.2.0) (2021-02-06)
+
+
+### Features
+
+* **instana:** add instana config ([7c7b0fb](https://github.com/Sanofi-IADC/whispr/commit/7c7b0fbac4c71f86999b270e9a6d011a3c29219d))
+
 ## [2.1.2](https://github.com/Sanofi-IADC/whispr/compare/v2.1.1...v2.1.2) (2021-01-26)
 
 
