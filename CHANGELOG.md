@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/Sanofi-IADC/whispr/compare/v2.2.1...v2.2.2) (2021-02-08)
+
+
+### Bug Fixes
+
+* **instana:** force import of instana first ([913365f](https://github.com/Sanofi-IADC/whispr/commit/913365f575f7267dc404f9f1f13e0743b5f0fc19))
+
 ## [2.2.1](https://github.com/Sanofi-IADC/whispr/compare/v2.2.0...v2.2.1) (2021-02-06)
 
 
