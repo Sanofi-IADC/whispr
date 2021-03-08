@@ -25,7 +25,7 @@
     "docs:dev": "vuepress dev docs"
   },
   "dependencies": {
-    "@apollo/gateway": "0.21.3",
+    "@apollo/gateway": "0.23.2",
     "@hapi/joi": "17.1.1",
     "@instana/collector": "1.113.0",
     "@nestjs/common": "7.2.0",
@@ -38,7 +38,7 @@
     "@nestjs/websockets": "7.2.0",
     "@types/graphql": "14.5.0",
     "amazon-cognito-identity-js": "4.5.7",
-    "apollo-server-fastify": "2.19.0",
+    "apollo-server-fastify": "2.21.1",
     "aws-sdk": "2.829.0",
     "class-transformer": "0.3.1",
     "class-validator": "0.13.1",
