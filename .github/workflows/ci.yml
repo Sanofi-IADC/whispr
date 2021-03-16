@@ -63,6 +63,9 @@ jobs:
       - name: Tests
         run: npm test
 
+      - name: Prod build
+        run: npm run build
+
   release:
     name: Release
     needs: quality
