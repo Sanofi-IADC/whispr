@@ -1,3 +1,12 @@
+## [2.2.3](https://github.com/Sanofi-IADC/whispr/compare/v2.2.2...v2.2.3) (2021-03-16)
+
+
+### Bug Fixes
+
+* add prod build to CI quality workflow ([ea55655](https://github.com/Sanofi-IADC/whispr/commit/ea55655743b44649d52368250d12b45216871165))
+* revert apollo deps updates ([59364bf](https://github.com/Sanofi-IADC/whispr/commit/59364bf2d459495bf9eff6135cec0958d5579c5c))
+* **dependency maintenance:** update apollo graphql packages ([6e10eb0](https://github.com/Sanofi-IADC/whispr/commit/6e10eb05a67bb3d2016f6b4ab8b027f03970212b))
+
 ## [2.2.2](https://github.com/Sanofi-IADC/whispr/compare/v2.2.1...v2.2.2) (2021-02-08)
 
 
