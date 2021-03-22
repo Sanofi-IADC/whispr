@@ -5,6 +5,8 @@
     ":automergeTesters",
     ":automergeLinters",
     ":automergeTypes",
+    ":automergeMinor",
+    ":automergePatch",
     "group:monorepos",
     "group:recommended",
     ":semanticCommits"
