@@ -65,7 +65,7 @@
     "superagent-promise": "1.1.0",
     "superagent-proxy": "2.1.0",
     "tunnel": "0.0.6",
-    "vuepress": "1.8.0"
+    "vuepress": "1.8.2"
   },
   "devDependencies": {
     "@commitlint/cli": "9.1.2",
