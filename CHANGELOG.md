@@ -1,3 +1,12 @@
+## [2.2.4](https://github.com/Sanofi-IADC/whispr/compare/v2.2.3...v2.2.4) (2021-03-23)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.117.2 ([9f1805c](https://github.com/Sanofi-IADC/whispr/commit/9f1805cdd688a6df4a7804dbe2e563e38519d5f0))
+* **dependency maintenance:** update dependency aws-sdk to v2.869.0 ([5e4ff0d](https://github.com/Sanofi-IADC/whispr/commit/5e4ff0de85d50d3d76cdc703353234d2974fc776))
+* **dependency maintenance:** update dependency ioredis to v4.24.3 ([44d502f](https://github.com/Sanofi-IADC/whispr/commit/44d502fceb26163d4bc2fe27b9e50b8231a94417))
+
 ## [2.2.3](https://github.com/Sanofi-IADC/whispr/compare/v2.2.2...v2.2.3) (2021-03-16)
 
 
