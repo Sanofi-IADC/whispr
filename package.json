@@ -30,7 +30,7 @@
     "@instana/collector": "1.117.3",
     "@nestjs/common": "7.2.0",
     "@nestjs/core": "7.2.0",
-    "@nestjs/graphql": "7.8.2",
+    "@nestjs/graphql": "7.10.3",
     "@nestjs/mongoose": "7.1.2",
     "@nestjs/platform-fastify": "7.2.0",
     "@nestjs/platform-socket.io": "7.2.0",
