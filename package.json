@@ -81,7 +81,7 @@
     "@types/hapi__joi": "17.1.6",
     "@types/jest": "26.0.22",
     "@types/mongoose": "5.10.4",
-    "@types/node": "12.20.6",
+    "@types/node": "12.20.7",
     "@types/socket.io": "2.1.13",
     "@types/supertest": "2.0.10",
     "@types/tunnel": "0.0.2",
