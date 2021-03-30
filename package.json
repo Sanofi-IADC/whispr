@@ -61,7 +61,7 @@
     "request": "2.88.2",
     "rimraf": "3.0.2",
     "rxjs": "6.6.7",
-    "superagent": "5.3.1",
+    "superagent": "6.1.0",
     "superagent-promise": "1.1.0",
     "superagent-proxy": "2.1.0",
     "tunnel": "0.0.6",
