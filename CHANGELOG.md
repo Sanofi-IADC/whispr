@@ -1,3 +1,10 @@
+## [2.2.19](https://github.com/Sanofi-IADC/whispr/compare/v2.2.18...v2.2.19) (2021-03-30)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency rxjs to v6.6.7 ([99f6c4f](https://github.com/Sanofi-IADC/whispr/commit/99f6c4ff2af891ef02cdcce4834129a57348027f))
+
 ## [2.2.18](https://github.com/Sanofi-IADC/whispr/compare/v2.2.17...v2.2.18) (2021-03-30)
 
 
