@@ -1,3 +1,10 @@
+## [2.2.21](https://github.com/Sanofi-IADC/whispr/compare/v2.2.20...v2.2.21) (2021-04-16)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency superagent to v6 ([7ee4504](https://github.com/Sanofi-IADC/whispr/commit/7ee45047bcfc0a37f106c4e033e91b6d4aef35e2))
+
 ## [2.2.20](https://github.com/Sanofi-IADC/whispr/compare/v2.2.19...v2.2.20) (2021-03-30)
 
 
