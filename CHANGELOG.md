@@ -1,3 +1,10 @@
+## [2.2.22](https://github.com/Sanofi-IADC/whispr/compare/v2.2.21...v2.2.22) (2021-04-17)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency cross-fetch to v3.1.4 ([462a726](https://github.com/Sanofi-IADC/whispr/commit/462a7260f2e72d198a1ee5c201eec843a5c87d44))
+
 ## [2.2.21](https://github.com/Sanofi-IADC/whispr/compare/v2.2.20...v2.2.21) (2021-04-16)
 
 
