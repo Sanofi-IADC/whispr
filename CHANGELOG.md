@@ -1,3 +1,13 @@
+## [2.2.27](https://github.com/Sanofi-IADC/whispr/compare/v2.2.26...v2.2.27) (2021-04-19)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/terminus to v7.1.2 ([cd98119](https://github.com/Sanofi-IADC/whispr/commit/cd98119c5981eb6ab336d698bd9b15faab8180c5))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.6.0 ([65fd459](https://github.com/Sanofi-IADC/whispr/commit/65fd459621d4db3f8eb9caccb0cc4a626633903b))
+* **dependency maintenance:** update dependency graphql to v15.5.0 ([cd1ba5f](https://github.com/Sanofi-IADC/whispr/commit/cd1ba5fdf21e629f2597c1eec568e54bf773be9c))
+* **dependency maintenance:** update dependency graphql-subscriptions to v1.2.1 ([ab653bc](https://github.com/Sanofi-IADC/whispr/commit/ab653bc7d4da59bb2a5573ea7caa38e480bc51f8))
+
 ## [2.2.26](https://github.com/Sanofi-IADC/whispr/compare/v2.2.25...v2.2.26) (2021-04-17)
 
 
