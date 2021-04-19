@@ -36,7 +36,9 @@
     "import/extensions": "off",
     "max-len": ["error", {"code": 130}],
     "quotes": ["error", "single"],
-    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": ["error"]
   },
   "overrides": [
     {
