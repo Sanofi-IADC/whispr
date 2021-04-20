@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import http from 'k6/http';
-import { sleep } from 'k6';
+import { check, sleep } from 'k6';
 
 export const options = {
   maxRedirects: 0,
@@ -11,12 +11,11 @@ export const options = {
       executor: 'ramping-vus',
       startVUs: 5,
       stages: [
-        { duration: '10s', target: 20 },
-        { duration: '20s', target: 20 },
-        { duration: '10s', target: 50 },
+        { duration: '30s', target: 20 },
         { duration: '30s', target: 50 },
-        { duration: '10s', target: 100 },
-        { duration: '20s', target: 100 },
+        { duration: '30s', target: 100 },
+        { duration: '30s', target: 200 },
+        { duration: '30s', target: 500 },
         // { duration: '10s', target: 200 },
         // { duration: '30s', target: 200 },
         // { duration: '10s', target: 500 },
@@ -37,6 +36,7 @@ export const options = {
   },
 };
 
+// eslint-disable-next-line func-names
 export default function () {
   const mutationOpen = `
   mutation createwhisp {
@@ -56,9 +56,23 @@ export default function () {
     'Content-Type': 'application/json',
   };
 
-  const res = http.post(url,
+  const response = http.post(url,
     JSON.stringify({ query: mutationOpen }),
     { headers });
 
-  sleep(0.1);
+  // const result = check(response, {
+  //   'response has status code 200': (r) => r.status === 200,
+  //   'repsonse does not contain error': (r) => r.headers['Retry-After'] === undefined,
+  //   'response does contain data': (r) => {
+  //     try {
+  //       return (r.json() as any).data;
+  //     } catch (error) {
+  //       return false;
+  //     }
+  //   },
+  // });
+  // // This allows us to have a global check to display the succeeded request ratio in the results
+  // check(response, { 'request succeed': () => result });
+
+  sleep(0.5);
 }
