@@ -1,0 +1,63 @@
+name: K6 load tests
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  quality:
+    name: K6 load tests
+    if: "!contains(github.event.head_commit.message, 'chore(release):')"
+    runs-on: ubuntu-18.04
+    env:
+      AWS_ACCESS_KEY_ID: dummy
+      AWS_SECRET_ACCESS_KEY: dummy
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+      redis:
+        image: redis
+        ports:
+          - 6379:6379
+      localstack:
+        image: localstack/localstack
+        ports:
+          - 4566:4566
+        env:
+          SERVICES: s3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci
+ 
+      - name: Install k6
+        run: |
+          curl https://github.com/loadimpact/k6/releases/download/v0.26.2/k6-v0.26.2-linux64.tar.gz -L | tar xvz --strip-components 1
+      # We need execute the script manually because the code is mounted after the container is created
+      - name: Create s3 bucket on localstack
+        run: docker exec ${{job.services.localstack.id}} bash -c "`cat aws/bucket.sh`"
+      
+      - name: Start server and run tests
+        run: |
+          npm start & npx wait-on http://localhost:3000
+          ./k6 run ./tests/load/whisp-create-load.js
