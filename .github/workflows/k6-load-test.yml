@@ -64,5 +64,5 @@ jobs:
       
       - name: Start server and run tests
         run: |
-          npm start & npx wait-on http://localhost:3000
+          npm start & npx wait-on http://localhost:3000 --quiet
           ./k6 run ./tests/load/whisp-create-load.js
