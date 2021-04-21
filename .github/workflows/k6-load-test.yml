@@ -65,4 +65,5 @@ jobs:
       - name: Start server and run tests
         run: |
           npm start > nest.log & npx wait-on http-get://localhost:3000/health
+          curl http://localhost:3000
           ./k6 run tests/load/whisp-create.load.js
