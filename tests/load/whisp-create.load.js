@@ -75,5 +75,5 @@ export default function () {
   // // This allows us to have a global check to display the succeeded request ratio in the results
   // check(response, { 'request succeed': () => result });
 
-  sleep(0.5);
+  sleep(1);
 }
