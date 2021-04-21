@@ -50,7 +50,7 @@ export default function () {
   }
   `;
 
-  const url = __ENV.ENVIRONMENT_URL || 'http://localhost:3000/graphql';
+  const url = __ENV.ENVIRONMENT_URL || 'http://127.0.0.1:3000/graphql';
 
   const headers = {
     'Content-Type': 'application/json',
