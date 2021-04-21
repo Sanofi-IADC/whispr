@@ -58,6 +58,7 @@ jobs:
       - name: Install k6
         run: |
           curl https://github.com/loadimpact/k6/releases/download/v0.26.2/k6-v0.26.2-linux64.tar.gz -L | tar xvz --strip-components 1
+      
       # We need execute the script manually because the code is mounted after the container is created
       - name: Create s3 bucket on localstack
         run: docker exec ${{job.services.localstack.id}} bash -c "`cat aws/bucket.sh`"
@@ -65,4 +66,4 @@ jobs:
       - name: Start server and run tests
         run: |
           npm start > nest.log & npx wait-on http-get://localhost:3000/health
-          ./k6 run tests/load/whisp-create.load.js
+          ./k6 run --vus 200 --duration 30s tests/load/whisp-create.load.js
