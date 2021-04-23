@@ -7,7 +7,7 @@ import { Hello } from './interfaces/hello.interface';
 
 @Injectable()
 export class AppService {
-  app = { version, name }
+  app = { version, name };
 
   getHello(): Hello {
     return {
