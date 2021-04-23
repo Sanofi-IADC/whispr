@@ -13,7 +13,7 @@ describe('Whisp resolver', () => {
   let testingModule: TestingModule;
   let resolver: WhispResolver;
   let distributionService: DistributionService;
-  let spyService: WhispService;
+  let whispService: WhispService;
 
   beforeEach(async () => {
     testingModule = await Test.createTestingModule({
@@ -44,14 +44,14 @@ describe('Whisp resolver', () => {
       ],
     }).compile();
     resolver = testingModule.get(WhispResolver);
-    spyService = testingModule.get(WhispService);
+    whispService = testingModule.get(WhispService);
     distributionService = testingModule.get(DistributionService);
   })
 
   describe('whisps', () => {
     it('should return all whisps', async () => {
       resolver.whisps();
-      expect(spyService.findAll).toHaveBeenCalled();
+      expect(whispService.findAll).toHaveBeenCalled();
     });
   });
 
@@ -63,7 +63,7 @@ describe('Whisp resolver', () => {
         data: { item1: true, item2: 7 }
       }
       resolver.createWhisp(params);
-      expect(spyService.create).toHaveBeenCalledWith(params);
+      expect(whispService.create).toHaveBeenCalledWith(params);
     });
   })
 })
