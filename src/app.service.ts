@@ -3,16 +3,15 @@ import haiku from 'haiku-random';
 
 import { name, version } from '../package.json';
 
-import { Hello } from './interfaces/hello.interface';
+const getHaikuAsText = () => haiku.random().join('\n');
 
 @Injectable()
 export class AppService {
-  app = { version, name };
+  hello = `Welcome to ${name}!\nVersion: ${version}`;
 
-  getHello(): Hello {
-    return {
-      ...this.app,
-      haiku: haiku.random(),
-    };
+  apiPath = 'If you are looking for the API, go to .../graphql';
+
+  getHello(): string {
+    return `${this.hello}\n\n${getHaikuAsText()}\n\n${this.apiPath}`;
   }
 }
