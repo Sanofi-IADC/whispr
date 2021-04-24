@@ -1,3 +1,22 @@
+# [2.3.0](https://github.com/Sanofi-IADC/whispr/compare/v2.2.32...v2.3.0) (2021-04-24)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** pin dependency haiku-random to 1.0.0 ([2275cc9](https://github.com/Sanofi-IADC/whispr/commit/2275cc9007db4c33a32368d5c2dd2b9e87428cd2))
+* **lint:** fixes linting issue in app e2e test ([4274123](https://github.com/Sanofi-IADC/whispr/commit/4274123ec58618ec7f8190633bd1134dcdfac6d4))
+* **lint:** fixes linting issues on app service ([933a722](https://github.com/Sanofi-IADC/whispr/commit/933a722ef331e7b8ca70ed5c21874740526af149))
+* **prettier:** adds missing prettier configuration ([9234aa3](https://github.com/Sanofi-IADC/whispr/commit/9234aa358c2736c86eba21309fbe2161b899a96e))
+
+
+### Features
+
+* **controller:** changes the output of getHello ([9c848e3](https://github.com/Sanofi-IADC/whispr/commit/9c848e3e4fe1c9fcaa12d33ea8f0d887726a824e))
+* **controller:** refactors getHello route ([d57a380](https://github.com/Sanofi-IADC/whispr/commit/d57a3800beda02c672cc6a44b8b46e0488f687ac))
+* **interface:** removes unused interface ([5617562](https://github.com/Sanofi-IADC/whispr/commit/5617562d44e9f4b0465cacd74b5fe3d96212a0c0))
+* **package:** adds haiku-random as dependency ([eeb84bf](https://github.com/Sanofi-IADC/whispr/commit/eeb84bf6af0a4a68dd4df533d72b26cf4c16e96c))
+* **package:** changes app name ([b39b078](https://github.com/Sanofi-IADC/whispr/commit/b39b0782865a1e4719a373fae475a878911a84df))
+
 ## [2.2.32](https://github.com/Sanofi-IADC/whispr/compare/v2.2.31...v2.2.32) (2021-04-23)
 
 
