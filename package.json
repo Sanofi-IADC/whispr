@@ -55,7 +55,7 @@
     "graphql-tools": "7.0.4",
     "graphql-type-json": "0.3.2",
     "haiku-random": "1.0.0",
-    "ioredis": "4.26.0",
+    "ioredis": "4.27.1",
     "lodash": "4.17.21",
     "mongoose": "5.10.19",
     "reflect-metadata": "0.1.13",
