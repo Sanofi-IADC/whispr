@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/Sanofi-IADC/whispr/compare/v2.3.0...v2.3.1) (2021-04-24)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency ioredis to v4.27.1 ([2251afb](https://github.com/Sanofi-IADC/whispr/commit/2251afb0849eb5ef1357f388005328090ab4aa6b))
+
 # [2.3.0](https://github.com/Sanofi-IADC/whispr/compare/v2.2.32...v2.3.0) (2021-04-24)
 
 
