@@ -1,3 +1,10 @@
+## [2.3.3](https://github.com/Sanofi-IADC/whispr/compare/v2.3.2...v2.3.3) (2021-04-27)
+
+
+### Bug Fixes
+
+* **build:** changes JSON module resolution ([2060058](https://github.com/Sanofi-IADC/whispr/commit/20600583e42c3454ae6990e5fd683ef2dce73870))
+
 ## [2.3.2](https://github.com/Sanofi-IADC/whispr/compare/v2.3.1...v2.3.2) (2021-04-26)
 
 
