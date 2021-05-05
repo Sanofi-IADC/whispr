@@ -1,3 +1,10 @@
+## [2.3.12](https://github.com/Sanofi-IADC/whispr/compare/v2.3.11...v2.3.12) (2021-05-05)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency dotenv to v8.5.1 ([34ce12e](https://github.com/Sanofi-IADC/whispr/commit/34ce12e46dae835cfe38225de378b0b2e6d048ed))
+
 ## [2.3.11](https://github.com/Sanofi-IADC/whispr/compare/v2.3.10...v2.3.11) (2021-05-05)
 
 
