@@ -44,3 +44,6 @@ lerna-debug.log*
 # Dockermake
 Makedockfile.dist.conf
 Makedockfile.out
+
+#Clinic.js
+.clinic
