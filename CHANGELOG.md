@@ -1,3 +1,176 @@
+## [2.3.20](https://github.com/Sanofi-IADC/whispr/compare/v2.3.19...v2.3.20) (2021-05-07)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.903.0 ([791aa8f](https://github.com/Sanofi-IADC/whispr/commit/791aa8f4a0c18ddbba317459b188980eee9de085))
+
+## [2.3.19](https://github.com/Sanofi-IADC/whispr/compare/v2.3.18...v2.3.19) (2021-05-07)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.119.5 ([4f7b449](https://github.com/Sanofi-IADC/whispr/commit/4f7b4497530879796e193c1a11566d3093117d24))
+
+## [2.3.18](https://github.com/Sanofi-IADC/whispr/compare/v2.3.17...v2.3.18) (2021-05-06)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.902.0 ([93a61cd](https://github.com/Sanofi-IADC/whispr/commit/93a61cd1357c9ec8d224c37d81aa8a491230ed2c))
+
+## [2.3.17](https://github.com/Sanofi-IADC/whispr/compare/v2.3.16...v2.3.17) (2021-05-06)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.6.1 ([8d9b969](https://github.com/Sanofi-IADC/whispr/commit/8d9b9691423c257cd2b8025191fcecc61801c619))
+
+## [2.3.16](https://github.com/Sanofi-IADC/whispr/compare/v2.3.15...v2.3.16) (2021-05-06)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency dotenv to v8.6.0 ([8650cc3](https://github.com/Sanofi-IADC/whispr/commit/8650cc3e411af46ea79b821740abe93cb30bce1c))
+
+## [2.3.15](https://github.com/Sanofi-IADC/whispr/compare/v2.3.14...v2.3.15) (2021-05-06)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.901.0 ([a532791](https://github.com/Sanofi-IADC/whispr/commit/a532791bff7657ad04faf55f4fbce8a46b601fba))
+
+## [2.3.14](https://github.com/Sanofi-IADC/whispr/compare/v2.3.13...v2.3.14) (2021-05-05)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.119.4 ([3e007d7](https://github.com/Sanofi-IADC/whispr/commit/3e007d7a2f0ea563db9a86c506d16cd41433571a))
+
+## [2.3.13](https://github.com/Sanofi-IADC/whispr/compare/v2.3.12...v2.3.13) (2021-05-05)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.900.0 ([4370866](https://github.com/Sanofi-IADC/whispr/commit/437086685b49cb641ccef012033e355666bea1fa))
+
+## [2.3.12](https://github.com/Sanofi-IADC/whispr/compare/v2.3.11...v2.3.12) (2021-05-05)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency dotenv to v8.5.1 ([34ce12e](https://github.com/Sanofi-IADC/whispr/commit/34ce12e46dae835cfe38225de378b0b2e6d048ed))
+
+## [2.3.11](https://github.com/Sanofi-IADC/whispr/compare/v2.3.10...v2.3.11) (2021-05-05)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency ioredis to v4.27.2 ([6fc2d0a](https://github.com/Sanofi-IADC/whispr/commit/6fc2d0a67d0458444878f87ce093e649b52ef8ad))
+
+## [2.3.10](https://github.com/Sanofi-IADC/whispr/compare/v2.3.9...v2.3.10) (2021-05-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.119.3 ([72d48be](https://github.com/Sanofi-IADC/whispr/commit/72d48bea359ab5586884664c20c46d461a9c31a2))
+
+## [2.3.9](https://github.com/Sanofi-IADC/whispr/compare/v2.3.8...v2.3.9) (2021-05-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.899.0 ([b0eea1b](https://github.com/Sanofi-IADC/whispr/commit/b0eea1b7c9d64b1d3bf33ea023fcac41f3c23a64))
+
+## [2.3.8](https://github.com/Sanofi-IADC/whispr/compare/v2.3.7...v2.3.8) (2021-05-03)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.898.0 ([ce80bc9](https://github.com/Sanofi-IADC/whispr/commit/ce80bc92814ca958b683fbe66acebda900f2f9f0))
+
+## [2.3.7](https://github.com/Sanofi-IADC/whispr/compare/v2.3.6...v2.3.7) (2021-04-30)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.897.0 ([ebb4351](https://github.com/Sanofi-IADC/whispr/commit/ebb435123343200e49f514fd3e31ff51b2257ee1))
+
+## [2.3.6](https://github.com/Sanofi-IADC/whispr/compare/v2.3.5...v2.3.6) (2021-04-29)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.896.0 ([dfff468](https://github.com/Sanofi-IADC/whispr/commit/dfff468666d6d537846eb1a4721c7afc9686a4ef))
+
+## [2.3.5](https://github.com/Sanofi-IADC/whispr/compare/v2.3.4...v2.3.5) (2021-04-28)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.895.0 ([5513426](https://github.com/Sanofi-IADC/whispr/commit/55134260beaf509ae63adc747276f820a82b4afd))
+
+## [2.3.4](https://github.com/Sanofi-IADC/whispr/compare/v2.3.3...v2.3.4) (2021-04-27)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.894.0 ([78bbe99](https://github.com/Sanofi-IADC/whispr/commit/78bbe9969f184d0523e9f4a5c153da5f921e1c00))
+
+## [2.3.3](https://github.com/Sanofi-IADC/whispr/compare/v2.3.2...v2.3.3) (2021-04-27)
+
+
+### Bug Fixes
+
+* **build:** changes JSON module resolution ([2060058](https://github.com/Sanofi-IADC/whispr/commit/20600583e42c3454ae6990e5fd683ef2dce73870))
+
+## [2.3.2](https://github.com/Sanofi-IADC/whispr/compare/v2.3.1...v2.3.2) (2021-04-26)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.893.0 ([3393ea4](https://github.com/Sanofi-IADC/whispr/commit/3393ea4d0d223bdd720b248c6c7bd962ce87b81c))
+
+## [2.3.1](https://github.com/Sanofi-IADC/whispr/compare/v2.3.0...v2.3.1) (2021-04-24)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency ioredis to v4.27.1 ([2251afb](https://github.com/Sanofi-IADC/whispr/commit/2251afb0849eb5ef1357f388005328090ab4aa6b))
+
+# [2.3.0](https://github.com/Sanofi-IADC/whispr/compare/v2.2.32...v2.3.0) (2021-04-24)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** pin dependency haiku-random to 1.0.0 ([2275cc9](https://github.com/Sanofi-IADC/whispr/commit/2275cc9007db4c33a32368d5c2dd2b9e87428cd2))
+* **lint:** fixes linting issue in app e2e test ([4274123](https://github.com/Sanofi-IADC/whispr/commit/4274123ec58618ec7f8190633bd1134dcdfac6d4))
+* **lint:** fixes linting issues on app service ([933a722](https://github.com/Sanofi-IADC/whispr/commit/933a722ef331e7b8ca70ed5c21874740526af149))
+* **prettier:** adds missing prettier configuration ([9234aa3](https://github.com/Sanofi-IADC/whispr/commit/9234aa358c2736c86eba21309fbe2161b899a96e))
+
+
+### Features
+
+* **controller:** changes the output of getHello ([9c848e3](https://github.com/Sanofi-IADC/whispr/commit/9c848e3e4fe1c9fcaa12d33ea8f0d887726a824e))
+* **controller:** refactors getHello route ([d57a380](https://github.com/Sanofi-IADC/whispr/commit/d57a3800beda02c672cc6a44b8b46e0488f687ac))
+* **interface:** removes unused interface ([5617562](https://github.com/Sanofi-IADC/whispr/commit/5617562d44e9f4b0465cacd74b5fe3d96212a0c0))
+* **package:** adds haiku-random as dependency ([eeb84bf](https://github.com/Sanofi-IADC/whispr/commit/eeb84bf6af0a4a68dd4df533d72b26cf4c16e96c))
+* **package:** changes app name ([b39b078](https://github.com/Sanofi-IADC/whispr/commit/b39b0782865a1e4719a373fae475a878911a84df))
+
+## [2.2.32](https://github.com/Sanofi-IADC/whispr/compare/v2.2.31...v2.2.32) (2021-04-23)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.892.0 ([cea173d](https://github.com/Sanofi-IADC/whispr/commit/cea173d1e7bc207003d04572ef49295ae3ac5ab1))
+
+## [2.2.31](https://github.com/Sanofi-IADC/whispr/compare/v2.2.30...v2.2.31) (2021-04-22)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.891.0 ([68dd43a](https://github.com/Sanofi-IADC/whispr/commit/68dd43a7655892888e5649ddc95119f10d14ee89))
+
 ## [2.2.30](https://github.com/Sanofi-IADC/whispr/compare/v2.2.29...v2.2.30) (2021-04-21)
 
 
