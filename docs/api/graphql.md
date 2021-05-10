@@ -153,7 +153,7 @@ Example output from the query above:
     }
 ```
 
-Example output with no group parameter:
+Example output with no group parameter (in this case to simplify the object you also just exclude _id from the query to return the count field only):
 ```json
 "whispCount": [
   {
