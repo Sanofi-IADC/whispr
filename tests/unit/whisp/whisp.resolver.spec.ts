@@ -25,6 +25,7 @@ describe('Whisp resolver', () => {
           useFactory: () => ({
             findAll: jest.fn(() => true),
             create: jest.fn(() => true),
+            countWhispsGroup: jest.fn(() => true),
           }),
         },
         {
@@ -56,7 +57,7 @@ describe('Whisp resolver', () => {
   });
 
   describe('createWhisp', () => {
-    it('should create a whisp with expected parameters', async () => {
+    it('should call createWhisp with expected parameters', async () => {
       const params = {
         type: 'MYTYPE',
         applicationID: 'MYAPP',
@@ -64,6 +65,24 @@ describe('Whisp resolver', () => {
       }
       resolver.createWhisp(params);
       expect(whispService.create).toHaveBeenCalledWith(params);
+    });
+  })
+
+  describe('countWhisps', () => {
+    it('should call countWhisps with expected parameters', async () => {
+      const filter = [{
+        applicationID: "SMUDGE",
+        "data.customData.id": "503"
+      },
+      {
+        applicationID: "SMUDGE",
+        "data.customData.id": "504"
+      }]
+
+      const group = { mainGrouping: "$data.customData.id", secondaryGrouping: "$data.customData.description"}
+      
+      resolver.whispCount(filter, group);
+      expect(whispService.countWhispsGroup).toHaveBeenCalledWith(filter, group);
     });
   })
 })
