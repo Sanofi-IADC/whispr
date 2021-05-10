@@ -57,7 +57,7 @@ export class WhispResolver {
   @Query(() => [WhispCount])
   async whispCount(
     @Args('filter', { type: () => [GraphQLJSONObject], nullable: true })
-      filter: string[],
+      filter: Record<string, unknown>[],
       @Args('group', { type: () => GraphQLJSONObject, nullable: true })
       group: Record<string, unknown>,
   ): Promise<WhispCount[]> {
