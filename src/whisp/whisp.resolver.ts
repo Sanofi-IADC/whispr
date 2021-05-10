@@ -12,7 +12,6 @@ import { DistributionService } from '../distribution/distribution.service';
 import { filterPayload } from '../utils/filterPayload.service';
 import { Tag } from '../tag/tag.entity';
 import { TagInputType } from '../tag/tag.input';
-import { IWhispCountGroup } from 'src/interfaces/whispCountGroup.interface';
 import { WhispCountGroup } from './whispCountGroup.entity';
 
 @Resolver(() => Whisp)
@@ -61,7 +60,7 @@ export class WhispResolver {
       filter: string[],
       @Args('group', { type: () => GraphQLJSONObject, nullable: true })
       group: Record<string, unknown>,
-  ): Promise<IWhispCountGroup[]> {
+  ): Promise<WhispCountGroup[]> {
     return this.whispService.countWhispsGroup(filter, group);
   }
 

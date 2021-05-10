@@ -11,7 +11,7 @@ import { WhispInputType } from './whisp.input';
 import { WhispAttachment } from './whisp-attachment.entity';
 import { WhispAttachmentInput } from './whisp-attachment.input';
 import { TagInputType } from '../tag/tag.input';
-import { IWhispCountGroup } from 'src/interfaces/whispCountGroup.interface';
+import { WhispCountGroup } from './whispCountGroup.entity';
 
 @Injectable()
 export class WhispService {
@@ -90,11 +90,11 @@ export class WhispService {
     return this.whispModel.countDocuments(filter).exec();
   }
 
-  async countWhispsGroup(filter: Partial<IWhisp>[], group: any): Promise<IWhispCountGroup[]> {
+  async countWhispsGroup(filter: Partial<IWhisp>[], group: any): Promise<WhispCountGroup[]> {
     //TODO: group interface instead of using any type
 
-    let mongoMatch = { '$match': { '$or': filter } };
-    let mongoGroup = { '$group': { '_id': group, count: { '$sum': 1 } } };
+    const mongoMatch = { '$match': { '$or': filter } };
+    const mongoGroup = { '$group': { '_id': group, count: { '$sum': 1 } } };
 
     const result = this.whispModel.aggregate([mongoMatch, mongoGroup]).exec();
     return result;
