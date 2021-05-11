@@ -52,7 +52,7 @@
     "graphql-redis-subscriptions": "2.3.1",
     "graphql-subscriptions": "1.2.1",
     "graphql-tag-pluck": "0.8.7",
-    "graphql-tools": "7.0.4",
+    "graphql-tools": "7.0.5",
     "graphql-type-json": "0.3.2",
     "haiku-random": "1.0.0",
     "ioredis": "4.27.2",
