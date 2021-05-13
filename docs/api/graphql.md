@@ -87,7 +87,7 @@ Query variables
 * The filtering options are described [here](./filters.md).
 * The `/whispsCount` query accepts mongoose filtering functionality.
 
-### whispCount
+### countWhisps
 
 Returns an array with count of matching whisps, grouped by the specified object.
 
@@ -100,7 +100,7 @@ This query uses MongoDB aggregation to group and count objects. It is the same a
 
 ```GraphQL
 query getWhispCountGrouped($filters: [JSONObject!], $group: JSONObject! ) {
-  whispCount(filter: $filters, group: $group)
+  countWhisps(filter: $filters, group: $group)
   {
     _id
     count
@@ -129,7 +129,7 @@ Note that both filter and group parameters are optional. If no group is specifie
 Example output from the query above:
 ```json
 
-"whispCount": [
+"countWhisps": [
     {
       "_id": {
         "mainGrouping": "503",
@@ -155,7 +155,7 @@ Example output from the query above:
 
 Example output with no group parameter (in this case to simplify the object you also just exclude _id from the query to return the count field only):
 ```json
-"whispCount": [
+"countWhisps": [
   {
     "_id": null,
     "count": 505797
