@@ -46,6 +46,7 @@ export class WhispResolver {
     return this.whispService.findAll(filter, sort, limit);
   }
 
+  //whispsCount is due to be deprecated - replaced by countWhisps
   @Query(() => Number)
   async whispsCount(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
