@@ -2,7 +2,7 @@ import { Logger } from '@nestjs/common';
 import { getConnectionToken, getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { Test } from '@nestjs/testing';
 import dotenv from 'dotenv';
-import { Connection, deleteModel, Model } from 'mongoose';
+import { Connection, deleteModel, Model, MongooseDocument, Types, mongo } from 'mongoose';
 import { IWhisp } from 'src/interfaces/whisp.interface';
 import { EventService } from '../../../src/event/event.service';
 import { FileService } from '../../../src/file/file.service';
@@ -10,11 +10,35 @@ import { SequenceService } from '../../../src/sequence/sequence.service';
 import { whispSchema } from '../../../src/whisp/whisp.schema';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { DistributionService } from '../../../src/distribution/distribution.service';
+import { closeInMongodConnection, rootMongooseTestModule } from './helpers';
+
 
 jest.mock('../../../src/distribution/distribution.service');
 jest.mock('../../../src/event/event.service');
 jest.mock('../../../src/file/file.service');
 jest.mock('../../../src/sequence/sequence.service');
+
+// const INPUT_WHISP: IWhisp = {
+//   readableID: 'myid',
+//   type: 'mytype',
+//   severity: 0,
+//   description: 'desc',
+//   closed: true,
+//   applicationID: 'APP',
+//   plantID: 'P2',
+//   locationID: 'LOC_1',
+//   manual: true,
+//   openedBy: 'me',
+//   openedById: 'me123',
+//   closedBy: 'me',
+//   closedById: 'me123',
+//   timestamp: new Date(),
+//   updated: new Date(),
+//   data: {},
+//   tags: [],
+//   attachments: []
+// }
+
 dotenv.config({ path: 'test.env' });
 describe('WhispService', () => {
   let whispService: WhispService;
@@ -23,58 +47,101 @@ describe('WhispService', () => {
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [
-        MongooseModule.forRoot(`mongodb://${process.env.MONGOOSE_HOST}`, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        }),
-        MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
+        // rootMongooseTestModule(),
+        // MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
       ],
-      providers: [WhispService, Logger, DistributionService, FileService, SequenceService, EventService],
+      providers: [
+        {
+          provide: getModelToken('Whisp'),
+          // notice that only the functions we call from the model are mocked
+          useFactory: () => ({
+            // new: jest.fn().mockResolvedValue(mockCat()),
+            // constructor: jest.fn().mockResolvedValue(mockCat()),
+            find: jest.fn(),
+            findOne: jest.fn(),
+            findOneAndUpdate: jest.fn().mockReturnThis(),
+            update: jest.fn(),
+            create: jest.fn(),
+            remove: jest.fn(),
+            aggregate: jest.fn().mockReturnThis(),
+            exec: jest.fn(),
+          }),
+        },
+        WhispService, Logger, {
+        provide: DistributionService,
+        useFactory: () => ({
+          distributeWhisp: jest.fn(() => true)
+        }),
+      }, FileService, SequenceService, EventService],
     }).compile();
     whispService = moduleRef.get<WhispService>(WhispService);
     whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
-    dbConnection = moduleRef.get<Connection>(getConnectionToken());
-    await whispModel.deleteMany({});
+    // dbConnection = moduleRef.get<Connection>(getConnectionToken());
+    // await whispModel.deleteMany({});
   });
   afterEach(async () => {
-    await dbConnection.close();
+    // await closeInMongodConnection();
   });
-  afterAll(() => {
-    dbConnection.modelNames().forEach((modelName) => {
-      deleteModel(modelName);
-    });
+  afterAll(async () => {
+
+    // dbConnection.modelNames().forEach((modelName) => {
+    //   deleteModel(modelName);
+    // });
+    // await closeInMongodConnection();
+
   });
   describe('create Whisp', () => {
     it('should set Timestamp when no timestamp is provided', async () => {
       const result = await whispService.create({});
 
-      expect(result.timestamp instanceof Date).toBeTruthy();
+      expect(whispModel.create).toBeCalledWith(
+        expect.objectContaining({
+          timestamp: expect.any(Date)
+        }));
+      
+      // expect(result.timestamp instanceof Date).toBeTruthy();
     });
     it('should keep custom timestamp when timestamp is provided', async () => {
       const timestamp = new Date();
-      const result = await whispService.create({ timestamp });
+      await whispService.create({ timestamp });
 
-      expect(result.timestamp.valueOf()).toEqual(timestamp.valueOf());
+      expect(whispModel.create).toBeCalledWith(
+        expect.objectContaining({
+          timestamp: timestamp
+        }));
+
+      // expect(result.timestamp.valueOf()).toEqual(timestamp.valueOf());
     });
   });
   describe('Update Whisp', () => {
     it('should update timestamp when it is provided', async () => {
       const timestamp = new Date();
       timestamp.setHours(timestamp.getHours() + 1);
-      const initialWhisp = await whispService.create({});
 
-      const result = await whispService.update(initialWhisp._id, { timestamp });
+      await whispService.update('56cb91bdc3464f14678934ca', { timestamp });
+      expect(whispModel.findOneAndUpdate).toBeCalledWith(expect.anything(),
+        expect.objectContaining({
+          timestamp: timestamp
+        }), expect.anything());
 
-      expect(result.timestamp.valueOf()).toEqual(timestamp.valueOf());
+      // expect(result.timestamp.valueOf()).toEqual(timestamp.valueOf());
     });
     it('should keep timestamp when it is not provided', async () => {
-      const timestamp = new Date();
-      timestamp.setHours(timestamp.getHours() + 1);
-      const initialWhisp = await whispService.create({ timestamp });
+      await whispService.update('56cb91bdc3464f14678934ca', { });
+      expect(whispModel.findOneAndUpdate).toBeCalledWith(expect.anything(),
+        expect.not.objectContaining({
+          timestamp: expect.any(Date)
+        }), expect.anything());
+    });
+  });
 
-      const result = await whispService.update(initialWhisp._id, {});
+  describe('Count Whisp', () => {
+    it('calls mongo aggregate with correct filter and group', async () => {
+      await whispService.countWhispsGroup();
+      const match = { '$match': {} }
+      const group = {'$group': { '_id': undefined, count: { '$sum': 1 } }};
 
-      expect(result.timestamp.valueOf()).toEqual(initialWhisp.timestamp.valueOf());
+      expect(whispModel.aggregate).toBeCalledWith([match, group]);
     });
   });
 });
