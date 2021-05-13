@@ -15,7 +15,7 @@ import { WhispCount } from './whispCount.entity';
 
 @Injectable()
 export class WhispService {
-  private readonly logger = new Logger(DistributionService.name);
+  private readonly logger = new Logger(WhispService.name);
 
   constructor(
     @InjectModel('Whisp') private readonly whispModel: Model<IWhisp>,
