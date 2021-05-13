@@ -34,7 +34,7 @@
     "@nestjs/mongoose": "7.1.2",
     "@nestjs/platform-fastify": "7.2.0",
     "@nestjs/platform-socket.io": "7.2.0",
-    "@nestjs/terminus": "7.1.2",
+    "@nestjs/terminus": "7.2.0",
     "@nestjs/websockets": "7.2.0",
     "@types/graphql": "14.5.0",
     "amazon-cognito-identity-js": "4.6.1",
