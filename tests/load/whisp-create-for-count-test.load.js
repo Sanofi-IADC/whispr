@@ -13,13 +13,6 @@ export const options = {
       stages: [
 
         { duration: '600s', target: 500 }
-        // { duration: '10s', target: 200 },
-        // { duration: '30s', target: 200 },
-        // { duration: '10s', target: 500 },
-        // { duration: '20s', target: 500 },
-        // { duration: '10s', target: 1000 },
-        // { duration: '20s', target: 1000 },
-        // { duration: '20s', target: 0 },
       ],
       tags: {
         application: 'whispr',
@@ -46,7 +39,7 @@ export default function () {
     mutation createwhisp {
       createWhisp(whisp:{applicationID:"SMUDGE", closed:false, data: {customData: {
         id: "${__VU}",
-        description: "a test whispxz ${__ITER}"
+        id2: "${__ITER}"
       }}}) {
       _id
       applicationID 
@@ -57,21 +50,6 @@ export default function () {
     const response = http.post(url,
       JSON.stringify({ query: mutation }),
       { headers });
-
-
-  // const result = check(response, {
-  //   'response has status code 200': (r) => r.status === 200,
-  //   'repsonse does not contain error': (r) => r.headers['Retry-After'] === undefined,
-  //   'response does contain data': (r) => {
-  //     try {
-  //       return (r.json() as any).data;
-  //     } catch (error) {
-  //       return false;
-  //     }
-  //   },
-  // });
-  // // This allows us to have a global check to display the succeeded request ratio in the results
-  // check(response, { 'request succeed': () => result });
 
   sleep(1);
 }
