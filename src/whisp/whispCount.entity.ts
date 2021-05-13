@@ -6,7 +6,7 @@ import { GraphQLJSONObject } from 'graphql-type-json';
 
 @ObjectType()
 export class WhispCount {
-  @Field(() => GraphQLJSONObject, { nullable: true }) 
+  @Field(() => GraphQLJSONObject, { nullable: true })
   _id: any;
 
   @Field(() => Int)

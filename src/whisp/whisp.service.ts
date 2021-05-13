@@ -23,7 +23,7 @@ export class WhispService {
     private readonly imageService: FileService,
     private readonly sequenceService: SequenceService,
     private readonly eventService: EventService,
-  ) { }
+  ) {}
 
   async create(whispIn: WhispInputType): Promise<IWhisp> {
     const whisp: any = whispIn;
@@ -91,11 +91,11 @@ export class WhispService {
   }
 
   async countWhispsGroup(filter?: Partial<IWhisp>[], group?: any): Promise<WhispCount[]> {
-    //TODO: group interface instead of using any type
+    // TODO: group interface instead of using any type
 
     // match and group code simulates mongo countDocuments but allows custom group
-    const mongoMatch = { '$match': (filter ? { '$or': filter } : {}) };
-    const mongoGroup = { '$group': { '_id': group, count: { '$sum': 1 } } };
+    const mongoMatch = { $match: filter ? { $or: filter } : {} };
+    const mongoGroup = { $group: { _id: group, count: { $sum: 1 } } };
 
     const result = this.whispModel.aggregate([mongoMatch, mongoGroup]).exec();
     return result;

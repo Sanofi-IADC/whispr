@@ -22,10 +22,7 @@ describe('WhispService', () => {
   let whispModel: Model<IWhisp>;
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [
-        rootMongooseTestModule(),
-        MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
-      ],
+      imports: [rootMongooseTestModule(), MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }])],
       providers: [WhispService, Logger, DistributionService, FileService, SequenceService, EventService],
     }).compile();
     whispService = moduleRef.get<WhispService>(WhispService);

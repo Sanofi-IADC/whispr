@@ -10,10 +10,10 @@ export const rootMongooseTestModule = (options: MongooseModuleOptions = {}) => M
     return {
       uri: mongoUri,
       ...options,
-    }
+    };
   },
 });
 
 export const closeInMongodConnection = async () => {
   if (mongod) await mongod.stop();
-}
+};

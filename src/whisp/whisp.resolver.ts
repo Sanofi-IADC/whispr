@@ -46,7 +46,7 @@ export class WhispResolver {
     return this.whispService.findAll(filter, sort, limit);
   }
 
-  //whispsCount is due to be deprecated - replaced by countWhisps
+  // whispsCount is due to be deprecated - replaced by countWhisps
   @Query(() => Number)
   async whispsCount(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
@@ -59,7 +59,7 @@ export class WhispResolver {
   async countWhisps(
     @Args('filter', { type: () => [GraphQLJSONObject], nullable: true })
       filter: Record<string, unknown>[],
-      @Args('group', { type: () => GraphQLJSONObject, nullable: true })
+    @Args('group', { type: () => GraphQLJSONObject, nullable: true })
       group: Record<string, unknown>,
   ): Promise<WhispCount[]> {
     return this.whispService.countWhispsGroup(filter, group);

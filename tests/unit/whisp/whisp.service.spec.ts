@@ -34,17 +34,22 @@ describe('WhispService', () => {
             exec: jest.fn(),
           }),
         },
-        WhispService, Logger, {
+        WhispService,
+        Logger,
+        {
           provide: DistributionService,
           useFactory: () => ({
-            distributeWhisp: jest.fn(() => true)
+            distributeWhisp: jest.fn(() => true),
           }),
-        }, FileService, SequenceService, EventService],
+        },
+        FileService,
+        SequenceService,
+        EventService,
+      ],
     }).compile();
     whispService = moduleRef.get<WhispService>(WhispService);
     whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
   });
-  
 
   describe('create Whisp', () => {
     it('should set Timestamp when no timestamp is provided', async () => {
@@ -52,8 +57,9 @@ describe('WhispService', () => {
 
       expect(whispModel.create).toBeCalledWith(
         expect.objectContaining({
-          timestamp: expect.any(Date)
-        }));
+          timestamp: expect.any(Date),
+        }),
+      );
     });
 
     it('should keep custom timestamp when timestamp is provided', async () => {
@@ -62,8 +68,9 @@ describe('WhispService', () => {
 
       expect(whispModel.create).toBeCalledWith(
         expect.objectContaining({
-          timestamp: timestamp
-        }));
+          timestamp,
+        }),
+      );
     });
   });
 
@@ -73,111 +80,125 @@ describe('WhispService', () => {
       timestamp.setHours(timestamp.getHours() + 1);
 
       await whispService.update('56cb91bdc3464f14678934ca', { timestamp });
-      expect(whispModel.findOneAndUpdate).toBeCalledWith(expect.anything(),
+      expect(whispModel.findOneAndUpdate).toBeCalledWith(
+        expect.anything(),
         expect.objectContaining({
-          timestamp: timestamp
-        }), expect.anything());
+          timestamp,
+        }),
+        expect.anything(),
+      );
     });
 
     it('should keep timestamp when it is not provided', async () => {
       await whispService.update('56cb91bdc3464f14678934ca', {});
-      expect(whispModel.findOneAndUpdate).toBeCalledWith(expect.anything(),
+      expect(whispModel.findOneAndUpdate).toBeCalledWith(
+        expect.anything(),
         expect.not.objectContaining({
-          timestamp: expect.any(Date)
-        }), expect.anything());
+          timestamp: expect.any(Date),
+        }),
+        expect.anything(),
+      );
     });
   });
 
   describe('Count Whisp', () => {
     it('calls mongo aggregate with empty match and group when they are not passed as parameters', async () => {
       await whispService.countWhispsGroup();
-      const expectedMatch = { '$match': {} };
-      const expectedGroup = { '$group': { '_id': undefined, count: { '$sum': 1 } } };
+      const expectedMatch = { $match: {} };
+      const expectedGroup = { $group: { _id: undefined, count: { $sum: 1 } } };
 
       expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
     });
 
     it('calls mongo aggregate with given match when defined', async () => {
-      const matchParam = [{
-        "applicationID": "SMUDGE",
-        "data.customData.id": "503"
-      },
-      {
-        "applicationID": "SMUDGE",
-        "data.customData.id": "504"
-      }];
+      const matchParam = [
+        {
+          applicationID: 'SMUDGE',
+          'data.customData.id': '503',
+        },
+        {
+          applicationID: 'SMUDGE',
+          'data.customData.id': '504',
+        },
+      ];
 
       await whispService.countWhispsGroup(matchParam, undefined);
       const expectedMatch = {
-        '$match': {
-          '$or': [{
-            "applicationID": "SMUDGE",
-            "data.customData.id": "503"
-          },
-          {
-            "applicationID": "SMUDGE",
-            "data.customData.id": "504"
-          }]
-        }
+        $match: {
+          $or: [
+            {
+              applicationID: 'SMUDGE',
+              'data.customData.id': '503',
+            },
+            {
+              applicationID: 'SMUDGE',
+              'data.customData.id': '504',
+            },
+          ],
+        },
       };
 
-      const expectedGroup = { '$group': { '_id': undefined, count: { '$sum': 1 } } };
+      const expectedGroup = { $group: { _id: undefined, count: { $sum: 1 } } };
 
       expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
     });
 
     it('calls mongo aggregate with given group when defined', async () => {
-      const groupParam = { "mainGrouping": "$data.customData.id", "secondaryGrouping": "$data.customData.description" };
+      const groupParam = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
 
       await whispService.countWhispsGroup(undefined, groupParam);
-      const expectedMatch = { '$match': {} }
+      const expectedMatch = { $match: {} };
 
       const expectedGroup = {
-        '$group': {
-          '_id': {
-            "mainGrouping": "$data.customData.id",
-            "secondaryGrouping": "$data.customData.description"
+        $group: {
+          _id: {
+            mainGrouping: '$data.customData.id',
+            secondaryGrouping: '$data.customData.description',
           },
-          count: { '$sum': 1 }
-        }
+          count: { $sum: 1 },
+        },
       };
 
       expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
     });
 
     it('calls mongo aggregate with given match and group when both are defined', async () => {
-      const matchParam = [{
-        "applicationID": "SMUDGE",
-        "data.customData.id": "503"
-      },
-      {
-        "applicationID": "SMUDGE",
-        "data.customData.id": "504"
-      }];
-      const groupParam = { "mainGrouping": "$data.customData.id", "secondaryGrouping": "$data.customData.description" };
+      const matchParam = [
+        {
+          applicationID: 'SMUDGE',
+          'data.customData.id': '503',
+        },
+        {
+          applicationID: 'SMUDGE',
+          'data.customData.id': '504',
+        },
+      ];
+      const groupParam = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
       await whispService.countWhispsGroup(matchParam, groupParam);
 
       const expectedMatch = {
-        '$match': {
-          '$or': [{
-            "applicationID": "SMUDGE",
-            "data.customData.id": "503"
-          },
-          {
-            "applicationID": "SMUDGE",
-            "data.customData.id": "504"
-          }]
-        }
+        $match: {
+          $or: [
+            {
+              applicationID: 'SMUDGE',
+              'data.customData.id': '503',
+            },
+            {
+              applicationID: 'SMUDGE',
+              'data.customData.id': '504',
+            },
+          ],
+        },
       };
 
       const expectedGroup = {
-        '$group': {
-          '_id': {
-            "mainGrouping": "$data.customData.id",
-            "secondaryGrouping": "$data.customData.description"
+        $group: {
+          _id: {
+            mainGrouping: '$data.customData.id',
+            secondaryGrouping: '$data.customData.description',
           },
-          count: { '$sum': 1 }
-        }
+          count: { $sum: 1 },
+        },
       };
 
       expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
