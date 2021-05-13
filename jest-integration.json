@@ -1,0 +1,32 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": "./",
+  "testEnvironment": "node",
+  "testRegex": ".int-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "setupFilesAfterEnv": [
+    "./tests/e2e/setup.ts"
+  ],
+  "collectCoverageFrom": [
+    "**/*.{js,ts}",
+    "!**/node_modules/**",
+    "!**/tests/**",
+    "!**/cache/**",
+    "!**/coverage/**"
+  ],
+  "collectCoverage": false,
+  "coverageDirectory": "tests/integration/coverage",
+  "testPathIgnorePatterns": [
+    "/dist/",
+    "node_modules"
+  ],
+  "modulePaths": [
+    "<rootDir>"
+  ]
+}
