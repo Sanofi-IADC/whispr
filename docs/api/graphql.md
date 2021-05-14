@@ -112,6 +112,10 @@ The query variables below provide two filters which will be applied with an OR c
 
 Note that both filter and group parameters are optional. If no group is specified your query will return a single group with a null _id object.
 
+::: tip
+For performance reasons it is strongly recommended to reduce the number of filters in the filter array. Instead, if possible try to provide only a few high level filters to reduce the scope of the data returned, and then rely on more granular grouping to get the specific count you need.
+:::
+
 ```json
   {
     "filters":[{
