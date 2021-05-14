@@ -1,3 +1,52 @@
+## [2.3.27](https://github.com/Sanofi-IADC/whispr/compare/v2.3.26...v2.3.27) (2021-05-14)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.6.2 ([8b5c49e](https://github.com/Sanofi-IADC/whispr/commit/8b5c49e48a57daded56c6a78b4f39eb89e36cabc))
+
+## [2.3.26](https://github.com/Sanofi-IADC/whispr/compare/v2.3.25...v2.3.26) (2021-05-13)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/terminus to v7.2.0 ([4535147](https://github.com/Sanofi-IADC/whispr/commit/4535147345c3c30b48d0d814be2eeba1802fac9d))
+
+## [2.3.25](https://github.com/Sanofi-IADC/whispr/compare/v2.3.24...v2.3.25) (2021-05-13)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.906.0 ([ffe1836](https://github.com/Sanofi-IADC/whispr/commit/ffe18367df09923ca03664fddc9558113854a609))
+
+## [2.3.24](https://github.com/Sanofi-IADC/whispr/compare/v2.3.23...v2.3.24) (2021-05-11)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.905.0 ([c176372](https://github.com/Sanofi-IADC/whispr/commit/c176372ef2895401a08a1505b6d19c5ce83e7102))
+
+## [2.3.23](https://github.com/Sanofi-IADC/whispr/compare/v2.3.22...v2.3.23) (2021-05-11)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency graphql-tools to v7.0.5 ([fdbfa96](https://github.com/Sanofi-IADC/whispr/commit/fdbfa96a790f193221f80665cf21fdcaa91af7a0))
+
+## [2.3.22](https://github.com/Sanofi-IADC/whispr/compare/v2.3.21...v2.3.22) (2021-05-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.904.0 ([b9d4e77](https://github.com/Sanofi-IADC/whispr/commit/b9d4e771735ffc573777bdd13824f54f208e38b3))
+
+## [2.3.21](https://github.com/Sanofi-IADC/whispr/compare/v2.3.20...v2.3.21) (2021-05-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.120.0 ([b0633e1](https://github.com/Sanofi-IADC/whispr/commit/b0633e1d7f586bf55827011dc06f14d74db86bef))
+
 ## [2.3.20](https://github.com/Sanofi-IADC/whispr/compare/v2.3.19...v2.3.20) (2021-05-07)
 
 
