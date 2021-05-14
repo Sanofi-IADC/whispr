@@ -31,13 +31,18 @@ export default function () {
     'Content-Type': 'application/json',
   };
 
-  const numberOfQueries = 100;
-  const aliasedQueries = buildQueries(numberOfQueries);
-  const variables = buildQueryVariables(numberOfQueries);
-  const params = buildQueryParams(numberOfQueries);
 
-  const query = `query getWhispCount(${params}) {
-    ${aliasedQueries}
+const variables = {
+  // "filter": buildFilter(numberOfQueries),
+  "group": { "id": "$data.customData.id"}
+};
+
+  const query = `query getWhispCount($group: JSONObject!) {
+    countWhisps(filter: { applicationID: "SMUDGE" }, group: $group)
+    {
+      _id
+      count
+    }
   }`;
 
   const response = http.post(url,
@@ -49,12 +54,17 @@ export default function () {
   sleep(1);
 }
 
-function buildQueryVariables(numberOfQueries) {
-  let variables = {};
+function buildFilter(numberOfQueries) {
+  let filter = Array(numberOfQueries);
   for (let i = 0; i < numberOfQueries; i++) {
-    variables[`filter${i}`] = { "applicationID": "SMUDGE", "closed": "false", "data.customData.id": `${i}` }
+    filter[i] = ({
+      "applicationID": "SMUDGE",
+      "data.customData.id": `${i}`
+    });
+    // variables[`filter${i}`] = { "applicationID": "SMUDGE", "closed": "false", "data.customData.id": `${i}` }
   }
-  return variables;
+  // console.log(filter[0]['data.customData.id']);
+  return filter;
 }
 
 function buildQueries(numberOfQueries) {
