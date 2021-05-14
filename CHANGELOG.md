@@ -1,3 +1,10 @@
+## [2.3.28](https://github.com/Sanofi-IADC/whispr/compare/v2.3.27...v2.3.28) (2021-05-14)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v4.6.3 ([2d6027f](https://github.com/Sanofi-IADC/whispr/commit/2d6027f12a9fa81027c4269e216c64fae78b5e3d))
+
 ## [2.3.27](https://github.com/Sanofi-IADC/whispr/compare/v2.3.26...v2.3.27) (2021-05-14)
 
 
