@@ -88,7 +88,7 @@ describe('WhispService', () => {
     });
 
     it('should keep timestamp when it is not provided', async () => {
-      await whispService.update('56cb91bdc3464f14678934ca', {});
+      await whispService.update(OBJECT_ID, {});
       expect(whispModel.findOneAndUpdate).toBeCalledWith(
         expect.anything(),
         expect.not.objectContaining({
