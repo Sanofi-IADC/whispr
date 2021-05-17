@@ -63,7 +63,9 @@ Query variables
 ```
 
 ### whispsCount
-
+::: warning
+This query will be deprecated in the next major release of whispr in favour of the renamed whispCount query which supports custom grouping.
+:::
 Returns the count of matching whisps.
 
 It takes the same parameter as the query [whisps](#whisps)
@@ -84,6 +86,85 @@ Query variables
 
 * The filtering options are described [here](./filters.md).
 * The `/whispsCount` query accepts mongoose filtering functionality.
+
+### countWhisps
+
+Returns an array with count of matching whisps, grouped by the specified object.
+
+This query uses MongoDB aggregation to group and count objects. It is the same as the MongoDB [countDocuments() function](https://docs.mongodb.com/manual/reference/method/db.collection.countDocuments/) but allows a custom group object.
+
+**Parameters**
+* filter: optional JSONObject! array of filters to apply. These will be applied with OR logic, all whisps matching any of the filters will be counted. Filtering options accept mongoose filtering functionality, described [here](./filters.md).
+* group: optional JSONObject! which contains the object fields that you would like to group on.
+
+
+```GraphQL
+query getWhispCountGrouped($filters: [JSONObject!], $group: JSONObject! ) {
+  countWhisps(filter: $filters, group: $group)
+  {
+    _id
+    count
+  }
+}
+```
+
+The query variables below provide two filters which will be applied with an OR condition, and two grouping fields which will be used to group counts based on object properties. The name and number of grouping fields is arbitrary.
+
+Note that both filter and group parameters are optional. If no group is specified your query will return a single group with a null _id object.
+
+::: tip
+For performance reasons it is strongly recommended to reduce the number of filters in the filter array. Instead, if possible try to provide only a few high level filters to reduce the scope of the data returned, and then rely on more granular grouping to get the specific count you need.
+:::
+
+```json
+  {
+    "filters":[{
+      "applicationID": "SMUDGE",
+      "data.customData.id": "503"
+    },
+    {
+      "applicationID": "SMUDGE",
+      "data.customData.id": "504"
+    }],
+    "group": { "mainGrouping": "$data.customData.id", "secondaryGrouping": "$data.customData.description"}
+  }
+```
+
+Example output from the query above:
+```json
+
+"countWhisps": [
+    {
+      "_id": {
+        "mainGrouping": "503",
+        "secondaryGrouping": "AAAA"
+      },
+      "count": 100
+    },
+    {
+      "_id": {
+        "mainGrouping": "504",
+        "secondaryGrouping": "AAAA"
+      },
+      "count": 297
+    },
+    {
+      "_id": {
+        "mainGrouping": "504",
+        "secondaryGrouping": "BBBB"
+      },
+      "count": 3
+    }
+```
+
+Example output with no group parameter (in this case to simplify the object you also just exclude _id from the query to return the count field only):
+```json
+"countWhisps": [
+  {
+    "_id": null,
+    "count": 505797
+  }
+```
 
 ## Whisps: Mutation
 

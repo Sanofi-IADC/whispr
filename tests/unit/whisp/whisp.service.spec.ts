@@ -1,13 +1,11 @@
 import { Logger } from '@nestjs/common';
-import { getConnectionToken, getModelToken, MongooseModule } from '@nestjs/mongoose';
+import { getModelToken } from '@nestjs/mongoose';
 import { Test } from '@nestjs/testing';
-import dotenv from 'dotenv';
-import { Connection, deleteModel, Model } from 'mongoose';
+import { Connection, Model } from 'mongoose';
 import { IWhisp } from 'src/interfaces/whisp.interface';
 import { EventService } from '../../../src/event/event.service';
 import { FileService } from '../../../src/file/file.service';
 import { SequenceService } from '../../../src/sequence/sequence.service';
-import { whispSchema } from '../../../src/whisp/whisp.schema';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { DistributionService } from '../../../src/distribution/distribution.service';
 
@@ -15,66 +13,194 @@ jest.mock('../../../src/distribution/distribution.service');
 jest.mock('../../../src/event/event.service');
 jest.mock('../../../src/file/file.service');
 jest.mock('../../../src/sequence/sequence.service');
-dotenv.config({ path: 'test.env' });
+
 describe('WhispService', () => {
   let whispService: WhispService;
   let whispModel: Model<IWhisp>;
-  let dbConnection: Connection;
+  const OBJECT_ID = '56cb91bdc3464f14678934ca';
+
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [
-        MongooseModule.forRoot(`mongodb://${process.env.MONGOOSE_HOST}`, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        }),
-        MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
+      providers: [
+        {
+          provide: getModelToken('Whisp'),
+          useFactory: () => ({
+            findOneAndUpdate: jest.fn().mockReturnThis(),
+            update: jest.fn(),
+            create: jest.fn(),
+            aggregate: jest.fn().mockReturnThis(),
+            allowDiskUse: jest.fn().mockReturnThis(),
+            exec: jest.fn(),
+          }),
+        },
+        WhispService,
+        Logger,
+        {
+          provide: DistributionService,
+          useFactory: () => ({
+            distributeWhisp: jest.fn(() => true),
+          }),
+        },
+        FileService,
+        SequenceService,
+        EventService,
       ],
-      providers: [WhispService, Logger, DistributionService, FileService, SequenceService, EventService],
     }).compile();
     whispService = moduleRef.get<WhispService>(WhispService);
     whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
-    dbConnection = moduleRef.get<Connection>(getConnectionToken());
-    await whispModel.deleteMany({});
   });
-  afterEach(async () => {
-    await dbConnection.close();
-  });
-  afterAll(() => {
-    dbConnection.modelNames().forEach((modelName) => {
-      deleteModel(modelName);
-    });
-  });
+
   describe('create Whisp', () => {
     it('should set Timestamp when no timestamp is provided', async () => {
-      const result = await whispService.create({});
+      await whispService.create({});
 
-      expect(result.timestamp instanceof Date).toBeTruthy();
+      expect(whispModel.create).toBeCalledWith(
+        expect.objectContaining({
+          timestamp: expect.any(Date),
+        }),
+      );
     });
+
     it('should keep custom timestamp when timestamp is provided', async () => {
       const timestamp = new Date();
-      const result = await whispService.create({ timestamp });
+      await whispService.create({ timestamp });
 
-      expect(result.timestamp.valueOf()).toEqual(timestamp.valueOf());
+      expect(whispModel.create).toBeCalledWith(
+        expect.objectContaining({
+          timestamp,
+        }),
+      );
     });
   });
+
   describe('Update Whisp', () => {
     it('should update timestamp when it is provided', async () => {
       const timestamp = new Date();
       timestamp.setHours(timestamp.getHours() + 1);
-      const initialWhisp = await whispService.create({});
 
-      const result = await whispService.update(initialWhisp._id, { timestamp });
-
-      expect(result.timestamp.valueOf()).toEqual(timestamp.valueOf());
+      await whispService.update(OBJECT_ID, { timestamp });
+      expect(whispModel.findOneAndUpdate).toBeCalledWith(
+        expect.anything(),
+        expect.objectContaining({
+          timestamp,
+        }),
+        expect.anything(),
+      );
     });
+
     it('should keep timestamp when it is not provided', async () => {
-      const timestamp = new Date();
-      timestamp.setHours(timestamp.getHours() + 1);
-      const initialWhisp = await whispService.create({ timestamp });
+      await whispService.update(OBJECT_ID, {});
+      expect(whispModel.findOneAndUpdate).toBeCalledWith(
+        expect.anything(),
+        expect.not.objectContaining({
+          timestamp: expect.any(Date),
+        }),
+        expect.anything(),
+      );
+    });
+  });
 
-      const result = await whispService.update(initialWhisp._id, {});
+  describe('Count Whisp', () => {
+    it('calls mongo aggregate with empty match and group when they are not passed as parameters', async () => {
+      await whispService.countWhispsGroup();
+      const expectedMatch = { $match: {} };
+      const expectedGroup = { $group: { _id: undefined, count: { $sum: 1 } } };
 
-      expect(result.timestamp.valueOf()).toEqual(initialWhisp.timestamp.valueOf());
+      expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
+    });
+
+    it('calls mongo aggregate with given match when defined', async () => {
+      const matchParam = [
+        {
+          applicationID: 'SMUDGE',
+          'data.customData.id': '503',
+        },
+        {
+          applicationID: 'SMUDGE',
+          'data.customData.id': '504',
+        },
+      ];
+
+      await whispService.countWhispsGroup(matchParam, undefined);
+      const expectedMatch = {
+        $match: {
+          $or: [
+            {
+              applicationID: 'SMUDGE',
+              'data.customData.id': '503',
+            },
+            {
+              applicationID: 'SMUDGE',
+              'data.customData.id': '504',
+            },
+          ],
+        },
+      };
+
+      const expectedGroup = { $group: { _id: undefined, count: { $sum: 1 } } };
+
+      expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
+    });
+
+    it('calls mongo aggregate with given group when defined', async () => {
+      const groupParam = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
+
+      await whispService.countWhispsGroup(undefined, groupParam);
+      const expectedMatch = { $match: {} };
+
+      const expectedGroup = {
+        $group: {
+          _id: {
+            mainGrouping: '$data.customData.id',
+            secondaryGrouping: '$data.customData.description',
+          },
+          count: { $sum: 1 },
+        },
+      };
+
+      expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
+    });
+
+    it('calls mongo aggregate with given match and group when both are defined', async () => {
+      const matchParam = [
+        {
+          applicationID: 'SMUDGE',
+          'data.customData.id': '503',
+        },
+        {
+          applicationID: 'SMUDGE',
+          'data.customData.id': '504',
+        },
+      ];
+      const groupParam = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
+      await whispService.countWhispsGroup(matchParam, groupParam);
+
+      const expectedMatch = {
+        $match: {
+          $or: [
+            {
+              applicationID: 'SMUDGE',
+              'data.customData.id': '503',
+            },
+            {
+              applicationID: 'SMUDGE',
+              'data.customData.id': '504',
+            },
+          ],
+        },
+      };
+
+      const expectedGroup = {
+        $group: {
+          _id: {
+            mainGrouping: '$data.customData.id',
+            secondaryGrouping: '$data.customData.description',
+          },
+          count: { $sum: 1 },
+        },
+      };
+
+      expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
     });
   });
 });

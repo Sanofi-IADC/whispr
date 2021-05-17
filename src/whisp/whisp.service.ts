@@ -11,10 +11,11 @@ import { WhispInputType } from './whisp.input';
 import { WhispAttachment } from './whisp-attachment.entity';
 import { WhispAttachmentInput } from './whisp-attachment.input';
 import { TagInputType } from '../tag/tag.input';
+import { WhispCount } from './whispCount.entity';
 
 @Injectable()
 export class WhispService {
-  private readonly logger = new Logger(DistributionService.name);
+  private readonly logger = new Logger(WhispService.name);
 
   constructor(
     @InjectModel('Whisp') private readonly whispModel: Model<IWhisp>,
@@ -87,6 +88,14 @@ export class WhispService {
 
   async countWhisps(filter?: Partial<IWhisp>): Promise<number> {
     return this.whispModel.countDocuments(filter).exec();
+  }
+
+  async countWhispsGroup(filter?: Partial<IWhisp>[], group?: any): Promise<WhispCount[]> {
+    // match and group code simulates mongo countDocuments but allows custom group
+    const mongoMatch = { $match: filter ? { $or: filter } : {} };
+    const mongoGroup = { $group: { _id: group, count: { $sum: 1 } } };
+
+    return this.whispModel.aggregate([mongoMatch, mongoGroup]).allowDiskUse(true).exec();
   }
 
   async update(id: string, whispIn: WhispInputType): Promise<IWhisp> {

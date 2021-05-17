@@ -12,6 +12,7 @@ import { DistributionService } from '../distribution/distribution.service';
 import { filterPayload } from '../utils/filterPayload.service';
 import { Tag } from '../tag/tag.entity';
 import { TagInputType } from '../tag/tag.input';
+import { WhispCount } from './whispCount.entity';
 
 @Resolver(() => Whisp)
 export class WhispResolver {
@@ -45,12 +46,23 @@ export class WhispResolver {
     return this.whispService.findAll(filter, sort, limit);
   }
 
+  // whispsCount is due to be deprecated - replaced by countWhisps
   @Query(() => Number)
   async whispsCount(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
       filter?: Record<string, unknown>,
   ): Promise<number> {
     return this.whispService.countWhisps(filter);
+  }
+
+  @Query(() => [WhispCount])
+  async countWhisps(
+    @Args('filter', { type: () => [GraphQLJSONObject], nullable: true })
+      filter: Record<string, unknown>[],
+    @Args('group', { type: () => GraphQLJSONObject, nullable: true })
+      group: Record<string, unknown>,
+  ): Promise<WhispCount[]> {
+    return this.whispService.countWhispsGroup(filter, group);
   }
 
   /**

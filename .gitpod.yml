@@ -9,5 +9,5 @@ tasks:
     name: init
   - command: sudo docker-up
     name: docker
-  - command: source ./gitpod.spin-up.sh
+  - command: source ./.gitpod.spin-up.sh
     name: terminal

@@ -16,6 +16,12 @@ echo
 echo "Setting node version just in case..."
 nvm install 12.13.0
 echo
+echo "Installing K6 for load testing..."
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69 
+echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list
+sudo apt-get update
+sudo apt-get install k6
+echo
 echo -n "Waiting for init script to complete. This might take a few minutes due to npm package installation. Check the init terminal window for progress..."
 sleep 1 && while [ -f /tmp/.npm-lock ]; do echo -n "." && sleep 1; done
 echo "Init script done :)"
