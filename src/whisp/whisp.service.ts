@@ -95,7 +95,9 @@ export class WhispService {
     const mongoMatch = { $match: filter ? { $or: filter } : {} };
     const mongoGroup = { $group: { _id: group, count: { $sum: 1 } } };
 
-    return this.whispModel.aggregate([mongoMatch, mongoGroup]).exec();
+    return  this.whispModel.aggregate([mongoMatch, mongoGroup]).
+            allowDiskUse(true).
+            exec();
   }
 
   async update(id: string, whispIn: WhispInputType): Promise<IWhisp> {

@@ -29,6 +29,7 @@ describe('WhispService', () => {
             update: jest.fn(),
             create: jest.fn(),
             aggregate: jest.fn().mockReturnThis(),
+            allowDiskUse: jest.fn().mockReturnThis(),
             exec: jest.fn(),
           }),
         },
