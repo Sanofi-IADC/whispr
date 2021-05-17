@@ -1,3 +1,20 @@
+# [2.4.0](https://github.com/Sanofi-IADC/whispr/compare/v2.3.30...v2.4.0) (2021-05-17)
+
+
+### Bug Fixes
+
+* correct logger service name ([cd73e2b](https://github.com/Sanofi-IADC/whispr/commit/cd73e2bce54b368c12dd6a9fd86f64e0fec8758e))
+* count resolver param types ([cd87956](https://github.com/Sanofi-IADC/whispr/commit/cd87956e713c5b5a716b2cb2b6dda7c336ef5e64))
+
+
+### Features
+
+* add basic grouped count ([3e873f9](https://github.com/Sanofi-IADC/whispr/commit/3e873f96cf5221901ef53f4e0e63aab3275a91a4))
+* allowDiskUse for mongo aggregate ([27d4e38](https://github.com/Sanofi-IADC/whispr/commit/27d4e382ef13486842a9100271285a4866870636))
+* handle empty filter and group ([3cebd76](https://github.com/Sanofi-IADC/whispr/commit/3cebd76c01ca88be2ce2f3e7a6489def99754785))
+* remove count group interface ([2a1b653](https://github.com/Sanofi-IADC/whispr/commit/2a1b65305bb51d09eacf2cf5209d2fe98b22fe20))
+* rename countWhisps query ([e18a9fd](https://github.com/Sanofi-IADC/whispr/commit/e18a9fd03197dba38682a9312ad49898eb8ca8c0))
+
 ## [2.3.30](https://github.com/Sanofi-IADC/whispr/compare/v2.3.29...v2.3.30) (2021-05-15)
 
 
