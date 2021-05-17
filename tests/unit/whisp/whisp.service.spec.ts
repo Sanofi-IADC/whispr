@@ -17,12 +17,10 @@ jest.mock('../../../src/sequence/sequence.service');
 describe('WhispService', () => {
   let whispService: WhispService;
   let whispModel: Model<IWhisp>;
+  const OBJECT_ID = '56cb91bdc3464f14678934ca';
+
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [
-        // rootMongooseTestModule(),
-        // MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
-      ],
       providers: [
         {
           provide: getModelToken('Whisp'),
@@ -79,7 +77,7 @@ describe('WhispService', () => {
       const timestamp = new Date();
       timestamp.setHours(timestamp.getHours() + 1);
 
-      await whispService.update('56cb91bdc3464f14678934ca', { timestamp });
+      await whispService.update(OBJECT_ID, { timestamp });
       expect(whispModel.findOneAndUpdate).toBeCalledWith(
         expect.anything(),
         expect.objectContaining({

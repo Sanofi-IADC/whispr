@@ -30,10 +30,6 @@ describe('WhispService', () => {
     await whispModel.deleteMany({});
   });
 
-  afterEach(async () => {
-    await closeInMongodConnection();
-  });
-
   afterAll(async () => {
     await closeInMongodConnection();
   });

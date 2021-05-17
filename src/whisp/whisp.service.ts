@@ -91,14 +91,11 @@ export class WhispService {
   }
 
   async countWhispsGroup(filter?: Partial<IWhisp>[], group?: any): Promise<WhispCount[]> {
-    // TODO: group interface instead of using any type
-
     // match and group code simulates mongo countDocuments but allows custom group
     const mongoMatch = { $match: filter ? { $or: filter } : {} };
     const mongoGroup = { $group: { _id: group, count: { $sum: 1 } } };
 
-    const result = this.whispModel.aggregate([mongoMatch, mongoGroup]).exec();
-    return result;
+    return this.whispModel.aggregate([mongoMatch, mongoGroup]).exec();
   }
 
   async update(id: string, whispIn: WhispInputType): Promise<IWhisp> {

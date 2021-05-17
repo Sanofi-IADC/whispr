@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 import http from 'k6/http';
 import { check, sleep } from 'k6';
 
@@ -32,14 +31,11 @@ export default function () {
   };
 
   const numberOfQueries = 100;
-  // const aliasedQueries = buildQueries(numberOfQueries);
-  // // const variables = buildQueryVariables(numberOfQueries);
-  // const params = buildQueryParams(numberOfQueries);
 
-const variables = {
-  "filter": buildFilter(numberOfQueries),
-  "group": { "id": "$data.customData.id"}
-};
+  const variables = {
+    "filter": buildFilter(numberOfQueries),
+    "group": { "id": "$data.customData.id" }
+  };
 
   const query = `query getWhispCount($filter: [JSONObject!], $group: JSONObject!) {
     countWhisps(filter: $filter, group: $group)
@@ -53,8 +49,6 @@ const variables = {
     JSON.stringify({ query: query, variables: variables }),
     { headers });
 
-  // console.log(response.body);
-
   sleep(1);
 }
 
@@ -65,9 +59,7 @@ function buildFilter(numberOfQueries) {
       "applicationID": "SMUDGE",
       "data.customData.id": `${i}`
     });
-    // variables[`filter${i}`] = { "applicationID": "SMUDGE", "closed": "false", "data.customData.id": `${i}` }
   }
-  // console.log(filter[0]['data.customData.id']);
   return filter;
 }
 
