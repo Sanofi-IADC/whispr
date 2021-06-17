@@ -1,3 +1,10 @@
+## [2.4.30](https://github.com/Sanofi-IADC/whispr/compare/v2.4.29...v2.4.30) (2021-06-17)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.930.0 ([4090c11](https://github.com/Sanofi-IADC/whispr/commit/4090c1135311d3e0dbcf67eba5b106beaeae86c0))
+
 ## [2.4.29](https://github.com/Sanofi-IADC/whispr/compare/v2.4.28...v2.4.29) (2021-06-14)
 
 
