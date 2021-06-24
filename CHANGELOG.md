@@ -1,3 +1,10 @@
+## [2.4.37](https://github.com/Sanofi-IADC/whispr/compare/v2.4.36...v2.4.37) (2021-06-24)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.126.1 ([eba6fce](https://github.com/Sanofi-IADC/whispr/commit/eba6fce0f0ffee691c6e5760810c43fbc7f42b62))
+
 ## [2.4.36](https://github.com/Sanofi-IADC/whispr/compare/v2.4.35...v2.4.36) (2021-06-23)
 
 
