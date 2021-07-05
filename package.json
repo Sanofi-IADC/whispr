@@ -63,7 +63,7 @@
     "reflect-metadata": "0.1.13",
     "request": "2.88.2",
     "rimraf": "3.0.2",
-    "rxjs": "7.1.0",
+    "rxjs": "7.2.0",
     "superagent": "6.1.0",
     "superagent-promise": "1.1.0",
     "superagent-proxy": "2.1.0",
