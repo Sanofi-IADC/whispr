@@ -1,3 +1,10 @@
+## [2.4.48](https://github.com/Sanofi-IADC/whispr/compare/v2.4.47...v2.4.48) (2021-07-05)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency rxjs to v7.2.0 ([5bc4639](https://github.com/Sanofi-IADC/whispr/commit/5bc4639452fe333451478d8b65c28123b4621d7a))
+
 ## [2.4.47](https://github.com/Sanofi-IADC/whispr/compare/v2.4.46...v2.4.47) (2021-07-02)
 
 
