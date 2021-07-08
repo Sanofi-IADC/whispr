@@ -1,3 +1,10 @@
+## [2.4.51](https://github.com/Sanofi-IADC/whispr/compare/v2.4.50...v2.4.51) (2021-07-08)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency flatted to v3.2.1 ([89188ee](https://github.com/Sanofi-IADC/whispr/commit/89188ee734323e7607a20f8c79f7984cbd199654))
+
 ## [2.4.50](https://github.com/Sanofi-IADC/whispr/compare/v2.4.49...v2.4.50) (2021-07-07)
 
 
