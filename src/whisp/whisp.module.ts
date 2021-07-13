@@ -14,15 +14,17 @@ import { WhispController } from './whisp.controller';
 @Module({
   imports: [
     PubSubModule,
-    MongooseModule.forFeatureAsync([{
-      name: 'Whisp',
-      useFactory: () => {
-        const schema = whispSchema;
-        // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
-        schema.plugin(require('mongoose-cast-aggregation'));
-        return schema;
+    MongooseModule.forFeatureAsync([
+      {
+        name: 'Whisp',
+        useFactory: () => {
+          const schema = whispSchema;
+          // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
+          schema.plugin(require('mongoose-cast-aggregation'));
+          return schema;
+        },
       },
-    }]),
+    ]),
     DistributionModule,
     FileModule,
     SequenceModule,
@@ -32,4 +34,4 @@ import { WhispController } from './whisp.controller';
   providers: [WhispService, WhispResolver],
   exports: [WhispService],
 })
-export class WhispModule { }
+export class WhispModule {}

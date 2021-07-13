@@ -76,9 +76,11 @@ describe('WhispService', () => {
       await whispService.create({ applicationID });
       await whispService.create({ applicationID });
 
-      const filter: Record<string, unknown>[] = [{
-        applicationID: 'SMUDGE',
-      }];
+      const filter: Record<string, unknown>[] = [
+        {
+          applicationID: 'SMUDGE',
+        },
+      ];
 
       const result = await whispService.countWhispsGroup(filter);
 
@@ -91,9 +93,11 @@ describe('WhispService', () => {
       await whispService.create({ applicationID: 'SPIFF' });
       await whispService.create({ applicationID: 'FOO' });
 
-      const filter: Record<string, unknown>[] = [{
-        applicationID: { $in: ['SMUDGE', 'FOO'] },
-      }];
+      const filter: Record<string, unknown>[] = [
+        {
+          applicationID: { $in: ['SMUDGE', 'FOO'] },
+        },
+      ];
 
       const result = await whispService.countWhispsGroup(filter);
 
@@ -109,9 +113,11 @@ describe('WhispService', () => {
       await whispService.create({ timestamp });
       await whispService.create({ timestamp });
 
-      const timestampFilter: Record<string, unknown>[] = [{
-        timestamp: '2021-07-11T08:24:11.067Z',
-      }];
+      const timestampFilter: Record<string, unknown>[] = [
+        {
+          timestamp: '2021-07-11T08:24:11.067Z',
+        },
+      ];
 
       const result = await whispService.countWhispsGroup(timestampFilter);
 
@@ -135,11 +141,13 @@ describe('WhispService', () => {
       await whispService.create({ timestamp: date3 });
       await whispService.create({ timestamp: date3 });
 
-      const timestampFilter: Record<string, unknown>[] = [{
-        timestamp: {
-          $gte: '2018-07-11T08:24:11.067Z',
+      const timestampFilter: Record<string, unknown>[] = [
+        {
+          timestamp: {
+            $gte: '2018-07-11T08:24:11.067Z',
+          },
         },
-      }];
+      ];
 
       // const timestampFilter: Record<string, unknown> = {
       //   timestamp: "2021-07-11T08:24:11.067Z"
