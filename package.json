@@ -60,6 +60,7 @@
     "ioredis": "4.27.6",
     "lodash": "4.17.21",
     "mongoose": "5.10.19",
+    "mongoose-cast-aggregation": "0.1.2",
     "reflect-metadata": "0.1.13",
     "request": "2.88.2",
     "rimraf": "3.0.2",

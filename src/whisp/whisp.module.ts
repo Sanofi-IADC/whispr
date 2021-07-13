@@ -14,7 +14,13 @@ import { WhispController } from './whisp.controller';
 @Module({
   imports: [
     PubSubModule,
-    MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
+    MongooseModule.forFeatureAsync([{
+      name: 'Whisp', useFactory: () => {
+        const schema = whispSchema
+        schema.plugin(require('mongoose-cast-aggregation'));
+        return schema;
+      },
+    }]),
     DistributionModule,
     FileModule,
     SequenceModule,
@@ -24,4 +30,4 @@ import { WhispController } from './whisp.controller';
   providers: [WhispService, WhispResolver],
   exports: [WhispService],
 })
-export class WhispModule {}
+export class WhispModule { }
