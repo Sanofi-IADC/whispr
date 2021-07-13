@@ -7,6 +7,7 @@ import {
 import * as AWS from 'aws-sdk';
 import { Logger, Injectable } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
+
 @Injectable()
 export class AWSCredsService {
   private aws: typeof AWS;
