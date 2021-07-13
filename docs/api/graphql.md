@@ -110,7 +110,10 @@ query getWhispCountGrouped($filters: [JSONObject!], $group: JSONObject! ) {
 
 The query variables below provide two filters which will be applied with an OR condition, and two grouping fields which will be used to group counts based on object properties. The name and number of grouping fields is arbitrary.
 
-Note that both filter and group parameters are optional. If no group is specified your query will return a single group with a null _id object.
+**Notes**
+* Both filter and group parameters are optional.
+* If no group is specified your query will return a single group with a null _id object.
+* If there are zero matches for the filter options, then the result of the query will be an empty array [].
 
 ::: tip
 For performance reasons it is strongly recommended to reduce the number of filters in the filter array. Instead, if possible try to provide only a few high level filters to reduce the scope of the data returned, and then rely on more granular grouping to get the specific count you need.
