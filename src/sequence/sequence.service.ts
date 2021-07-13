@@ -3,6 +3,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { ISequence } from './sequence.entity';
 import { Whisp } from '../whisp/whisp.entity';
+
 @Injectable()
 export class SequenceService {
   constructor(@InjectModel('Sequence') private sequenceModel: Model<ISequence>) {}

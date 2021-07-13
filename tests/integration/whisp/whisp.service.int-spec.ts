@@ -67,17 +67,17 @@ describe('WhispService', () => {
       expect(result.timestamp.valueOf()).toEqual(initialWhisp.timestamp.valueOf());
     });
   });
-  
+
   describe('Update Whisp', () => {
     it('should correctly countWhisps based on applicationID filter', async () => {
-      const applicationID = 'SMUDGE'
+      const applicationID = 'SMUDGE';
 
       await whispService.create({ applicationID });
       await whispService.create({ applicationID });
       await whispService.create({ applicationID });
 
       const filter: Record<string, unknown>[] = [{
-        applicationID: "SMUDGE"
+        applicationID: 'SMUDGE',
       }];
 
       const result = await whispService.countWhispsGroup(filter);
@@ -87,13 +87,12 @@ describe('WhispService', () => {
     });
 
     it('should correctly countWhisps with complex mongo syntax query based on applicationID filter', async () => {
-
       await whispService.create({ applicationID: 'SMUDGE' });
       await whispService.create({ applicationID: 'SPIFF' });
       await whispService.create({ applicationID: 'FOO' });
 
       const filter: Record<string, unknown>[] = [{
-        "applicationID": { "$in": ["SMUDGE", "FOO"] }
+        applicationID: { $in: ['SMUDGE', 'FOO'] },
       }];
 
       const result = await whispService.countWhispsGroup(filter);
@@ -111,7 +110,7 @@ describe('WhispService', () => {
       await whispService.create({ timestamp });
 
       const timestampFilter: Record<string, unknown>[] = [{
-        timestamp: "2021-07-11T08:24:11.067Z"
+        timestamp: '2021-07-11T08:24:11.067Z',
       }];
 
       const result = await whispService.countWhispsGroup(timestampFilter);
@@ -138,15 +137,15 @@ describe('WhispService', () => {
 
       const timestampFilter: Record<string, unknown>[] = [{
         timestamp: {
-          $gte: "2018-07-11T08:24:11.067Z"
-        }
+          $gte: '2018-07-11T08:24:11.067Z',
+        },
       }];
 
       // const timestampFilter: Record<string, unknown> = {
       //   timestamp: "2021-07-11T08:24:11.067Z"
       // };
 
-      const result = await whispService.countWhispsGroup(timestampFilter)
+      const result = await whispService.countWhispsGroup(timestampFilter);
       // const result2 = await whispService.countWhisps(timestampFilter);
 
       // expect(result.valueOf()).toEqual(false);
@@ -155,7 +154,5 @@ describe('WhispService', () => {
       expect(result.length).toBeGreaterThan(0);
       expect(result[0].count.valueOf()).toEqual(6);
     });
-
-
   });
 });
