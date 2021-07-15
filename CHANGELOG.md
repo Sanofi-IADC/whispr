@@ -1,3 +1,10 @@
+## [2.4.59](https://github.com/Sanofi-IADC/whispr/compare/v2.4.58...v2.4.59) (2021-07-15)
+
+
+### Bug Fixes
+
+* countWhisp with timestamp ([5c96c9f](https://github.com/Sanofi-IADC/whispr/commit/5c96c9f5f3d49b3e22b6d681fa3dcc33c22b2b83))
+
 ## [2.4.58](https://github.com/Sanofi-IADC/whispr/compare/v2.4.57...v2.4.58) (2021-07-14)
 
 
