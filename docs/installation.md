@@ -185,6 +185,19 @@ AWS_S3_ENDPOINT = http://localhost:4572/
 AWS_BUCKET_NAME = demo-bucket
 ```
 
+Des configurations Widnows à  ajouter :
+
+```bash
+# Check the node version in local (12.13.0). Setting node version
+nvm install 12.13.0
+nvm version
+node -v
+
+# AWS access keys configuration in the local. Setting dummy value for both so you can run tests
+set AWS_ACCESS_KEY_ID=dummy
+set AWS_SECRET_ACCESS_KEY=dummy
+```
+
 ### Running the app
 
 ```bash
