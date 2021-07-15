@@ -185,7 +185,7 @@ AWS_S3_ENDPOINT = http://localhost:4572/
 AWS_BUCKET_NAME = demo-bucket
 ```
 
-Des configurations Widnows à  ajouter :
+Some more steps for Widnows
 
 ```bash
 # Check the node version in local (12.13.0). Setting node version
