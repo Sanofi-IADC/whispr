@@ -95,7 +95,24 @@ describe('WhispService', () => {
 
       const filter: Record<string, unknown>[] = [
         {
-          applicationID: { $in: ['SMUDGE', 'FOO'] },
+          applicationID: { $in: ['SMUDGE', 'FOO'] }, 
+        },
+      ];
+
+      const result = await whispService.countWhispsGroup(filter);
+
+      expect(result.length).toBeGreaterThan(0);
+      expect(result[0].count.valueOf()).toEqual(2);
+    });
+
+    it('should correctly countWhisps with an array as filter value', async () => {
+      await whispService.create({ applicationID: 'SMUDGE' });
+      await whispService.create({ applicationID: 'SPIFF' });
+      await whispService.create({ applicationID: 'FOO' });
+
+      const filter: Record<string, unknown>[] = [
+        {
+          applicationID:  ['SMUDGE', 'FOO'],
         },
       ];
 
