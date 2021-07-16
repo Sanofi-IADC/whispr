@@ -39,7 +39,7 @@
     "@nestjs/terminus": "7.2.0",
     "@nestjs/websockets": "7.2.0",
     "@types/graphql": "14.5.0",
-    "amazon-cognito-identity-js": "5.0.4",
+    "amazon-cognito-identity-js": "5.0.5",
     "apollo-server-fastify": "2.19.0",
     "aws-sdk": "2.947.0",
     "class-transformer": "0.3.1",
