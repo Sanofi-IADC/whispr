@@ -192,12 +192,13 @@ Some more steps :(All platforms)
 nvm install 12.13.0
 
 # Check the node version in local, must be 12.13.0
-nvm version
 node -v
 
+::: warning Troubleshooting : Windows
 # AWS access keys configuration in the local. Setting dummy value for both so you can run tests
 set AWS_ACCESS_KEY_ID=dummy
 set AWS_SECRET_ACCESS_KEY=dummy
+:::
 ```
 
 ### Running the app
