@@ -185,11 +185,13 @@ AWS_S3_ENDPOINT = http://localhost:4572/
 AWS_BUCKET_NAME = demo-bucket
 ```
 
-Some more steps for Widnows
+Some more steps :(All platforms)
 
 ```bash
-# Check the node version in local (12.13.0). Setting node version
+# Setting node version
 nvm install 12.13.0
+
+# Check the node version in local, must be 12.13.0
 nvm version
 node -v
 
