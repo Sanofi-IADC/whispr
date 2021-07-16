@@ -185,20 +185,25 @@ AWS_S3_ENDPOINT = http://localhost:4572/
 AWS_BUCKET_NAME = demo-bucket
 ```
 
-Some more steps :(All platforms)
+Switch to Node 12 (required for some file upload dependencies)
 
 ```bash
-# Setting node version
+# Setting Node version
 nvm install 12.13.0
 
-# Check the node version in local, must be 12.13.0
+# Check the node version is correctly set, must be 12.13.0
 node -v
+```
 
-::: warning Troubleshooting : Windows
-# AWS access keys configuration in the local. Setting dummy value for both so you can run tests
+Export/set dummy environment variables for local stack (required to run tests)
+```
+# Mac/Linux
+export AWS_ACCESS_KEY_ID=dummy
+export AWS_SECRET_ACCESS_KEY=dummy
+
+# or Windows
 set AWS_ACCESS_KEY_ID=dummy
 set AWS_SECRET_ACCESS_KEY=dummy
-:::
 ```
 
 ### Running the app
