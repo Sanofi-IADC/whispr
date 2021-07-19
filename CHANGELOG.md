@@ -1,3 +1,45 @@
+## [2.4.64](https://github.com/Sanofi-IADC/whispr/compare/v2.4.63...v2.4.64) (2021-07-16)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.948.0 ([c17e060](https://github.com/Sanofi-IADC/whispr/commit/c17e0601565304ac21f27976e00b7aff2a7c5d3f))
+
+## [2.4.63](https://github.com/Sanofi-IADC/whispr/compare/v2.4.62...v2.4.63) (2021-07-16)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.129.0 ([6fa0438](https://github.com/Sanofi-IADC/whispr/commit/6fa0438bd1883a2f8f4c01d4e6c2a82628885699))
+
+## [2.4.62](https://github.com/Sanofi-IADC/whispr/compare/v2.4.61...v2.4.62) (2021-07-16)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v5.0.5 ([9831405](https://github.com/Sanofi-IADC/whispr/commit/98314052130fe563d9126b3b5b113bfb0fed3a12))
+
+## [2.4.61](https://github.com/Sanofi-IADC/whispr/compare/v2.4.60...v2.4.61) (2021-07-15)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.947.0 ([9169889](https://github.com/Sanofi-IADC/whispr/commit/91698890f54f4314b83cd50e9840e6e308451e82))
+
+## [2.4.60](https://github.com/Sanofi-IADC/whispr/compare/v2.4.59...v2.4.60) (2021-07-15)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.128.0 ([0ff7335](https://github.com/Sanofi-IADC/whispr/commit/0ff7335ca3daffd1d722f55ec26c9b0f9bd7b819))
+
+## [2.4.59](https://github.com/Sanofi-IADC/whispr/compare/v2.4.58...v2.4.59) (2021-07-15)
+
+
+### Bug Fixes
+
+* countWhisp with timestamp ([5c96c9f](https://github.com/Sanofi-IADC/whispr/commit/5c96c9f5f3d49b3e22b6d681fa3dcc33c22b2b83))
+
 ## [2.4.58](https://github.com/Sanofi-IADC/whispr/compare/v2.4.57...v2.4.58) (2021-07-14)
 
 

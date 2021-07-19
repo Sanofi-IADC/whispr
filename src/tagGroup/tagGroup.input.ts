@@ -1,6 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { IsOptional, IsString } from 'class-validator';
 import { TagStatuses } from '../interfaces/status.enum';
+
 @InputType({ description: 'New Tag Group' })
 export class TagGroupInputType {
   @Field(() => String, { nullable: true })

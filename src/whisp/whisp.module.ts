@@ -14,7 +14,17 @@ import { WhispController } from './whisp.controller';
 @Module({
   imports: [
     PubSubModule,
-    MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
+    MongooseModule.forFeatureAsync([
+      {
+        name: 'Whisp',
+        useFactory: () => {
+          const schema = whispSchema;
+          // eslint-disable-next-line @typescript-eslint/no-var-requires,global-require
+          schema.plugin(require('mongoose-cast-aggregation'));
+          return schema;
+        },
+      },
+    ]),
     DistributionModule,
     FileModule,
     SequenceModule,
