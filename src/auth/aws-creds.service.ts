@@ -38,9 +38,9 @@ export class AWSCredsService {
       IdentityPoolId: this.configService.get('COGNITO_IDENTITY_POOL_ID'), // your identity pool id here
       Logins: {},
     };
-    cognitoConfig.Logins[
-      `cognito-idp.eu-west-1.amazonaws.com/${this.configService.get('COGNITO_USER_POOL_ID')}`
-    ] = authDetails.getIdToken().getJwtToken();
+    cognitoConfig.Logins[`cognito-idp.eu-west-1.amazonaws.com/${this.configService.get('COGNITO_USER_POOL_ID')}`] = authDetails
+      .getIdToken()
+      .getJwtToken();
     const credentials = new AWS.CognitoIdentityCredentials(cognitoConfig);
     this.aws.config.credentials = credentials;
 

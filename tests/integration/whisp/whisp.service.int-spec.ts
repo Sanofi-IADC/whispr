@@ -95,7 +95,7 @@ describe('WhispService', () => {
 
       const filter: Record<string, unknown>[] = [
         {
-          applicationID: { $in: ['SMUDGE', 'FOO'] }, 
+          applicationID: { $in: ['SMUDGE', 'FOO'] },
         },
       ];
 
@@ -112,7 +112,7 @@ describe('WhispService', () => {
 
       const filter: Record<string, unknown>[] = [
         {
-          applicationID:  ['SMUDGE', 'FOO'],
+          applicationID: ['SMUDGE', 'FOO'],
         },
       ];
 
