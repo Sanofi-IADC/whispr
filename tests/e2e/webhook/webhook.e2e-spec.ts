@@ -27,21 +27,24 @@ const webhookListener = fastify();
 let expectedEventName: EventNames;
 let doneCallback: jest.DoneCallback;
 
-function configWebhookListener() {
-  webhookListener.post(WEBHOOK_TEST_ROUTE, async (req) => {
-    try {
-      expect(req.body).toEqual(expect.objectContaining({ eventName: expectedEventName }));
-      doneCallback();
-    } catch (error) {
-      doneCallback(error);
-    }
-  });
+function configWebhookListener():Promise<void> {
+  return new Promise((resolve, reject) => {
+    webhookListener.post(WEBHOOK_TEST_ROUTE, async (req) => {​​​
+      console.log("##### webhookListener req.body ", req.body);
+      try {​​​
+        expect(req.body).toEqual(expect.objectContaining({​​​ eventName: expectedEventName }​​​));
+        doneCallback();
+      }​​​ catch (err) {​​​
+        reject(err);
+      }​​​
+    }​​​);
 
-  webhookListener.listen(WEBHOOK_TEST_PORT, (err) => {
-    if (err) {
-      doneCallback(err);
-    }
-  });
+    webhookListener.listen(WEBHOOK_TEST_PORT, (err) => {​​​
+        if (err) {
+          reject(err);
+        }​​​
+      }​​​);
+  })
 }
 
 function setExpectedEventName(event: EventNames, done: jest.DoneCallback) {
@@ -50,26 +53,39 @@ function setExpectedEventName(event: EventNames, done: jest.DoneCallback) {
 }
 
 beforeAll(async () => {
-  whispService = global.app.get<WhispService>('WhispService');
-  configWebhookListener();
+  new Promise(async (resolve, reject) => {
+      try {​​​
+        whispService = global.app.get<WhispService>('WhispService');
+        await configWebhookListener();
+      } catch (err) {​​​
+        console.warn('#### Could not start whispService', err);
+        reject(err);
+      }​​​
+  });
 });
 
 afterAll(async () => {
   // delete created webhooks
-  try {
-    const webhookModel = global.app.get<Model<IWebhook>>(getModelToken('Webhook'));
-    await webhookModel.deleteMany({ url: WEBHOOK_TEST_URL });
-  } catch (e) {
-    console.warn('Could not delete created webhooks', e);
-  }
+  new Promise(async (resolve, reject) => {
+    try {
+      const webhookModel = global.app.get<Model<IWebhook>>(getModelToken('Webhook'));
+      await webhookModel.deleteMany({ url: WEBHOOK_TEST_URL });
+    } catch (err) {
+      console.warn('#### Could not delete created webhooks', err);
+      reject(err);
+    }
+  });
 
   // delete created whisps
-  try {
-    const whispModel = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
-    await whispModel.deleteMany({ type: WHISP_TEST_TYPE });
-  } catch (e) {
-    console.warn('Could not delete created whisps', e);
-  }
+  new Promise(async (resolve, reject) => {
+    try {
+      const whispModel = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
+      await whispModel.deleteMany({ type: WHISP_TEST_TYPE });
+    } catch (err) {
+      console.warn('#### Could not delete created whisps', err);
+      reject(err);
+    }
+  });
 
   webhookListener.close();
 });
@@ -93,27 +109,31 @@ describe('webhooks', () => {
     expect(result.status).toBe(200);
   });
 
-  it('should trigger the webhook when a whisp is created', async (done) => {
-    setExpectedEventName(EventNames.WHISP_CREATED, done);
-
-    const input = new WhispInputType();
-    input.type = WHISP_TEST_TYPE;
-    whisp = await whispService.create(input);
-    expect(whisp.readableID).toBeTruthy();
+  it('should trigger the webhook when a whisp is created', (done) => {
+      setExpectedEventName(EventNames.WHISP_CREATED, done);
+      const input = new WhispInputType();
+      input.type = WHISP_TEST_TYPE;
+      whispService.create(input).then((whispCreateed) => {
+        whisp = whispCreateed;
+        expect(whispCreateed.readableID).toBeTruthy();
+        console.log("#### whisp CREATED", whispCreateed);
+      });
   });
 
-  it('should trigger the webhook when a whisp is updated', async (done) => {
+  it('should trigger the webhook when a whisp is updated', (done) => {
     setExpectedEventName(EventNames.WHISP_UPDATED, done);
-
     const update = new WhispInputType();
     update.description = 'UPDATED';
-    whisp = await whispService.update(whisp.id, update);
-    expect(whisp.description).toBe('UPDATED');
+    whispService.update(whisp.id, update).then((whispUpdated) => {
+      expect(whispUpdated.description).toBe('UPDATED');
+    });
   });
 
-  it('should trigger the webhook when a whisp is deleted', async (done) => {
+  it('should trigger the webhook when a whisp is deleted',  (done) => {
     setExpectedEventName(EventNames.WHISP_DELETED, done);
-
-    whispService.delete(whisp.id);
+    whispService.delete(whisp.id).then(() => {
+      console.log("#### whisp DELETED ");
+    });
   });
+
 });

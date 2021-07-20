@@ -46,12 +46,15 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  try {
-    const model = global.app.get<Model<ITag>>(getModelToken('Tag'));
-    await model.deleteMany({ title: TAG_TITLE });
-  } catch (e) {
-    console.info('Could not deleted created Tag Groups during tests', e);
-  }
+  new Promise(async (resolve, reject) => {
+    try {
+      const model = global.app.get<Model<ITag>>(getModelToken('Tag'));
+      await model.deleteMany({ title: TAG_TITLE });
+    } catch (err) {
+      console.info('Could not deleted created Tag Groups during tests', err);
+      reject(err);
+    }
+  });
 });
 
 describe('createTag', () => {
