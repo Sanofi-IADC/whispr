@@ -1,3 +1,11 @@
+## [2.4.73](https://github.com/Sanofi-IADC/whispr/compare/v2.4.72...v2.4.73) (2021-07-28)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.130.0 ([636fe94](https://github.com/Sanofi-IADC/whispr/commit/636fe94eadac9d75ae6fee3021a8147df455bf65))
+* **dependency maintenance:** update dependency aws-sdk to v2.956.0 ([8d41b77](https://github.com/Sanofi-IADC/whispr/commit/8d41b77d73a2637f01e1478d0d966078e6a9a31f))
+
 ## [2.4.72](https://github.com/Sanofi-IADC/whispr/compare/v2.4.71...v2.4.72) (2021-07-27)
 
 
