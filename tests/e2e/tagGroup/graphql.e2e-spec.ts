@@ -36,15 +36,17 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  new Promise(async (resolve, reject) => {
+  const result = new Promise(async (resolve, reject) => {
     try {
       const model = global.app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
-      await model.deleteMany({ title: TAG_GROUP_TYPE });
+      //await model.deleteMany({ title: TAG_GROUP_TYPE });
+      resolve(model.deleteMany({ title: TAG_GROUP_TYPE }));
     } catch (err) {
       console.info('Could not deleted created Tag Groups during tests', err);
       reject(err);
     }
   });
+  Promise.resolve(result);
 });
 
 describe('createTagGroup', () => {
