@@ -39,7 +39,7 @@ function configWebhookListener():Promise<void> {
         reject(err);
       }​​​
     }​​​);
-    
+
     webhookListener.listen(WEBHOOK_TEST_PORT, (err) => {​​​
         if (err) {
           reject(err);
@@ -54,40 +54,45 @@ function setExpectedEventName(event: EventNames, done: jest.DoneCallback) {
 }
 
 beforeAll(async () => {
-  new Promise(async (resolve, reject) => {
+  const result = new Promise(async (resolve, reject) => {
       try {​​​
         whispService = global.app.get<WhispService>('WhispService');
-        await configWebhookListener();
+        //await configWebhookListener();
+        resolve(configWebhookListener());
       } catch (err) {​​​
         console.warn('#### Could not start whispService', err);
         reject(err);
       }​​​
   });
+  Promise.resolve(result);
 });
 
 afterAll(async () => {
   // delete created webhooks
-  new Promise(async (resolve, reject) => {
+  const resultWebHook = new Promise(async (resolve, reject) => {
     try {
       const webhookModel = global.app.get<Model<IWebhook>>(getModelToken('Webhook'));
-      await webhookModel.deleteMany({ url: WEBHOOK_TEST_URL });
+      //await webhookModel.deleteMany({ url: WEBHOOK_TEST_URL });
+      resolve(webhookModel.deleteMany({ url: WEBHOOK_TEST_URL }));
     } catch (err) {
       console.warn('#### Could not delete created webhooks', err);
       reject(err);
     }
   });
+  Promise.resolve(resultWebHook);
 
   // delete created whisps
-  new Promise(async (resolve, reject) => {
+  const resultWhisp = new Promise(async (resolve, reject) => {
     try {
       const whispModel = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
-      await whispModel.deleteMany({ type: WHISP_TEST_TYPE });
+      //await whispModel.deleteMany({ type: WHISP_TEST_TYPE });
+      resolve(whispModel.deleteMany({ type: WHISP_TEST_TYPE }));
     } catch (err) {
       console.warn('#### Could not delete created whisps', err);
       reject(err);
     }
   });
-
+  Promise.resolve(Promise.resolve(result););
   webhookListener.close();
 });
 
