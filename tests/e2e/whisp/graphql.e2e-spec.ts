@@ -40,15 +40,16 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  new Promise(async (resolve, reject) => {
+  const result = new Promise(async (resolve, reject) => {
     try {
       const model = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
-      model.deleteMany({ type: WHISP_TEST_TYPE });
+      resolve(model.deleteMany({ type: WHISP_TEST_TYPE }));
     } catch (err) {
       console.warn('Could not delete created whisps', err);
       reject(err);
     }
   });
+  Promise.resolve(result);
 });
 
 describe('GRAPHQL WhispModule (e2e)', () => {
