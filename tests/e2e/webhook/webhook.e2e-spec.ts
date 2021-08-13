@@ -32,13 +32,14 @@ function configWebhookListener():Promise<void> {
     webhookListener.post(WEBHOOK_TEST_ROUTE, async (req) => {​​​
       console.log("##### webhookListener req.body ", req.body);
       try {​​​
-        expect(req.body).toEqual(expect.objectContaining({​​​ eventName: expectedEventName }​​​));
+        expect(req.body).toEqual(expect.objectContaining({​​​eventName:expectedEventName}​​​));
         doneCallback();
-      }​​​ catch (err) {​​​
+      }​​​
+      catch (err) {​​​
         reject(err);
       }​​​
     }​​​);
-
+    
     webhookListener.listen(WEBHOOK_TEST_PORT, (err) => {​​​
         if (err) {
           reject(err);
