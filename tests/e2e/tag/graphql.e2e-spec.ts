@@ -49,7 +49,6 @@ afterAll(async () => {
   const result = new Promise((resolve, reject) => {
     try {
       const model = global.app.get<Model<ITag>>(getModelToken('Tag'));
-      //await model.deleteMany({ title: TAG_TITLE });
       resolve(model.deleteMany({ title: TAG_TITLE }));
     } catch (err) {
       console.info('Could not deleted created Tag Groups during tests', err);
