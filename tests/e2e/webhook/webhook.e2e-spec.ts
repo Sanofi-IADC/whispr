@@ -118,8 +118,7 @@ describe('webhooks', () => {
 
     it('should trigger the webhook when a whisp is deleted',  (done) => {
       setExpectedEventName(EventNames.WHISP_DELETED, done);
-      whispService.delete(whisp.id).then(() => {
-      });
+      whispService.delete(whisp.id);
     });
   });
 });
