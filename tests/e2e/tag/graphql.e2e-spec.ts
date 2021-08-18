@@ -34,7 +34,7 @@ let tagGroupService: TagGroupService;
 let createdTagId: string;
 let tagGroupId: string;
 
-describe ('Tags', () => {
+describe('Tags', () => {
   beforeAll(async () => {
     tagService = global.app.get<TagService>('TagService');
     tagGroupService = global.app.get<TagGroupService>('TagGroupService');

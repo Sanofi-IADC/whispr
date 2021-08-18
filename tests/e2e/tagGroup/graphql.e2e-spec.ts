@@ -31,18 +31,18 @@ const TAG_GROUP_TYPE = 'E2E_TEST';
 let tagGroupService: TagGroupService;
 let createdTagGroupId: string;
 
-describe ('TagGroup', () => {
+describe('TagGroup', () => {
   beforeAll(async () => {
     tagGroupService = global.app.get<TagGroupService>('TagGroupService');
   });
 
   afterAll(async () => {
     try {
-        const model = global.app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
-        await model.deleteMany({ title: TAG_GROUP_TYPE }).exec();
-      } catch (err) {
-        console.info('Could not deleted created Tag Groups during tests', err);
-      }
+      const model = global.app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
+      await model.deleteMany({ title: TAG_GROUP_TYPE }).exec();
+    } catch (err) {
+      console.info('Could not deleted created Tag Groups during tests', err);
+    }
   });
 
   describe('createTagGroup', () => {

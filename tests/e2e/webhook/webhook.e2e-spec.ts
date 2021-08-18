@@ -27,26 +27,27 @@ const webhookListener = fastify();
 let expectedEventName: EventNames;
 let doneCallback: jest.DoneCallback;
 
-function configWebhookListener():Promise<void> {
+function configWebhookListener(): Promise<void> {
   return new Promise((resolve, reject) => {
-    webhookListener.post(WEBHOOK_TEST_ROUTE, async (req) => {​​​
-      try {​​​
-        expect(req.body).toEqual(expect.objectContaining({​​​
-          eventName:expectedEventName
-        }​​​));
+    webhookListener.post(WEBHOOK_TEST_ROUTE, async (req) => {
+      try {
+        expect(req.body).toEqual(
+          expect.objectContaining({
+            eventName: expectedEventName,
+          }),
+        );
         doneCallback();
-      }​​​
-      catch (err) {​​​
+      } catch (err) {
         reject(err);
-      }​​​
-    }​​​);
+      }
+    });
 
-    webhookListener.listen(WEBHOOK_TEST_PORT, (err) => {​​​
-        if (err) {
-          reject(err);
-        }​​​
-      }​​​);
-  })
+    webhookListener.listen(WEBHOOK_TEST_PORT, (err) => {
+      if (err) {
+        reject(err);
+      }
+    });
+  });
 }
 
 function setExpectedEventName(event: EventNames, done: jest.DoneCallback) {
@@ -100,13 +101,13 @@ describe('webhooks', () => {
     });
 
     it('should trigger the webhook when a whisp is created', (done) => {
-        setExpectedEventName(EventNames.WHISP_CREATED, done);
-        const input = new WhispInputType();
-        input.type = WHISP_TEST_TYPE;
-        whispService.create(input).then((whispCreateed) => {
-          whisp = whispCreateed;
-          expect(whispCreateed.readableID).toBeTruthy();
-        });
+      setExpectedEventName(EventNames.WHISP_CREATED, done);
+      const input = new WhispInputType();
+      input.type = WHISP_TEST_TYPE;
+      whispService.create(input).then((whispCreateed) => {
+        whisp = whispCreateed;
+        expect(whispCreateed.readableID).toBeTruthy();
+      });
     });
 
     it('should trigger the webhook when a whisp is updated', (done) => {
@@ -118,7 +119,7 @@ describe('webhooks', () => {
       });
     });
 
-    it('should trigger the webhook when a whisp is deleted',  (done) => {
+    it('should trigger the webhook when a whisp is deleted', (done) => {
       setExpectedEventName(EventNames.WHISP_DELETED, done);
       whispService.delete(whisp.id);
     });
