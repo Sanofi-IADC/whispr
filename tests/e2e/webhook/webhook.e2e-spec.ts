@@ -31,7 +31,9 @@ function configWebhookListener():Promise<void> {
   return new Promise((resolve, reject) => {
     webhookListener.post(WEBHOOK_TEST_ROUTE, async (req) => {​​​
       try {​​​
-        expect(req.body).toEqual(expect.objectContaining({​​​eventName:expectedEventName}​​​));
+        expect(req.body).toEqual(expect.objectContaining({​​​
+          eventName:expectedEventName
+        }​​​));
         doneCallback();
       }​​​
       catch (err) {​​​
