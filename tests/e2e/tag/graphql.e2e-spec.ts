@@ -34,84 +34,86 @@ let tagGroupService: TagGroupService;
 let createdTagId: string;
 let tagGroupId: string;
 
-beforeAll(async () => {
-  tagService = global.app.get<TagService>('TagService');
-  tagGroupService = global.app.get<TagGroupService>('TagGroupService');
+describe ('Tags', () => {
+  beforeAll(async () => {
+    tagService = global.app.get<TagService>('TagService');
+    tagGroupService = global.app.get<TagGroupService>('TagGroupService');
 
-  const tagGroup = await tagGroupService.create({
-    title: TAG_TITLE,
+    const tagGroup = await tagGroupService.create({
+      title: TAG_TITLE,
+    });
+    // eslint-disable-next-line no-underscore-dangle
+    tagGroupId = tagGroup._id;
   });
-  // eslint-disable-next-line no-underscore-dangle
-  tagGroupId = tagGroup._id;
-});
 
-afterAll(async () => {
-  try {
-    const model = global.app.get<Model<ITag>>(getModelToken('Tag'));
-    await model.deleteMany({ title: TAG_TITLE });
-  } catch (e) {
-    console.info('Could not deleted created Tag Groups during tests', e);
-  }
-});
+  afterAll(async () => {
+    try {
+      const model = global.app.get<Model<ITag>>(getModelToken('Tag'));
+      await model.deleteMany({ title: TAG_TITLE }).exec();
+    } catch (e) {
+      console.info('Could not deleted created Tag Groups during tests', e);
+    }
+  });
 
-describe('createTag', () => {
-  it('should create a new tag and return a 200', async () => {
-    const result = await request(global.app.getHttpServer())
-      .post('/graphql')
-      .send({
-        query: CREATE_TAG_GQL,
-        variables: {
-          tag: {
-            title: TAG_TITLE,
-            tagGroup: {
-              _id: tagGroupId,
+  describe('createTag', () => {
+    it('should create a new tag and return a 200', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: CREATE_TAG_GQL,
+          variables: {
+            tag: {
+              title: TAG_TITLE,
+              tagGroup: {
+                _id: tagGroupId,
+              },
             },
           },
-        },
-      });
+        });
 
-    expect(result.status).toBe(200);
-    createdTagId = result.body.data.createTag.id;
-    const tag = await tagService.findOne(createdTagId);
-    expect(tag).toBeTruthy();
+      expect(result.status).toBe(200);
+      createdTagId = result.body.data.createTag.id;
+      const tag = await tagService.findOne(createdTagId);
+      expect(tag).toBeTruthy();
+    });
   });
-});
 
-describe('updateTag', () => {
-  it('should update a new tag and return a 200', async () => {
-    const NEW_TITLE = 'New Title';
-    const result = await request(global.app.getHttpServer())
-      .post('/graphql')
-      .send({
-        query: UPDATE_TAG_GQL,
-        variables: {
-          id: createdTagId,
-          tag: {
-            title: NEW_TITLE,
+  describe('updateTag', () => {
+    it('should update a new tag and return a 200', async () => {
+      const NEW_TITLE = 'New Title';
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: UPDATE_TAG_GQL,
+          variables: {
+            id: createdTagId,
+            tag: {
+              title: NEW_TITLE,
+            },
           },
-        },
-      });
+        });
 
-    expect(result.status).toBe(200);
-    const tag = await tagService.findOne(createdTagId);
-    expect(tag.title).toEqual(NEW_TITLE);
+      expect(result.status).toBe(200);
+      const tag = await tagService.findOne(createdTagId);
+      expect(tag.title).toEqual(NEW_TITLE);
+    });
   });
-});
 
-describe('deleteTag', () => {
-  it('should delete a new tag and return a 200', async () => {
-    const result = await request(global.app.getHttpServer())
-      .post('/graphql')
-      .send({
-        query: DELETE_TAG_GQL,
-        variables: {
-          id: createdTagId,
-        },
-      });
+  describe('deleteTag', () => {
+    it('should delete a new tag and return a 200', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: DELETE_TAG_GQL,
+          variables: {
+            id: createdTagId,
+          },
+        });
 
-    expect(result.status).toBe(200);
+      expect(result.status).toBe(200);
 
-    const tag = await tagService.findOne(createdTagId);
-    expect(tag).toBeNull();
+      const tag = await tagService.findOne(createdTagId);
+      expect(tag).toBeNull();
+    });
   });
 });
