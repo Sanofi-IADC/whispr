@@ -31,74 +31,76 @@ const TAG_GROUP_TYPE = 'E2E_TEST';
 let tagGroupService: TagGroupService;
 let createdTagGroupId: string;
 
-beforeAll(async () => {
-  tagGroupService = global.app.get<TagGroupService>('TagGroupService');
-});
-
-afterAll(async () => {
-  try {
-    const model = global.app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
-    await model.deleteMany({ title: TAG_GROUP_TYPE });
-  } catch (e) {
-    console.info('Could not deleted created Tag Groups during tests', e);
-  }
-});
-
-describe('createTagGroup', () => {
-  it('should create a new tag group and return a 200', async () => {
-    const result = await request(global.app.getHttpServer())
-      .post('/graphql')
-      .send({
-        query: CREATE_TAG_GROUP_GQL,
-        variables: {
-          tagGroup: {
-            title: TAG_GROUP_TYPE,
-          },
-        },
-      });
-
-    expect(result.status).toBe(200);
-    createdTagGroupId = result.body.data.createTagGroup.id;
-    const tagGroup = await tagGroupService.findOne(createdTagGroupId);
-    expect(tagGroup).toBeTruthy();
+describe('TagGroup', () => {
+  beforeAll(async () => {
+    tagGroupService = global.app.get<TagGroupService>('TagGroupService');
   });
-});
 
-describe('updateTagGroup', () => {
-  it('should update a new tag group and return a 200', async () => {
-    const NEW_TITLE = 'New Title';
-    const result = await request(global.app.getHttpServer())
-      .post('/graphql')
-      .send({
-        query: UPDATE_TAG_GROUP_GQL,
-        variables: {
-          id: createdTagGroupId,
-          tagGroup: {
-            title: NEW_TITLE,
-          },
-        },
-      });
-
-    expect(result.status).toBe(200);
-    const tagGroup = await tagGroupService.findOne(createdTagGroupId);
-    expect(tagGroup.title).toEqual(NEW_TITLE);
+  afterAll(async () => {
+    try {
+      const model = global.app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
+      await model.deleteMany({ title: TAG_GROUP_TYPE }).exec();
+    } catch (err) {
+      console.info('Could not deleted created Tag Groups during tests', err);
+    }
   });
-});
 
-describe('deleteTagGroup', () => {
-  it('should delete a new tag group and return a 200', async () => {
-    const result = await request(global.app.getHttpServer())
-      .post('/graphql')
-      .send({
-        query: DELETE_TAG_GROUP_GQL,
-        variables: {
-          id: createdTagGroupId,
-        },
-      });
+  describe('createTagGroup', () => {
+    it('should create a new tag group and return a 200', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: CREATE_TAG_GROUP_GQL,
+          variables: {
+            tagGroup: {
+              title: TAG_GROUP_TYPE,
+            },
+          },
+        });
 
-    expect(result.status).toBe(200);
+      expect(result.status).toBe(200);
+      createdTagGroupId = result.body.data.createTagGroup.id;
+      const tagGroup = await tagGroupService.findOne(createdTagGroupId);
+      expect(tagGroup).toBeTruthy();
+    });
+  });
 
-    const tagGroup = await tagGroupService.findOne(createdTagGroupId);
-    expect(tagGroup).toBeNull();
+  describe('updateTagGroup', () => {
+    it('should update a new tag group and return a 200', async () => {
+      const NEW_TITLE = 'New Title';
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: UPDATE_TAG_GROUP_GQL,
+          variables: {
+            id: createdTagGroupId,
+            tagGroup: {
+              title: NEW_TITLE,
+            },
+          },
+        });
+
+      expect(result.status).toBe(200);
+      const tagGroup = await tagGroupService.findOne(createdTagGroupId);
+      expect(tagGroup.title).toEqual(NEW_TITLE);
+    });
+  });
+
+  describe('deleteTagGroup', () => {
+    it('should delete a new tag group and return a 200', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: DELETE_TAG_GROUP_GQL,
+          variables: {
+            id: createdTagGroupId,
+          },
+        });
+
+      expect(result.status).toBe(200);
+
+      const tagGroup = await tagGroupService.findOne(createdTagGroupId);
+      expect(tagGroup).toBeNull();
+    });
   });
 });
