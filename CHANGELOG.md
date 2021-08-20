@@ -1,3 +1,12 @@
+## [2.4.74](https://github.com/Sanofi-IADC/whispr/compare/v2.4.73...v2.4.74) (2021-08-20)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.130.1 ([21225b0](https://github.com/Sanofi-IADC/whispr/commit/21225b07bc550ea5113b6386bdea2ea96315ebf6))
+* **dependency maintenance:** update dependency flatted to v3.2.2 ([52ed124](https://github.com/Sanofi-IADC/whispr/commit/52ed124afa484aff26e8a08bdbf11d4f550729ce))
+* **dependency maintenance:** update dependency rxjs to v7.3.0 ([329bafe](https://github.com/Sanofi-IADC/whispr/commit/329bafe183a8e9b6031a6af190415e4503894e30))
+
 ## [2.4.73](https://github.com/Sanofi-IADC/whispr/compare/v2.4.72...v2.4.73) (2021-07-28)
 
 
