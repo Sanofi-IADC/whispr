@@ -66,7 +66,7 @@ function buildFilter(numberOfQueries) {
 function buildQueries(numberOfQueries) {
   let queries = Array(numberOfQueries);
   for (let i = 0; i < numberOfQueries; i++) {
-    queries[i] = `count${i}: whispsCount(filter: $filter${i})`;
+    queries[i] = `count${i}: countWhisps(filter: $filter${i}, group : $variables.group)`;
   }
   return queries.join('\n');
 }

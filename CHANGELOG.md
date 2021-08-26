@@ -1143,7 +1143,7 @@
 
 ### Performance Improvements
 
-* whispsCount uses mongo documentCount ([2e2a0d5](https://github.com/Sanofi-IADC/whispr/commit/2e2a0d515ad1ea5bc80ee26b15a420370fdb0508))
+* countWhisps uses mongo documentCount ([2e2a0d5](https://github.com/Sanofi-IADC/whispr/commit/2e2a0d515ad1ea5bc80ee26b15a420370fdb0508))
 
 
 ### BREAKING CHANGES
@@ -1311,7 +1311,7 @@
 
 ### Performance Improvements
 
-* whispsCount uses mongo documentCount ([9b7cb4e](https://github.com/Sanofi-IADC/whispr/commit/9b7cb4eb081f987f50528dfa17b284628b0cd0fa))
+* countWhisps uses mongo documentCount ([9b7cb4e](https://github.com/Sanofi-IADC/whispr/commit/9b7cb4eb081f987f50528dfa17b284628b0cd0fa))
 
 ## [1.4.12](https://github.com/Sanofi-IADC/whispr/compare/v1.4.11...v1.4.12) (2020-08-24)
 

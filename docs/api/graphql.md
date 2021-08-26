@@ -62,31 +62,6 @@ Query variables
 }
 ```
 
-### whispsCount
-::: warning
-This query will be deprecated in the next major release of whispr in favour of the renamed whispCount query which supports custom grouping.
-:::
-Returns the count of matching whisps.
-
-It takes the same parameter as the query [whisps](#whisps)
-
-```GraphQL
-query getWhispCount($filter: JSONObject!) {
-  whispsCount(filter: $filter)
-}
-```
-
-Query variables
-
-```json
-{
-  "filter": { "att1": "value1" }
-}
-```
-
-* The filtering options are described [here](./filters.md).
-* The `/whispsCount` query accepts mongoose filtering functionality.
-
 ### countWhisps
 
 Returns an array with count of matching whisps, grouped by the specified object.
