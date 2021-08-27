@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/Sanofi-IADC/whispr/compare/v2.4.81...v3.0.0) (2021-08-27)
+
+
+### Features
+
+* decommission whispsCount query ([28bbba4](https://github.com/Sanofi-IADC/whispr/commit/28bbba47b36d38311e7adabfc71dc229468dfde4))
+
+
+### BREAKING CHANGES
+
+* whispsCount query has been removed following release of the replacement countWhisps query which gives better grouping and filtering functionality
+
 ## [2.4.81](https://github.com/Sanofi-IADC/whispr/compare/v2.4.80...v2.4.81) (2021-08-26)
 
 
