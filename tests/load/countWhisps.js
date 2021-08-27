@@ -1,6 +1,6 @@
 /* eslint-disable */
 import http from 'k6/http';
-import { check, sleep } from 'k6';
+import { sleep } from 'k6';
 
 export const options = {
   maxRedirects: 0,
@@ -45,8 +45,8 @@ export default function () {
     }
   }`;
 
-  const response = http.post(url,
-    JSON.stringify({ query: query, variables: variables }),
+  http.post(url, JSON.stringify(
+    { query: query, variables: variables }),
     { headers });
 
   sleep(1);

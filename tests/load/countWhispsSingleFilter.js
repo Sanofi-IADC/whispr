@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 import http from 'k6/http';
-import { check, sleep } from 'k6';
+import { sleep } from 'k6';
 
 export const options = {
   maxRedirects: 0,
@@ -33,7 +33,6 @@ export default function () {
 
 
 const variables = {
-  // "filter": buildFilter(numberOfQueries),
   "group": { "id": "$data.customData.id"}
 };
 
@@ -45,11 +44,9 @@ const variables = {
     }
   }`;
 
-  const response = http.post(url,
-    JSON.stringify({ query: query, variables: variables }),
+  http.post(url, JSON.stringify(
+    { query: query, variables: variables }),
     { headers });
-
-  // console.log(response.body);
 
   sleep(1);
 }
@@ -61,9 +58,7 @@ function buildFilter(numberOfQueries) {
       "applicationID": "SMUDGE",
       "data.customData.id": `${i}`
     });
-    // variables[`filter${i}`] = { "applicationID": "SMUDGE", "closed": "false", "data.customData.id": `${i}` }
-  }
-  // console.log(filter[0]['data.customData.id']);
+    }
   return filter;
 }
 
