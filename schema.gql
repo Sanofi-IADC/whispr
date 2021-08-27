@@ -76,7 +76,6 @@ type Query {
   tagGroupById(id: String!): TagGroup
   whispById(id: String!): Whisp
   whisps(limit: Int, sort: JSONObject, filter: JSONObject): [Whisp!]
-  whispsCount(filter: JSONObject): Float!
   countWhisps(group: JSONObject, filter: [JSONObject!]): [WhispCount!]!
   tags(tag: TagInputType!): [Tag!]
   tagById(id: String!): Tag

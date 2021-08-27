@@ -1,6 +1,6 @@
 /* eslint-disable */
 import http from 'k6/http';
-import { check, sleep } from 'k6';
+import { sleep } from 'k6';
 
 export const options = {
   maxRedirects: 0,
@@ -45,8 +45,8 @@ export default function () {
     }
   }`;
 
-  const response = http.post(url,
-    JSON.stringify({ query: query, variables: variables }),
+  http.post(url, JSON.stringify(
+    { query: query, variables: variables }),
     { headers });
 
   sleep(1);
@@ -66,7 +66,7 @@ function buildFilter(numberOfQueries) {
 function buildQueries(numberOfQueries) {
   let queries = Array(numberOfQueries);
   for (let i = 0; i < numberOfQueries; i++) {
-    queries[i] = `count${i}: whispsCount(filter: $filter${i})`;
+    queries[i] = `count${i}: countWhisps(filter: $filter${i}, group : $variables.group)`;
   }
   return queries.join('\n');
 }
