@@ -1,3 +1,11 @@
+## [3.0.2](https://github.com/Sanofi-IADC/whispr/compare/v3.0.1...v3.0.2) (2021-09-17)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency graphql to v15.5.3 ([d2dd005](https://github.com/Sanofi-IADC/whispr/commit/d2dd00592275b999a561d3c860266744190760fa))
+* **dependency maintenance:** update dependency ioredis to v4.27.9 ([e2bfe7d](https://github.com/Sanofi-IADC/whispr/commit/e2bfe7d6d93168d1b8e8ed24227e5f371e87dd24))
+
 ## [3.0.1](https://github.com/Sanofi-IADC/whispr/compare/v3.0.0...v3.0.1) (2021-09-17)
 
 
