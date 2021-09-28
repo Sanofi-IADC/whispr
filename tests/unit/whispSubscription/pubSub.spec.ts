@@ -40,7 +40,8 @@ describe('PUB_SUB', () => {
   });
 
   it('should return a date', async () => {
-    const dateReviver = "2021-09-01T15:51:20.860Z";
-    expect(PubSubModule.dateReviver(dateReviver).toString()).toEqual("Wed Sep 01 2021 17:51:20 GMT+0200 (heure d’été d’Europe centrale)");
+    const reviverDate = "2021-09-01T15:51:20.860Z";
+    const convertDate = new Date(PubSubModule.dateReviver(reviverDate));
+    expect(convertDate).toEqual(new Date(reviverDate));
   });
 });

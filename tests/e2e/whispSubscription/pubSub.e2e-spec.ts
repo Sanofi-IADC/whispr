@@ -14,23 +14,14 @@ const CREATE_WHISP_GQL = `
     mutation createWhisp($whisp: WhispInputType!) {
       createWhisp(whisp: $whisp) {
         _id
-        timestamp
       }
     }
     `;
   
-const SUBCRIPTION = `
-    subscription S($input: whispAddedInputType!) {
-      whispAdded(input: $input) {
-        whisp {
-          readableID: string
-          type: string
-          severity: number
-          description: string
-          closed: boolean
-          applicationID: string
-          timestamp: Date
-        }
+const WHISP_SUBCRIPTION_GQL = `
+    subscription whispSubscription($filter: JSONObject!) {
+      whispAdded(filter: $filter) {
+        _id
       }
     }
     `;
@@ -67,7 +58,7 @@ beforeAll( async function ( ) {
 
 afterAll( async ( ) => {
   const model = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
-  await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
+  //await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
 } )
 
 describe('GraphQL API Subscriptions', () => {
@@ -91,8 +82,43 @@ describe('GraphQL API Subscriptions', () => {
     }).compile();
   });
 
-  describe('createWhisp', () => {
+  describe('Whisp Subscription', () => {
+    it('Should fire a subscription and start listening', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: WHISP_SUBCRIPTION_GQL,
+          variables: {
+            filter: {
+              type: WHISP_TEST_TYPE,
+            },
+          },
+        });
+        console.log('##### result : ', result);
+      expect(result.status).toBe(200);
+    });
+  });
+
+  describe('Whisp mutation', () => {
     it('should create a new Whisp and return its id', async () => {
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: CREATE_WHISP_GQL,
+          variables: {
+            whisp: {
+              type: WHISP_TEST_TYPE,
+            },
+          },
+        });
+      expect(result.status).toBe(200);
+      createdWhispId = result.body.data.createWhisp._id;
+      expect(createdWhispId).toEqual(expect.any(String));
+    });
+  });
+
+  describe('Whisp subscription and publishing mutation', () => {
+    it('should successfully get data from subscription after publishing mutation', async () => {
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
         .send({
