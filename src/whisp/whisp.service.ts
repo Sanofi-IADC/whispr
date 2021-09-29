@@ -89,7 +89,7 @@ export class WhispService {
   async countWhisps(filter?: Partial<IWhisp>): Promise<number> {
     return this.whispModel.countDocuments(filter).exec();
   }
-  /* eslint-disable explicit-module-boundary-typess */
+
   async countWhispsGroup(filter?: Partial<IWhisp>[], group?: any): Promise<WhispCount[]> {
     // match and group code simulates mongo countDocuments but allows custom group
     const mongoMatch = { $match: filter ? { $or: filter } : {} };

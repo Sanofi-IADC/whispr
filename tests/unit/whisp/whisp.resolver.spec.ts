@@ -12,7 +12,6 @@ jest.mock('../../../src/distribution/distribution.service');
 describe('Whisp resolver', () => {
   let testingModule: TestingModule;
   let resolver: WhispResolver;
-  let distributionService: DistributionService;
   let whispService: WhispService;
 
   beforeEach(async () => {
