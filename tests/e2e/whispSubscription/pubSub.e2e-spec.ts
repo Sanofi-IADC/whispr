@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { TestingModule } from '@nestjs/testing/testing-module';
-import { PubSubEngine, PubSub } from 'graphql-subscriptions';
+import { PubSubEngine } from 'graphql-subscriptions';
 import { PubSubModule } from '../../../src/pubSub/pubSub.module';
 import { DistributionService } from '../../../src/distribution/distribution.service';
 import { WhispResolver } from '../../../src/whisp/whisp.resolver';
@@ -17,7 +17,7 @@ const CREATE_WHISP_GQL = `
       }
     }
     `;
-  
+
 const WHISP_SUBCRIPTION_GQL = `
     subscription whispSubscription($filter: JSONObject!) {
       whispAdded(filter: $filter) {
@@ -25,7 +25,7 @@ const WHISP_SUBCRIPTION_GQL = `
       }
     }
     `;
-const WHISP_TEST = {
+/*const WHISP_TEST = {
   input: {
     readableID: 'TEST-TEST-1',
     type: 'ACTION',
@@ -46,7 +46,7 @@ const REDIS_PORT_READ = 6378;
 const SUB_TEST_ROUTE = '/subscriptions';
 const GQL_TEST_ROUTE = '/graphql';
 const SUB_TEST_URL = `ws://localhost:${SUB_TEST_PORT}`;
-const TEST_PUBLICATION = 'test_publication';
+const TEST_PUBLICATION = 'test_publication';*/
 
 let whispService: WhispService;
 let createdWhispId: string;
@@ -58,16 +58,15 @@ beforeAll( async function ( ) {
 
 afterAll( async ( ) => {
   const model = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
-  //await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
+  await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
 } )
 
 describe('GraphQL API Subscriptions', () => {
   let testingModule: TestingModule;
   let resolver: WhispResolver;
   let distributionService: DistributionService;
-  let whispService: WhispService;
   let pubSubModule: PubSubModule;
- 
+
   beforeEach(async () => {
     testingModule = await Test.createTestingModule({
       controllers: [],

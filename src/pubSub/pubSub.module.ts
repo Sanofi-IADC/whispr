@@ -38,9 +38,8 @@ const dateReviver = (key, value) => {
 })
 
 export class PubSubModule {
-  static dateReviver(reviver: any) {
+  public static dateReviver(reviver: string) {
     const datereviver = dateReviver(null, reviver);
     return datereviver;
   }
 }
-
