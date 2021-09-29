@@ -21,7 +21,7 @@ describe('PUB_SUB', () => {
 
   it('should initialize the PUB_SUB module successfully', async () => {
     /* eslint-disable no-unused-expressions */
-    expect(pubSubModule instanceof PubSubModule).toBeTruthy;
+    expect(pubSubModule instanceof PubSubModule).toBeTruthy();
   });
 
   it('should be defined successfully', () => {
@@ -30,7 +30,7 @@ describe('PUB_SUB', () => {
 
   it('should dateReviver be defined', async () => {
     /* eslint-disable no-unused-expressions */
-    expect(PubSubModule.dateReviver).toBeUndefined;
+    expect(PubSubModule.dateReviver).toBeDefined();
   });
 
   it('should dateReviver return a not null value', async () => {
