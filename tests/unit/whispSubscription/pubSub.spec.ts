@@ -1,14 +1,7 @@
 import { Test } from '@nestjs/testing';
-import { TestingModule } from '@nestjs/testing/testing-module';
 import { PubSubModule } from '../../../src/pubSub/pubSub.module';
 
-const REDIS_HOST = 'localhost';
-const REDIS_PORT = 6378;
-const REDIS_HOST_READ = 'localhost';
-const REDIS_PORT_READ = 6378;
-
 describe('PUB_SUB', () => {
-  let testingModule: TestingModule;
   let pubSubModule: PubSubModule;
 
   beforeEach(async () => {

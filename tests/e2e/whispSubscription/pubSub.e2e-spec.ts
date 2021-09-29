@@ -63,9 +63,10 @@ describe('GraphQL API Subscriptions', () => {
           },
         });
         if (resultListening.status === 200) {
-          subscriptionsCount++;
+          subscriptionsCount = subscriptionsCount+1;
         }
       expect(resultListening.status).toBe(200);
+      expect(subscriptionsCount).toBe(1);
     });
 
     //MUTATION
@@ -101,7 +102,7 @@ describe('GraphQL API Subscriptions', () => {
                },
              })
 
-        await request(global.app.getHttpServer())
+        let result = await request(global.app.getHttpServer())
              .post('/graphql')
              .send({
                query: CREATE_WHISP_GQL,
@@ -111,6 +112,9 @@ describe('GraphQL API Subscriptions', () => {
                  },
                },
              });
+
+             createdWhispId = result.body.data.createWhisp._id;
+             await whispService.findOne(result.body.data.createWhisp._id);
       });
     });
   });

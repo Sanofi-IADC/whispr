@@ -48,7 +48,7 @@ describe('Whisp resolver', () => {
     }).compile();
     resolver = testingModule.get(WhispResolver);
     whispService = testingModule.get(WhispService);
-    distributionService = testingModule.get(DistributionService);
+    testingModule.get(DistributionService);
   });
 
   describe('whisps', () => {
