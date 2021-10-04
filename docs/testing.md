@@ -12,20 +12,22 @@ $ npm run test:cov
 ```
 
 ## Unit Tests
-The unit test is a way of testing a unit , the smallest possible unit of code that can be logically isolated in a system. These units are tested to determine if there are any issues 
+The unit test is a way of testing a unit , the smallest possible unit of code that can be logically isolated in a system. These units are tested to determine if there are any issues
 when the developer make the change in the code base.
-It should count for the majority of the tests we can have. Normally, only test one method each. 
-Example : Whisp, Subscription 
+It should count for the majority of the tests we can have. Normally, only test one method each.
+Example : Whisp, Subscription
 To run the unit test locally :npm run test:unit:cov
 
 ## Integration Tests
-Integration tests which are tests designed to verify the integration of different parts of separate components of a software system together. 
+Integration tests which are tests designed to verify the integration of different parts of separate components of a software system together.
+To test some integration functionality with the database, we will use `mongo` in-memory database.
+
 Example :Whisp service & MongoDb
 To run the integration test locally : npm run test:integration
 
 ## End to End Tests  
 End-to-end tests which are tests that verify an application’s workflow of code base from beginning to end.This method basically aims to replicate real user scenarios so that the system can be validated for integration and data integrity.
-Example : Webhook, TagGroup, WhispSubscription 
+Example : Webhook, TagGroup, WhispSubscription
 To run the end to end test locally :  npm run test:e2e
 
 In order to run end to end tests you need `mongo`, `redis` and `localstack` to be up and running. In order to do that you up the dockers in `docker-compose.dev.yml`
