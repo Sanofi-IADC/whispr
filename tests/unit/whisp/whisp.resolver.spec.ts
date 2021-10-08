@@ -70,7 +70,6 @@ describe('Whisp resolver', () => {
         data: { item1: true, item2: 7 },
       };
       let whisp = resolver.createWhisp(params);
-      console.log("#### whisp = ", whisp);
       expect(whispService.create).toHaveBeenCalledWith(params);
     });
   });
