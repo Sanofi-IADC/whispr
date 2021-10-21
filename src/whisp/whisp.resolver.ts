@@ -14,12 +14,13 @@ import { Tag } from '../tag/tag.entity';
 import { TagInputType } from '../tag/tag.input';
 import { WhispCount } from './whispCount.entity';
 
+
 @Resolver(() => Whisp)
 export class WhispResolver {
   constructor(
     private readonly whispService: WhispService,
     private readonly distributionService: DistributionService,
-    @Inject('PUB_SUB') private pubSub: PubSubEngine,
+    @Inject('PUB_SUB') private pubSub: PubSubEngine
   ) {
     this.distributionService.whispSubject.subscribe((whisp) => {
       pubSub.publish('whispAdded', { whispAdded: whisp });

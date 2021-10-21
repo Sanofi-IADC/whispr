@@ -12,7 +12,6 @@ jest.mock('../../../src/distribution/distribution.service');
 describe('Whisp resolver', () => {
   let testingModule: TestingModule;
   let resolver: WhispResolver;
-  let distributionService: DistributionService;
   let whispService: WhispService;
 
   beforeEach(async () => {
@@ -24,7 +23,9 @@ describe('Whisp resolver', () => {
           provide: WhispService,
           useFactory: () => ({
             findAll: jest.fn(() => true),
+            findOne: jest.fn(() => true),
             create: jest.fn(() => true),
+            update: jest.fn(() => true),
             countWhispsGroup: jest.fn(() => true),
           }),
         },
@@ -46,13 +47,18 @@ describe('Whisp resolver', () => {
     }).compile();
     resolver = testingModule.get(WhispResolver);
     whispService = testingModule.get(WhispService);
-    distributionService = testingModule.get(DistributionService);
+    testingModule.get(DistributionService);
   });
 
   describe('whisps', () => {
     it('should return all whisps', async () => {
       resolver.whisps();
       expect(whispService.findAll).toHaveBeenCalled();
+    });
+
+    it('should return a whisp with an id', async () => {
+      resolver.whispById('1');
+      expect(whispService.findOne).toHaveBeenCalled();
     });
   });
 
@@ -63,8 +69,23 @@ describe('Whisp resolver', () => {
         applicationID: 'MYAPP',
         data: { item1: true, item2: 7 },
       };
-      resolver.createWhisp(params);
+      let whisp = resolver.createWhisp(params);
       expect(whispService.create).toHaveBeenCalledWith(params);
+    });
+  });
+
+  describe('updateWhisp', () => {
+    it('should update with expected parameters', async () => {
+      const WHISP_TEST = {
+          readableID: 'TEST-TEST-1',
+          type: 'ACTION',
+          description: 'TEST UPDATE WHISP',
+          closed: false,
+          applicationID: 'TEST_MY_APP',
+          data: { item1: true, item2: 7 },
+      };
+      resolver.updateWhisp('1', WHISP_TEST);
+      expect(whispService.update).toHaveBeenCalledWith('1', WHISP_TEST);
     });
   });
 
