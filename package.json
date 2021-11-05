@@ -40,7 +40,7 @@
     "@nestjs/websockets": "7.2.0",
     "@types/graphql": "14.5.0",
     "amazon-cognito-identity-js": "5.1.2",
-    "apollo-server-fastify": "2.19.0",
+    "apollo-server-fastify": "3.5.0",
     "aws-sdk": "2.1001.0",
     "class-transformer": "0.3.1",
     "class-validator": "0.13.1",
