@@ -4,6 +4,7 @@ import { GetObjectOutput } from 'aws-sdk/clients/s3';
 import { FileUpload } from 'graphql-upload';
 import { AWSCredsService } from '../auth/aws-creds.service';
 import { ConfigService } from '../config/config.service';
+
 @Injectable()
 export class FileService {
   constructor(private awsCredentialService: AWSCredsService, private configService: ConfigService) {}
