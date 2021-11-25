@@ -1,11 +1,18 @@
 /* eslint-disable import/first */
-if (process.env.NODE_ENV !== 'local' && process.env.NODE_ENV !== 'test' && process.env.INSTANA_ENDPOINT_URL) {
+if (
+  process.env.NODE_ENV !== 'local'
+  && process.env.NODE_ENV !== 'test'
+  && process.env.INSTANA_ENDPOINT_URL
+) {
   // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
   require('@instana/collector')();
 }
 
 import { NestFactory } from '@nestjs/core';
-import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import Fastify from 'fastify-compress';
 import { processRequest } from 'graphql-upload';
 import { AppModule } from './app.module';
