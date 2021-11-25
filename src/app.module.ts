@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { TerminusModule } from '@nestjs/terminus';
+import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { AWSCredsModule } from './auth/aws-creds.module';
 import { ConfigModule } from './config/config.module';
 import { DistributionModule } from './distribution/distribution.module';
@@ -28,7 +29,9 @@ import { HealthController } from './health/health.controller';
       useFactory: async (configService: ConfigService) => ({
         autoSchemaFile: configService.get('AUTO_SCHEMA_FILE'),
         introspection: configService.get('INTROSPECTION'),
-        playground: configService.get('PLAYGROUND'),
+        playground: false,
+        cors: false,
+        plugins: configService.get('PLAYGROUND') ? [ApolloServerPluginLandingPageLocalDefault()] : [],
         installSubscriptionHandlers: true,
       }),
       inject: [ConfigService],

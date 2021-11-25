@@ -73,7 +73,7 @@ export class WhispService {
     );
   }
 
-  async findAll(filter?: Partial<IWhisp>, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
+  async findAll(filter?: Record<string, unknown>, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
     return this.whispModel.find(filter).sort(sort).limit(limit).exec();
   }
 
@@ -86,11 +86,11 @@ export class WhispService {
     return whisps.tags;
   }
 
-  async countWhisps(filter?: Partial<IWhisp>): Promise<number> {
+  async countWhisps(filter?: Record<string, unknown>): Promise<number> {
     return this.whispModel.countDocuments(filter).exec();
   }
 
-  async countWhispsGroup(filter?: Partial<IWhisp>[], group?: any): Promise<WhispCount[]> {
+  async countWhispsGroup(filter?: Record<string, unknown>[], group?: any): Promise<WhispCount[]> {
     // match and group code simulates mongo countDocuments but allows custom group
     const mongoMatch = { $match: filter ? { $or: filter } : {} };
     const mongoGroup = { $group: { _id: group, count: { $sum: 1 } } };

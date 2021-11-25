@@ -71,12 +71,12 @@ type WhispCount {
 }
 
 type Query {
-  webhooks: [Webhook!]
-  tagGroups(tagGroup: TagGroupInputType!): [TagGroup!]
-  tagGroupById(id: String!): TagGroup
   whispById(id: String!): Whisp
   whisps(limit: Int, sort: JSONObject, filter: JSONObject): [Whisp!]
   countWhisps(group: JSONObject, filter: [JSONObject!]): [WhispCount!]!
+  webhooks: [Webhook!]
+  tagGroups(tagGroup: TagGroupInputType!): [TagGroup!]
+  tagGroupById(id: String!): TagGroup
   tags(tag: TagInputType!): [Tag!]
   tagById(id: String!): Tag
 }
@@ -99,26 +99,20 @@ input TagInputType {
 }
 
 type Mutation {
+  createWhisp(whisp: WhispInputType!): Whisp!
+  updateWhisp(whisp: WhispInputType!, id: String!): Whisp!
+  replaceWhisp(whisp: WhispInputType!, id: String!): Whisp!
+  deleteWhisp(id: String!): Boolean!
   createWebhook(webhook: WebhookInputType!): Webhook!
   deleteWebhook(id: String!): Boolean!
   createTagGroup(tagGroup: TagGroupInputType!): TagGroup!
   updateTagGroup(tagGroup: TagGroupInputType!, id: String!): TagGroup!
   replaceTagGroup(tagGroup: TagGroupInputType!, id: String!): TagGroup!
   deleteTagGroup(id: String!): Boolean!
-  createWhisp(whisp: WhispInputType!): Whisp!
-  updateWhisp(whisp: WhispInputType!, id: String!): Whisp!
-  replaceWhisp(whisp: WhispInputType!, id: String!): Whisp!
-  deleteWhisp(id: String!): Boolean!
   createTag(tag: TagInputType!): Tag!
   updateTag(tag: TagInputType!, id: String!): Tag!
   replaceTag(tag: TagInputType!, id: String!): Tag!
   deleteTag(id: String!): Boolean!
-}
-
-input WebhookInputType {
-  url: String!
-  events: [String!]!
-  filter: JSONObject
 }
 
 """New whisp data"""
@@ -157,6 +151,12 @@ input WhispFileUpload {
 
 """The `Upload` scalar type represents a file upload."""
 scalar Upload
+
+input WebhookInputType {
+  url: String!
+  events: [String!]!
+  filter: JSONObject
+}
 
 type Subscription {
   whispAdded(filter: JSONObject!): Whisp!
