@@ -1,17 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-import { Readable } from 'stream';
 import { GetObjectOutput } from 'aws-sdk/clients/s3';
+import { FileUpload } from 'graphql-upload';
 import { AWSCredsService } from '../auth/aws-creds.service';
 import { ConfigService } from '../config/config.service';
-
-export interface FileUpload {
-  filename: string;
-  mimetype: string;
-  encoding: string;
-  createReadStream: () => Readable;
-}
-
 @Injectable()
 export class FileService {
   constructor(private awsCredentialService: AWSCredsService, private configService: ConfigService) {}

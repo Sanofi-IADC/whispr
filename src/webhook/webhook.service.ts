@@ -1,9 +1,8 @@
-import {
-  Injectable, Param, Logger, HttpService,
-} from '@nestjs/common';
+import { Injectable, Param, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { stringify } from 'flatted';
+import { HttpService } from '@nestjs/axios';
 import { IWebhook } from '../interfaces/webhook.interface';
 import { Event } from '../event/event.entity';
 import { WebhookInputType } from './webhook.input';
@@ -24,7 +23,9 @@ export class WebhookService {
   }
 
   async delete(@Param('id') id: string): Promise<boolean> {
-    const { n: countOfDeletedWebhooks } = await this.webhookModel.deleteOne({ _id: id }).exec();
+    const { n: countOfDeletedWebhooks } = await this.webhookModel
+      .deleteOne({ _id: id })
+      .exec();
 
     return countOfDeletedWebhooks === 1;
   }

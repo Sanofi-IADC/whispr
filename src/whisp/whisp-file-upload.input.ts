@@ -1,7 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { IsOptional, ValidatePromise, IsString } from 'class-validator';
-import { GraphQLUpload } from 'apollo-server-fastify';
-import { GqlFileUpload } from '../interfaces/gql-file-upload.interface';
+import { FileUpload, GraphQLUpload } from 'graphql-upload';
 
 @InputType()
 export class WhispFileUpload {
@@ -13,5 +12,5 @@ export class WhispFileUpload {
   @Field(() => GraphQLUpload, { nullable: true })
   @IsOptional()
   @ValidatePromise()
-  newFile?: Promise<GqlFileUpload>;
+  newFile?: Promise<FileUpload>;
 }

@@ -1,4 +1,4 @@
-import Joi from '@hapi/joi';
+import Joi from 'joi';
 
 export default Joi.object({
   AUTO_SCHEMA_FILE: Joi.string().default('schema.gql'),

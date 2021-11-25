@@ -1,7 +1,8 @@
 /* eslint-disable class-methods-use-this */
 import { GetObjectOutput } from 'aws-sdk/clients/s3';
+import { FileUpload } from 'graphql-upload';
 import { WhispAttachment } from '../../../src/whisp/whisp-attachment.entity';
-import { FileService, FileUpload } from '../../../src/file/file.service';
+import { FileService } from '../../../src/file/file.service';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { WhispAttachmentInput } from '../../../src/whisp/whisp-attachment.input';
 

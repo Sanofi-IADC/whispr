@@ -1,5 +1,6 @@
-import { HttpModule, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
+import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '../config/config.module';
 import { WebhookController } from './webhook.controller';
 import { WebhookService } from './webhook.service';
@@ -21,6 +22,6 @@ import { ConfigService } from '../config/config.service';
   ],
   controllers: [WebhookController],
   providers: [WebhookService, WebhookResolver, ConfigService],
-  exports: [WebhookService],
+  exports: [WebhookService, HttpModule],
 })
 export class WebhookModule {}
