@@ -69,7 +69,7 @@ describe('Whisp resolver', () => {
         applicationID: 'MYAPP',
         data: { item1: true, item2: 7 },
       };
-      let whisp = resolver.createWhisp(params);
+      const whisp = resolver.createWhisp(params);
       expect(whispService.create).toHaveBeenCalledWith(params);
     });
   });
@@ -77,12 +77,12 @@ describe('Whisp resolver', () => {
   describe('updateWhisp', () => {
     it('should update with expected parameters', async () => {
       const WHISP_TEST = {
-          readableID: 'TEST-TEST-1',
-          type: 'ACTION',
-          description: 'TEST UPDATE WHISP',
-          closed: false,
-          applicationID: 'TEST_MY_APP',
-          data: { item1: true, item2: 7 },
+        readableID: 'TEST-TEST-1',
+        type: 'ACTION',
+        description: 'TEST UPDATE WHISP',
+        closed: false,
+        applicationID: 'TEST_MY_APP',
+        data: { item1: true, item2: 7 },
       };
       resolver.updateWhisp('1', WHISP_TEST);
       expect(whispService.update).toHaveBeenCalledWith('1', WHISP_TEST);
