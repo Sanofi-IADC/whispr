@@ -4,13 +4,20 @@ import { Test } from '@nestjs/testing';
 import { Model } from 'mongoose';
 
 import { IWhisp } from 'src/interfaces/whisp.interface';
+import { DistributionModule } from 'src/distribution/distribution.module';
+import { FileModule } from 'src/file/file.module';
+import { SequenceModule } from 'src/sequence/sequence.module';
+import { EventModule } from 'src/event/event.module';
 import { EventService } from '../../../src/event/event.service';
 import { FileService } from '../../../src/file/file.service';
 import { SequenceService } from '../../../src/sequence/sequence.service';
 import { whispSchema } from '../../../src/whisp/whisp.schema';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { DistributionService } from '../../../src/distribution/distribution.service';
-import { closeInMongodConnection, rootMongooseTestModule } from '../../testUtils/mongo/MongooseTestModule';
+import {
+  closeInMongodConnection,
+  rootMongooseTestModule,
+} from '../../testUtils/mongo/MongooseTestModule';
 
 jest.mock('../../../src/distribution/distribution.service');
 jest.mock('../../../src/event/event.service');
@@ -22,8 +29,22 @@ describe('WhispService', () => {
   let whispModel: Model<IWhisp>;
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [rootMongooseTestModule(), MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }])],
-      providers: [WhispService, Logger, DistributionService, FileService, SequenceService, EventService],
+      imports: [
+        rootMongooseTestModule(),
+        MongooseModule.forFeature([{ name: 'Whisp', schema: whispSchema }]),
+        DistributionModule,
+        FileModule,
+        SequenceModule,
+        EventModule,
+      ],
+      providers: [
+        WhispService,
+        Logger,
+        DistributionService,
+        FileService,
+        SequenceService,
+        EventService,
+      ],
     }).compile();
     whispService = moduleRef.get<WhispService>(WhispService);
     whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
@@ -64,7 +85,9 @@ describe('WhispService', () => {
 
       const result = await whispService.update(initialWhisp._id, {});
 
-      expect(result.timestamp.valueOf()).toEqual(initialWhisp.timestamp.valueOf());
+      expect(result.timestamp.valueOf()).toEqual(
+        initialWhisp.timestamp.valueOf(),
+      );
     });
   });
 
