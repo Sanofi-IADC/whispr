@@ -1,8 +1,8 @@
 /* eslint-disable import/first */
 if (
-  process.env.NODE_ENV !== 'local'
-  && process.env.NODE_ENV !== 'test'
-  && process.env.INSTANA_ENDPOINT_URL
+  process.env.NODE_ENV !== 'local' &&
+  process.env.NODE_ENV !== 'test' &&
+  process.env.INSTANA_ENDPOINT_URL
 ) {
   // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
   require('@instana/collector')();
