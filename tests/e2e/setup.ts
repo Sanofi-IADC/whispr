@@ -2,7 +2,11 @@ import { Test } from '@nestjs/testing';
 // It is used below
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { INestApplication } from '@nestjs/common';
-import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+import { processRequest } from 'graphql-upload';
 import { AppModule } from '../../src/app.module';
 
 declare global {
@@ -19,7 +23,20 @@ beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
-    global.app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter());
+    const adapter = new FastifyAdapter();
+    const fastifyInstance = adapter.getInstance();
+    fastifyInstance.addContentTypeParser('multipart', (request, done) => {
+      request.isMultipart = true;
+      done();
+    });
+
+    fastifyInstance.addHook('preValidation', async (request: any, reply) => {
+      if (!request.raw.isMultipart) {
+        return;
+      }
+      request.body = await processRequest(request.raw, reply.raw);
+    });
+    global.app = moduleRef.createNestApplication<NestFastifyApplication>(adapter);
     await global.app.init();
     await global.app.getHttpAdapter().getInstance().ready();
   } catch (e) {
