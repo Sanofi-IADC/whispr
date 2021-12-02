@@ -33,7 +33,7 @@ let createdTagGroupId: string;
 
 describe('TagGroup', () => {
   beforeAll(async () => {
-    tagGroupService = global.app.get<TagGroupService>('TagGroupService');
+    tagGroupService = global.app.get<TagGroupService>(TagGroupService);
   });
 
   afterAll(async () => {

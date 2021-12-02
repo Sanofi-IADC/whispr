@@ -29,7 +29,7 @@ describe('GraphQL API Subscriptions', () => {
   let createdWhispId: string;
 
   beforeAll(async () => {
-    whispService = global.app.get<WhispService>('WhispService');
+    whispService = global.app.get<WhispService>(WhispService);
     const module = await Test.createTestingModule({
       imports: [PubSubModule],
     }).compile();

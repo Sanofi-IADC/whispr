@@ -57,7 +57,7 @@ function setExpectedEventName(event: EventNames, done: jest.DoneCallback) {
 
 describe('webhooks', () => {
   beforeAll(async () => {
-    whispService = global.app.get<WhispService>('WhispService');
+    whispService = global.app.get<WhispService>(WhispService);
     configWebhookListener();
   });
 

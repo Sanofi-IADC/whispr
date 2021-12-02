@@ -36,8 +36,8 @@ let createdWhispId: string;
 
 describe('Whisps', () => {
   beforeAll(async () => {
-    whispService = global.app.get<WhispService>('WhispService');
-    fileService = global.app.get<FileService>('FileService');
+    whispService = global.app.get<WhispService>(WhispService);
+    fileService = global.app.get<FileService>(FileService);
   });
 
   afterAll(async () => {
@@ -162,7 +162,6 @@ describe('Whisps', () => {
             }),
           )
           .attach('file', 'tests/e2e/whisp/attached-file-1.png');
-
         await request(global.app.getHttpServer())
           .post('/graphql')
           .send({
