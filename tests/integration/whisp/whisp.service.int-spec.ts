@@ -14,10 +14,7 @@ import { SequenceService } from '../../../src/sequence/sequence.service';
 import { whispSchema } from '../../../src/whisp/whisp.schema';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { DistributionService } from '../../../src/distribution/distribution.service';
-import {
-  closeInMongodConnection,
-  rootMongooseTestModule,
-} from '../../testUtils/mongo/MongooseTestModule';
+import { closeInMongodConnection, rootMongooseTestModule } from '../../testUtils/mongo/MongooseTestModule';
 
 jest.mock('../../../src/distribution/distribution.service');
 jest.mock('../../../src/event/event.service');
@@ -37,14 +34,7 @@ describe('WhispService', () => {
         SequenceModule,
         EventModule,
       ],
-      providers: [
-        WhispService,
-        Logger,
-        DistributionService,
-        FileService,
-        SequenceService,
-        EventService,
-      ],
+      providers: [WhispService, Logger, DistributionService, FileService, SequenceService, EventService],
     }).compile();
     whispService = moduleRef.get<WhispService>(WhispService);
     whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
@@ -85,9 +75,7 @@ describe('WhispService', () => {
 
       const result = await whispService.update(initialWhisp._id, {});
 
-      expect(result.timestamp.valueOf()).toEqual(
-        initialWhisp.timestamp.valueOf(),
-      );
+      expect(result.timestamp.valueOf()).toEqual(initialWhisp.timestamp.valueOf());
     });
   });
 
