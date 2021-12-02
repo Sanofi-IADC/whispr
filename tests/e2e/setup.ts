@@ -2,10 +2,7 @@ import { Test } from '@nestjs/testing';
 // It is used below
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { INestApplication } from '@nestjs/common';
-import {
-  FastifyAdapter,
-  NestFastifyApplication,
-} from '@nestjs/platform-fastify';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { processRequest } from 'graphql-upload';
 import { AppModule } from '../../src/app.module';
 
