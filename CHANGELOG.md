@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/Sanofi-IADC/whispr/compare/v3.0.6...v3.1.0) (2021-12-03)
+
+
+### Features
+
+* updated all nestjs dependencies to v8 and fixed breaking changes ([95c855b](https://github.com/Sanofi-IADC/whispr/commit/95c855bb5ced1ed633cfc9a49e1c3145bd24881b))
+
 ## [3.0.6](https://github.com/Sanofi-IADC/whispr/compare/v3.0.5...v3.0.6) (2021-10-05)
 
 
