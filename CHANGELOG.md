@@ -1,3 +1,11 @@
+## [3.1.3](https://github.com/Sanofi-IADC/whispr/compare/v3.1.2...v3.1.3) (2021-12-03)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency class-validator to v0.13.2 ([6731e6d](https://github.com/Sanofi-IADC/whispr/commit/6731e6d6a73fbeeee47df61682164965bccebec7))
+* **dependency maintenance:** update dependency fastify to v3.24.1 ([137ee83](https://github.com/Sanofi-IADC/whispr/commit/137ee837277726ed6a000f237e729f544c1e5add))
+
 ## [3.1.2](https://github.com/Sanofi-IADC/whispr/compare/v3.1.1...v3.1.2) (2021-12-03)
 
 
