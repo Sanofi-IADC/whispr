@@ -1,3 +1,13 @@
+## [3.1.2](https://github.com/Sanofi-IADC/whispr/compare/v3.1.1...v3.1.2) (2021-12-03)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/axios to v0.0.3 ([6a02c6a](https://github.com/Sanofi-IADC/whispr/commit/6a02c6a6df6567f1e9692b4453395a9e653cedd6))
+* **dependency maintenance:** update dependency @nestjs/config to v1.1.5 ([6732bf9](https://github.com/Sanofi-IADC/whispr/commit/6732bf97eaa355f109013233249879a995405753))
+* **dependency maintenance:** update dependency @nestjs/graphql to v9.1.2 ([eaf9fb7](https://github.com/Sanofi-IADC/whispr/commit/eaf9fb77f401f7910ee1e7e2f957158b92155ad6))
+* **dependency maintenance:** update dependency @nestjs/terminus to v8.0.3 ([3034650](https://github.com/Sanofi-IADC/whispr/commit/303465056e967be3680bc47abc20f40fbf0dce92))
+
 ## [3.1.1](https://github.com/Sanofi-IADC/whispr/compare/v3.1.0...v3.1.1) (2021-12-03)
 
 
