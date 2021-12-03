@@ -74,8 +74,7 @@
     "superagent": "6.1.0",
     "superagent-promise": "1.1.0",
     "superagent-proxy": "2.1.0",
-    "tunnel": "0.0.6",
-    "vuepress": "1.8.2"
+    "tunnel": "0.0.6"
   },
   "devDependencies": {
     "@commitlint/cli": "12.1.4",
@@ -117,7 +116,9 @@
     "ts-morph": "12.2.0",
     "ts-node": "10.2.1",
     "tsconfig-paths": "3.11.0",
-    "typescript": "4.4.4"
+    "typescript": "4.4.4",
+    "vuepress": "^1.8.2",
+    "webpack": "^4.0.0"
   },
   "config": {
     "commitizen": {
