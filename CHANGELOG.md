@@ -1,3 +1,10 @@
+## [3.1.8](https://github.com/Sanofi-IADC/whispr/compare/v3.1.7...v3.1.8) (2021-12-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update apollo graphql packages ([546f792](https://github.com/Sanofi-IADC/whispr/commit/546f792a830a8c1f4e15dc6917bc3eaf37249174))
+
 ## [3.1.7](https://github.com/Sanofi-IADC/whispr/compare/v3.1.6...v3.1.7) (2021-12-04)
 
 

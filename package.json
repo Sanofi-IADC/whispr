@@ -1,6 +1,6 @@
 {
   "name": "@sanofi-iadc/whispr",
-  "version": "3.1.7",
+  "version": "3.1.8",
   "private": true,
   "description": "",
   "author": "",
@@ -27,7 +27,7 @@
     "docs:dev": "vuepress dev docs"
   },
   "dependencies": {
-    "@apollo/gateway": "0.38.2",
+    "@apollo/gateway": "0.44.1",
     "@instana/collector": "1.137.2",
     "@nestjs/axios": "0.0.3",
     "@nestjs/common": "8.2.3",
@@ -43,7 +43,7 @@
     "@typegoose/typegoose": "8.2.0",
     "@types/graphql": "14.5.0",
     "amazon-cognito-identity-js": "5.2.3",
-    "apollo-server-core": "^3.5.0",
+    "apollo-server-core": "3.5.0",
     "apollo-server-fastify": "3.5.0",
     "aws-sdk": "2.1043.0",
     "class-transformer": "0.3.1",
@@ -113,7 +113,7 @@
     "supertest": "6.1.6",
     "ts-jest": "27.0.7",
     "ts-loader": "9.2.6",
-    "ts-morph": "13.0.0",
+    "ts-morph": "13.0.2",
     "ts-node": "10.4.0",
     "tsconfig-paths": "3.11.0",
     "typescript": "4.5.2",
