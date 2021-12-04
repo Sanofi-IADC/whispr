@@ -1,3 +1,10 @@
+## [3.1.10](https://github.com/Sanofi-IADC/whispr/compare/v3.1.9...v3.1.10) (2021-12-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency superagent-proxy to v3 ([a1b9b4c](https://github.com/Sanofi-IADC/whispr/commit/a1b9b4c5c97c716421512ee2216b0a150bcda4ca))
+
 ## [3.1.9](https://github.com/Sanofi-IADC/whispr/compare/v3.1.8...v3.1.9) (2021-12-04)
 
 
