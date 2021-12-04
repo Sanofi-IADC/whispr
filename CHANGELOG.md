@@ -1,3 +1,10 @@
+## [3.1.6](https://github.com/Sanofi-IADC/whispr/compare/v3.1.5...v3.1.6) (2021-12-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency graphql-tools to v8 ([875e601](https://github.com/Sanofi-IADC/whispr/commit/875e601d1146d9d99b34efdfb5ea5ab8ee0feb92))
+
 ## [3.1.5](https://github.com/Sanofi-IADC/whispr/compare/v3.1.4...v3.1.5) (2021-12-04)
 
 
