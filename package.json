@@ -40,7 +40,7 @@
     "@nestjs/platform-socket.io": "8.2.3",
     "@nestjs/terminus": "8.0.3",
     "@nestjs/websockets": "8.2.3",
-    "@typegoose/typegoose": "8.2.0",
+    "@typegoose/typegoose": "8.3.0",
     "@types/graphql": "14.5.0",
     "amazon-cognito-identity-js": "5.2.3",
     "apollo-server-core": "3.5.0",
