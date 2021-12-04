@@ -1,3 +1,10 @@
+## [3.1.5](https://github.com/Sanofi-IADC/whispr/compare/v3.1.4...v3.1.5) (2021-12-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update nest monorepo to v8.2.3 ([0cb0c06](https://github.com/Sanofi-IADC/whispr/commit/0cb0c062b855f292b764bd3dc7efc0aa0d84e8c3))
+
 ## [3.1.4](https://github.com/Sanofi-IADC/whispr/compare/v3.1.3...v3.1.4) (2021-12-04)
 
 
