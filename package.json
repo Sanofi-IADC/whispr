@@ -53,7 +53,7 @@
     "eslint-plugin-graphql": "4.0.0",
     "fastify": "3.24.1",
     "fastify-compress": "3.6.1",
-    "flatted": "3.2.2",
+    "flatted": "3.2.4",
     "graphql": "15.5.3",
     "graphql-redis-subscriptions": "2.4.0",
     "graphql-subscriptions": "1.2.1",
