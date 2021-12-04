@@ -1,3 +1,15 @@
+## [3.1.4](https://github.com/Sanofi-IADC/whispr/compare/v3.1.3...v3.1.4) (2021-12-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @instana/collector to v1.137.2 ([e02a50f](https://github.com/Sanofi-IADC/whispr/commit/e02a50fe3af4b2073f8a73985d577e42f98ffcc0))
+* **dependency maintenance:** update dependency amazon-cognito-identity-js to v5.2.3 ([5e76e83](https://github.com/Sanofi-IADC/whispr/commit/5e76e83591902d76d582badeab38f3a2e9b982e7))
+* **dependency maintenance:** update dependency flatted to v3.2.4 ([acdc4ab](https://github.com/Sanofi-IADC/whispr/commit/acdc4abac89c42fdf4fe0d194c5c9b805caddffe))
+* **dependency maintenance:** update dependency graphql-redis-subscriptions to v2.4.2 ([f979b1c](https://github.com/Sanofi-IADC/whispr/commit/f979b1cc42850529717bb057239d90abd60deff8))
+* **dependency maintenance:** update dependency ioredis to v4.27.11 ([8677148](https://github.com/Sanofi-IADC/whispr/commit/867714854ef14fb099fbd79ed0b7d9b33890a414))
+* **dependency maintenance:** update dependency joi to v17.4.3 ([2f7548e](https://github.com/Sanofi-IADC/whispr/commit/2f7548e7b30502647146bbd403d4e2a1e7113f5b))
+
 ## [3.1.3](https://github.com/Sanofi-IADC/whispr/compare/v3.1.2...v3.1.3) (2021-12-03)
 
 
