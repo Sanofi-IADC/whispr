@@ -42,7 +42,7 @@
     "@nestjs/websockets": "8.2.3",
     "@typegoose/typegoose": "8.2.0",
     "@types/graphql": "14.5.0",
-    "amazon-cognito-identity-js": "5.1.2",
+    "amazon-cognito-identity-js": "5.2.3",
     "apollo-server-core": "^3.5.0",
     "apollo-server-fastify": "3.5.0",
     "aws-sdk": "2.1001.0",
