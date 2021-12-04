@@ -1,3 +1,10 @@
+## [3.1.7](https://github.com/Sanofi-IADC/whispr/compare/v3.1.6...v3.1.7) (2021-12-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** bulk renovate updates ([c40394c](https://github.com/Sanofi-IADC/whispr/commit/c40394ccf2e91b2b18de2d00fe73e4511e25cffd))
+
 ## [3.1.6](https://github.com/Sanofi-IADC/whispr/compare/v3.1.5...v3.1.6) (2021-12-04)
 
 
