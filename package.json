@@ -107,7 +107,7 @@
     "husky": "7.0.4",
     "jest": "27.4.3",
     "mongodb-memory-server": "6.9.6",
-    "prettier": "2.4.1",
+    "prettier": "2.5.0",
     "prettier-eslint-cli": "5.0.1",
     "semantic-release": "17.4.7",
     "supertest": "6.1.6",
