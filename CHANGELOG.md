@@ -1,3 +1,10 @@
+## [3.1.9](https://github.com/Sanofi-IADC/whispr/compare/v3.1.8...v3.1.9) (2021-12-04)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @typegoose/typegoose to v8.3.0 ([e512e12](https://github.com/Sanofi-IADC/whispr/commit/e512e1254fd342aadad5451f3212bc74a7a5f83c))
+
 ## [3.1.8](https://github.com/Sanofi-IADC/whispr/compare/v3.1.7...v3.1.8) (2021-12-04)
 
 
