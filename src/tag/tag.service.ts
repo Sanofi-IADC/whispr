@@ -33,7 +33,7 @@ export class TagService {
     return this.tagModel.findById(id).exec();
   }
 
-  async update(id: string, tagIn: TagInputType): Promise<ITag> {
+  async update(id: string, tagIn: Partial<ITag>): Promise<ITag> {
     const updatedTag = await this.tagModel.findOneAndUpdate({ _id: id }, tagIn, { new: true }).exec();
     this.logger.log(updatedTag, 'Updated Tag');
     return updatedTag;
