@@ -65,7 +65,7 @@
     "ioredis": "4.28.2",
     "joi": "17.5.0",
     "lodash": "4.17.21",
-    "mongoose": "5.13.13",
+    "mongoose": "6.0.15",
     "mongoose-cast-aggregation": "0.2.1",
     "reflect-metadata": "0.1.13",
     "request": "2.88.2",
