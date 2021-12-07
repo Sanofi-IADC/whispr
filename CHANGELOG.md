@@ -1,3 +1,10 @@
+## [3.1.12](https://github.com/Sanofi-IADC/whispr/compare/v3.1.11...v3.1.12) (2021-12-07)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency graphql to v15.8.0 ([a3f9f91](https://github.com/Sanofi-IADC/whispr/commit/a3f9f911fad012edcaa3c8e5b01a4569847d42c7))
+
 ## [3.1.11](https://github.com/Sanofi-IADC/whispr/compare/v3.1.10...v3.1.11) (2021-12-06)
 
 
