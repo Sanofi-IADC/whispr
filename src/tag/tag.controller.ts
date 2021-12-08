@@ -29,7 +29,7 @@ export class TagController {
   @Patch(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async updateTag(@Param('id') id: string, @Body() tag: TagInputType): Promise<ITag> {
+  async updateTag(@Param('id') id: string, @Body() tag: Partial<ITag>): Promise<ITag> {
     return this.tagService.update(id, tag);
   }
 
