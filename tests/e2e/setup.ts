@@ -42,8 +42,3 @@ beforeAll(async () => {
   }
 }, 60 * 60 * 1000); // disable timeout so it doesn't start tests if NestJS doesn't start
 
-afterAll(async () => {
-  if (global.app) {
-    await Promise.all([global.app.close()]);
-  }
-});
