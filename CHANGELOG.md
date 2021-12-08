@@ -1,3 +1,10 @@
+## [3.1.13](https://github.com/Sanofi-IADC/whispr/compare/v3.1.12...v3.1.13) (2021-12-08)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** typegoose and mongoose ([3681485](https://github.com/Sanofi-IADC/whispr/commit/3681485d3fdd5790dcb898a44e025931d459acba))
+
 ## [3.1.12](https://github.com/Sanofi-IADC/whispr/compare/v3.1.11...v3.1.12) (2021-12-07)
 
 
