@@ -1,3 +1,10 @@
+## [3.1.15](https://github.com/Sanofi-IADC/whispr/compare/v3.1.14...v3.1.15) (2021-12-09)
+
+
+### Bug Fixes
+
+* revert update of mongoose and typegoose deps ([a6e7f5d](https://github.com/Sanofi-IADC/whispr/commit/a6e7f5df53d7ee63080cb8031f482e25fefa590a)), closes [#686](https://github.com/Sanofi-IADC/whispr/issues/686)
+
 ## [3.1.14](https://github.com/Sanofi-IADC/whispr/compare/v3.1.13...v3.1.14) (2021-12-08)
 
 
