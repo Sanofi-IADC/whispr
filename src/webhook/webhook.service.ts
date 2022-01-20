@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { stringify } from 'flatted';
 import { HttpService } from '@nestjs/axios';
-import { guard } from '@ucast/mongo2js';
+import { allParsingInstructions, MongoQueryParser } from '@ucast/mongo2js';
 import { IWebhook } from '../interfaces/webhook.interface';
 import { Event } from '../event/event.entity';
 import { WebhookInputType } from './webhook.input';
@@ -16,8 +16,9 @@ export class WebhookService {
   ) {}
 
   async create(webhook: WebhookInputType): Promise<IWebhook> {
-    const test = guard(webhook.filter);
-    const newHook = { ...webhook, filter: test.ast };
+    const parser = new MongoQueryParser(allParsingInstructions);
+    const ast = parser.parse(webhook.filter);
+    const newHook = { ...webhook, filter: ast };
     return this.webhookModel.create(newHook);
   }
 
