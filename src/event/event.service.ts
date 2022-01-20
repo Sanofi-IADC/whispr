@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { Condition, interpret } from '@ucast/mongo2js';
 import { WebhookService } from '../webhook/webhook.service';
 import { IListener, ListenerCallback } from '../interfaces/listener.interface';
-import { filterPayload } from '../utils/filterPayload.service';
 import { Event, EventNames } from './event.entity';
 
 export const pluginNames = [];
@@ -19,7 +19,7 @@ export class EventService {
     const listeners = this.registeredListeners[event.name];
 
     listeners.forEach((listener) => {
-      if (filterPayload(listener.filter, event.payload)) {
+      if (interpret(listener.filter as unknown as Condition, event.payload)) {
         listener.callback(event);
       }
     });
