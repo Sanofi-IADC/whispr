@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { TerminusModule } from '@nestjs/terminus';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { AWSCredsModule } from './auth/aws-creds.module';
+import { AWSCredsModule } from './aws-creds/aws-creds.module';
 import { ConfigModule } from './config/config.module';
 import { DistributionModule } from './distribution/distribution.module';
 import { EventModule } from './event/event.module';
