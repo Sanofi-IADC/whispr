@@ -20,6 +20,7 @@ import { ConfigService } from './config/config.service';
 import { WebhookModule } from './webhook/webhook.module';
 import { TagModule } from './tag/tag.module';
 import { HealthController } from './health/health.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { HealthController } from './health/health.controller';
     DistributionModule,
     EventModule,
     WebhookModule,
+    AuthModule,
   ],
   providers: [AppService],
   controllers: [AppController, HealthController],
