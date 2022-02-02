@@ -3,10 +3,11 @@ import { AuthService } from './auth.service';
 import { JwtStrategy } from './jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule } from '../config/config.module';
 
 @Module({
   imports: [
-    PassportModule,
+    PassportModule, ConfigModule,
     JwtModule.register({
       secret: 'some_secret_thing',
       signOptions: { expiresIn: '60s' },

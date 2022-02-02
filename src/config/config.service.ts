@@ -5,6 +5,9 @@ import * as fs from 'fs';
 import { Agent } from 'http';
 import * as tunnel from 'tunnel';
 import validationSchema from './environmentValidationSchema';
+var JSONfn = require('json-fn');
+import { ExtractJwt, Strategy } from '@mestrak/passport-multi-jwt';
+
 
 @Injectable()
 export class ConfigService {
@@ -102,5 +105,30 @@ export class ConfigService {
 
   getLogLevel(): any {
     return this.logLevels.slice(0, this.get('LOG_LEVEL'));
+  }
+
+  getAuthConfig(): any {
+    let auth_config = JSON.parse(this.get('AUTH_CONFIG'));
+
+    for (let index = 0; index < auth_config.config.length; index++) {
+      switch (auth_config.config[index].jwtFromRequest) {
+        case 'ExtractJwt.fromAuthHeaderAsBearerToken()':
+          auth_config.config[index].jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+          break;
+
+        case 'ExtractJwt.fromHeader()':
+          auth_config.config[index].jwtFromRequest = ExtractJwt.fromHeader();
+          break;
+
+        case 'ExtractJwt.fromBodyField()':
+          auth_config.config[index].jwtFromRequest = ExtractJwt.fromBodyField();
+          break;
+      
+        default:
+          break;
+      }      
+    }
+   
+    return auth_config.config;
   }
 }
