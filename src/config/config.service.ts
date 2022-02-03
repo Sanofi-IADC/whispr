@@ -5,9 +5,7 @@ import * as fs from 'fs';
 import { Agent } from 'http';
 import * as tunnel from 'tunnel';
 import validationSchema from './environmentValidationSchema';
-var JSONfn = require('json-fn');
-import { ExtractJwt, Strategy } from '@mestrak/passport-multi-jwt';
-
+import { ExtractJwt } from '@mestrak/passport-multi-jwt';
 
 @Injectable()
 export class ConfigService {
@@ -109,26 +107,17 @@ export class ConfigService {
 
   getAuthConfig(): any {
     let auth_config = JSON.parse(this.get('AUTH_CONFIG'));
-
-    for (let index = 0; index < auth_config.config.length; index++) {
-      switch (auth_config.config[index].jwtFromRequest) {
-        case 'ExtractJwt.fromAuthHeaderAsBearerToken()':
-          auth_config.config[index].jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-          break;
-
-        case 'ExtractJwt.fromHeader()':
-          auth_config.config[index].jwtFromRequest = ExtractJwt.fromHeader();
-          break;
-
-        case 'ExtractJwt.fromBodyField()':
-          auth_config.config[index].jwtFromRequest = ExtractJwt.fromBodyField();
-          break;
-      
-        default:
-          break;
-      }      
+    
+    // as jwtExtractor is a function, translate function name string to function call
+    // extractors.fromExtractors() is not currently supported due to implemtation complexity
+    for (let auth of auth_config.config) {     
+      //trim last ), then deconstruct into function name and call
+      const funcCall = auth.jwtFromRequest.slice(0, -1).split('.')[1].split('(');
+      const funcName = funcCall[0];
+      const funcArgs = funcCall[1]
+      auth.jwtFromRequest = ExtractJwt[funcName](funcArgs);
     }
-   
+    
     return auth_config.config;
   }
 }
