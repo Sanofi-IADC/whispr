@@ -6,7 +6,8 @@ import { ConfigModule } from '../config/config.module';
 
 @Module({
   imports: [
-    PassportModule, ConfigModule,
+    PassportModule,
+    ConfigModule,
     JwtModule.register({
       secret: 'some_secret_thing',
       signOptions: { expiresIn: '60s' },

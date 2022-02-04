@@ -7,9 +7,7 @@ import { ConfigService } from '../config/config.service';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private configService: ConfigService) {
-    super(
-      configService.getAuthConfig(),
-    );
+    super(configService.getAuthConfig());
   }
 
   async validate(payload: any) {
