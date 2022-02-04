@@ -1,4 +1,5 @@
-import { ExtractJwt, Strategy } from '@mestrak/passport-multi-jwt';
+/* eslint-disable class-methods-use-this */
+import { Strategy } from '@mestrak/passport-multi-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';
@@ -7,7 +8,7 @@ import { ConfigService } from '../config/config.service';
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private configService: ConfigService) {
     super(
-      configService.getAuthConfig()
+      configService.getAuthConfig(),
     );
   }
 

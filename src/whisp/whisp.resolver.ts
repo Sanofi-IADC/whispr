@@ -4,6 +4,7 @@ import {
 import { GraphQLJSONObject } from 'graphql-type-json';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { Inject, UseGuards } from '@nestjs/common';
+import { GqlJwtAuthGuard } from 'src/auth/gql-jwt-auth.guard';
 import { IWhisp } from '../interfaces/whisp.interface';
 import { Whisp } from './whisp.entity';
 import { WhispService } from './whisp.service';
@@ -13,8 +14,6 @@ import { filterPayload } from '../utils/filterPayload.service';
 import { Tag } from '../tag/tag.entity';
 import { TagInputType } from '../tag/tag.input';
 import { WhispCount } from './whispCount.entity';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { GqlJwtAuthGuard } from 'src/auth/gql-jwt-auth.guard';
 
 @Resolver(() => Whisp)
 export class WhispResolver {
@@ -50,7 +49,7 @@ export class WhispResolver {
 
   @UseGuards(GqlJwtAuthGuard)
   @Query(() => [Whisp], { nullable: true })
-  async whisps_authBeta(
+  async whispsAuthBeta(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
       filter?: Record<string, unknown>,
     @Args('sort', { type: () => GraphQLJSONObject, nullable: true })

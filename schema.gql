@@ -73,7 +73,7 @@ type WhispCount {
 type Query {
   whispById(id: String!): Whisp
   whisps(limit: Int, sort: JSONObject, filter: JSONObject): [Whisp!]
-  whisps_authBeta(limit: Int, sort: JSONObject, filter: JSONObject): [Whisp!]
+  whispsAuthBeta(limit: Int, sort: JSONObject, filter: JSONObject): [Whisp!]
   countWhisps(group: JSONObject, filter: [JSONObject!]): [WhispCount!]!
   webhooks: [Webhook!]
   tagGroups(tagGroup: TagGroupInputType!): [TagGroup!]

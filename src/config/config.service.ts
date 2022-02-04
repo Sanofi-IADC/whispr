@@ -4,8 +4,8 @@ import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import { Agent } from 'http';
 import * as tunnel from 'tunnel';
-import validationSchema from './environmentValidationSchema';
 import { ExtractJwt } from '@mestrak/passport-multi-jwt';
+import validationSchema from './environmentValidationSchema';
 
 @Injectable()
 export class ConfigService {
@@ -106,18 +106,18 @@ export class ConfigService {
   }
 
   getAuthConfig(): any {
-    let auth_config = JSON.parse(this.get('AUTH_CONFIG'));
-    
+    const authConfig = JSON.parse(this.get('AUTH_CONFIG'));
+
     // as jwtExtractor is a function, translate function name string to function call
     // extractors.fromExtractors() is not currently supported due to implemtation complexity
-    for (let auth of auth_config.config) {     
-      //trim last ), then deconstruct into function name and call
+    authConfig.config.forEach((auth) => {
+      // trim last ), then deconstruct into function name and call
       const funcCall = auth.jwtFromRequest.slice(0, -1).split('.')[1].split('(');
       const funcName = funcCall[0];
-      const funcArgs = funcCall[1]
-      auth.jwtFromRequest = ExtractJwt[funcName](funcArgs);
-    }
-    
-    return auth_config.config;
+      const funcArgs = funcCall[1];
+      auth.jwtFromRequest = ExtractJwt[funcName](funcArgs); // eslint-disable-line no-param-reassign
+    });
+
+    return authConfig.config;
   }
 }
