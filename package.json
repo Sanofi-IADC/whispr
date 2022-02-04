@@ -21,7 +21,7 @@
     "test:unit:cov": "jest --coverage --forceExit --detectOpenHandles",
     "test:unit:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:integration": "jest --config jest-integration.json --runInBand --forceExit",
-    "test:e2e": "jest --config jest-e2e.json --runInBand --forceExit",
+    "test:e2e": "jest --config jest-e2e.json --verbose --runInBand --forceExit",
     "test:e2e:debug": "node --inspect-brk=0.0.0.0 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config jest-e2e.json",
     "docs:build": "vuepress build docs",
     "docs:dev": "vuepress dev docs"
