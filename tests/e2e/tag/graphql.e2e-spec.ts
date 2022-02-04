@@ -1,8 +1,8 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ITag } from 'src/interfaces/tag.interface';
-import { TagService } from 'src/tag/tag.service';
-import { TagGroupService } from 'src/tagGroup/tagGroup.service';
+import { ITag } from '../../../src/interfaces/tag.interface';
+import { TagService } from '../../../src/tag/tag.service';
+import { TagGroupService } from '../../../src/tagGroup/tagGroup.service';
 import request from 'supertest';
 
 const CREATE_TAG_GQL = `

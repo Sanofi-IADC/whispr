@@ -3,11 +3,11 @@ import { getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { Test } from '@nestjs/testing';
 import { Model } from 'mongoose';
 
-import { IWhisp } from 'src/interfaces/whisp.interface';
-import { DistributionModule } from 'src/distribution/distribution.module';
-import { FileModule } from 'src/file/file.module';
-import { SequenceModule } from 'src/sequence/sequence.module';
-import { EventModule } from 'src/event/event.module';
+import { IWhisp } from '../../../src/interfaces/whisp.interface';
+import { DistributionModule } from '../../../src/distribution/distribution.module';
+import { FileModule } from '../../../src/file/file.module';
+import { SequenceModule } from '../../../src/sequence/sequence.module';
+import { EventModule } from '../../../src/event/event.module';
 import { EventService } from '../../../src/event/event.service';
 import { FileService } from '../../../src/file/file.service';
 import { SequenceService } from '../../../src/sequence/sequence.service';

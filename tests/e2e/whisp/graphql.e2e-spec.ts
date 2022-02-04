@@ -1,9 +1,9 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import request from 'supertest';
-import { FileService } from 'src/file/file.service';
-import { IWhisp } from 'src/interfaces/whisp.interface';
-import { WhispService } from 'src/whisp/whisp.service';
+import { FileService } from '../../../src/file/file.service';
+import { IWhisp } from '../../../src/interfaces/whisp.interface';
+import { WhispService } from '../../../src/whisp/whisp.service';
 
 const CREATE_WHISP_GQL = `
 mutation createWhisp($whisp: WhispInputType!) {

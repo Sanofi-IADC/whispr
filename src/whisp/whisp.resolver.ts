@@ -4,7 +4,7 @@ import {
 import { GraphQLJSONObject } from 'graphql-type-json';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { Inject, UseGuards } from '@nestjs/common';
-import { GqlJwtAuthGuard } from 'src/auth/gql-jwt-auth.guard';
+import { GqlJwtAuthGuard } from '../auth/gql-jwt-auth.guard';
 import { IWhisp } from '../interfaces/whisp.interface';
 import { Whisp } from './whisp.entity';
 import { WhispService } from './whisp.service';
