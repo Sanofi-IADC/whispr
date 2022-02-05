@@ -106,6 +106,7 @@ export class ConfigService {
   }
 
   getAuthConfig(): any {
+    //TODO: error handling for badly formatted AUTH_ONFIG (and maybe better joi validation with json structure)
     const authConfig = JSON.parse(this.get('AUTH_CONFIG'));
 
     // as jwtExtractor is a function, translate function name string to function call
