@@ -113,10 +113,9 @@ export class ConfigService {
     // extractors.fromExtractors() is not currently supported due to implemtation complexity
     authConfig.config.forEach((auth) => {
       // trim last ), then deconstruct into function name and call
-      const funcCall = auth.jwtFromRequest.slice(0, -1).split('.')[1].split('(');
-      const funcName = funcCall[0];
-      const funcArgs = funcCall[1];
-      auth.jwtFromRequest = ExtractJwt[funcName](funcArgs); // eslint-disable-line no-param-reassign
+      const [funcName, args] = auth.jwtFromRequest.slice(0, -1).split('.')[1].split('(');
+
+      auth.jwtFromRequest = ExtractJwt[funcName](args); // eslint-disable-line no-param-reassign
     });
 
     return authConfig.config;
