@@ -47,3 +47,33 @@ export default Joi.object({
   CA_CERTIFICATE_PATH: Joi.string(),
   AUTH_CONFIG: Joi.string().required(),
 });
+
+const jwtFromRequest = Joi.object({
+  funcName: Joi.string().required()
+    .valid('fromHeader', 'fromBodyField', 'fromUrlQueryParameter',
+      'fromAuthHeaderWithScheme', 'fromAuthHeaderAsBearerToken'),
+  args: Joi.string()
+    .when('funcName', { is: 'fromAuthHeaderAsBearerToken', then: Joi.optional(), otherwise: Joi.required() }),
+}).required()
+
+const authConfig = Joi.array().items(Joi.object({
+  jwtFromRequest: jwtFromRequest,
+  ignoreExpiration: Joi.boolean(),
+  passReqToCallback: Joi.boolean(),
+  secretOrKey: Joi.string(),
+  secretOrKeyProvider: Joi.object({
+    passportJwtSecret: Joi.object({
+      cache: Joi.boolean(),
+      rateLimit: Joi.boolean(),
+      jwksRequestsPerMinute: Joi.number(),
+      jwksUri: Joi.string(),
+    }),
+  }),
+  issuer: Joi.string(),
+  audience: Joi.string(),
+  algorithms: Joi.string(),
+}).xor("secretOrKey", "secretOrKeyProvider")).required()
+
+export const auth = Joi.object({
+  config: authConfig
+})

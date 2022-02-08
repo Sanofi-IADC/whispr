@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import { Agent } from 'http';
 import * as tunnel from 'tunnel';
 import { ExtractJwt } from '@mestrak/passport-multi-jwt';
-import validationSchema from './environmentValidationSchema';
+import validationSchema, { auth } from './environmentValidationSchema';
 
 @Injectable()
 export class ConfigService {
@@ -106,16 +106,21 @@ export class ConfigService {
   }
 
   getAuthConfig(): any {
-    //TODO: error handling for badly formatted AUTH_ONFIG (and maybe better joi validation with json structure)
     const authConfig = JSON.parse(this.get('AUTH_CONFIG'));
 
-    // as jwtExtractor is a function, translate function name string to function call
-    // extractors.fromExtractors() is not currently supported due to implemtation complexity
-    authConfig.config.forEach((auth) => {
-      // trim last ), then deconstruct into function name and call
-      const [funcName, args] = auth.jwtFromRequest.slice(0, -1).split('.')[1].split('(');
+    const { value, error } = auth.validate(authConfig, {
+      abortEarly: false,
+      allowUnknown: true,
+    });
+    if (error) {
+      throw error;
+    }
 
-      auth.jwtFromRequest = ExtractJwt[funcName](args); // eslint-disable-line no-param-reassign
+    // as jwtExtractor is a function, translate function name string to function call
+    // extractors.fromExtractors is not currently supported due to implemtation complexity
+    authConfig.config.forEach((_) => {
+      // eslint-disable-next-line no-param-reassign
+      _.jwtFromRequest = ExtractJwt[_.jwtFromRequest.funcName](_.jwtFromRequest.args);
     });
 
     return authConfig.config;
