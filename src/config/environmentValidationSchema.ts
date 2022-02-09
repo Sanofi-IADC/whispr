@@ -5,8 +5,8 @@ import { Logger } from '@nestjs/common';
 const custom = Joi.extend((joi) => ({
   type: 'object',
   base: joi.object(),
+  // eslint-disable-next-line consistent-return
   coerce(value) {
-    // eslint-disable-line consistent-return
     try {
       return { value: JSON.parse(value) };
     } catch (err) {
