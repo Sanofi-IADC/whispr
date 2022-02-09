@@ -21,7 +21,7 @@ export class ConfigService {
       ...dotEnvConfig,
       ...configFromEnv, // Environment variables override .env config
     };
-    mergedConfig.AUTH_CONFIG = JSON.parse(mergedConfig.AUTH_CONFIG); // TODO: joi coerce
+    mergedConfig.AUTH_CONFIG_SECRET = JSON.parse(mergedConfig.AUTH_CONFIG_SECRET); // TODO: joi coerce
     this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
   }
 
@@ -107,7 +107,7 @@ export class ConfigService {
   }
 
   getAuthConfig(): any {
-    const authConfig = this.get('AUTH_CONFIG');
+    const authConfig = this.get('AUTH_CONFIG_SECRET');
 
     // as jwtExtractor is a function, translate function name string to function call
     return authConfig.config.map((configuration) => ({

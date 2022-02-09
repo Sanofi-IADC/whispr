@@ -79,5 +79,5 @@ export default Joi.object({
   HTTP_PROXY: Joi.string(),
   HTTPS_PROXY: Joi.string(),
   CA_CERTIFICATE_PATH: Joi.string(),
-  AUTH_CONFIG: auth,
+  AUTH_CONFIG_SECRET: auth,
 });
