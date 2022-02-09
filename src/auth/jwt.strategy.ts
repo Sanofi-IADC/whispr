@@ -10,7 +10,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super(configService.getAuthConfig());
   }
 
-  async validate(payload: any) {
+  validate(payload: any) {
     return payload;
   }
 }
