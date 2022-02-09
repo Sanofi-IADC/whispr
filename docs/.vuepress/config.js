@@ -12,6 +12,7 @@ module.exports = {
             '/introduction/',
             '/architecture/',
             '/installation.html',
+            '/security.html',
             {
                 title: 'Api',
                 collapsable: false,
