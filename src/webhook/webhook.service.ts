@@ -15,15 +15,27 @@ export class WebhookService {
   ) {}
 
   async create(webhook: WebhookInputType): Promise<IWebhook> {
-    return this.webhookModel.create(webhook);
+    const newHook = { ...webhook, filter: JSON.stringify(webhook.filter) };
+    const insertedModel = (await this.webhookModel.create(newHook)).toObject();
+    insertedModel.filter = JSON.parse(insertedModel.filter);
+    return insertedModel as IWebhook;
   }
 
   async findAll(): Promise<IWebhook[]> {
-    return this.webhookModel.find();
+    const dbresponse = await this.webhookModel.find().exec();
+    const returnHooks = [];
+    dbresponse.forEach((wh) => {
+      const webhook = wh;
+      webhook.filter = JSON.parse(wh.filter);
+      returnHooks.push(webhook);
+    });
+    return returnHooks;
   }
 
   async delete(@Param('id') id: string): Promise<boolean> {
-    const { n: countOfDeletedWebhooks } = await this.webhookModel.deleteOne({ _id: id }).exec();
+    const { n: countOfDeletedWebhooks } = await this.webhookModel
+      .deleteOne({ _id: id })
+      .exec();
 
     return countOfDeletedWebhooks === 1;
   }

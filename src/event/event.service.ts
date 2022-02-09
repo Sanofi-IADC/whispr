@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { filterPayload } from '../utils/filterPayload.service';
 import { WebhookService } from '../webhook/webhook.service';
 import { IListener, ListenerCallback } from '../interfaces/listener.interface';
-import { filterPayload } from '../utils/filterPayload.service';
 import { Event, EventNames } from './event.entity';
 
 export const pluginNames = [];
@@ -59,7 +59,7 @@ export class EventService {
     });
   }
 
-  private registerListener(eventName: string, callback: ListenerCallback, filter: Record<string, unknown> = {}) {
+  private registerListener(eventName: string, callback: ListenerCallback, filter: Record<string, unknown> | string = {}) {
     if (!EventService.doesEventExist(eventName)) {
       Logger.error(`Could not register listener, Event ${eventName} does not exist.`);
       return;
