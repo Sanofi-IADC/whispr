@@ -1,4 +1,20 @@
 import Joi from 'joi';
+import { Logger } from '@nestjs/common';
+
+// custom object implementing JSON.parse in the coerce method so Joi can read JSON string
+const custom = Joi.extend((joi) => ({
+  type: 'object',
+  base: joi.object(),
+  coerce(value) {
+    // eslint-disable-line consistent-return
+    try {
+      return { value: JSON.parse(value) };
+    } catch (err) {
+      // log error, don't return
+      Logger.error(err);
+    }
+  },
+}));
 
 const jwtFromRequest = Joi.object({
   funcName: Joi.string()
@@ -30,7 +46,7 @@ const authConfig = Joi.array()
   )
   .required();
 
-export const auth = Joi.object({
+export const auth = custom.object({
   config: authConfig,
 });
 

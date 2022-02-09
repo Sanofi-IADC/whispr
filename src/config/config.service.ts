@@ -21,7 +21,6 @@ export class ConfigService {
       ...dotEnvConfig,
       ...configFromEnv, // Environment variables override .env config
     };
-    mergedConfig.AUTH_CONFIG_SECRET = JSON.parse(mergedConfig.AUTH_CONFIG_SECRET); // TODO: joi coerce
     this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
   }
 
