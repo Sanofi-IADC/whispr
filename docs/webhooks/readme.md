@@ -26,6 +26,21 @@ For example, here is the payload you should provide to create a webhook that wil
  }
  ```
 
+## Webhook filter
+
+More info on filters [here](../filters). The filter is capable of the mongoDB query language for a complex scenario a query like this can be used:
+ ```json
+{
+    "url": "https://webhook.url",
+    "events": ["WHISP_CREATED","WHISP_UPDATED"],
+    "filter":  {
+        "key1": { "$eq": "valueA" },
+        "key2": { "$gte": 5 },
+        "key3": { "$in": ["valueB", "valueC"] },
+        "key4.key5": { "$lt": 5 },
+    }
+ }
+ ```
 ## Webhook call
 
 The call a webhook makes to the url you provided is a `POST` with the event name and 

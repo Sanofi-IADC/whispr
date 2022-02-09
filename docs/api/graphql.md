@@ -259,7 +259,8 @@ Query variables
   "filter": { "att1": "value1" }
 }
 ```
-* The filtering options are described [here](./filters.md).
+* The filtering options are described [here](./filters.md)
+* This filter is capable of the mongoDB query language
 
 > In this section we will be providing examples that you can use inside your very own playground available here [http://localhost:3000/graphql](http://localhost:3000/graphql) (if you activated it).
 
