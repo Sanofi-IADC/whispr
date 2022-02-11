@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import { Agent } from 'http';
 import * as tunnel from 'tunnel';
 import { ExtractJwt } from '@mestrak/passport-multi-jwt';
+import { passportJwtSecret } from 'jwks-rsa';
 import validationSchema from './environmentValidationSchema';
 
 @Injectable()
@@ -108,9 +109,12 @@ export class ConfigService {
   getAuthConfig(): any {
     const authConfig = this.get('AUTH_CONFIG_SECRET');
 
-    // as jwtExtractor is a function, translate function name string to function call
+    //patch in ExtractJwt and passportJwtSecret function calls as they cannot be enocded in JSON
     return authConfig.config.map((configuration) => ({
       ...configuration,
+      ...(configuration.secretOrKeyProvider
+        ? { secretOrKeyProvider: passportJwtSecret(configuration.secretOrKeyProvider) }
+        : {}),
       jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](configuration.jwtFromRequest.args),
     }));
   }

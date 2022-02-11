@@ -14,7 +14,12 @@ _ Note that even though the `AUTH_CONFIG_SECRET` is not necessarily a secret (in
 
 The provided configuration is very similar to the NestJS passport-jwt example with a few modifications:
 - it must be provided as a JSON string containing a `config` property which is an array of valid passport-jwt configurations
-- the jwtFromRequest which tells passport-jwt where to find the JWT in the request (usually the `Authorization` header) function must be deconstructed into an object containing funcName and args properties
+- the `jwtFromRequest` function which tells passport-jwt where to find the JWT in the request (usually the `Authorization` header) function must be deconstructed into an object containing funcName and args properties
+- `passportJwtSecret` function should not be written in the configuration file, only the arguments are required in the `passportJwtSecret` object
+
+### Examples
+
+This is an example for multiple passport JWT configurations as they would be configured in Javascript.
 
 ```js
 [{
@@ -22,12 +27,12 @@ The provided configuration is very similar to the NestJS passport-jwt example wi
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
-        jwksUri: `${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`,
+        jwksUri: "https://auth.issuer.com",
     }),
 
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    audience: process.env.AUTH0_AUDIENCE,
-    issuer: `${process.env.AUTH0_DOMAIN}/`,
+    audience: 'MY_APP_AUDIENCE',
+    issuer: `https://auth.issuer.com/`,
     algorithms: ['RS256'],
 },
 {
@@ -36,25 +41,38 @@ The provided configuration is very similar to the NestJS passport-jwt example wi
     secretOrKey: 'APPX_SECRET_KEY',
 },
 {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    jwtFromRequest: ExtractJwt.fromBodyField('USER_JWT'),
     ignoreExpiration: false,
     secretOrKey: 'APPY_SECRET_KEY',
 }]
 ```
+
+And an example env file configuration for `AUTH_CONFIG_SECRET` based on the configuration above.
 
 ```bash
 AUTH_CONFIG_SECRET = 
 # note that in a .env file this should be formatted onto one line - it is shown multiline here for easier readability
 # see project example.env file for a single line config
 {"config":[{
-    "jwtFromRequest":{
-        "funcName": "fromAuthHeaderAsBearerToken"},
+        "secretOrKeyProvider": {
+            "cache": true,
+            "rateLimit": true,
+            "jwksRequestsPerMinute": 5,
+            "jwksUri": "https://uri.com"
+            },
+        "jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},
+        "audience": "MY_APP_AUDIENCE",
+        "issuer":"https://auth.issuer.com/",
+        "algorithms": ['RS256']
+    }
+    {
+        "jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},
         "ignoreExpiration":false,
         "secretOrKey":"APPX_SECRET_KEY"},
-    {"jwtFromRequest": {
-        "funcName": "fromAuthHeaderAsBearerToken"},
+    {
+        "jwtFromRequest": {"funcName": "fromBodyField", args: 'USER_JWT'},
         "ignoreExpiration":false,
-        "secretOrKey":"another_secret_key"}
+        "secretOrKey":"APPY_SECRET_KEY"}
     ]
 }
 ```

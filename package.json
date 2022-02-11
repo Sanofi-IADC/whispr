@@ -66,6 +66,7 @@
     "haiku-random": "1.0.0",
     "ioredis": "4.28.2",
     "joi": "17.5.0",
+    "jwks-rsa": "^2.0.5",
     "lodash": "4.17.21",
     "mongoose": "5.13.13",
     "mongoose-cast-aggregation": "0.2.1",
