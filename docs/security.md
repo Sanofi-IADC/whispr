@@ -62,9 +62,9 @@ AUTH_CONFIG_SECRET =
             },
         "jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},
         "audience": "MY_APP_AUDIENCE",
-        "issuer":"https://auth.issuer.com/",
+        "issuer":"https://fact.cognito.com/",
         "algorithms": ['RS256']
-    }
+    },
     {
         "jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},
         "ignoreExpiration":false,
