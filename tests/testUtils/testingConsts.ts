@@ -7,8 +7,8 @@ export const AUTH = {
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NDQwMTE3NTksImV4cCI6MzI0NzUxNjA1ODksImF1ZCI6Ind3dy5leGFtcGxlLmNvbSIsInN1YiI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJHaXZlbk5hbWUiOiJKb2hubnkiLCJTdXJuYW1lIjoiUm9ja2V0IiwiRW1haWwiOiJqcm9ja2V0QGV4YW1wbGUuY29tIiwiUm9sZSI6WyJNYW5hZ2VyIiwiUHJvamVjdCBBZG1pbmlzdHJhdG9yIl19.DYo6Q3J9JFDsiKq-MDMqV0NFzIEWNsiAMYsQrWBSHAo', // eslint-disable-line max-len
   AUTH_CONFIG_SECRET_JWKS:
     '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}},{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"another_secret_key"}]}', // eslint-disable-line max-len
-  AUTH_CONFIG_SECRET_SECRETKEY:
-    '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}},{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"another_secret_key"}]}', // eslint-disable-line max-len
+  AUTH_CONFIG_SECRET_secretOrKey:
+    '{"config":[{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"A_SECRET"}]}', // eslint-disable-line max-len
   AUTH_CONFIG_SECRET_fromAuthHeaderAsBearerToken:
     '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}},{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"another_secret_key"}]}', // eslint-disable-line max-len
 };
