@@ -109,12 +109,10 @@ export class ConfigService {
   getAuthConfig(): any {
     const authConfig = this.get('AUTH_CONFIG_SECRET');
 
-    //patch in ExtractJwt and passportJwtSecret function calls as they cannot be enocded in JSON
+    // patch in ExtractJwt and passportJwtSecret function calls as they cannot be enocded in JSON
     return authConfig.config.map((configuration) => ({
       ...configuration,
-      ...(configuration.secretOrKeyProvider
-        ? { secretOrKeyProvider: passportJwtSecret(configuration.secretOrKeyProvider) }
-        : {}),
+      ...(configuration.secretOrKeyProvider ? { secretOrKeyProvider: passportJwtSecret(configuration.secretOrKeyProvider) } : {}),
       jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](configuration.jwtFromRequest.args),
     }));
   }
