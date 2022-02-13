@@ -10,5 +10,15 @@ export const AUTH = {
   AUTH_CONFIG_SECRET_secretOrKey:
     '{"config":[{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"A_SECRET"}]}', // eslint-disable-line max-len
   AUTH_CONFIG_SECRET_fromAuthHeaderAsBearerToken:
-    '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}},{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"another_secret_key"}]}', // eslint-disable-line max-len
+    '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}}]}', // eslint-disable-line max-len
+  AUTH_CONFIG_SECRET_fromHeader:
+    '{"config":[{"jwtFromRequest":{"funcName": "fromHeader", "args": "fieldName"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}}]}', // eslint-disable-line max-len
+  AUTH_CONFIG_SECRET_fromBodyField:
+    '{"config":[{"jwtFromRequest":{"funcName": "fromBodyField", "args": "fieldName"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}}]}', // eslint-disable-line max-len
+  AUTH_CONFIG_SECRET_fromUrlQueryParameter:
+    '{"config":[{"jwtFromRequest":{"funcName": "fromUrlQueryParameter", "args": "paramName"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}}]}', // eslint-disable-line max-len
+  AUTH_CONFIG_SECRET_fromAuthHeaderWithScheme:
+    '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderWithScheme", "args": "schemeName"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}}]}', // eslint-disable-line max-len
+  AUTH_CONFIG_WITH_4_CONFIGS:
+    '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}},{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"another_secret_key"},{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}},{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"another_secret_key"}]}', // eslint-disable-line max-len
 };
