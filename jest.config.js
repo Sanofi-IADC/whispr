@@ -13,4 +13,5 @@ module.exports = {
   collectCoverageFrom: ['**/src/**/*.{js,ts}'],
   coverageDirectory: 'tests/unit/coverage',
   testEnvironment: 'node',
+  "verbose": true
 };
