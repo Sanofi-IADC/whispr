@@ -41,7 +41,7 @@ const authConfig = Joi.array()
       }),
       issuer: Joi.string(),
       audience: Joi.string(),
-      algorithms: Joi.string(),
+      algorithms: Joi.array().items(Joi.string()),
     }).xor('secretOrKey', 'secretOrKeyProvider'),
   )
   .required();
