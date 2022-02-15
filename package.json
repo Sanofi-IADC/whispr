@@ -70,6 +70,7 @@
     "lodash": "4.17.21",
     "mongoose": "5.13.13",
     "mongoose-cast-aggregation": "0.2.1",
+    "nock": "^13.2.4",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "0.1.13",
