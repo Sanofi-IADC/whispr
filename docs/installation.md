@@ -159,6 +159,7 @@ MONGOOSE_PORT_READ = 27018
 
 REDIS_HOST = localhost
 REDIS_HOST_READ = localhost
+WHISPR_AUTH_CONFIG_SECRET = (change to your auth server - see [Security](./security.md))
 ```
 
 ### Setup a local AWS instance with localstack (optional)
