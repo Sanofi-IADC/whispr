@@ -111,6 +111,7 @@
     "eslint-plugin-standard": "4.1.0",
     "husky": "7.0.4",
     "jest": "27.4.3",
+    "mock-jwks": "^1.0.3",
     "mongodb-memory-server": "8.0.4",
     "prettier": "2.5.1",
     "prettier-eslint-cli": "5.0.1",
