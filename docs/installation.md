@@ -190,9 +190,9 @@ Switch to Node 12 (required for some file upload dependencies)
 
 ```bash
 # Setting Node version
-nvm install 12.13.0
+nvm install 16.14.0
 
-# Check the node version is correctly set, must be 12.13.0
+# Check the node version is correctly set, must be 16.14.0
 node -v
 ```
 

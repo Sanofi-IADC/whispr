@@ -14,7 +14,7 @@ then
 fi
 echo
 echo "Setting node version just in case..."
-nvm install 12.13.0
+nvm install 16.14.0
 echo
 echo "Installing K6 for load testing..."
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69 
