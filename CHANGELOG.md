@@ -1,3 +1,28 @@
+# [4.0.0](https://github.com/Sanofi-IADC/whispr/compare/v3.1.15...v4.0.0) (2022-02-24)
+
+
+### Features
+
+* **auth:** conf and move to node 16 ([56eeb98](https://github.com/Sanofi-IADC/whispr/commit/56eeb98415874fc86d84b52e1a4e46e73848ac4e))
+* add passportJwtSecret support ([4f2627a](https://github.com/Sanofi-IADC/whispr/commit/4f2627a3afa8baf7b375dfa3e43a55e3785544b3))
+* auth funcName and args as array ([cb8b9d9](https://github.com/Sanofi-IADC/whispr/commit/cb8b9d9657fe2e268690a61f0e3f7f5c81cd3b6d))
+* begin support mutli jwt providers ([748f8b4](https://github.com/Sanofi-IADC/whispr/commit/748f8b4697bcadb0b20b9eb8bffabe6de0168a20))
+* coerce Joi object from JSON ([5b0c396](https://github.com/Sanofi-IADC/whispr/commit/5b0c396fef01a13fe17480b440b709b016f31199))
+* get ExtractJwt func from string ([76531c9](https://github.com/Sanofi-IADC/whispr/commit/76531c98c3ee816cc19a5f6de127b7638641daf5))
+* improve joi auth config validation ([f2843cc](https://github.com/Sanofi-IADC/whispr/commit/f2843cc317034304391ceae30f4569ccdb396265))
+* Joi validation of auth config ([487edd9](https://github.com/Sanofi-IADC/whispr/commit/487edd9e33b82de0ce0825572b983547ce422ca0))
+* load algorithms as array ([f8609e1](https://github.com/Sanofi-IADC/whispr/commit/f8609e17214ec92d811f4bdddf859e0697e21e61))
+* load from config ([11d871a](https://github.com/Sanofi-IADC/whispr/commit/11d871afb3ab751ce2bda289c7223a4cdffbf4e5))
+* remove async from jwt validate ([069789b](https://github.com/Sanofi-IADC/whispr/commit/069789b8e11a504853ab4b87ea4352312d6b84a1))
+* update to AUTH_CONFIG_SECRET ([d74ab67](https://github.com/Sanofi-IADC/whispr/commit/d74ab67e736eb496e7b6432ccd64ef96de51897b))
+* **auth:** basic auth guard ([5e85979](https://github.com/Sanofi-IADC/whispr/commit/5e8597930c869710e5b86a62ce8d2fb2581588ba))
+* **config:** make auth_config required ([2e42421](https://github.com/Sanofi-IADC/whispr/commit/2e424216c16d2b2739ff28ebdc0a6df99688084f))
+
+
+### BREAKING CHANGES
+
+* **config:** AUTH_CONFIG is now a required environment variable. If it is not configured whispr will not start.
+
 ## [3.1.15](https://github.com/Sanofi-IADC/whispr/compare/v3.1.14...v3.1.15) (2021-12-09)
 
 
