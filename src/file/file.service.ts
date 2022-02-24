@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 
 import { GetObjectOutput } from 'aws-sdk/clients/s3';
 import { FileUpload } from 'graphql-upload';
-import { AWSCredsService } from '../auth/aws-creds.service';
+import { AWSCredsService } from '../aws-creds/aws-creds.service';
 import { ConfigService } from '../config/config.service';
 
 @Injectable()

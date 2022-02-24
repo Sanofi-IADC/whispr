@@ -4,6 +4,8 @@ import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import { Agent } from 'http';
 import * as tunnel from 'tunnel';
+import { ExtractJwt } from '@mestrak/passport-multi-jwt';
+import { passportJwtSecret } from 'jwks-rsa';
 import validationSchema from './environmentValidationSchema';
 
 @Injectable()
@@ -102,5 +104,16 @@ export class ConfigService {
 
   getLogLevel(): any {
     return this.logLevels.slice(0, this.get('LOG_LEVEL'));
+  }
+
+  getAuthConfig(): any {
+    const authConfig = this.get('AUTH_CONFIG_SECRET');
+
+    // patch in ExtractJwt and passportJwtSecret function calls as they cannot be enocded in JSON
+    return authConfig.config.map((configuration) => ({
+      ...configuration,
+      ...(configuration.secretOrKeyProvider ? { secretOrKeyProvider: passportJwtSecret(configuration.secretOrKeyProvider) } : {}),
+      jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](configuration.jwtFromRequest.args),
+    }));
   }
 }

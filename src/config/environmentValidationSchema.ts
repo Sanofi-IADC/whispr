@@ -1,4 +1,54 @@
 import Joi from 'joi';
+import { Logger } from '@nestjs/common';
+
+// custom object implementing JSON.parse in the coerce method so Joi can read JSON string
+const custom = Joi.extend((joi) => ({
+  type: 'object',
+  base: joi.object(),
+  // eslint-disable-next-line consistent-return
+  coerce(value) {
+    try {
+      return { value: JSON.parse(value) };
+    } catch (err) {
+      // log error, don't return
+      Logger.error(err);
+    }
+  },
+}));
+
+const jwtFromRequest = Joi.object({
+  funcName: Joi.string()
+    .required()
+    // fromExtractors function is not currently supported due to implementation complexity
+    .valid('fromHeader', 'fromBodyField', 'fromUrlQueryParameter', 'fromAuthHeaderWithScheme', 'fromAuthHeaderAsBearerToken'),
+  args: Joi.string().when('funcName', { is: 'fromAuthHeaderAsBearerToken', then: Joi.optional(), otherwise: Joi.required() }),
+}).required();
+
+const authConfig = Joi.array()
+  .items(
+    Joi.object({
+      jwtFromRequest,
+      ignoreExpiration: Joi.boolean(),
+      passReqToCallback: Joi.boolean(),
+      secretOrKey: Joi.string(),
+      secretOrKeyProvider: Joi.object({
+        passportJwtSecret: Joi.object({
+          cache: Joi.boolean(),
+          rateLimit: Joi.boolean(),
+          jwksRequestsPerMinute: Joi.number(),
+          jwksUri: Joi.string(),
+        }),
+      }),
+      issuer: Joi.string(),
+      audience: Joi.string(),
+      algorithms: Joi.array().items(Joi.string()),
+    }).xor('secretOrKey', 'secretOrKeyProvider'),
+  )
+  .required();
+
+export const auth = custom.object({
+  config: authConfig,
+});
 
 export default Joi.object({
   AUTO_SCHEMA_FILE: Joi.string().default('schema.gql'),
@@ -45,4 +95,5 @@ export default Joi.object({
   HTTP_PROXY: Joi.string(),
   HTTPS_PROXY: Joi.string(),
   CA_CERTIFICATE_PATH: Joi.string(),
+  AUTH_CONFIG_SECRET: auth,
 });

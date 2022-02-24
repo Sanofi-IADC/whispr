@@ -69,7 +69,7 @@ describe('Whisp resolver', () => {
         applicationID: 'MYAPP',
         data: { item1: true, item2: 7 },
       };
-      const whisp = resolver.createWhisp(params);
+      resolver.createWhisp(params);
       expect(whispService.create).toHaveBeenCalledWith(params);
     });
   });

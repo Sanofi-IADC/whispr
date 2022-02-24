@@ -2,8 +2,8 @@ import { Test } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import request from 'supertest';
-import { IWhisp } from 'src/interfaces/whisp.interface';
-import { WhispService } from 'src/whisp/whisp.service';
+import { IWhisp } from '../../../src/interfaces/whisp.interface';
+import { WhispService } from '../../../src/whisp/whisp.service';
 import { PubSubModule } from '../../../src/pubSub/pubSub.module';
 
 const CREATE_WHISP_GQL = `

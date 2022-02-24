@@ -159,6 +159,7 @@ MONGOOSE_PORT_READ = 27018
 
 REDIS_HOST = localhost
 REDIS_HOST_READ = localhost
+WHISPR_AUTH_CONFIG_SECRET = (change to your auth server - see [Security](./security.md))
 ```
 
 ### Setup a local AWS instance with localstack (optional)
@@ -189,9 +190,9 @@ Switch to Node 12 (required for some file upload dependencies)
 
 ```bash
 # Setting Node version
-nvm install 12.13.0
+nvm install 16.14.0
 
-# Check the node version is correctly set, must be 12.13.0
+# Check the node version is correctly set, must be 16.14.0
 node -v
 ```
 

@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { TerminusModule } from '@nestjs/terminus';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
-import { AWSCredsModule } from './auth/aws-creds.module';
+import { AWSCredsModule } from './aws-creds/aws-creds.module';
 import { ConfigModule } from './config/config.module';
 import { DistributionModule } from './distribution/distribution.module';
 import { EventModule } from './event/event.module';
@@ -20,6 +20,7 @@ import { ConfigService } from './config/config.service';
 import { WebhookModule } from './webhook/webhook.module';
 import { TagModule } from './tag/tag.module';
 import { HealthController } from './health/health.controller';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { HealthController } from './health/health.controller';
     DistributionModule,
     EventModule,
     WebhookModule,
+    AuthModule,
   ],
   providers: [AppService],
   controllers: [AppController, HealthController],

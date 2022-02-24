@@ -2,7 +2,7 @@ import { Logger } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test } from '@nestjs/testing';
 import { Model } from 'mongoose';
-import { IWhisp } from 'src/interfaces/whisp.interface';
+import { IWhisp } from '../../../src/interfaces/whisp.interface';
 import { EventService } from '../../../src/event/event.service';
 import { FileService } from '../../../src/file/file.service';
 import { SequenceService } from '../../../src/sequence/sequence.service';

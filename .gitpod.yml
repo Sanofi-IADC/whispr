@@ -4,7 +4,7 @@ image:
 tasks:
   - init: |
       touch /tmp/.npm-lock
-      npm install && npm run build && make && npm i -g @nestjs/cli && nvm install 12.13.0
+      npm install && npm run build && make && npm i -g @nestjs/cli && nvm install 16.14.0
       rm /tmp/.npm-lock
     name: init
   - command: sudo docker-up

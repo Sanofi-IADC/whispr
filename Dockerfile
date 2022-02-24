@@ -1,4 +1,4 @@
-ARG NODE_VERSION=12.18.1
+ARG NODE_VERSION=16.14.0
 
 ########################
 # Builder stage
