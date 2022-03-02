@@ -124,6 +124,7 @@ describe('ConfigService', () => {
     // Given AUTH_CONFIG_SECRET environment variable is configured with secretOrKeyProvider
     process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_JWKS;
     delete process.env.HTTP_PROXY;
+    delete process.env.HTTPS_PROXY;
     const spy = jest.spyOn(JwksRsa, 'passportJwtSecret');
 
     // When the auth configuration is retrieved
