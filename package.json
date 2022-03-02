@@ -64,6 +64,7 @@
     "graphql-type-json": "0.3.2",
     "graphql-upload": "13.0.0",
     "haiku-random": "1.0.0",
+    "https-proxy-agent": "^5.0.0",
     "ioredis": "4.28.2",
     "joi": "17.5.0",
     "jwks-rsa": "^2.0.5",

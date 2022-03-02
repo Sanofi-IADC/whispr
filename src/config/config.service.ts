@@ -5,7 +5,8 @@ import * as fs from 'fs';
 import { Agent } from 'http';
 import * as tunnel from 'tunnel';
 import { ExtractJwt } from '@mestrak/passport-multi-jwt';
-import { passportJwtSecret } from 'jwks-rsa';
+import { passportJwtSecret, ExpressJwtOptions } from 'jwks-rsa';
+import createHttpsProxyAgent from 'https-proxy-agent';
 import validationSchema from './environmentValidationSchema';
 
 @Injectable()
@@ -81,8 +82,12 @@ export class ConfigService {
     return options;
   }
 
+  getProxy(): string | undefined {
+    return this.get('HTTP_PROXY') || this.get('HTTPS_PROXY');
+  }
+
   getHttpsTunnel(): Agent | undefined {
-    const proxy = this.get('HTTP_PROXY') || this.get('HTTPS_PROXY');
+    const proxy = this.getProxy();
     if (!proxy) {
       return undefined;
     }
@@ -109,11 +114,22 @@ export class ConfigService {
   getAuthConfig(): any {
     const authConfig = this.get('AUTH_CONFIG_SECRET');
 
+    const proxy = this.getProxy();
+    let agent: createHttpsProxyAgent.HttpsProxyAgent | null = null;
+    if (proxy) {
+      agent = createHttpsProxyAgent(proxy);
+    }
     // patch in ExtractJwt and passportJwtSecret function calls as they cannot be enocded in JSON
-    return authConfig.config.map((configuration) => ({
-      ...configuration,
-      ...(configuration.secretOrKeyProvider ? { secretOrKeyProvider: passportJwtSecret(configuration.secretOrKeyProvider) } : {}),
-      jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](configuration.jwtFromRequest.args),
-    }));
+    return authConfig.config.map((configuration) => {
+      const option: ExpressJwtOptions = { ...configuration.secretOrKeyProvider };
+      if (proxy) {
+        option.requestAgent = agent;
+      }
+      return {
+        ...configuration,
+        ...(configuration.secretOrKeyProvider ? { secretOrKeyProvider: passportJwtSecret(option) } : {}),
+        jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](configuration.jwtFromRequest.args),
+      };
+    });
   }
 }
