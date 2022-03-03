@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { ExtractJwt } from '@mestrak/passport-multi-jwt';
-import { passportJwtSecret } from 'jwks-rsa';
+import JwksRsa, { passportJwtSecret } from 'jwks-rsa';
 import { AUTH } from '../../testUtils/testingConsts';
 import { ConfigService } from '../../../src/config/config.service';
 
@@ -12,6 +12,14 @@ async function getConfigService() {
 }
 
 describe('ConfigService', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('Correctly configures secretOrKeyProvider', async () => {
     // Given AUTH_CONFIG_SECRET environment variable is configured with secretOrKeyProvider
     process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_JWKS;
@@ -82,6 +90,54 @@ describe('ConfigService', () => {
       expect(err.stack).toContain('AUTH_CONFIG_SECRET.config');
       expect(err.stack).toContain('must be an array');
     }
+  });
+
+  it('Should correctly configure proxy if available', async () => {
+    // Given AUTH_CONFIG_SECRET environment variable is configured with secretOrKeyProvider
+    process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_JWKS;
+    process.env.HTTP_PROXY = 'https://proxy_uri:port';
+    const spy = jest.spyOn(JwksRsa, 'passportJwtSecret');
+
+    // When the auth configuration is retrieved
+    const configService = await getConfigService();
+    configService.getAuthConfig();
+
+    // (passportJwtSecret as jest.Mock).mockReturnValue(() => {});
+    // Then the configuration should use the jwks passportJwtSecret function
+    expect(spy).toBeCalledWith(
+      expect.objectContaining({
+        requestAgent: expect.objectContaining({
+          proxy: expect.objectContaining({
+            protocol: 'https:',
+            host: 'proxy_uri',
+            port: 443,
+            hostname: 'proxy_uri',
+            href: 'https://proxy_uri/:port',
+          }),
+        }),
+      }),
+    );
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should correctly configure proxy if not available', async () => {
+    // Given AUTH_CONFIG_SECRET environment variable is configured with secretOrKeyProvider
+    process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_JWKS;
+    delete process.env.HTTP_PROXY;
+    const spy = jest.spyOn(JwksRsa, 'passportJwtSecret');
+
+    // When the auth configuration is retrieved
+    const configService = await getConfigService();
+    configService.getAuthConfig();
+
+    // (passportJwtSecret as jest.Mock).mockReturnValue(() => {});
+    // Then the configuration should use the jwks passportJwtSecret function
+    expect(spy).toBeCalledWith(
+      expect.not.objectContaining({
+        requestAgent: expect.anything(),
+      }),
+    );
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   describe('JWT extractors', () => {
