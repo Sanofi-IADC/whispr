@@ -1,3 +1,10 @@
+# [4.2.0](https://github.com/Sanofi-IADC/whispr/compare/v4.1.0...v4.2.0) (2022-03-04)
+
+
+### Features
+
+* **auth:** add proxy to jwks retrieval ([143efb6](https://github.com/Sanofi-IADC/whispr/commit/143efb65c175dbc9257cb1c8b14b16a55617eae9))
+
 # [4.1.0](https://github.com/Sanofi-IADC/whispr/compare/v4.0.0...v4.1.0) (2022-03-03)
 
 
