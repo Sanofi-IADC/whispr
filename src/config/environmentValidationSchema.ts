@@ -31,6 +31,7 @@ const authConfig = Joi.array()
       ignoreExpiration: Joi.boolean(),
       passReqToCallback: Joi.boolean(),
       secretOrKey: Joi.string(),
+      secretOrKeyFromEnv: Joi.string(),
       secretOrKeyProvider: Joi.object({
         passportJwtSecret: Joi.object({
           cache: Joi.boolean(),
@@ -42,7 +43,7 @@ const authConfig = Joi.array()
       issuer: Joi.string(),
       audience: Joi.string(),
       algorithms: Joi.array().items(Joi.string()),
-    }).xor('secretOrKey', 'secretOrKeyProvider'),
+    }).xor('secretOrKey', 'secretOrKeyProvider', 'secretOrKeyFromEnv'),
   )
   .required();
 

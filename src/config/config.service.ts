@@ -111,8 +111,23 @@ export class ConfigService {
     return this.logLevels.slice(0, this.get('LOG_LEVEL'));
   }
 
+  fillSecretFromEnv(): AuthConfig {
+    const authConfig: AuthConfig = this.get('AUTH_CONFIG_SECRET');
+    const result: AuthConfig = { config: [] };
+
+    authConfig.config.forEach((config) => {
+      if (config.secretOrKeyFromEnv) {
+        result.config.push({ ...config, secretOrKey: process.env[config.secretOrKeyFromEnv] || '' });
+      } else {
+        result.config.push({ ...config });
+      }
+    });
+
+    return result;
+  }
+
   getAuthConfig(): any {
-    const authConfig = this.get('AUTH_CONFIG_SECRET');
+    const authConfig = this.fillSecretFromEnv();
 
     const proxy = this.getProxy();
     let agent: createHttpsProxyAgent.HttpsProxyAgent | null = null;

@@ -221,5 +221,46 @@ describe('ConfigService', () => {
       expect(spy).toHaveBeenCalledWith('fieldName');
       expect(result[0].jwtFromRequest).toEqual(expect.any(Function));
     });
+
+    it('Should fill secretOrKey with env variable value which key equals content of secretOrKeyFromEnv', async () => {
+      // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using AUTH_CONFIG_SECRET_secretOrKey
+      process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnv;
+      const secret = 'secret stored in env variable';
+      process.env.ENV_VAR_STORING_THE_SECRET = secret;
+
+      // When the auth configuration is retrieved
+      const configService = await getConfigService();
+      const confs = configService.fillSecretFromEnv();
+      expect(confs.config[0].secretOrKey).toEqual(secret);
+    });
+
+    it(
+      'Should fill secretOrKey with empty string '
+        + 'if no env variable with key equals'
+        + ' content of secretOrKeyFromEnv is found',
+      async () => {
+        // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using AUTH_CONFIG_SECRET_secretOrKey
+        process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnv;
+        delete process.env.ENV_VAR_STORING_THE_SECRET;
+
+        // When the auth configuration is retrieved
+        const configService = await getConfigService();
+        const confs = configService.fillSecretFromEnv();
+        expect(confs.config[0].secretOrKey).toEqual('');
+      },
+    );
+
+    it('Fill both secretOrKey and  secretOrKeyFromEnv should raise an exception', async () => {
+      // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using AUTH_CONFIG_SECRET_secretOrKey
+      process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnvAndsecretOrKey;
+
+      // When the auth configuration is retrieved
+      try {
+        await getConfigService();
+        expect(true).toEqual(false);
+      } catch (err) {
+        expect(err.message).toContain('contains a conflict between exclusive peers');
+      }
+    });
   });
 });

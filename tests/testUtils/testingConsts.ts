@@ -9,6 +9,10 @@ export const AUTH = {
     '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}},{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"another_secret_key"}]}', // eslint-disable-line max-len
   AUTH_CONFIG_SECRET_secretOrKey:
     '{"config":[{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKey":"A_SECRET"}]}', // eslint-disable-line max-len
+  AUTH_CONFIG_SECRET_secretOrKeyFromEnv:
+    '{"config":[{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyFromEnv":"ENV_VAR_STORING_THE_SECRET"}]}', // eslint-disable-line max-len
+  AUTH_CONFIG_SECRET_secretOrKeyFromEnvAndsecretOrKey:
+    '{"config":[{"jwtFromRequest": {"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyFromEnv":"ENV_VAR_STORING_THE_SECRET","secretOrKey":"A_SECRET"}]}', // eslint-disable-line max-len
   AUTH_CONFIG_SECRET_fromAuthHeaderAsBearerToken:
     '{"config":[{"jwtFromRequest":{"funcName": "fromAuthHeaderAsBearerToken"},"ignoreExpiration":false,"secretOrKeyProvider": { "cache": true, "rateLimit": true, "jwksRequestsPerMinute": 5, "jwksUri": "https://uri.com"}}]}', // eslint-disable-line max-len
   AUTH_CONFIG_SECRET_fromHeader:

@@ -77,6 +77,11 @@ AUTH_CONFIG_SECRET =
 }
 ```
 
+### Secret passed through environment variable
+
+Good practice imposed to not store secret in version control managment system and retrieve it from an environment variable instead.
+Do so and setup the `secretOrKeyFromEnv` config property with the name of an environment variable of your choice and leave `secretOrKey` empty.  `secretOrKey` will then be automatically filled with your environment variable's value.
+
 ## Authorisation
 
 No specific authorisation is currently implemented in Whispr - if you are authenticated it is assumed that you should have access to all data in Whispr.
