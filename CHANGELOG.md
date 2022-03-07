@@ -1,3 +1,10 @@
+# [4.3.0](https://github.com/Sanofi-IADC/whispr/compare/v4.2.0...v4.3.0) (2022-03-07)
+
+
+### Features
+
+* **auth:** retrieving secret from env variable ([2fb9470](https://github.com/Sanofi-IADC/whispr/commit/2fb947091b16055829cc69d33e2ceb8e02fae8c6))
+
 # [4.2.0](https://github.com/Sanofi-IADC/whispr/compare/v4.1.0...v4.2.0) (2022-03-04)
 
 
