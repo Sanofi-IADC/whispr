@@ -10,6 +10,7 @@ import Fastify from 'fastify-compress';
 import { processRequest } from 'graphql-upload';
 import { AppModule } from './app.module';
 import { ConfigService } from './config/config.service';
+import { logger } from './common/middleware/logger.middleware';
 
 const configService = new ConfigService();
 
@@ -30,7 +31,9 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, adapter);
   app.enableCors();
   app.register(Fastify);
-
+  if (process.env.DEBUG_HTTP_HEADERS === 'true') {
+    app.use(logger);
+  }
   await app.listen(3000, '0.0.0.0');
 }
 bootstrap();
