@@ -1,3 +1,10 @@
+# [4.4.0](https://github.com/Sanofi-IADC/whispr/compare/v4.3.0...v4.4.0) (2022-04-12)
+
+
+### Features
+
+* **log:** can log headers with DEBUG_HTTP_HEADERS ([12c67ca](https://github.com/Sanofi-IADC/whispr/commit/12c67caf501ef5e142c883d474a24ef8c96a4ca9))
+
 # [4.3.0](https://github.com/Sanofi-IADC/whispr/compare/v4.2.0...v4.3.0) (2022-03-07)
 
 
