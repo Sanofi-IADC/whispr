@@ -16,6 +16,7 @@ export const whispSchema = new mongoose.Schema({
   closedById: String,
   timestamp: Date,
   updated: Date,
+  expirationDate: { type: Date, expires: 0 },
   data: Object,
   tags: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }],
   attachments: [

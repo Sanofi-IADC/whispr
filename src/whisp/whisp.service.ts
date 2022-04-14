@@ -34,6 +34,11 @@ export class WhispService {
     whisp.readableID = await this.sequenceService.getNextWhispID(whisp);
     whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
     whisp.updated = new Date().toISOString();
+    if (whisp.ttl) {
+      const now = new Date();
+      now.setSeconds(now.getSeconds() + whisp.ttl);
+      whisp.expirationDate = now.toISOString();
+    }
     const createdWhisp = await this.whispModel.create(whisp as any);
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
     this.logger.log(createdWhisp, 'New Whisp');

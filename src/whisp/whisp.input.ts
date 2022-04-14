@@ -2,7 +2,7 @@
 import { Field, Int, InputType } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
 import {
-  IsBoolean, IsInt, IsObject, IsOptional, IsString, ValidateNested, IsDate,
+  IsBoolean, IsInt, IsObject, IsOptional, IsString, IsPositive, ValidateNested, IsDate,
 } from 'class-validator';
 import { Type, Transform } from 'class-transformer';
 import { WhispAttachmentInput } from './whisp-attachment.input';
@@ -91,6 +91,18 @@ export class WhispInputType {
   @IsOptional()
   @Transform((val: string) => new Date(val))
   updated?: Date;
+
+  @Field(() => Int, { nullable: true })
+  @IsInt()
+  @IsOptional()
+  @IsPositive()
+  ttl?: number;
+
+  @Field(() => Date, { nullable: true })
+  @IsDate()
+  @IsOptional()
+  @Transform((val: string) => new Date(val))
+  expirationDate?: Date;
 
   @Field(() => GraphQLJSONObject, { nullable: true })
   @IsObject()

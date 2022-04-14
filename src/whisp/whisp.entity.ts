@@ -56,6 +56,9 @@ export class Whisp {
   @Field({ nullable: true })
   updated?: Date;
 
+  @Field({ nullable: true })
+  expirationDate?: Date;
+
   @Field(() => [Tag], { nullable: true })
   tags?: Tag[];
 

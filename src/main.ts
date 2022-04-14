@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'local' && process.env.NODE_ENV !== 'test' && proce
 }
 
 import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import Fastify from 'fastify-compress';
 import { processRequest } from 'graphql-upload';
@@ -31,6 +32,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(AppModule, adapter);
   app.enableCors();
   app.register(Fastify);
+  app.useGlobalPipes(new ValidationPipe());
   if (process.env.DEBUG_HTTP_HEADERS === 'true') {
     app.use(logger);
   }
