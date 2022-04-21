@@ -2,7 +2,9 @@ import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
 import { AppModule } from 'src/app.module';
+import { sign } from 'jsonwebtoken';
 import request from 'supertest';
+import { AUTH } from '../../testUtils/testingConsts';
 import { ITag } from '../../../src/interfaces/tag.interface';
 import { TagService } from '../../../src/tag/tag.service';
 import { TagGroupService } from '../../../src/tagGroup/tagGroup.service';
@@ -35,6 +37,7 @@ let tagService: TagService;
 let tagGroupService: TagGroupService;
 let createdTagId: string;
 let tagGroupId: string;
+let token: string;
 
 describe('Tags', () => {
   let moduleRef: TestingModule;
@@ -51,6 +54,9 @@ describe('Tags', () => {
     });
     // eslint-disable-next-line no-underscore-dangle
     tagGroupId = tagGroup._id;
+    const { config } = JSON.parse(AUTH.AUTH_CONFIG_SECRET_JWKS);
+    const secret = config.filter((item) => item.secretOrKey !== undefined);
+    token = sign({ sender: TAG_TITLE }, secret[0]?.secretOrKey);
   });
 
   afterAll(async () => {
@@ -66,6 +72,7 @@ describe('Tags', () => {
     it('should create a new tag and return a 200', async () => {
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: CREATE_TAG_GQL,
           variables: {
@@ -90,6 +97,7 @@ describe('Tags', () => {
       const NEW_TITLE = 'New Title';
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: UPDATE_TAG_GQL,
           variables: {
@@ -110,6 +118,7 @@ describe('Tags', () => {
     it('should delete a new tag and return a 200', async () => {
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: DELETE_TAG_GQL,
           variables: {

@@ -16,6 +16,7 @@ import { TagInputType } from '../tag/tag.input';
 import { WhispCount } from './whispCount.entity';
 
 @Resolver(() => Whisp)
+@UseGuards(GqlJwtAuthGuard)
 export class WhispResolver {
   constructor(
     private readonly whispService: WhispService,
@@ -47,7 +48,6 @@ export class WhispResolver {
     return this.whispService.findAll(filter, sort, limit);
   }
 
-  @UseGuards(GqlJwtAuthGuard)
   @Query(() => [Whisp], { nullable: true })
   async whispsAuthBeta(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })

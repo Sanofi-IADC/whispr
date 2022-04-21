@@ -2,7 +2,9 @@ import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
 import { AppModule } from 'src/app.module';
+import { sign } from 'jsonwebtoken';
 import request from 'supertest';
+import { AUTH } from '../../testUtils/testingConsts';
 import { FileService } from '../../../src/file/file.service';
 import { IWhisp } from '../../../src/interfaces/whisp.interface';
 import { WhispService } from '../../../src/whisp/whisp.service';
@@ -35,6 +37,7 @@ const WHISP_TEST_TYPE = 'E2E_TEST';
 let fileService: FileService;
 let whispService: WhispService;
 let createdWhispId: string;
+let token: string;
 
 describe('Whisps', () => {
   let moduleRef: TestingModule;
@@ -44,6 +47,9 @@ describe('Whisps', () => {
     }).compile();
     whispService = moduleRef.get<WhispService>(WhispService);
     fileService = moduleRef.get<FileService>(FileService);
+    const { config } = JSON.parse(AUTH.AUTH_CONFIG_SECRET_JWKS);
+    const secret = config.filter((item) => item.secretOrKey !== undefined);
+    token = sign({ sender: WHISP_TEST_TYPE }, secret[0]?.secretOrKey);
   });
 
   afterAll(async () => {
@@ -60,6 +66,7 @@ describe('Whisps', () => {
       it('should return a 200 and create a new Whisp and return its id', async () => {
         const result = await request(global.app.getHttpServer())
           .post('/graphql')
+          .set('Authorization', `Bearer ${token}`)
           .send({
             query: CREATE_WHISP_GQL,
             variables: {
@@ -76,6 +83,7 @@ describe('Whisps', () => {
         const now = new Date();
         const result = await request(global.app.getHttpServer())
           .post('/graphql')
+          .set('Authorization', `Bearer ${token}`)
           .send({
             query: CREATE_WHISP_GQL,
             variables: {
@@ -95,6 +103,7 @@ describe('Whisps', () => {
         it(`should upload ${fileName} to S3 when attached`, async () => {
           const result = await request(global.app.getHttpServer())
             .post('/graphql')
+            .set('Authorization', `Bearer ${token}`)
             .field(
               'operations',
               JSON.stringify({
@@ -130,6 +139,7 @@ describe('Whisps', () => {
       it('should change any field on a whisp and return a 200', async () => {
         const result = await request(global.app.getHttpServer())
           .post('/graphql')
+          .set('Authorization', `Bearer ${token}`)
           .send({
             query: UPDATE_WHISP_GQL,
             variables: {
@@ -149,6 +159,7 @@ describe('Whisps', () => {
       it('should preserve attachment field when not provided', async () => {
         const createResult = await request(global.app.getHttpServer())
           .post('/graphql')
+          .set('Authorization', `Bearer ${token}`)
           .field(
             'operations',
             JSON.stringify({
@@ -170,6 +181,7 @@ describe('Whisps', () => {
           .attach('file', 'tests/e2e/whisp/attached-file-1.png');
         await request(global.app.getHttpServer())
           .post('/graphql')
+          .set('Authorization', `Bearer ${token}`)
           .send({
             query: UPDATE_WHISP_GQL,
             variables: {
@@ -189,6 +201,7 @@ describe('Whisps', () => {
       it('should delete the whisp and return a 200', async () => {
         const result = await request(global.app.getHttpServer())
           .post('/graphql')
+          .set('Authorization', `Bearer ${token}`)
           .send({
             query: DELETE_WHISP_GQL,
             variables: {

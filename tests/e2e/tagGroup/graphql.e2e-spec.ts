@@ -3,7 +3,9 @@ import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
 import { AppModule } from 'src/app.module';
+import { sign } from 'jsonwebtoken';
 import request from 'supertest';
+import { AUTH } from '../../testUtils/testingConsts';
 import { ITagGroup } from '../../../src/interfaces/tagGroup.interface';
 import { TagGroupService } from '../../../src/tagGroup/tagGroup.service';
 
@@ -34,6 +36,7 @@ const TAG_GROUP_TYPE = 'E2E_TEST';
 let tagGroupService: TagGroupService;
 let createdTagGroupId: string;
 let app: INestApplication;
+let token: string;
 
 describe('TagGroup', () => {
   beforeAll(async () => {
@@ -45,6 +48,9 @@ describe('TagGroup', () => {
     await app.init();
 
     tagGroupService = moduleRef.get<TagGroupService>(TagGroupService);
+    const { config } = JSON.parse(AUTH.AUTH_CONFIG_SECRET_JWKS);
+    const secret = config.filter((item) => item.secretOrKey !== undefined);
+    token = sign({ sender: TAG_GROUP_TYPE }, secret[0]?.secretOrKey);
   });
 
   afterAll(async () => {
@@ -60,6 +66,7 @@ describe('TagGroup', () => {
     it('should create a new tag group and return a 200', async () => {
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: CREATE_TAG_GROUP_GQL,
           variables: {
@@ -81,6 +88,7 @@ describe('TagGroup', () => {
       const NEW_TITLE = 'New Title';
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: UPDATE_TAG_GROUP_GQL,
           variables: {
@@ -101,6 +109,7 @@ describe('TagGroup', () => {
     it('should delete a new tag group and return a 200', async () => {
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: DELETE_TAG_GROUP_GQL,
           variables: {

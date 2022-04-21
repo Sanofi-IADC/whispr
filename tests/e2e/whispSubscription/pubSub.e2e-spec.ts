@@ -1,8 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { sign } from 'jsonwebtoken';
 import request from 'supertest';
 import { AppModule } from 'src/app.module';
+import { AUTH } from '../../testUtils/testingConsts';
 import { IWhisp } from '../../../src/interfaces/whisp.interface';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { PubSubModule } from '../../../src/pubSub/pubSub.module';
@@ -29,6 +31,7 @@ describe('GraphQL API Subscriptions', () => {
   let whispService: WhispService;
   let createdWhispId: string;
   let moduleRef: TestingModule;
+  let token: string;
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
@@ -40,6 +43,9 @@ describe('GraphQL API Subscriptions', () => {
       imports: [PubSubModule],
     }).compile();
     module.get<PubSubModule>(PubSubModule);
+    const { config } = JSON.parse(AUTH.AUTH_CONFIG_SECRET_JWKS);
+    const secret = config.filter((item) => item.secretOrKey !== undefined);
+    token = sign({ sender: 'E2E_TEST' }, secret[0]?.secretOrKey);
   });
 
   afterAll(async () => {
@@ -58,6 +64,7 @@ describe('GraphQL API Subscriptions', () => {
     it('should fire subscription and start listening', async () => {
       resultListening = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: SUBSCRIPTION_GQL,
           variables: {
@@ -77,6 +84,7 @@ describe('GraphQL API Subscriptions', () => {
     it('should create a new Whisp and return its id', async () => {
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: CREATE_WHISP_GQL,
           variables: {
@@ -95,6 +103,7 @@ describe('GraphQL API Subscriptions', () => {
       it('should successfully get data from subscription after publishing mutation', async () => {
         await request(global.app.getHttpServer())
           .post('/graphql')
+          .set('Authorization', `Bearer ${token}`)
           .send({
             query: SUBSCRIPTION_GQL,
             variables: {
@@ -106,6 +115,7 @@ describe('GraphQL API Subscriptions', () => {
 
         const result = await request(global.app.getHttpServer())
           .post('/graphql')
+          .set('Authorization', `Bearer ${token}`)
           .send({
             query: CREATE_WHISP_GQL,
             variables: {
