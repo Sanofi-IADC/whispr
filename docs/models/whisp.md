@@ -102,7 +102,7 @@ Description: Data and time of the last time the whisp as been changed or been cr
 
 Type: String / Number
 
-Description: The number of second after which this whisp will be delete automatically since its creation. TimeToLive is a string that is used to define the TTL. It is store in the timeToLiveSec field. Defining timeToLive automatically set the expirationDate field accordingly
+Description: TimeToLive is the input string that is used to define the TTL. Smart format  (using parse-duration library) can be used : e.g 1m, 1hour, 1h10sec, 10hour -1min . timeToLiveSec is the stored number of second after which this whisp will be delete automatically since its creation. Defining timeToLive automatically set the expirationDate field accordingly
 
 ## expirationDate
 
