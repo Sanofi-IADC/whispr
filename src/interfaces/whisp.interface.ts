@@ -17,6 +17,8 @@ export interface IWhisp extends Document {
   closedById: string;
   timestamp: Date;
   updated: Date;
+  expirationDate?: Date;
+  timeToLiveSec?: number;
   data: Record<string, unknown>;
   tags: TagInputType[];
   attachments: {

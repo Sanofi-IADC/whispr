@@ -108,4 +108,13 @@ export class WhispInputType {
   @IsObject()
   @IsOptional()
   tags?: TagInputType[];
+
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  timeToLive?: string;
+
+  @Field(() => Date, { nullable: true })
+  @IsDate()
+  @IsOptional()
+  expirationDate?: Date;
 }

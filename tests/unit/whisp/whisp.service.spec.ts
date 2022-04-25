@@ -20,14 +20,19 @@ describe('WhispService', () => {
   const OBJECT_ID = '56cb91bdc3464f14678934ca';
 
   beforeEach(async () => {
+    // function to retrieve input of the called function
+    const passThrough = (data) => new Promise((resolve) => {
+      resolve(data);
+    });
+
     const moduleRef = await Test.createTestingModule({
       providers: [
         {
           provide: getModelToken('Whisp'),
           useFactory: () => ({
             findOneAndUpdate: jest.fn().mockReturnThis(),
+            create: jest.fn().mockImplementation(passThrough),
             update: jest.fn(),
-            create: jest.fn(),
             aggregate: jest.fn().mockReturnThis(),
             allowDiskUse: jest.fn().mockReturnThis(),
             exec: jest.fn(),
@@ -70,6 +75,44 @@ describe('WhispService', () => {
           timestamp,
         }),
       );
+    });
+
+    it('when ttl is provided expirationDate should be generate and be equal to updated date plus ttl duration', async () => {
+      const timeToLive = '2min';
+      const expectedTimeToLiveSec = 120;
+      const whisp = await whispService.create({ timeToLive });
+
+      const { updated: updatedDate, expirationDate, timeToLiveSec } = whisp;
+
+      const expectedExpirationDate = new Date();
+      expectedExpirationDate.setSeconds(updatedDate.getSeconds() + timeToLiveSec);
+      expectedExpirationDate.setMilliseconds(updatedDate.getMilliseconds());
+
+      expect(expirationDate).toStrictEqual(expectedExpirationDate);
+      expect(timeToLiveSec).toBe(expectedTimeToLiveSec);
+    });
+
+    it('negative ttl are forbidden', async () => {
+      const timeToLive = '-2';
+      await expect(whispService.create({ timeToLive })).rejects.toThrow(
+        'time to live must be positive number of seconds or a parsable time string like 2min,1hour',
+      );
+    });
+
+    it('none time string are forbidden', async () => {
+      const timeToLive = 'hello';
+      await expect(whispService.create({ timeToLive })).rejects.toThrow(
+        'time to live must be positive number of seconds or a parsable time string like 2min,1hour',
+      );
+    });
+    it('expirationDate override ttl', async () => {
+      const now = new Date();
+      now.setSeconds(now.getSeconds() + 2);
+      const expirationDateField = now;
+      const whisp = await whispService.create({ expirationDate: expirationDateField });
+      const { expirationDate, timeToLiveSec } = whisp;
+      expect(expirationDate).toStrictEqual(expirationDateField);
+      expect(timeToLiveSec).toBeNull();
     });
   });
 
