@@ -73,6 +73,7 @@
     "mongoose": "5.13.13",
     "mongoose-cast-aggregation": "0.2.1",
     "nock": "^13.2.4",
+    "parse-duration": "1.0.2",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "reflect-metadata": "0.1.13",

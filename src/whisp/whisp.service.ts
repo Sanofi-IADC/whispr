@@ -1,6 +1,9 @@
-import { Injectable, Logger } from '@nestjs/common';
+import {
+  HttpException, HttpStatus, Injectable, Logger,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import parse from 'parse-duration';
 import { SequenceService } from '../sequence/sequence.service';
 import { IWhisp } from '../interfaces/whisp.interface';
 import { DistributionService } from '../distribution/distribution.service';
@@ -12,6 +15,7 @@ import { WhispAttachment } from './whisp-attachment.entity';
 import { WhispAttachmentInput } from './whisp-attachment.input';
 import { TagInputType } from '../tag/tag.input';
 import { WhispCount } from './whispCount.entity';
+import { Whisp } from './whisp.entity';
 
 @Injectable()
 export class WhispService {
@@ -26,20 +30,51 @@ export class WhispService {
   ) {}
 
   async create(whispIn: WhispInputType): Promise<IWhisp> {
-    const whisp: any = whispIn;
-    if (!whisp.timestamp) {
-      whisp.timestamp = new Date();
-    }
-    this.logger.debug({ whispIn });
+    const whisp = new Whisp();
+    // fill whisp with inputType with same name
+    Object.keys(whispIn).forEach((key) => {
+      whisp[key] = whispIn[key];
+    });
     whisp.readableID = await this.sequenceService.getNextWhispID(whisp);
-    whisp.attachments = await this.replaceFiles(whisp.attachments, whisp.readableID);
-    whisp.updated = new Date().toISOString();
-    const createdWhisp = await this.whispModel.create(whisp as any);
+    whisp.timestamp = whisp.timestamp || new Date();
+    whisp.attachments = await this.replaceFiles(whispIn.attachments, whispIn.readableID);
+    const now = new Date();
+    whisp.updated = now;
+    const { timeToLiveSec, expirationDate } = WhispService.fillTTL(whispIn, now);
+    whisp.timeToLiveSec = timeToLiveSec;
+    whisp.expirationDate = expirationDate;
+    const createdWhisp = await this.whispModel.create(whisp);
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
-    this.logger.log(createdWhisp, 'New Whisp');
     this.distributionService.distributeWhisp(createdWhisp);
 
     return createdWhisp;
+  }
+
+  private static fillTTL(whisp: WhispInputType, updated: Date): { timeToLiveSec: number; expirationDate: Date } {
+    const expDate = new Date(updated);
+    if (whisp.expirationDate) {
+      return { timeToLiveSec: null, expirationDate: whisp.expirationDate };
+    }
+
+    if (whisp.timeToLive) {
+      let ttl = Number(whisp.timeToLive);
+
+      if (Number.isNaN(ttl)) {
+        ttl = parse(whisp.timeToLive, 's');
+      }
+
+      if (!ttl || ttl < 1) {
+        throw new HttpException(
+          'time to live must be positive number of seconds or a parsable time string like 2min,1hour',
+          HttpStatus.BAD_REQUEST,
+        );
+      } else {
+        expDate.setSeconds(expDate.getSeconds() + ttl);
+        return { timeToLiveSec: ttl, expirationDate: expDate };
+      }
+    } else {
+      return { timeToLiveSec: null, expirationDate: null };
+    }
   }
 
   async replaceFiles(attachments: WhispAttachmentInput[], readableId: string): Promise<WhispAttachment[]> {
@@ -106,6 +141,10 @@ export class WhispService {
     if (whispIn.attachments) {
       whisp.attachments = await this.replaceFiles(whispIn.attachments, whispIn.readableID);
     }
+    const { timeToLiveSec, expirationDate } = WhispService.fillTTL(whispIn, whisp.updated);
+    whisp.timeToLiveSec = timeToLiveSec;
+    whisp.expirationDate = expirationDate;
+
     const updatedWhisp = await this.whispModel.findOneAndUpdate({ _id: id }, whisp, { new: true }).exec();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_UPDATED, updatedWhisp));
     this.logger.log(updatedWhisp, 'Updated Whisp');
