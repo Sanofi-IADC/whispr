@@ -39,7 +39,7 @@
     "@nestjs/mongoose": "8.0.1",
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-fastify": "8.2.3",
-    "@nestjs/platform-socket.io": "8.2.3",
+    "@nestjs/platform-socket.io": "8.2.4",
     "@nestjs/terminus": "8.0.3",
     "@nestjs/websockets": "8.2.3",
     "@typegoose/typegoose": "8.3.0",
