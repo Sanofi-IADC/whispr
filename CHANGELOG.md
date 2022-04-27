@@ -1,3 +1,10 @@
+# [4.5.0](https://github.com/Sanofi-IADC/whispr/compare/v4.4.0...v4.5.0) (2022-04-27)
+
+
+### Features
+
+* **whisp:** add timeToLive semantic release fix ([9001537](https://github.com/Sanofi-IADC/whispr/commit/9001537c1ff599f6d1bbe03ce024e0523e0c2a78))
+
 # [4.4.0](https://github.com/Sanofi-IADC/whispr/compare/v4.3.0...v4.4.0) (2022-04-12)
 
 
