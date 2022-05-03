@@ -1,7 +1,8 @@
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import request from 'supertest';
+import { AppModule } from 'src/app.module';
 import { IWhisp } from '../../../src/interfaces/whisp.interface';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { PubSubModule } from '../../../src/pubSub/pubSub.module';
@@ -27,9 +28,14 @@ const WHISP_TEST_TYPE = 'E2E_TEST_SUBSCRIPTION';
 describe('GraphQL API Subscriptions', () => {
   let whispService: WhispService;
   let createdWhispId: string;
+  let moduleRef: TestingModule;
 
   beforeAll(async () => {
-    whispService = global.app.get<WhispService>(WhispService);
+    moduleRef = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
+
+    whispService = moduleRef.get<WhispService>(WhispService);
     const module = await Test.createTestingModule({
       imports: [PubSubModule],
     }).compile();
@@ -38,7 +44,7 @@ describe('GraphQL API Subscriptions', () => {
 
   afterAll(async () => {
     try {
-      const model = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
+      const model = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
       await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
     } catch (e) {
       console.warn('Could not delete created whisps', e);

@@ -2,6 +2,9 @@ import fastify from 'fastify';
 import { Model } from 'mongoose';
 import request from 'supertest';
 import { getModelToken } from '@nestjs/mongoose';
+import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from 'src/app.module';
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { WhispInputType } from '../../../src/whisp/whisp.input';
 import { IWhisp } from '../../../src/interfaces/whisp.interface';
@@ -56,15 +59,25 @@ function setExpectedEventName(event: EventNames, done: jest.DoneCallback) {
 }
 
 describe('webhooks', () => {
+  let moduleRef: TestingModule;
+  let app: NestFastifyApplication;
+
   beforeAll(async () => {
-    whispService = global.app.get<WhispService>(WhispService);
+    moduleRef = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
+
+    app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter({ bodyLimit: 104857600 }));
+    await app.init();
+
+    whispService = moduleRef.get<WhispService>(WhispService);
     configWebhookListener();
   });
 
   afterAll(async () => {
     // delete created webhooks
     try {
-      const webhookModel = global.app.get<Model<IWebhook>>(getModelToken('Webhook'));
+      const webhookModel = moduleRef.get<Model<IWebhook>>(getModelToken('Webhook'));
       await webhookModel.deleteMany({ url: WEBHOOK_TEST_URL }).exec();
     } catch (e) {
       console.warn('Could not delete created webhooks', e);
@@ -72,7 +85,7 @@ describe('webhooks', () => {
 
     // delete created whisps
     try {
-      const whispModel = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
+      const whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
       await whispModel.deleteMany({ type: WHISP_TEST_TYPE }).exec();
     } catch (e) {
       console.warn('Could not delete created whisps', e);
