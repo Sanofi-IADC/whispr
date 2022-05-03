@@ -44,7 +44,7 @@ export class TagService {
   }
 
   async delete(id: string): Promise<boolean> {
-    const { n: countOfDeletedTagGroups } = await this.tagModel.deleteOne({ _id: id }).exec();
+    const { deletedCount: countOfDeletedTagGroups } = await this.tagModel.deleteOne({ _id: id }).exec();
 
     return countOfDeletedTagGroups === 1;
   }

@@ -1,5 +1,7 @@
 import { getModelToken } from '@nestjs/mongoose';
+import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
+import { AppModule } from 'src/app.module';
 import request from 'supertest';
 import { FileService } from '../../../src/file/file.service';
 import { IWhisp } from '../../../src/interfaces/whisp.interface';
@@ -35,14 +37,18 @@ let whispService: WhispService;
 let createdWhispId: string;
 
 describe('Whisps', () => {
+  let moduleRef: TestingModule;
   beforeAll(async () => {
-    whispService = global.app.get<WhispService>(WhispService);
-    fileService = global.app.get<FileService>(FileService);
+    moduleRef = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
+    whispService = moduleRef.get<WhispService>(WhispService);
+    fileService = moduleRef.get<FileService>(FileService);
   });
 
   afterAll(async () => {
     try {
-      const model = global.app.get<Model<IWhisp>>(getModelToken('Whisp'));
+      const model = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
       await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
     } catch (e) {
       console.warn('Could not delete created whisps', e);

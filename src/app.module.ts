@@ -1,3 +1,4 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -25,8 +26,9 @@ import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TerminusModule,
-    GraphQLModule.forRootAsync({
+    GraphQLModule.forRootAsync<ApolloDriverConfig>({
       imports: [ConfigModule],
+      driver: ApolloDriver,
       useFactory: async (configService: ConfigService) => ({
         autoSchemaFile: configService.get('AUTO_SCHEMA_FILE'),
         introspection: configService.get('INTROSPECTION'),

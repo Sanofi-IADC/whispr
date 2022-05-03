@@ -161,7 +161,7 @@ export class WhispService {
   }
 
   async delete(id: string): Promise<boolean> {
-    const { n: countOfDeletedWhisp } = await this.whispModel.deleteOne({ _id: id }).exec();
+    const { deletedCount: countOfDeletedWhisp } = await this.whispModel.deleteOne({ _id: id }).exec();
     if (countOfDeletedWhisp <= 0) {
       return false;
     }

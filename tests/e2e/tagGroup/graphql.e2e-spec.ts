@@ -1,5 +1,8 @@
+import { INestApplication } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
+import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
+import { AppModule } from 'src/app.module';
 import request from 'supertest';
 import { ITagGroup } from '../../../src/interfaces/tagGroup.interface';
 import { TagGroupService } from '../../../src/tagGroup/tagGroup.service';
@@ -30,15 +33,23 @@ const TAG_GROUP_TYPE = 'E2E_TEST';
 
 let tagGroupService: TagGroupService;
 let createdTagGroupId: string;
+let app: INestApplication;
 
 describe('TagGroup', () => {
   beforeAll(async () => {
-    tagGroupService = global.app.get<TagGroupService>(TagGroupService);
+    const moduleRef: TestingModule = await Test.createTestingModule({
+      imports: [AppModule],
+    }).compile();
+
+    app = moduleRef.createNestApplication();
+    await app.init();
+
+    tagGroupService = moduleRef.get<TagGroupService>(TagGroupService);
   });
 
   afterAll(async () => {
     try {
-      const model = global.app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
+      const model = app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
       await model.deleteMany({ title: TAG_GROUP_TYPE }).exec();
     } catch (err) {
       console.info('Could not deleted created Tag Groups during tests', err);
