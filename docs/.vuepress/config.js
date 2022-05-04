@@ -1,9 +1,10 @@
+const { defaultTheme } = require('@vuepress/theme-default');
+
 module.exports = {
   title: 'whispr',
   description: 'whispr docs',
   base: '/whispr/',
-  dest: './docs_dist',
-  themeConfig: {
+  theme: defaultTheme({
     nav: [
       { text: 'Docs home', link: '/' },
       { text: 'GitHub', link: 'https://github.com/Sanofi-IADC/whispr' },
@@ -28,5 +29,5 @@ module.exports = {
       '/apm.html',
       '/troubleshoot/',
     ],
-  },
+  }),
 };

@@ -1,0 +1,13 @@
+{
+  "name": "whispr-docs",
+  "description": "Wispr documentation",
+  "scripts": {
+    "docs:dev": "vuepress dev .",
+    "docs:build": "vuepress build ."
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/theme-default": "^2.0.0-beta.43",
+    "vuepress": "2.0.0-beta.43"
+  }
+}

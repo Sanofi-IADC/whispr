@@ -24,11 +24,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - run: npm ci
-      - run: npm run docs:build
+      - name: Install dependencies
+        run: cd docs && npm ci
+
+      - name: Build Vuepress site
+      - run: cd docs && npm run docs:build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs_dist
+          publish_dir: ./docs/.vuepress/dist
