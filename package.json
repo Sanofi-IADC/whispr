@@ -23,7 +23,7 @@
     "test:integration": "jest --config jest-integration.json --runInBand --forceExit",
     "test:e2e": "jest --config jest-e2e.json --verbose --runInBand --forceExit",
     "test:e2e:debug": "node --inspect-brk=0.0.0.0 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config jest-e2e.json",
-    "docs:build": "vuepress build docs",
+    "docs:build": "NODE_ENV=production vuepress build docs",
     "docs:dev": "vuepress dev docs"
   },
   "dependencies": {
@@ -131,7 +131,7 @@
     "tsconfig-paths": "3.12.0",
     "typescript": "4.5.2",
     "vuepress": "1.9.7",
-    "webpack": "5.72.0"
+    "webpack": "4.46.0"
   },
   "overrides": {
     "minimist": "1.2.6",
