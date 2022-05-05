@@ -1,3 +1,10 @@
+## [4.5.1](https://github.com/Sanofi-IADC/whispr/compare/v4.5.0...v4.5.1) (2022-05-05)
+
+
+### Bug Fixes
+
+* **vuepress:** migration to v2 and fix dependencies ([7556304](https://github.com/Sanofi-IADC/whispr/commit/7556304faecf7ac2d0515f16d28daf635fa33de9))
+
 # [4.5.0](https://github.com/Sanofi-IADC/whispr/compare/v4.4.0...v4.5.0) (2022-04-27)
 
 
