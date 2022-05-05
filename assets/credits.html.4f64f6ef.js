@@ -1,0 +1,1 @@
+const t={key:"v-141584aa",path:"/contributing/credits.html",title:"Credits",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1651753663e3,contributors:[{name:"Nikola Kovacevic",email:"32599398+nikola-kovacevic@users.noreply.github.com",commits:1}]},filePathRelative:"contributing/credits.md"};export{t as data};

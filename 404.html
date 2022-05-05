@@ -3,18 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>whispr</title>
-    <meta name="generator" content="VuePress 1.8.2">
-    
-    <meta name="description" content="whispr docs">
-    
-    <link rel="preload" href="/whispr/assets/css/0.styles.24c1fa55.css" as="style"><link rel="preload" href="/whispr/assets/js/app.4f251c12.js" as="script"><link rel="preload" href="/whispr/assets/js/8.78cd77a8.js" as="script"><link rel="prefetch" href="/whispr/assets/js/10.20428792.js"><link rel="prefetch" href="/whispr/assets/js/11.326d7868.js"><link rel="prefetch" href="/whispr/assets/js/12.f5be0736.js"><link rel="prefetch" href="/whispr/assets/js/13.bff38d25.js"><link rel="prefetch" href="/whispr/assets/js/14.0b5d997a.js"><link rel="prefetch" href="/whispr/assets/js/15.89bab800.js"><link rel="prefetch" href="/whispr/assets/js/16.68083e04.js"><link rel="prefetch" href="/whispr/assets/js/17.5c4a90f3.js"><link rel="prefetch" href="/whispr/assets/js/18.7d3e2b9b.js"><link rel="prefetch" href="/whispr/assets/js/19.cbae6ec2.js"><link rel="prefetch" href="/whispr/assets/js/2.d41b701e.js"><link rel="prefetch" href="/whispr/assets/js/20.d3c4d57d.js"><link rel="prefetch" href="/whispr/assets/js/21.ab508650.js"><link rel="prefetch" href="/whispr/assets/js/22.40d782fe.js"><link rel="prefetch" href="/whispr/assets/js/23.18962d52.js"><link rel="prefetch" href="/whispr/assets/js/24.b7d5693e.js"><link rel="prefetch" href="/whispr/assets/js/25.2ad73bb3.js"><link rel="prefetch" href="/whispr/assets/js/26.dd427a30.js"><link rel="prefetch" href="/whispr/assets/js/27.6aaf9196.js"><link rel="prefetch" href="/whispr/assets/js/28.22bb9acf.js"><link rel="prefetch" href="/whispr/assets/js/29.7bad3597.js"><link rel="prefetch" href="/whispr/assets/js/3.6e311d6d.js"><link rel="prefetch" href="/whispr/assets/js/30.bd131adf.js"><link rel="prefetch" href="/whispr/assets/js/4.5b196896.js"><link rel="prefetch" href="/whispr/assets/js/5.eb6b5a75.js"><link rel="prefetch" href="/whispr/assets/js/6.b1035ff6.js"><link rel="prefetch" href="/whispr/assets/js/7.6734d792.js"><link rel="prefetch" href="/whispr/assets/js/9.f055865d.js">
-    <link rel="stylesheet" href="/whispr/assets/css/0.styles.24c1fa55.css">
+    <meta name="generator" content="VuePress 2.0.0-beta.43">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
+    <title>whispr</title><meta name="description" content="whispr docs">
+    <link rel="modulepreload" href="/whispr/assets/app.09d96b12.js"><link rel="modulepreload" href="/whispr/assets/404.html.118be2ce.js"><link rel="modulepreload" href="/whispr/assets/404.html.0f07aaf0.js"><link rel="prefetch" href="/whispr/assets/index.html.8357e83b.js"><link rel="prefetch" href="/whispr/assets/apm.html.648d0468.js"><link rel="prefetch" href="/whispr/assets/fileupload.html.3c784bc1.js"><link rel="prefetch" href="/whispr/assets/indexing.html.637c3df9.js"><link rel="prefetch" href="/whispr/assets/installation.html.eabc397d.js"><link rel="prefetch" href="/whispr/assets/security.html.6394d6aa.js"><link rel="prefetch" href="/whispr/assets/testing.html.90ee4f1e.js"><link rel="prefetch" href="/whispr/assets/graphql.html.8dafc98b.js"><link rel="prefetch" href="/whispr/assets/introduction.html.5ccb4a22.js"><link rel="prefetch" href="/whispr/assets/rest.html.3d5384d7.js"><link rel="prefetch" href="/whispr/assets/index.html.952b3eb2.js"><link rel="prefetch" href="/whispr/assets/building.html.88452959.js"><link rel="prefetch" href="/whispr/assets/community.html.695682c7.js"><link rel="prefetch" href="/whispr/assets/credits.html.4f64f6ef.js"><link rel="prefetch" href="/whispr/assets/guidelines.html.4cf27e1e.js"><link rel="prefetch" href="/whispr/assets/index.html.67334d25.js"><link rel="prefetch" href="/whispr/assets/index.html.28245ab3.js"><link rel="prefetch" href="/whispr/assets/index.html.61350658.js"><link rel="prefetch" href="/whispr/assets/tagGroup.html.a67ddf38.js"><link rel="prefetch" href="/whispr/assets/webhook.html.1412e468.js"><link rel="prefetch" href="/whispr/assets/whisp.html.88e0402f.js"><link rel="prefetch" href="/whispr/assets/index.html.67c08e88.js"><link rel="prefetch" href="/whispr/assets/index.html.9455169a.js"><link rel="prefetch" href="/whispr/assets/index.html.a6a8bd33.js"><link rel="prefetch" href="/whispr/assets/index.html.c9f68b94.js"><link rel="prefetch" href="/whispr/assets/apm.html.f0c7998e.js"><link rel="prefetch" href="/whispr/assets/fileupload.html.d68fb9a2.js"><link rel="prefetch" href="/whispr/assets/indexing.html.89e06adb.js"><link rel="prefetch" href="/whispr/assets/installation.html.c2e3d87d.js"><link rel="prefetch" href="/whispr/assets/security.html.8daa5f12.js"><link rel="prefetch" href="/whispr/assets/testing.html.2edd9c23.js"><link rel="prefetch" href="/whispr/assets/graphql.html.02d6fdb5.js"><link rel="prefetch" href="/whispr/assets/introduction.html.1b108106.js"><link rel="prefetch" href="/whispr/assets/rest.html.b13e3798.js"><link rel="prefetch" href="/whispr/assets/index.html.c47e5c1a.js"><link rel="prefetch" href="/whispr/assets/building.html.62fb161b.js"><link rel="prefetch" href="/whispr/assets/community.html.eefc06a4.js"><link rel="prefetch" href="/whispr/assets/credits.html.b89cd4a0.js"><link rel="prefetch" href="/whispr/assets/guidelines.html.46ed4c09.js"><link rel="prefetch" href="/whispr/assets/index.html.05c2b795.js"><link rel="prefetch" href="/whispr/assets/index.html.298c2623.js"><link rel="prefetch" href="/whispr/assets/index.html.33d1afba.js"><link rel="prefetch" href="/whispr/assets/tagGroup.html.97e72d51.js"><link rel="prefetch" href="/whispr/assets/webhook.html.8ece9413.js"><link rel="prefetch" href="/whispr/assets/whisp.html.24caa88c.js"><link rel="prefetch" href="/whispr/assets/index.html.9fc5f047.js"><link rel="prefetch" href="/whispr/assets/index.html.3f4df41d.js"><link rel="prefetch" href="/whispr/assets/index.html.aefcdcae.js"><link rel="prefetch" href="/whispr/assets/404.5c17a243.js"><link rel="prefetch" href="/whispr/assets/Layout.65c81448.js">
+    <link rel="stylesheet" href="/whispr/assets/style.3792563f.css">
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div class="theme-container"><div class="theme-default-content"><h1>404</h1> <blockquote>That's a Four-Oh-Four.</blockquote> <a href="/whispr/" class="router-link-active">
-      Take me home.
-    </a></div></div><div class="global-ui"></div></div>
-    <script src="/whispr/assets/js/app.4f251c12.js" defer></script><script src="/whispr/assets/js/8.78cd77a8.js" defer></script>
+    <div id="app"><!--[--><div class="theme-container"><div class="theme-default-content"><h1>404</h1><blockquote>That&#39;s a Four-Oh-Four.</blockquote><a href="/whispr/" class="">Take me home</a></div></div><!----><!--]--></div>
+    <script type="module" src="/whispr/assets/app.09d96b12.js" defer></script>
   </body>
 </html>
