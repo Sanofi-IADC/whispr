@@ -50,3 +50,8 @@ Makedockfile.out
 
 # doc
 index.html
+
+docs/node_modules
+docs/.vuepress/.cache
+docs/.vuepress/.temp
+docs/.vuepress/dist

@@ -22,9 +22,7 @@
     "test:unit:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:integration": "jest --config jest-integration.json --runInBand --forceExit",
     "test:e2e": "jest --config jest-e2e.json --verbose --runInBand --forceExit",
-    "test:e2e:debug": "node --inspect-brk=0.0.0.0 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config jest-e2e.json",
-    "docs:build": "vuepress build docs",
-    "docs:dev": "vuepress dev docs"
+    "test:e2e:debug": "node --inspect-brk=0.0.0.0 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config jest-e2e.json"
   },
   "dependencies": {
     "@apollo/gateway": "0.44.1",
@@ -89,7 +87,7 @@
   "devDependencies": {
     "@commitlint/cli": "15.0.0",
     "@commitlint/config-conventional": "15.0.0",
-    "@nestjs/cli": "8.1.5",
+    "@nestjs/cli": "8.2.5",
     "@nestjs/platform-express": "8.4.4",
     "@nestjs/schematics": "8.0.5",
     "@nestjs/testing": "8.2.3",
@@ -130,14 +128,11 @@
     "ts-node": "10.4.0",
     "tsconfig-paths": "3.12.0",
     "typescript": "4.5.2",
-    "vuepress": "1.9.7",
     "webpack": "5.72.0"
   },
   "overrides": {
     "minimist": "1.2.6",
-    "@graphql-tools/url-loader": {
-      "node-fetch": "2.6.7"
-    },
+    "node-fetch": "2.6.7",
     "cross-fetch": "3.1.5",
     "node-forge": "1.3.1",
     "glob-parent": "5.1.2"
