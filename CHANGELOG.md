@@ -1,3 +1,10 @@
+## [4.5.3](https://github.com/Sanofi-IADC/whispr/compare/v4.5.2...v4.5.3) (2022-05-05)
+
+
+### Bug Fixes
+
+* **docs:** fix github action docs publish ([e8ffad9](https://github.com/Sanofi-IADC/whispr/commit/e8ffad96468bf036a84cd8de261eb7413747ece4))
+
 ## [4.5.2](https://github.com/Sanofi-IADC/whispr/compare/v4.5.1...v4.5.2) (2022-05-05)
 
 
