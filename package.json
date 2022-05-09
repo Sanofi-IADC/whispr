@@ -89,7 +89,7 @@
     "@commitlint/config-conventional": "15.0.0",
     "@nestjs/cli": "8.2.5",
     "@nestjs/platform-express": "8.4.4",
-    "@nestjs/schematics": "8.0.5",
+    "@nestjs/schematics": "8.0.11",
     "@nestjs/testing": "8.2.3",
     "@semantic-release/changelog": "6.0.1",
     "@semantic-release/exec": "6.0.3",
