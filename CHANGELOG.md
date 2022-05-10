@@ -1,3 +1,10 @@
+## [4.5.7](https://github.com/Sanofi-IADC/whispr/compare/v4.5.6...v4.5.7) (2022-05-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/terminus to v8.0.6 ([f10b818](https://github.com/Sanofi-IADC/whispr/commit/f10b818b439e799f414f2cf4854b33a511a4da93))
+
 ## [4.5.6](https://github.com/Sanofi-IADC/whispr/compare/v4.5.5...v4.5.6) (2022-05-10)
 
 
