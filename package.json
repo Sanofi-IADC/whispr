@@ -29,7 +29,7 @@
     "@instana/collector": "1.137.2",
     "@mestrak/passport-multi-jwt": "0.0.8",
     "@nestjs/apollo": "10.0.11",
-    "@nestjs/axios": "0.0.3",
+    "@nestjs/axios": "0.0.7",
     "@nestjs/common": "8.2.3",
     "@nestjs/config": "1.1.7",
     "@nestjs/core": "8.2.3",
