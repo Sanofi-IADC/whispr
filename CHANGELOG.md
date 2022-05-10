@@ -1,3 +1,10 @@
+## [4.5.6](https://github.com/Sanofi-IADC/whispr/compare/v4.5.5...v4.5.6) (2022-05-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/graphql to v10.0.11 ([8645d10](https://github.com/Sanofi-IADC/whispr/commit/8645d102edc4aab8d78e4f955436f1a1f022c230))
+
 ## [4.5.5](https://github.com/Sanofi-IADC/whispr/compare/v4.5.4...v4.5.5) (2022-05-10)
 
 
