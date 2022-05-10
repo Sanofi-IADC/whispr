@@ -1,3 +1,11 @@
+## [4.5.4](https://github.com/Sanofi-IADC/whispr/compare/v4.5.3...v4.5.4) (2022-05-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/apollo to v10.0.11 ([45691c1](https://github.com/Sanofi-IADC/whispr/commit/45691c19284cdf73f103918a3499a4b443547184))
+* **dependency maintenance:** update dependency @nestjs/config to v1.1.7 ([5d13560](https://github.com/Sanofi-IADC/whispr/commit/5d1356027c1f302adf46cf29897f2314ebb3e887))
+
 ## [4.5.3](https://github.com/Sanofi-IADC/whispr/compare/v4.5.2...v4.5.3) (2022-05-05)
 
 
