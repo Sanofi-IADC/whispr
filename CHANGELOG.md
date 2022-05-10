@@ -1,3 +1,10 @@
+## [4.5.5](https://github.com/Sanofi-IADC/whispr/compare/v4.5.4...v4.5.5) (2022-05-10)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/axios to v0.0.7 ([e300687](https://github.com/Sanofi-IADC/whispr/commit/e3006872c21087d39a71699c6a245664fe764879))
+
 ## [4.5.4](https://github.com/Sanofi-IADC/whispr/compare/v4.5.3...v4.5.4) (2022-05-10)
 
 
