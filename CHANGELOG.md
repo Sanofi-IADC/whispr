@@ -1,3 +1,10 @@
+## [4.5.11](https://github.com/Sanofi-IADC/whispr/compare/v4.5.10...v4.5.11) (2022-05-11)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update nest monorepo to v8.2.6 ([afc7c8e](https://github.com/Sanofi-IADC/whispr/commit/afc7c8ef79998598d592d7b3f986bb746dd324e9))
+
 ## [4.5.10](https://github.com/Sanofi-IADC/whispr/compare/v4.5.9...v4.5.10) (2022-05-11)
 
 
