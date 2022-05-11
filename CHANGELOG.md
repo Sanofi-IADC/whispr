@@ -1,3 +1,11 @@
+## [4.5.10](https://github.com/Sanofi-IADC/whispr/compare/v4.5.9...v4.5.10) (2022-05-11)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency ioredis to v4.28.5 ([65db8ce](https://github.com/Sanofi-IADC/whispr/commit/65db8ceec4063520f98ce861789f051db21c8f7c))
+* **dependency maintenance:** update dependency mongoose to v6.2.11 ([92d5d33](https://github.com/Sanofi-IADC/whispr/commit/92d5d337d4ee8d8b4cd3fd8de7d61152bf2fdf93))
+
 ## [4.5.9](https://github.com/Sanofi-IADC/whispr/compare/v4.5.8...v4.5.9) (2022-05-11)
 
 
