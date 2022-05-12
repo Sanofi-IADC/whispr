@@ -126,7 +126,7 @@
     "ts-loader": "9.3.0",
     "ts-morph": "13.0.3",
     "ts-node": "10.7.0",
-    "tsconfig-paths": "3.12.0",
+    "tsconfig-paths": "3.14.1",
     "typescript": "4.6.4",
     "webpack": "5.72.1"
   },
