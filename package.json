@@ -96,7 +96,7 @@
     "@semantic-release/git": "10.0.1",
     "@semantic-release/github": "8.0.4",
     "@types/jest": "27.0.3",
-    "@types/node": "16.11.34",
+    "@types/node": "16.11.35",
     "@types/socket.io": "3.0.1",
     "@types/supertest": "2.0.12",
     "@types/tunnel": "0.0.3",
