@@ -1,3 +1,10 @@
+## [4.5.14](https://github.com/Sanofi-IADC/whispr/compare/v4.5.13...v4.5.14) (2022-05-17)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency joi to v17.6.0 ([6d05561](https://github.com/Sanofi-IADC/whispr/commit/6d05561b54097518943da11991bd93e5e8318aa2))
+
 ## [4.5.13](https://github.com/Sanofi-IADC/whispr/compare/v4.5.12...v4.5.13) (2022-05-17)
 
 
