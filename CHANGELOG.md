@@ -1,3 +1,10 @@
+## [4.5.13](https://github.com/Sanofi-IADC/whispr/compare/v4.5.12...v4.5.13) (2022-05-17)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency @nestjs/config to v1.2.1 ([6176c08](https://github.com/Sanofi-IADC/whispr/commit/6176c0826e11c9c7ee7529354750e33c47dd3fcf))
+
 ## [4.5.12](https://github.com/Sanofi-IADC/whispr/compare/v4.5.11...v4.5.12) (2022-05-17)
 
 
