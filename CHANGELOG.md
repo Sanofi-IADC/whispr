@@ -1,3 +1,11 @@
+## [4.5.17](https://github.com/Sanofi-IADC/whispr/compare/v4.5.16...v4.5.17) (2022-05-18)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency aws-sdk to v2.1137.0 ([afa68f5](https://github.com/Sanofi-IADC/whispr/commit/afa68f50d678fa60f9ac44012b6b63ca6e54afa5))
+* **dependency maintenance:** update dependency jwks-rsa to v2.1.2 ([43b17fb](https://github.com/Sanofi-IADC/whispr/commit/43b17fb06e1734e92acf616fa1d8e2fd7aa7074c))
+
 ## [4.5.16](https://github.com/Sanofi-IADC/whispr/compare/v4.5.15...v4.5.16) (2022-05-17)
 
 
