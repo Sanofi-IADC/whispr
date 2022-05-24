@@ -61,22 +61,20 @@ export class ConfigService {
   }
 
   getMongooseOptions(): MongooseModuleOptions {
-    const options: MongooseModuleOptions = {
+    let options: MongooseModuleOptions = {
       uri: this.getMongooseURI(),
       dbName: 'whisps',
       readPreference: this.get('REPLICASET') !== undefined ? 'primary' : null,
       user: this.get('MONGOOSE_USERNAME'),
       pass: this.get('MONGOOSE_PASSWORD'),
       replicaSet: this.get('REPLICASET'),
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     };
     if (this.get('SSL_VALIDATE') === true) {
-      const ca = fs.readFileSync(this.get('PATH_TO_SSL_CERTIFICATE'));
-      options.server = {
+      options = {
+        ...options,
         ssl: true,
         sslValidate: true,
-        sslCA: ca,
+        sslCA: this.get('PATH_TO_SSL_CERTIFICATE'),
       };
     }
     return options;
