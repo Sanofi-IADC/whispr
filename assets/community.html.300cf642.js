@@ -1,0 +1,1 @@
+const t={key:"v-76cfe0bc",path:"/contributing/community.html",title:"Community",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1653410321e3,contributors:[{name:"over-flo79",email:"florent.sithimolada-ext@atos.net",commits:1}]},filePathRelative:"contributing/community.md"};export{t as data};
