@@ -1,1 +1,0 @@
-const t={key:"v-3ea3fa0e",path:"/contributing/building.html",title:"Building",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1653410321e3,contributors:[{name:"over-flo79",email:"florent.sithimolada-ext@atos.net",commits:1}]},filePathRelative:"contributing/building.md"};export{t as data};

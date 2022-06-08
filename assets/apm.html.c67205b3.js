@@ -1,1 +1,0 @@
-const t={key:"v-146e5374",path:"/apm.html",title:"APM",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:2,title:"Instana",slug:"instana",children:[]}],git:{updatedTime:1653410321e3,contributors:[{name:"over-flo79",email:"florent.sithimolada-ext@atos.net",commits:1}]},filePathRelative:"apm.md"};export{t as data};
