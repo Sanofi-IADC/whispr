@@ -1,3 +1,10 @@
+## [4.5.18](https://github.com/Sanofi-IADC/whispr/compare/v4.5.17...v4.5.18) (2022-06-08)
+
+
+### Bug Fixes
+
+* **database:** fix mongoose migration to 6.x ([e20e280](https://github.com/Sanofi-IADC/whispr/commit/e20e280d8318511695e4317eb16897aec1ac91bd))
+
 ## [4.5.17](https://github.com/Sanofi-IADC/whispr/compare/v4.5.16...v4.5.17) (2022-05-18)
 
 
