@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Field, ID, Int, ObjectType,
-} from '@nestjs/graphql';
+import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
 import { Tag } from '../tag/tag.entity';
 import { WhispAttachment } from './whisp-attachment.entity';

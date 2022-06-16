@@ -1,6 +1,4 @@
-import {
-  HttpException, HttpStatus, Injectable, Logger,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import parse from 'parse-duration';
@@ -37,20 +35,31 @@ export class WhispService {
     });
     whisp.readableID = await this.sequenceService.getNextWhispID(whisp);
     whisp.timestamp = whisp.timestamp || new Date();
-    whisp.attachments = await this.replaceFiles(whispIn.attachments, whispIn.readableID);
+    whisp.attachments = await this.replaceFiles(
+      whispIn.attachments,
+      whispIn.readableID,
+    );
     const now = new Date();
     whisp.updated = now;
-    const { timeToLiveSec, expirationDate } = WhispService.fillTTL(whispIn, now);
+    const { timeToLiveSec, expirationDate } = WhispService.fillTTL(
+      whispIn,
+      now,
+    );
     whisp.timeToLiveSec = timeToLiveSec;
     whisp.expirationDate = expirationDate;
     const createdWhisp = await this.whispModel.create(whisp);
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
+    await this.eventService.triggerEvent(
+      new Event(EventNames.WHISP_CREATED, createdWhisp),
+    );
     this.distributionService.distributeWhisp(createdWhisp);
 
     return createdWhisp;
   }
 
-  private static fillTTL(whisp: WhispInputType, updated: Date): { timeToLiveSec: number; expirationDate: Date } {
+  private static fillTTL(
+    whisp: WhispInputType,
+    updated: Date,
+  ): { timeToLiveSec: number; expirationDate: Date } {
     const expDate = new Date(updated);
     if (whisp.expirationDate) {
       return { timeToLiveSec: null, expirationDate: whisp.expirationDate };
@@ -77,7 +86,10 @@ export class WhispService {
     }
   }
 
-  async replaceFiles(attachments: WhispAttachmentInput[], readableId: string): Promise<WhispAttachment[]> {
+  async replaceFiles(
+    attachments: WhispAttachmentInput[],
+    readableId: string,
+  ): Promise<WhispAttachment[]> {
     this.logger.debug({ attachments });
     if (!attachments || !Array.isArray(attachments)) {
       return undefined;
@@ -108,7 +120,11 @@ export class WhispService {
     );
   }
 
-  async findAll(filter?: Record<string, unknown>, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
+  async findAll(
+    filter?: Record<string, unknown>,
+    sort: string | any = {},
+    limit: number = null,
+  ): Promise<IWhisp[]> {
     return this.whispModel.find(filter).sort(sort).limit(limit).exec();
   }
 
@@ -117,7 +133,10 @@ export class WhispService {
   }
 
   async findTagsByWhispId(whispId: string): Promise<TagInputType[]> {
-    const whisps = await this.whispModel.findById(whispId).populate('tags').exec();
+    const whisps = await this.whispModel
+      .findById(whispId)
+      .populate('tags')
+      .exec();
     return whisps.tags;
   }
 
@@ -125,12 +144,18 @@ export class WhispService {
     return this.whispModel.countDocuments(filter).exec();
   }
 
-  async countWhispsGroup(filter?: Record<string, unknown>[], group?: any): Promise<WhispCount[]> {
+  async countWhispsGroup(
+    filter?: Record<string, unknown>[],
+    group?: any,
+  ): Promise<WhispCount[]> {
     // match and group code simulates mongo countDocuments but allows custom group
     const mongoMatch = { $match: filter ? { $or: filter } : {} };
     const mongoGroup = { $group: { _id: group, count: { $sum: 1 } } };
 
-    return this.whispModel.aggregate([mongoMatch, mongoGroup]).allowDiskUse(true).exec();
+    return this.whispModel
+      .aggregate([mongoMatch, mongoGroup])
+      .allowDiskUse(true)
+      .exec();
   }
 
   async update(id: string, whispIn: WhispInputType): Promise<IWhisp> {
@@ -139,14 +164,24 @@ export class WhispService {
       updated: new Date(),
     } as Partial<IWhisp>;
     if (whispIn.attachments) {
-      whisp.attachments = await this.replaceFiles(whispIn.attachments, whispIn.readableID);
+      whisp.attachments = await this.replaceFiles(
+        whispIn.attachments,
+        whispIn.readableID,
+      );
     }
-    const { timeToLiveSec, expirationDate } = WhispService.fillTTL(whispIn, whisp.updated);
+    const { timeToLiveSec, expirationDate } = WhispService.fillTTL(
+      whispIn,
+      whisp.updated,
+    );
     whisp.timeToLiveSec = timeToLiveSec;
     whisp.expirationDate = expirationDate;
 
-    const updatedWhisp = await this.whispModel.findOneAndUpdate({ _id: id }, whisp, { new: true }).exec();
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_UPDATED, updatedWhisp));
+    const updatedWhisp = await this.whispModel
+      .findOneAndUpdate({ _id: id }, whisp, { new: true })
+      .exec();
+    await this.eventService.triggerEvent(
+      new Event(EventNames.WHISP_UPDATED, updatedWhisp),
+    );
     this.logger.log(updatedWhisp, 'Updated Whisp');
     this.distributionService.distributeWhisp(updatedWhisp);
 
@@ -154,18 +189,26 @@ export class WhispService {
   }
 
   async replace(id: string, whisp: WhispInputType): Promise<any> {
-    const replacedWhisp = await this.whispModel.replaceOne({ _id: id }, whisp).exec();
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_REPLACED, replacedWhisp));
+    const replacedWhisp = await this.whispModel
+      .replaceOne({ _id: id }, whisp)
+      .exec();
+    await this.eventService.triggerEvent(
+      new Event(EventNames.WHISP_REPLACED, replacedWhisp),
+    );
 
     return replacedWhisp;
   }
 
   async delete(id: string): Promise<boolean> {
-    const { deletedCount: countOfDeletedWhisp } = await this.whispModel.deleteOne({ _id: id }).exec();
+    const { deletedCount: countOfDeletedWhisp } = await this.whispModel
+      .deleteOne({ _id: id })
+      .exec();
     if (countOfDeletedWhisp <= 0) {
       return false;
     }
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_DELETED, id));
+    await this.eventService.triggerEvent(
+      new Event(EventNames.WHISP_DELETED, id),
+    );
 
     return true;
   }

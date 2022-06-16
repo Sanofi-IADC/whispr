@@ -23,7 +23,9 @@ export class WebhookService {
   }
 
   async delete(@Param('id') id: string): Promise<boolean> {
-    const { deletedCount: countOfDeletedWebhooks } = await this.webhookModel.deleteOne({ _id: id }).exec();
+    const { deletedCount: countOfDeletedWebhooks } = await this.webhookModel
+      .deleteOne({ _id: id })
+      .exec();
 
     return countOfDeletedWebhooks === 1;
   }

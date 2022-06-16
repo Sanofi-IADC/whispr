@@ -25,6 +25,8 @@ describe('JWT Strategy', () => {
     // Then the JWT strategy object should have 4 valid passport-jwt configurations
     expect(result.name).toEqual('jwt');
     expect(result._config).toHaveLength(4);
-    result._config.map((config) => expect(config._jwtFromRequest).toBeDefined());
+    result._config.map((config) =>
+      expect(config._jwtFromRequest).toBeDefined(),
+    );
   });
 });

@@ -9,7 +9,9 @@ import { TagGroupInputType } from './tagGroup.input';
 export class TagGroupService {
   private readonly logger = new Logger('TagGroup');
 
-  constructor(@InjectModel('TagGroup') private readonly tagGroupModel: Model<ITagGroup>) {}
+  constructor(
+    @InjectModel('TagGroup') private readonly tagGroupModel: Model<ITagGroup>,
+  ) {}
 
   async create(tagGroupIn: TagGroupInputType): Promise<ITagGroup> {
     const tagGroup = new TagGroup();
@@ -34,7 +36,9 @@ export class TagGroupService {
   }
 
   async update(id: string, tagGroupIn: TagGroupInputType): Promise<ITagGroup> {
-    const updatedTagGroup = await this.tagGroupModel.findOneAndUpdate({ _id: id }, tagGroupIn, { new: true }).exec();
+    const updatedTagGroup = await this.tagGroupModel
+      .findOneAndUpdate({ _id: id }, tagGroupIn, { new: true })
+      .exec();
     this.logger.log(updatedTagGroup, 'Updated TagGroup');
     return updatedTagGroup;
   }
@@ -44,7 +48,9 @@ export class TagGroupService {
   }
 
   async delete(id: string): Promise<boolean> {
-    const { deletedCount: countOfDeletedTagGroups } = await this.tagGroupModel.deleteOne({ _id: id }).exec();
+    const { deletedCount: countOfDeletedTagGroups } = await this.tagGroupModel
+      .deleteOne({ _id: id })
+      .exec();
 
     return countOfDeletedTagGroups === 1;
   }

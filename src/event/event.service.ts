@@ -44,7 +44,11 @@ export class EventService {
 
     plugins.forEach((plugin) => {
       plugin.listeners.forEach((listener) => {
-        this.registerListener(listener.eventName, listener.callback, listener.filter);
+        this.registerListener(
+          listener.eventName,
+          listener.callback,
+          listener.filter,
+        );
       });
     });
   }
@@ -54,20 +58,33 @@ export class EventService {
 
     webhooks.forEach((webhook) => {
       webhook.events.forEach((eventName) => {
-        this.registerListener(eventName, this.webhookService.getCallFunction(webhook), webhook.filter);
+        this.registerListener(
+          eventName,
+          this.webhookService.getCallFunction(webhook),
+          webhook.filter,
+        );
       });
     });
   }
 
-  private registerListener(eventName: string, callback: ListenerCallback, filter: Record<string, unknown> = {}) {
+  private registerListener(
+    eventName: string,
+    callback: ListenerCallback,
+    filter: Record<string, unknown> = {},
+  ) {
     if (!EventService.doesEventExist(eventName)) {
-      Logger.error(`Could not register listener, Event ${eventName} does not exist.`);
+      Logger.error(
+        `Could not register listener, Event ${eventName} does not exist.`,
+      );
       return;
     }
 
     const listener = { callback, filter };
 
-    this.registeredListeners[eventName] = [...this.registeredListeners[eventName], listener];
+    this.registeredListeners[eventName] = [
+      ...this.registeredListeners[eventName],
+      listener,
+    ];
   }
 
   private static doesEventExist(eventName: string): boolean {

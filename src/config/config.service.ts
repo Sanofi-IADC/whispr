@@ -13,17 +13,26 @@ import validationSchema from './environmentValidationSchema';
 export class ConfigService {
   private readonly envConfig: Record<string, string>;
 
-  private readonly logLevels: string[] = ['error', 'warn', 'log', 'verbose', 'debug'];
+  private readonly logLevels: string[] = [
+    'error',
+    'warn',
+    'log',
+    'verbose',
+    'debug',
+  ];
 
   constructor() {
     const dotEnvFilename = `${process.env.NODE_ENV || 'local'}.env`;
-    const dotEnvConfig = fs.existsSync(dotEnvFilename) ? dotenv.parse(fs.readFileSync(dotEnvFilename)) : {};
+    const dotEnvConfig = fs.existsSync(dotEnvFilename)
+      ? dotenv.parse(fs.readFileSync(dotEnvFilename))
+      : {};
     const configFromEnv = ConfigService.buildConfigFromEnv();
     const mergedConfig = {
       ...dotEnvConfig,
       ...configFromEnv, // Environment variables override .env config
     };
-    this.envConfig = ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
+    this.envConfig =
+      ConfigService.validateSchemaAndApplyDefaultValues(mergedConfig);
   }
 
   static buildConfigFromEnv(): Record<string, string> {
@@ -37,7 +46,9 @@ export class ConfigService {
     return res;
   }
 
-  static validateSchemaAndApplyDefaultValues(providedEnvConfig: Record<string, string>): Record<string, string> {
+  static validateSchemaAndApplyDefaultValues(
+    providedEnvConfig: Record<string, string>,
+  ): Record<string, string> {
     const { value, error } = validationSchema.validate(providedEnvConfig, {
       abortEarly: false,
       allowUnknown: true,
@@ -54,9 +65,9 @@ export class ConfigService {
 
   getMongooseURI(): string {
     return this.get('REPLICASET') !== undefined
-      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get('MONGOOSE_HOST_READ')}:${this.get(
-        'MONGOOSE_PORT_READ',
-      )}`
+      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get(
+          'MONGOOSE_PORT',
+        )},${this.get('MONGOOSE_HOST_READ')}:${this.get('MONGOOSE_PORT_READ')}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
 
@@ -94,9 +105,9 @@ export class ConfigService {
     return tunnel.httpsOverHttp({
       ca: this.get('CA_CERTIFICATE_PATH')
         ? this.get('CA_CERTIFICATE_PATH')
-          .split(',')
-          .map((path: string) => path.trim())
-          .map((path) => fs.readFileSync(path))
+            .split(',')
+            .map((path: string) => path.trim())
+            .map((path) => fs.readFileSync(path))
         : undefined,
       proxy: {
         host,
@@ -115,7 +126,10 @@ export class ConfigService {
 
     authConfig.config.forEach((config) => {
       if (config.secretOrKeyFromEnv) {
-        result.config.push({ ...config, secretOrKey: process.env[config.secretOrKeyFromEnv] || '' });
+        result.config.push({
+          ...config,
+          secretOrKey: process.env[config.secretOrKeyFromEnv] || '',
+        });
       } else {
         result.config.push({ ...config });
       }
@@ -134,14 +148,20 @@ export class ConfigService {
     }
     // patch in ExtractJwt and passportJwtSecret function calls as they cannot be enocded in JSON
     return authConfig.config.map((configuration) => {
-      const option: ExpressJwtOptions = { ...configuration.secretOrKeyProvider };
+      const option: ExpressJwtOptions = {
+        ...configuration.secretOrKeyProvider,
+      };
       if (proxy) {
         option.requestAgent = agent;
       }
       return {
         ...configuration,
-        ...(configuration.secretOrKeyProvider ? { secretOrKeyProvider: passportJwtSecret(option) } : {}),
-        jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](configuration.jwtFromRequest.args),
+        ...(configuration.secretOrKeyProvider
+          ? { secretOrKeyProvider: passportJwtSecret(option) }
+          : {}),
+        jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](
+          configuration.jwtFromRequest.args,
+        ),
       };
     });
   }
