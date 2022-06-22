@@ -1,3 +1,10 @@
+# [4.6.0](https://github.com/Sanofi-IADC/whispr/compare/v4.5.18...v4.6.0) (2022-06-22)
+
+
+### Features
+
+* **auth:** Add global auth guards ([67421f5](https://github.com/Sanofi-IADC/whispr/commit/67421f5c698ec61d8ab5dc44990fc131524e8e2c))
+
 ## [4.5.18](https://github.com/Sanofi-IADC/whispr/compare/v4.5.17...v4.5.18) (2022-06-08)
 
 
