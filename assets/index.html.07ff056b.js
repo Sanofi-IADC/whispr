@@ -1,0 +1,1 @@
+const e={key:"v-a8a674e6",path:"/filters/",title:"Filters",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1655884983e3,contributors:[{name:"ahmed.refai",email:"ahmedrefai4@gmail.com",commits:1}]},filePathRelative:"filters/readme.md"};export{e as data};
