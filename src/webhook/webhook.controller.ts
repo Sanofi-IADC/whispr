@@ -1,11 +1,13 @@
 import {
-  Controller, Post, Get, Body, HttpCode, Delete, Param, UsePipes, ValidationPipe,
+  Controller, Post, Get, Body, HttpCode, Delete, Param, UsePipes, ValidationPipe, UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { WebhookService } from './webhook.service';
 import { WebhookInputType } from './webhook.input';
 import { IWebhook } from '../interfaces/webhook.interface';
 
 @Controller('webhook')
+@UseGuards(JwtAuthGuard)
 export class WebhookController {
   constructor(private readonly webhookService: WebhookService) {}
 

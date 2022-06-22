@@ -1,11 +1,24 @@
 import {
-  Controller, Post, Body, Get, Patch, Put, Delete, Param, HttpCode, UsePipes, ValidationPipe,
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Patch,
+  Post,
+  Put,
+  UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { IWhisp } from '../interfaces/whisp.interface';
 import { WhispService } from './whisp.service';
 import { WhispInputType } from './whisp.input';
 
 @Controller('whisp')
+@UseGuards(JwtAuthGuard)
 export class WhispController {
   constructor(private readonly whispService: WhispService) {}
 

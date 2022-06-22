@@ -1,14 +1,17 @@
 import {
   Resolver, Query, Mutation, Args, Root, ResolveField,
 } from '@nestjs/graphql';
+import { UseGuards } from '@nestjs/common';
 import { Tag } from './tag.entity';
 import { TagService } from './tag.service';
 import { TagInputType } from './tag.input';
 import { TagGroupService } from '../tagGroup/tagGroup.service';
 import { ITagGroup } from '../interfaces/tagGroup.interface';
 import { ITag } from '../interfaces/tag.interface';
+import { GqlJwtAuthGuard } from '../auth/gql-jwt-auth.guard';
 
 @Resolver(() => Tag)
+@UseGuards(GqlJwtAuthGuard)
 export class TagResolver {
   constructor(private readonly tagService: TagService, private readonly tagGroupService: TagGroupService) {}
 

@@ -1,11 +1,24 @@
 import {
-  Controller, Post, Body, Get, Put, Delete, Param, HttpCode, Patch, UsePipes, ValidationPipe,
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  Delete,
+  Param,
+  HttpCode,
+  Patch,
+  UsePipes,
+  ValidationPipe,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { TagService } from './tag.service';
 import { TagInputType } from './tag.input';
 import { ITag } from '../interfaces/tag.interface';
 
 @Controller('Tag')
+@UseGuards(JwtAuthGuard)
 export class TagController {
   constructor(private readonly tagService: TagService) {}
 

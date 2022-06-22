@@ -1,10 +1,12 @@
 import fastify from 'fastify';
 import { Model } from 'mongoose';
+import { sign } from 'jsonwebtoken';
 import request from 'supertest';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from 'src/app.module';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import { AUTH } from '../../testUtils/testingConsts';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { WhispInputType } from '../../../src/whisp/whisp.input';
 import { IWhisp } from '../../../src/interfaces/whisp.interface';
@@ -98,8 +100,12 @@ describe('webhooks', () => {
     let whisp: IWhisp;
 
     it('should create a new webhook', async () => {
+      const { config } = JSON.parse(AUTH.AUTH_CONFIG_SECRET_JWKS);
+      const secret = config.filter((item) => item.secretOrKey !== undefined);
+      const token = sign({ sender: WHISP_TEST_TYPE }, secret[0]?.secretOrKey);
       const result = await request(global.app.getHttpServer())
         .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
         .send({
           query: CREATE_WEBHOOK_GQL,
           variables: {

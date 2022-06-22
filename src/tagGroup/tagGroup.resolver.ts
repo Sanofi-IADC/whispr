@@ -1,6 +1,7 @@
 import {
   Resolver, Query, Mutation, Args, ResolveField, Root,
 } from '@nestjs/graphql';
+import { UseGuards } from '@nestjs/common';
 import { ITagGroup } from '../interfaces/tagGroup.interface';
 import { TagGroup } from './tagGroup.entity';
 import { TagGroupService } from './tagGroup.service';
@@ -8,8 +9,10 @@ import { TagGroupInputType } from './tagGroup.input';
 import { Tag } from '../tag/tag.entity';
 import { TagService } from '../tag/tag.service';
 import { ITag } from '../interfaces/tag.interface';
+import { GqlJwtAuthGuard } from '../auth/gql-jwt-auth.guard';
 
 @Resolver(() => TagGroup)
+@UseGuards(GqlJwtAuthGuard)
 export class TagGroupResolver {
   constructor(private readonly tagGroupService: TagGroupService, private readonly tagService: TagService) {}
 
