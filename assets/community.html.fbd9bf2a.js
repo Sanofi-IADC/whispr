@@ -1,1 +1,0 @@
-const t={key:"v-76cfe0bc",path:"/contributing/community.html",title:"Community",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1655884983e3,contributors:[{name:"ahmed.refai",email:"ahmedrefai4@gmail.com",commits:1}]},filePathRelative:"contributing/community.md"};export{t as data};

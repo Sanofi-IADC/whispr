@@ -1,1 +1,0 @@
-const t={key:"v-0e4a26f1",path:"/api/introduction.html",title:"Introduction",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:2,title:"Input file",slug:"input-file",children:[]}],git:{updatedTime:1655884983e3,contributors:[{name:"ahmed.refai",email:"ahmedrefai4@gmail.com",commits:1}]},filePathRelative:"api/introduction.md"};export{t as data};
