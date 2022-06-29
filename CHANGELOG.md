@@ -1,3 +1,10 @@
+## [4.6.1](https://github.com/Sanofi-IADC/whispr/compare/v4.6.0...v4.6.1) (2022-06-29)
+
+
+### Bug Fixes
+
+* **subscription:** fix auth issue ([9f92d82](https://github.com/Sanofi-IADC/whispr/commit/9f92d820d6673a8f4fe9e7ed4af58e0e82c29101))
+
 # [4.6.0](https://github.com/Sanofi-IADC/whispr/compare/v4.5.18...v4.6.0) (2022-06-22)
 
 
