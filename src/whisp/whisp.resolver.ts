@@ -16,7 +16,6 @@ import { TagInputType } from '../tag/tag.input';
 import { WhispCount } from './whispCount.entity';
 
 @Resolver(() => Whisp)
-@UseGuards(GqlJwtAuthGuard)
 export class WhispResolver {
   constructor(
     private readonly whispService: WhispService,
@@ -33,11 +32,13 @@ export class WhispResolver {
    */
 
   @Query(() => Whisp, { nullable: true })
+  @UseGuards(GqlJwtAuthGuard)
   async whispById(@Args('id') id: string): Promise<IWhisp> {
     return this.whispService.findOne(id);
   }
 
   @Query(() => [Whisp], { nullable: true })
+  @UseGuards(GqlJwtAuthGuard)
   async whisps(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
       filter?: Record<string, unknown>,
@@ -49,6 +50,7 @@ export class WhispResolver {
   }
 
   @Query(() => [Whisp], { nullable: true })
+  @UseGuards(GqlJwtAuthGuard)
   async whispsAuthBeta(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
       filter?: Record<string, unknown>,
@@ -60,6 +62,7 @@ export class WhispResolver {
   }
 
   @Query(() => [WhispCount])
+  @UseGuards(GqlJwtAuthGuard)
   async countWhisps(
     @Args('filter', { type: () => [GraphQLJSONObject], nullable: true })
       filter: Record<string, unknown>[],
@@ -74,21 +77,25 @@ export class WhispResolver {
    */
 
   @Mutation(() => Whisp)
+  @UseGuards(GqlJwtAuthGuard)
   async createWhisp(@Args('whisp') whisp: WhispInputType): Promise<IWhisp> {
     return this.whispService.create(whisp);
   }
 
   @Mutation(() => Whisp)
+  @UseGuards(GqlJwtAuthGuard)
   async updateWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType): Promise<IWhisp> {
     return this.whispService.update(id, whisp);
   }
 
   @Mutation(() => Whisp)
+  @UseGuards(GqlJwtAuthGuard)
   async replaceWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType): Promise<IWhisp> {
     return this.whispService.replace(id, whisp);
   }
 
   @Mutation(() => Boolean)
+  @UseGuards(GqlJwtAuthGuard)
   async deleteWhisp(@Args('id') id: string): Promise<boolean> {
     return this.whispService.delete(id);
   }
@@ -112,6 +119,7 @@ export class WhispResolver {
    * Field resolver
    */
   @ResolveField(() => [Tag])
+  @UseGuards(GqlJwtAuthGuard)
   async tags(@Root() whisp: Whisp): Promise<TagInputType[]> {
     // eslint-disable-next-line no-underscore-dangle
     return this.whispService.findTagsByWhispId(whisp._id);
