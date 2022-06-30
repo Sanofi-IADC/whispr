@@ -55,6 +55,8 @@ type Whisp {
   closedById: String
   timestamp: DateTime
   updated: DateTime
+  expirationDate: DateTime
+  timeToLiveSec: Float
   tags: [Tag!]
   data: JSONObject
   attachments: [WhispAttachment!]
@@ -72,9 +74,9 @@ type WhispCount {
 
 type Query {
   whispById(id: String!): Whisp
-  whisps(limit: Int, sort: JSONObject, filter: JSONObject): [Whisp!]
-  whispsAuthBeta(limit: Int, sort: JSONObject, filter: JSONObject): [Whisp!]
-  countWhisps(group: JSONObject, filter: [JSONObject!]): [WhispCount!]!
+  whisps(filter: JSONObject, sort: JSONObject, limit: Int): [Whisp!]
+  whispsAuthBeta(filter: JSONObject, sort: JSONObject, limit: Int): [Whisp!]
+  countWhisps(filter: [JSONObject!], group: JSONObject): [WhispCount!]!
   webhooks: [Webhook!]
   tagGroups(tagGroup: TagGroupInputType!): [TagGroup!]
   tagGroupById(id: String!): TagGroup
@@ -101,18 +103,18 @@ input TagInputType {
 
 type Mutation {
   createWhisp(whisp: WhispInputType!): Whisp!
-  updateWhisp(whisp: WhispInputType!, id: String!): Whisp!
-  replaceWhisp(whisp: WhispInputType!, id: String!): Whisp!
+  updateWhisp(id: String!, whisp: WhispInputType!): Whisp!
+  replaceWhisp(id: String!, whisp: WhispInputType!): Whisp!
   deleteWhisp(id: String!): Boolean!
   createWebhook(webhook: WebhookInputType!): Webhook!
   deleteWebhook(id: String!): Boolean!
   createTagGroup(tagGroup: TagGroupInputType!): TagGroup!
-  updateTagGroup(tagGroup: TagGroupInputType!, id: String!): TagGroup!
-  replaceTagGroup(tagGroup: TagGroupInputType!, id: String!): TagGroup!
+  updateTagGroup(id: String!, tagGroup: TagGroupInputType!): TagGroup!
+  replaceTagGroup(id: String!, tagGroup: TagGroupInputType!): TagGroup!
   deleteTagGroup(id: String!): Boolean!
   createTag(tag: TagInputType!): Tag!
-  updateTag(tag: TagInputType!, id: String!): Tag!
-  replaceTag(tag: TagInputType!, id: String!): Tag!
+  updateTag(id: String!, tag: TagInputType!): Tag!
+  replaceTag(id: String!, tag: TagInputType!): Tag!
   deleteTag(id: String!): Boolean!
 }
 
@@ -137,6 +139,8 @@ input WhispInputType {
   data: JSONObject
   attachments: [WhispAttachmentInput!]
   tags: [TagInputType!]
+  timeToLive: String
+  expirationDate: DateTime
 }
 
 input WhispAttachmentInput {
