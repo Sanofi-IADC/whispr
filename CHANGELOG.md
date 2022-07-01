@@ -1,3 +1,10 @@
+# [4.7.0](https://github.com/Sanofi-IADC/whispr/compare/v4.6.1...v4.7.0) (2022-07-01)
+
+
+### Features
+
+* **subscription:** jwt auth for subscription ([0a3f038](https://github.com/Sanofi-IADC/whispr/commit/0a3f038146215afcef2a41eb447047a7ae58c518))
+
 ## [4.6.1](https://github.com/Sanofi-IADC/whispr/compare/v4.6.0...v4.6.1) (2022-06-29)
 
 
