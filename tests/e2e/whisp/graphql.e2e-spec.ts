@@ -99,7 +99,11 @@ describe('Whisps', () => {
         expect(createdWhispTimestamp).toEqual(now.toISOString());
       });
 
-      function runFileTest(fileName: string, filePath: string, fileLength: number) {
+      function runFileTest(
+        fileName: string,
+        filePath: string,
+        fileLength: number,
+      ) {
         it(`should upload ${fileName} to S3 when attached`, async () => {
           const result = await request(global.app.getHttpServer())
             .post('/graphql')
@@ -125,14 +129,24 @@ describe('Whisps', () => {
             .attach('file', filePath);
 
           expect(result.status).toBe(200);
-          const whisp = await whispService.findOne(result.body.data.createWhisp._id);
+          const whisp = await whispService.findOne(
+            result.body.data.createWhisp._id,
+          );
           const file = await fileService.getFile(whisp.attachments[0].file);
 
           expect(file.ContentLength).toBe(fileLength);
         });
       }
-      runFileTest('attached-file-1.png', 'tests/e2e/whisp/attached-file-1.png', 14948);
-      runFileTest('attached-file-2.txt', 'tests/e2e/whisp/attached-file-2.txt', 19);
+      runFileTest(
+        'attached-file-1.png',
+        'tests/e2e/whisp/attached-file-1.png',
+        14948,
+      );
+      runFileTest(
+        'attached-file-2.txt',
+        'tests/e2e/whisp/attached-file-2.txt',
+        19,
+      );
     });
 
     describe('updateWhisp', () => {
@@ -192,7 +206,9 @@ describe('Whisps', () => {
             },
           });
 
-        const whisp = await whispService.findOne(createResult.body.data.createWhisp._id);
+        const whisp = await whispService.findOne(
+          createResult.body.data.createWhisp._id,
+        );
         expect(whisp.attachments).toHaveLength(1);
       });
     });

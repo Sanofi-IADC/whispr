@@ -1,6 +1,4 @@
-import {
-  Resolver, Query, Mutation, Args,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { WebhookService } from './webhook.service';
 import { Webhook } from './webhook.entity';
@@ -25,7 +23,9 @@ export class WebhookResolver {
    * Mutations
    */
   @Mutation(() => Webhook)
-  async createWebhook(@Args('webhook') webhook: WebhookInputType): Promise<IWebhook> {
+  async createWebhook(
+    @Args('webhook') webhook: WebhookInputType,
+  ): Promise<IWebhook> {
     return this.webhookService.create(webhook);
   }
 

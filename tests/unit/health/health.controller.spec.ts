@@ -9,7 +9,11 @@ describe('HealthController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [HealthController],
-      providers: [HealthCheckService, MongooseHealthIndicator, HealthCheckExecutor],
+      providers: [
+        HealthCheckService,
+        MongooseHealthIndicator,
+        HealthCheckExecutor,
+      ],
     }).compile();
 
     controller = module.get<HealthController>(HealthController);

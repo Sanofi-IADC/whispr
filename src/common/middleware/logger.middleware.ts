@@ -5,7 +5,9 @@ import { IncomingHttpHeaders } from 'http';
 export function headersToString(headerMap: IncomingHttpHeaders): string {
   const filtred = {
     ...headerMap,
-    authorization: headerMap.authorization ? `[HIDDEN size=${headerMap.authorization.length}]` : null,
+    authorization: headerMap.authorization
+      ? `[HIDDEN size=${headerMap.authorization.length}]`
+      : null,
   };
   return JSON.stringify(filtred);
 }

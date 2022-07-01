@@ -4,7 +4,10 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { TerminusModule } from '@nestjs/terminus';
-import { ApolloServerPluginLandingPageLocalDefault, AuthenticationError } from 'apollo-server-core';
+import {
+  ApolloServerPluginLandingPageLocalDefault,
+  AuthenticationError,
+} from 'apollo-server-core';
 import { AWSCredsModule } from './aws-creds/aws-creds.module';
 import { ConfigModule } from './config/config.module';
 import { DistributionModule } from './distribution/distribution.module';
@@ -36,11 +39,11 @@ import { ConnectionParams } from './auth/connection-params';
         introspection: configService.get('INTROSPECTION'),
         playground: false,
         cors: false,
-        plugins: configService.get('PLAYGROUND') ? [ApolloServerPluginLandingPageLocalDefault()] : [],
+        plugins: configService.get('PLAYGROUND')
+          ? [ApolloServerPluginLandingPageLocalDefault()]
+          : [],
         installSubscriptionHandlers: true,
-        context: ({
-          req, res, payload, connection,
-        }: GqlContext) => ({
+        context: ({ req, res, payload, connection }: GqlContext) => ({
           req,
           res,
           payload,
@@ -53,14 +56,19 @@ import { ConnectionParams } from './auth/connection-params';
               const connectionParamsLowerKeys = {} as ConnectionParams;
               // convert header keys to lowercase
               Object.keys(connectionParams).forEach((key) => {
-                connectionParamsLowerKeys[key.toLowerCase()] = connectionParams[key];
+                connectionParamsLowerKeys[key.toLowerCase()] =
+                  connectionParams[key];
               });
               // eslint-disable-next-line max-len
-              const authToken: string = 'authorization' in connectionParamsLowerKeys && connectionParamsLowerKeys.authorization.split(' ')[1];
+              const authToken: string =
+                'authorization' in connectionParamsLowerKeys &&
+                connectionParamsLowerKeys.authorization.split(' ')[1];
               if (authToken) {
                 return { headers: connectionParamsLowerKeys };
               }
-              throw new AuthenticationError('authorization token must be provided');
+              throw new AuthenticationError(
+                'authorization token must be provided',
+              );
             },
           },
         },
@@ -70,7 +78,8 @@ import { ConnectionParams } from './auth/connection-params';
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => configService.getMongooseOptions(),
+      useFactory: async (configService: ConfigService) =>
+        configService.getMongooseOptions(),
       inject: [ConfigService],
     }),
     PubSubModule,

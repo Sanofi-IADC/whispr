@@ -23,7 +23,13 @@ describe('Whisp-Service', () => {
   let whispService: WhispService;
   beforeEach(async () => {
     fileService = new MockFileService(undefined, undefined);
-    whispService = new WhispService(undefined, undefined, fileService, undefined, undefined);
+    whispService = new WhispService(
+      undefined,
+      undefined,
+      fileService,
+      undefined,
+      undefined,
+    );
   });
 
   describe('replaceFiles', () => {
@@ -77,7 +83,10 @@ describe('Whisp-Service', () => {
       await whispService.replaceFiles(attachments, readableId);
 
       expect(fileService.saveFile).toHaveBeenCalledTimes(1);
-      expect(fileService.saveFile).toHaveBeenCalledWith(file, `${readableId}/${attachments[0].dataMappingPath}`);
+      expect(fileService.saveFile).toHaveBeenCalledWith(
+        file,
+        `${readableId}/${attachments[0].dataMappingPath}`,
+      );
     });
 
     it('should return attachment if "new"-AttachmentInput is passed', async () => {

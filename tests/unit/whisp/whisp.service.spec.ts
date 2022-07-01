@@ -21,9 +21,10 @@ describe('WhispService', () => {
 
   beforeEach(async () => {
     // function to retrieve input of the called function
-    const passThrough = (data) => new Promise((resolve) => {
-      resolve(data);
-    });
+    const passThrough = (data) =>
+      new Promise((resolve) => {
+        resolve(data);
+      });
 
     const moduleRef = await Test.createTestingModule({
       providers: [
@@ -85,7 +86,9 @@ describe('WhispService', () => {
       const { updated: updatedDate, expirationDate, timeToLiveSec } = whisp;
 
       const expectedExpirationDate = new Date();
-      expectedExpirationDate.setSeconds(updatedDate.getSeconds() + timeToLiveSec);
+      expectedExpirationDate.setSeconds(
+        updatedDate.getSeconds() + timeToLiveSec,
+      );
       expectedExpirationDate.setMilliseconds(updatedDate.getMilliseconds());
 
       expect(expirationDate).toStrictEqual(expectedExpirationDate);
@@ -109,7 +112,9 @@ describe('WhispService', () => {
       const now = new Date();
       now.setSeconds(now.getSeconds() + 2);
       const expirationDateField = now;
-      const whisp = await whispService.create({ expirationDate: expirationDateField });
+      const whisp = await whispService.create({
+        expirationDate: expirationDateField,
+      });
       const { expirationDate, timeToLiveSec } = whisp;
       expect(expirationDate).toStrictEqual(expirationDateField);
       expect(timeToLiveSec).toBeNull();
@@ -149,7 +154,10 @@ describe('WhispService', () => {
       const expectedMatch = { $match: {} };
       const expectedGroup = { $group: { _id: undefined, count: { $sum: 1 } } };
 
-      expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
+      expect(whispModel.aggregate).toBeCalledWith([
+        expectedMatch,
+        expectedGroup,
+      ]);
     });
 
     it('calls mongo aggregate with given match when defined', async () => {
@@ -182,11 +190,17 @@ describe('WhispService', () => {
 
       const expectedGroup = { $group: { _id: undefined, count: { $sum: 1 } } };
 
-      expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
+      expect(whispModel.aggregate).toBeCalledWith([
+        expectedMatch,
+        expectedGroup,
+      ]);
     });
 
     it('calls mongo aggregate with given group when defined', async () => {
-      const groupParam = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
+      const groupParam = {
+        mainGrouping: '$data.customData.id',
+        secondaryGrouping: '$data.customData.description',
+      };
 
       await whispService.countWhispsGroup(undefined, groupParam);
       const expectedMatch = { $match: {} };
@@ -201,7 +215,10 @@ describe('WhispService', () => {
         },
       };
 
-      expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
+      expect(whispModel.aggregate).toBeCalledWith([
+        expectedMatch,
+        expectedGroup,
+      ]);
     });
 
     it('calls mongo aggregate with given match and group when both are defined', async () => {
@@ -215,7 +232,10 @@ describe('WhispService', () => {
           'data.customData.id': '504',
         },
       ];
-      const groupParam = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
+      const groupParam = {
+        mainGrouping: '$data.customData.id',
+        secondaryGrouping: '$data.customData.description',
+      };
       await whispService.countWhispsGroup(matchParam, groupParam);
 
       const expectedMatch = {
@@ -243,7 +263,10 @@ describe('WhispService', () => {
         },
       };
 
-      expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
+      expect(whispModel.aggregate).toBeCalledWith([
+        expectedMatch,
+        expectedGroup,
+      ]);
     });
   });
 });

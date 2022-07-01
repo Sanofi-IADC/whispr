@@ -11,7 +11,8 @@ export class WhispAttachment {
   dataMappingPath?: string;
 
   @Field({
-    description: 'Key in S3-Bucket. Call via API: <whispr-Backend>/file/<S3-Key>',
+    description:
+      'Key in S3-Bucket. Call via API: <whispr-Backend>/file/<S3-Key>',
   })
   @ValidatePromise()
   file: string;

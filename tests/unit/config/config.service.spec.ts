@@ -30,7 +30,9 @@ describe('ConfigService', () => {
 
     // Then the configuration should use the jwks passportJwtSecret function
     const expectedFunc = passportJwtSecret({ jwksUri: 'uri' });
-    expect(result[0].secretOrKeyProvider.toString()).toEqual(expectedFunc.toString());
+    expect(result[0].secretOrKeyProvider.toString()).toEqual(
+      expectedFunc.toString(),
+    );
     expect(result[0].secretOrKeyProvider).toEqual(expect.any(Function));
   });
 
@@ -144,7 +146,8 @@ describe('ConfigService', () => {
   describe('JWT extractors', () => {
     it('Should correctly set JWT extraction method jwtFromRequest: fromAuthHeaderAsBearerToken', async () => {
       // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using fromAuthHeaderAsBearerToken
-      process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_fromAuthHeaderAsBearerToken;
+      process.env.AUTH_CONFIG_SECRET =
+        AUTH.AUTH_CONFIG_SECRET_fromAuthHeaderAsBearerToken;
       const spy = jest.spyOn(ExtractJwt, 'fromAuthHeaderAsBearerToken');
 
       // When the auth configuration is retrieved
@@ -153,7 +156,9 @@ describe('ConfigService', () => {
 
       // Then the configuration jwtFromRequest should call ExtractJwt.fromAuthHeaderAsBearerToken
       const expectedFunc = ExtractJwt.fromAuthHeaderAsBearerToken();
-      expect(result[0].jwtFromRequest.toString()).toEqual(expectedFunc.toString());
+      expect(result[0].jwtFromRequest.toString()).toEqual(
+        expectedFunc.toString(),
+      );
       expect(spy).toHaveBeenCalled();
       expect(result[0].jwtFromRequest).toEqual(expect.any(Function));
     });
@@ -169,14 +174,17 @@ describe('ConfigService', () => {
 
       // Then the configuration jwtFromRequest should call ExtractJwt.fromHeader with the correct argument
       const expectedFunc = ExtractJwt.fromHeader('fieldName');
-      expect(result[0].jwtFromRequest.toString()).toEqual(expectedFunc.toString());
+      expect(result[0].jwtFromRequest.toString()).toEqual(
+        expectedFunc.toString(),
+      );
       expect(spy).toHaveBeenCalledWith('fieldName');
       expect(result[0].jwtFromRequest).toEqual(expect.any(Function));
     });
 
     it('Should correctly set JWT extraction method jwtFromRequest: fromAuthHeaderWithScheme', async () => {
       // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using fromAuthHeaderAsBearerToken
-      process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_fromAuthHeaderWithScheme;
+      process.env.AUTH_CONFIG_SECRET =
+        AUTH.AUTH_CONFIG_SECRET_fromAuthHeaderWithScheme;
       const spy = jest.spyOn(ExtractJwt, 'fromAuthHeaderWithScheme');
 
       // When the auth configuration is retrieved
@@ -185,14 +193,17 @@ describe('ConfigService', () => {
 
       // Then the configuration jwtFromRequest should call ExtractJwt.fromAuthHeaderWithScheme with the correct argument
       const expectedFunc = ExtractJwt.fromAuthHeaderWithScheme('schemeName');
-      expect(result[0].jwtFromRequest.toString()).toEqual(expectedFunc.toString());
+      expect(result[0].jwtFromRequest.toString()).toEqual(
+        expectedFunc.toString(),
+      );
       expect(spy).toHaveBeenCalledWith('schemeName');
       expect(result[0].jwtFromRequest).toEqual(expect.any(Function));
     });
 
     it('Should correctly set JWT extraction method jwtFromRequest: fromUrlQueryParameter', async () => {
       // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using fromAuthHeaderAsBearerToken
-      process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_fromUrlQueryParameter;
+      process.env.AUTH_CONFIG_SECRET =
+        AUTH.AUTH_CONFIG_SECRET_fromUrlQueryParameter;
       const spy = jest.spyOn(ExtractJwt, 'fromUrlQueryParameter');
 
       // When the auth configuration is retrieved
@@ -201,7 +212,9 @@ describe('ConfigService', () => {
 
       // Then the configuration jwtFromRequest should call ExtractJwt.fromUrlQueryParameter with the correct argument
       const expectedFunc = ExtractJwt.fromUrlQueryParameter('paramName');
-      expect(result[0].jwtFromRequest.toString()).toEqual(expectedFunc.toString());
+      expect(result[0].jwtFromRequest.toString()).toEqual(
+        expectedFunc.toString(),
+      );
       expect(spy).toHaveBeenCalledWith('paramName');
       expect(result[0].jwtFromRequest).toEqual(expect.any(Function));
     });
@@ -217,14 +230,17 @@ describe('ConfigService', () => {
 
       // Then the configuration jwtFromRequest should call ExtractJwt.fromBodyField with the correct argument
       const expectedFunc = ExtractJwt.fromBodyField('fieldName');
-      expect(result[0].jwtFromRequest.toString()).toEqual(expectedFunc.toString());
+      expect(result[0].jwtFromRequest.toString()).toEqual(
+        expectedFunc.toString(),
+      );
       expect(spy).toHaveBeenCalledWith('fieldName');
       expect(result[0].jwtFromRequest).toEqual(expect.any(Function));
     });
 
     it('Should fill secretOrKey with env variable value which key equals content of secretOrKeyFromEnv', async () => {
       // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using AUTH_CONFIG_SECRET_secretOrKey
-      process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnv;
+      process.env.AUTH_CONFIG_SECRET =
+        AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnv;
       const secret = 'secret stored in env variable';
       process.env.ENV_VAR_STORING_THE_SECRET = secret;
 
@@ -235,12 +251,13 @@ describe('ConfigService', () => {
     });
 
     it(
-      'Should fill secretOrKey with empty string '
-        + 'if no env variable with key equals'
-        + ' content of secretOrKeyFromEnv is found',
+      'Should fill secretOrKey with empty string ' +
+        'if no env variable with key equals' +
+        ' content of secretOrKeyFromEnv is found',
       async () => {
         // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using AUTH_CONFIG_SECRET_secretOrKey
-        process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnv;
+        process.env.AUTH_CONFIG_SECRET =
+          AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnv;
         delete process.env.ENV_VAR_STORING_THE_SECRET;
 
         // When the auth configuration is retrieved
@@ -252,14 +269,17 @@ describe('ConfigService', () => {
 
     it('Fill both secretOrKey and  secretOrKeyFromEnv should raise an exception', async () => {
       // Given AUTH_CONFIG_SECRET environment variable is configured to extract the JWT using AUTH_CONFIG_SECRET_secretOrKey
-      process.env.AUTH_CONFIG_SECRET = AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnvAndsecretOrKey;
+      process.env.AUTH_CONFIG_SECRET =
+        AUTH.AUTH_CONFIG_SECRET_secretOrKeyFromEnvAndsecretOrKey;
 
       // When the auth configuration is retrieved
       try {
         await getConfigService();
         expect(true).toEqual(false);
       } catch (err) {
-        expect(err.message).toContain('contains a conflict between exclusive peers');
+        expect(err.message).toContain(
+          'contains a conflict between exclusive peers',
+        );
       }
     });
   });

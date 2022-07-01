@@ -7,7 +7,10 @@ import { ConfigService } from '../config/config.service';
 
 @Injectable()
 export class FileService {
-  constructor(private awsCredentialService: AWSCredsService, private configService: ConfigService) {}
+  constructor(
+    private awsCredentialService: AWSCredsService,
+    private configService: ConfigService,
+  ) {}
 
   async getFile(url: string): Promise<GetObjectOutput> {
     const aws = await this.awsCredentialService.getAWS();

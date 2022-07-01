@@ -2,7 +2,13 @@
 import { Field, Int, InputType } from '@nestjs/graphql';
 import { GraphQLJSONObject } from 'graphql-type-json';
 import {
-  IsBoolean, IsInt, IsObject, IsOptional, IsString, ValidateNested, IsDate,
+  IsBoolean,
+  IsInt,
+  IsObject,
+  IsOptional,
+  IsString,
+  ValidateNested,
+  IsDate,
 } from 'class-validator';
 import { Type, Transform } from 'class-transformer';
 import { WhispAttachmentInput } from './whisp-attachment.input';

@@ -1,5 +1,10 @@
 import {
-  Resolver, Query, Mutation, Args, Root, ResolveField,
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Root,
+  ResolveField,
 } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { Tag } from './tag.entity';
@@ -13,7 +18,10 @@ import { GqlJwtAuthGuard } from '../auth/gql-jwt-auth.guard';
 @Resolver(() => Tag)
 @UseGuards(GqlJwtAuthGuard)
 export class TagResolver {
-  constructor(private readonly tagService: TagService, private readonly tagGroupService: TagGroupService) {}
+  constructor(
+    private readonly tagService: TagService,
+    private readonly tagGroupService: TagGroupService,
+  ) {}
 
   /**
    * Queries
@@ -39,12 +47,18 @@ export class TagResolver {
   }
 
   @Mutation(() => Tag)
-  async updateTag(@Args('id') id: string, @Args('tag') tag: TagInputType): Promise<ITag> {
+  async updateTag(
+    @Args('id') id: string,
+    @Args('tag') tag: TagInputType,
+  ): Promise<ITag> {
     return this.tagService.update(id, tag);
   }
 
   @Mutation(() => Tag)
-  async replaceTag(@Args('id') id: string, @Args('tag') tag: TagInputType): Promise<ITag> {
+  async replaceTag(
+    @Args('id') id: string,
+    @Args('tag') tag: TagInputType,
+  ): Promise<ITag> {
     return this.tagService.replace(id, tag);
   }
 
