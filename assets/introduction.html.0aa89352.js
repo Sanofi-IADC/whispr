@@ -1,0 +1,1 @@
+const t={key:"v-0e4a26f1",path:"/api/introduction.html",title:"Introduction",lang:"en-US",frontmatter:{},excerpt:"",headers:[{level:2,title:"Input file",slug:"input-file",children:[]}],git:{updatedTime:1656678706e3,contributors:[{name:"Over_flo79",email:"99320120+over-flo79@users.noreply.github.com",commits:1}]},filePathRelative:"api/introduction.md"};export{t as data};
