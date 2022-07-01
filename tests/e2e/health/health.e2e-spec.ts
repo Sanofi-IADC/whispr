@@ -12,7 +12,7 @@ describe('HealthController (e2e)', () => {
       imports: [AppModule],
     }).compile();
 
-    app = moduleRef.createNestApplication<NestFastifyApplication>();
+    app = moduleRef.createNestApplication();
     await app.init();
   });
 

@@ -4,7 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 
 import { TerminusModule } from '@nestjs/terminus';
-import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { ApolloServerPluginLandingPageLocalDefault, AuthenticationError } from 'apollo-server-core';
 import { AWSCredsModule } from './aws-creds/aws-creds.module';
 import { ConfigModule } from './config/config.module';
 import { DistributionModule } from './distribution/distribution.module';
@@ -22,6 +22,8 @@ import { WebhookModule } from './webhook/webhook.module';
 import { TagModule } from './tag/tag.module';
 import { HealthController } from './health/health.controller';
 import { AuthModule } from './auth/auth.module';
+import { GqlContext } from './auth/gql-context';
+import { ConnectionParams } from './auth/connection-params';
 
 @Module({
   imports: [
@@ -36,7 +38,34 @@ import { AuthModule } from './auth/auth.module';
         cors: false,
         plugins: configService.get('PLAYGROUND') ? [ApolloServerPluginLandingPageLocalDefault()] : [],
         installSubscriptionHandlers: true,
+        context: ({
+          req, res, payload, connection,
+        }: GqlContext) => ({
+          req,
+          res,
+          payload,
+          connection,
+        }),
+        // subscriptions/webSockets authentication
+        subscriptions: {
+          'subscriptions-transport-ws': {
+            onConnect: (connectionParams: ConnectionParams) => {
+              const connectionParamsLowerKeys = {} as ConnectionParams;
+              // convert header keys to lowercase
+              Object.keys(connectionParams).forEach((key) => {
+                connectionParamsLowerKeys[key.toLowerCase()] = connectionParams[key];
+              });
+              // eslint-disable-next-line max-len
+              const authToken: string = 'authorization' in connectionParamsLowerKeys && connectionParamsLowerKeys.authorization.split(' ')[1];
+              if (authToken) {
+                return { headers: connectionParamsLowerKeys };
+              }
+              throw new AuthenticationError('authorization token must be provided');
+            },
+          },
+        },
       }),
+
       inject: [ConfigService],
     }),
     MongooseModule.forRootAsync({

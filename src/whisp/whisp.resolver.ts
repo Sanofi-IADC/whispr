@@ -1,18 +1,18 @@
-import {
-  Resolver, Query, Mutation, Args, Subscription, Int, ResolveField, Root,
-} from '@nestjs/graphql';
-import { GraphQLJSONObject } from 'graphql-type-json';
-import { PubSubEngine } from 'graphql-subscriptions';
 import { Inject, UseGuards } from '@nestjs/common';
+import {
+  Args, Int, Mutation, Query, ResolveField, Resolver, Root, Subscription,
+} from '@nestjs/graphql';
+import { PubSubEngine } from 'graphql-subscriptions';
+import { GraphQLJSONObject } from 'graphql-type-json';
 import { GqlJwtAuthGuard } from '../auth/gql-jwt-auth.guard';
-import { IWhisp } from '../interfaces/whisp.interface';
-import { Whisp } from './whisp.entity';
-import { WhispService } from './whisp.service';
-import { WhispInputType } from './whisp.input';
 import { DistributionService } from '../distribution/distribution.service';
-import { filterPayload } from '../utils/filterPayload.service';
+import { IWhisp } from '../interfaces/whisp.interface';
 import { Tag } from '../tag/tag.entity';
 import { TagInputType } from '../tag/tag.input';
+import { filterPayload } from '../utils/filterPayload.service';
+import { Whisp } from './whisp.entity';
+import { WhispInputType } from './whisp.input';
+import { WhispService } from './whisp.service';
 import { WhispCount } from './whispCount.entity';
 
 @Resolver(() => Whisp)
@@ -108,6 +108,7 @@ export class WhispResolver {
   @Subscription(() => Whisp, {
     filter: (payload, variables) => filterPayload(variables.filter, payload.whispAdded),
   })
+  @UseGuards(GqlJwtAuthGuard)
   whispAdded(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     @Args('filter', { type: () => GraphQLJSONObject }) filter: Record<string, unknown>,
