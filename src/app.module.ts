@@ -23,7 +23,6 @@ import { TagModule } from './tag/tag.module';
 import { HealthController } from './health/health.controller';
 import { AuthModule } from './auth/auth.module';
 import { GqlContext } from './auth/gql-context';
-import { ConnectionParams } from './auth/connection-params';
 
 @Module({
   imports: [
@@ -49,16 +48,18 @@ import { ConnectionParams } from './auth/connection-params';
         // subscriptions/webSockets authentication
         subscriptions: {
           'subscriptions-transport-ws': {
-            onConnect: (connectionParams: ConnectionParams) => {
-              const connectionParamsLowerKeys = {} as ConnectionParams;
+            onConnect: (connectionParams) => {
+              const headers = connectionParams.headers ? connectionParams.headers : connectionParams;
+
+              const headersLowerKeys = {} as any;
               // convert header keys to lowercase
-              Object.keys(connectionParams).forEach((key) => {
-                connectionParamsLowerKeys[key.toLowerCase()] = connectionParams[key];
+              Object.keys(headers).forEach((key) => {
+                headersLowerKeys[key.toLowerCase()] = headers[key];
               });
-              // eslint-disable-next-line max-len
-              const authToken: string = 'authorization' in connectionParamsLowerKeys && connectionParamsLowerKeys.authorization.split(' ')[1];
+
+              const authToken: string = headersLowerKeys?.authorization?.split(' ')[1];
               if (authToken) {
-                return { headers: connectionParamsLowerKeys };
+                return { headers: headersLowerKeys };
               }
               throw new AuthenticationError('authorization token must be provided');
             },
