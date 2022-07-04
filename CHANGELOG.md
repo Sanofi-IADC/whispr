@@ -1,3 +1,10 @@
+## [4.7.1](https://github.com/Sanofi-IADC/whispr/compare/v4.7.0...v4.7.1) (2022-07-04)
+
+
+### Bug Fixes
+
+* **subscription:** fix subscription header for iadc apps ([2f27eda](https://github.com/Sanofi-IADC/whispr/commit/2f27eda0c7650caae175f17aad7431c53843787b))
+
 # [4.7.0](https://github.com/Sanofi-IADC/whispr/compare/v4.6.1...v4.7.0) (2022-07-01)
 
 
