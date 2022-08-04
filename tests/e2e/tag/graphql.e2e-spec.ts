@@ -1,9 +1,9 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
-import { AppModule } from 'src/app.module';
 import { sign } from 'jsonwebtoken';
 import request from 'supertest';
+import { AppModule } from '../../../src/app.module';
 import { AUTH } from '../../testUtils/testingConsts';
 import { ITag } from '../../../src/interfaces/tag.interface';
 import { TagService } from '../../../src/tag/tag.service';
@@ -60,12 +60,8 @@ describe('Tags', () => {
   });
 
   afterAll(async () => {
-    try {
-      const model = moduleRef.get<Model<ITag>>(getModelToken('Tag'));
-      await model.deleteMany({ title: TAG_TITLE }).exec();
-    } catch (e) {
-      console.info('Could not deleted created Tag Groups during tests', e);
-    }
+    const model = moduleRef.get<Model<ITag>>(getModelToken('Tag'));
+    await model.deleteMany({ title: TAG_TITLE }).exec();
   });
 
   describe('createTag', () => {

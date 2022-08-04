@@ -102,7 +102,10 @@ describe('Whisp resolver', () => {
         },
       ];
 
-      const group = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
+      const group = {
+        mainGrouping: '$data.customData.id',
+        secondaryGrouping: '$data.customData.description',
+      };
 
       resolver.countWhisps(filter, group);
       expect(whispService.countWhispsGroup).toHaveBeenCalledWith(filter, group);

@@ -77,7 +77,10 @@ describe('Whisp-Service', () => {
       await whispService.replaceFiles(attachments, readableId);
 
       expect(fileService.saveFile).toHaveBeenCalledTimes(1);
-      expect(fileService.saveFile).toHaveBeenCalledWith(file, `${readableId}/${attachments[0].dataMappingPath}`);
+      expect(fileService.saveFile).toHaveBeenCalledWith(
+        file,
+        `${readableId}/${attachments[0].dataMappingPath}`,
+      );
     });
 
     it('should return attachment if "new"-AttachmentInput is passed', async () => {

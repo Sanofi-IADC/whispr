@@ -4,8 +4,8 @@ import { sign } from 'jsonwebtoken';
 import request from 'supertest';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from 'src/app.module';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
+import { AppModule } from '../../../src/app.module';
 import { AUTH } from '../../testUtils/testingConsts';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { WhispInputType } from '../../../src/whisp/whisp.input';
@@ -69,7 +69,9 @@ describe('webhooks', () => {
       imports: [AppModule],
     }).compile();
 
-    app = moduleRef.createNestApplication<NestFastifyApplication>(new FastifyAdapter({ bodyLimit: 104857600 }));
+    app = moduleRef.createNestApplication<NestFastifyApplication>(
+      new FastifyAdapter({ bodyLimit: 104857600 }),
+    );
     await app.init();
 
     whispService = moduleRef.get<WhispService>(WhispService);
@@ -78,20 +80,14 @@ describe('webhooks', () => {
 
   afterAll(async () => {
     // delete created webhooks
-    try {
-      const webhookModel = moduleRef.get<Model<IWebhook>>(getModelToken('Webhook'));
-      await webhookModel.deleteMany({ url: WEBHOOK_TEST_URL }).exec();
-    } catch (e) {
-      console.warn('Could not delete created webhooks', e);
-    }
+
+    const webhookModel = moduleRef.get<Model<IWebhook>>(getModelToken('Webhook'));
+    await webhookModel.deleteMany({ url: WEBHOOK_TEST_URL }).exec();
 
     // delete created whisps
-    try {
-      const whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
-      await whispModel.deleteMany({ type: WHISP_TEST_TYPE }).exec();
-    } catch (e) {
-      console.warn('Could not delete created whisps', e);
-    }
+
+    const whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
+    await whispModel.deleteMany({ type: WHISP_TEST_TYPE }).exec();
 
     webhookListener.close();
   });
@@ -111,7 +107,11 @@ describe('webhooks', () => {
           variables: {
             webhook: {
               url: WEBHOOK_TEST_URL,
-              events: [EventNames.WHISP_CREATED, EventNames.WHISP_DELETED, EventNames.WHISP_UPDATED],
+              events: [
+                EventNames.WHISP_CREATED,
+                EventNames.WHISP_DELETED,
+                EventNames.WHISP_UPDATED,
+              ],
             },
           },
         });

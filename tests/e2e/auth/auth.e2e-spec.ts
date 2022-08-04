@@ -55,9 +55,12 @@ describe('Authentication E2E tests', () => {
       const jwks = startAuthServer('https://whispr-dev.authtest.com');
       const token = getToken(jwks, 'https://whispr-dev.authtest.com');
 
-      const result = await request(global.app.getHttpServer()).post('/graphql').set('Authorization', `Bearer ${token}`).send({
-        query: WHISPS_QUERY,
-      });
+      const result = await request(global.app.getHttpServer())
+        .post('/graphql')
+        .set('Authorization', `Bearer ${token}`)
+        .send({
+          query: WHISPS_QUERY,
+        });
 
       stopAuthServer(jwks);
       expect(result.body.data).toBeTruthy();

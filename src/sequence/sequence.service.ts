@@ -28,7 +28,11 @@ export class SequenceService {
    */
   async getNextSequence(sequenceName: string): Promise<number> {
     const sequence = await this.sequenceModel
-      .findOneAndUpdate({ sequenceName }, { $inc: { sequenceValue: 1 } }, { new: true, upsert: true })
+      .findOneAndUpdate(
+        { sequenceName },
+        { $inc: { sequenceValue: 1 } },
+        { new: true, upsert: true },
+      )
       .exec();
     return sequence.sequenceValue;
   }

@@ -17,7 +17,9 @@ export class ConfigService {
 
   constructor() {
     const dotEnvFilename = `${process.env.NODE_ENV || 'local'}.env`;
-    const dotEnvConfig = fs.existsSync(dotEnvFilename) ? dotenv.parse(fs.readFileSync(dotEnvFilename)) : {};
+    const dotEnvConfig = fs.existsSync(dotEnvFilename)
+      ? dotenv.parse(fs.readFileSync(dotEnvFilename))
+      : {};
     const configFromEnv = ConfigService.buildConfigFromEnv();
     const mergedConfig = {
       ...dotEnvConfig,
@@ -37,7 +39,9 @@ export class ConfigService {
     return res;
   }
 
-  static validateSchemaAndApplyDefaultValues(providedEnvConfig: Record<string, string>): Record<string, string> {
+  static validateSchemaAndApplyDefaultValues(
+    providedEnvConfig: Record<string, string>,
+  ): Record<string, string> {
     const { value, error } = validationSchema.validate(providedEnvConfig, {
       abortEarly: false,
       allowUnknown: true,
@@ -54,9 +58,9 @@ export class ConfigService {
 
   getMongooseURI(): string {
     return this.get('REPLICASET') !== undefined
-      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get('MONGOOSE_HOST_READ')}:${this.get(
-        'MONGOOSE_PORT_READ',
-      )}`
+      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get(
+        'MONGOOSE_HOST_READ',
+      )}:${this.get('MONGOOSE_PORT_READ')}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
 
@@ -115,7 +119,10 @@ export class ConfigService {
 
     authConfig.config.forEach((config) => {
       if (config.secretOrKeyFromEnv) {
-        result.config.push({ ...config, secretOrKey: process.env[config.secretOrKeyFromEnv] || '' });
+        result.config.push({
+          ...config,
+          secretOrKey: process.env[config.secretOrKeyFromEnv] || '',
+        });
       } else {
         result.config.push({ ...config });
       }
@@ -140,8 +147,12 @@ export class ConfigService {
       }
       return {
         ...configuration,
-        ...(configuration.secretOrKeyProvider ? { secretOrKeyProvider: passportJwtSecret(option) } : {}),
-        jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](configuration.jwtFromRequest.args),
+        ...(configuration.secretOrKeyProvider
+          ? { secretOrKeyProvider: passportJwtSecret(option) }
+          : {}),
+        jwtFromRequest: ExtractJwt[configuration.jwtFromRequest.funcName](
+          configuration.jwtFromRequest.args,
+        ),
       };
     });
   }

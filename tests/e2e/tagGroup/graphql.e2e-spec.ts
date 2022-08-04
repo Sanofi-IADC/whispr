@@ -2,9 +2,9 @@ import { INestApplication } from '@nestjs/common';
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
-import { AppModule } from 'src/app.module';
 import { sign } from 'jsonwebtoken';
 import request from 'supertest';
+import { AppModule } from '../../../src/app.module';
 import { AUTH } from '../../testUtils/testingConsts';
 import { ITagGroup } from '../../../src/interfaces/tagGroup.interface';
 import { TagGroupService } from '../../../src/tagGroup/tagGroup.service';
@@ -58,7 +58,7 @@ describe('TagGroup', () => {
       const model = app.get<Model<ITagGroup>>(getModelToken('TagGroup'));
       await model.deleteMany({ title: TAG_GROUP_TYPE }).exec();
     } catch (err) {
-      console.info('Could not deleted created Tag Groups during tests', err);
+      // console.info('Could not deleted created Tag Groups during tests', err);
     }
   });
 

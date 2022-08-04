@@ -3,7 +3,7 @@ import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { sign } from 'jsonwebtoken';
 import request from 'supertest';
-import { AppModule } from 'src/app.module';
+import { AppModule } from '../../../src/app.module';
 import { AUTH } from '../../testUtils/testingConsts';
 import { IWhisp } from '../../../src/interfaces/whisp.interface';
 import { WhispService } from '../../../src/whisp/whisp.service';
@@ -49,12 +49,8 @@ describe('GraphQL API Subscriptions', () => {
   });
 
   afterAll(async () => {
-    try {
-      const model = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
-      await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
-    } catch (e) {
-      console.warn('Could not delete created whisps', e);
-    }
+    const model = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
+    await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
   });
 
   describe('Whisp creation and subscription ', () => {

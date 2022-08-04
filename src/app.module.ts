@@ -35,7 +35,9 @@ import { GqlContext } from './auth/gql-context';
         introspection: configService.get('INTROSPECTION'),
         playground: false,
         cors: false,
-        plugins: configService.get('PLAYGROUND') ? [ApolloServerPluginLandingPageLocalDefault()] : [],
+        plugins: configService.get('PLAYGROUND')
+          ? [ApolloServerPluginLandingPageLocalDefault()]
+          : [],
         installSubscriptionHandlers: true,
         context: ({
           req, res, payload, connection,
@@ -49,7 +51,9 @@ import { GqlContext } from './auth/gql-context';
         subscriptions: {
           'subscriptions-transport-ws': {
             onConnect: (connectionParams) => {
-              const headers = connectionParams.headers ? connectionParams.headers : connectionParams;
+              const headers = connectionParams.headers
+                ? connectionParams.headers
+                : connectionParams;
 
               const headersLowerKeys = {} as any;
               // convert header keys to lowercase
