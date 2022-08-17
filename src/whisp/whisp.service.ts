@@ -50,7 +50,10 @@ export class WhispService {
     return createdWhisp;
   }
 
-  private static fillTTL(whisp: WhispInputType, updated: Date): { timeToLiveSec: number; expirationDate: Date } {
+  private static fillTTL(
+    whisp: WhispInputType,
+    updated: Date,
+  ): { timeToLiveSec: number; expirationDate: Date } {
     const expDate = new Date(updated);
     if (whisp.expirationDate) {
       return { timeToLiveSec: null, expirationDate: whisp.expirationDate };
@@ -77,7 +80,10 @@ export class WhispService {
     }
   }
 
-  async replaceFiles(attachments: WhispAttachmentInput[], readableId: string): Promise<WhispAttachment[]> {
+  async replaceFiles(
+    attachments: WhispAttachmentInput[],
+    readableId: string,
+  ): Promise<WhispAttachment[]> {
     this.logger.debug({ attachments });
     if (!attachments || !Array.isArray(attachments)) {
       return undefined;
@@ -108,7 +114,11 @@ export class WhispService {
     );
   }
 
-  async findAll(filter?: Record<string, unknown>, sort: string | any = {}, limit: number = null): Promise<IWhisp[]> {
+  async findAll(
+    filter?: Record<string, unknown>,
+    sort: string | any = {},
+    limit: number = null,
+  ): Promise<IWhisp[]> {
     return this.whispModel.find(filter).sort(sort).limit(limit).exec();
   }
 
@@ -145,7 +155,9 @@ export class WhispService {
     whisp.timeToLiveSec = timeToLiveSec;
     whisp.expirationDate = expirationDate;
 
-    const updatedWhisp = await this.whispModel.findOneAndUpdate({ _id: id }, whisp, { new: true }).exec();
+    const updatedWhisp = await this.whispModel
+      .findOneAndUpdate({ _id: id }, whisp, { new: true })
+      .exec();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_UPDATED, updatedWhisp));
     this.logger.log(updatedWhisp, 'Updated Whisp');
     this.distributionService.distributeWhisp(updatedWhisp);
@@ -161,7 +173,9 @@ export class WhispService {
   }
 
   async delete(id: string): Promise<boolean> {
-    const { deletedCount: countOfDeletedWhisp } = await this.whispModel.deleteOne({ _id: id }).exec();
+    const { deletedCount: countOfDeletedWhisp } = await this.whispModel
+      .deleteOne({ _id: id })
+      .exec();
     if (countOfDeletedWhisp <= 0) {
       return false;
     }

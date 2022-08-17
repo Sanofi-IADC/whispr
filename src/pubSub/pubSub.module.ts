@@ -21,17 +21,18 @@ const dateReviver = (key, value) => {
     {
       provide: 'PUB_SUB',
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => new RedisPubSub({
-        publisher: new Redis({
-          host: configService.get('REDIS_HOST'),
-          port: configService.get('REDIS_PORT'),
+      useFactory: async (configService: ConfigService) =>
+        new RedisPubSub({
+          publisher: new Redis({
+            host: configService.get('REDIS_HOST'),
+            port: configService.get('REDIS_PORT'),
+          }),
+          subscriber: new Redis({
+            host: configService.get('REDIS_HOST_READ'),
+            port: configService.get('REDIS_PORT_READ'),
+          }),
+          reviver: dateReviver,
         }),
-        subscriber: new Redis({
-          host: configService.get('REDIS_HOST_READ'),
-          port: configService.get('REDIS_PORT_READ'),
-        }),
-        reviver: dateReviver,
-      }),
     },
   ],
   exports: ['PUB_SUB'],

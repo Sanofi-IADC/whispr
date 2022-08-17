@@ -14,7 +14,10 @@ import { GqlJwtAuthGuard } from '../auth/gql-jwt-auth.guard';
 @Resolver(() => TagGroup)
 @UseGuards(GqlJwtAuthGuard)
 export class TagGroupResolver {
-  constructor(private readonly tagGroupService: TagGroupService, private readonly tagService: TagService) {}
+  constructor(
+    private readonly tagGroupService: TagGroupService,
+    private readonly tagService: TagService,
+  ) {}
 
   /**
    * Queries
@@ -40,12 +43,18 @@ export class TagGroupResolver {
   }
 
   @Mutation(() => TagGroup)
-  async updateTagGroup(@Args('id') id: string, @Args('tagGroup') tagGroup: TagGroupInputType): Promise<ITagGroup> {
+  async updateTagGroup(
+    @Args('id') id: string,
+    @Args('tagGroup') tagGroup: TagGroupInputType,
+  ): Promise<ITagGroup> {
     return this.tagGroupService.update(id, tagGroup);
   }
 
   @Mutation(() => TagGroup)
-  async replaceTagGroup(@Args('id') id: string, @Args('tagGroup') tagGroup: TagGroupInputType): Promise<ITagGroup> {
+  async replaceTagGroup(
+    @Args('id') id: string,
+    @Args('tagGroup') tagGroup: TagGroupInputType,
+  ): Promise<ITagGroup> {
     return this.tagGroupService.replace(id, tagGroup);
   }
 

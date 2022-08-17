@@ -1,9 +1,9 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Model } from 'mongoose';
-import { AppModule } from 'src/app.module';
 import { sign } from 'jsonwebtoken';
 import request from 'supertest';
+import { AppModule } from '../../../src/app.module';
 import { AUTH } from '../../testUtils/testingConsts';
 import { FileService } from '../../../src/file/file.service';
 import { IWhisp } from '../../../src/interfaces/whisp.interface';
@@ -53,12 +53,8 @@ describe('Whisps', () => {
   });
 
   afterAll(async () => {
-    try {
-      const model = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
-      await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
-    } catch (e) {
-      console.warn('Could not delete created whisps', e);
-    }
+    const model = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
+    await model.deleteMany({ type: WHISP_TEST_TYPE }).exec();
   });
 
   describe('GRAPHQL WhispModule (e2e)', () => {

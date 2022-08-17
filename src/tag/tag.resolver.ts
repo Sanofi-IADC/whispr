@@ -13,7 +13,10 @@ import { GqlJwtAuthGuard } from '../auth/gql-jwt-auth.guard';
 @Resolver(() => Tag)
 @UseGuards(GqlJwtAuthGuard)
 export class TagResolver {
-  constructor(private readonly tagService: TagService, private readonly tagGroupService: TagGroupService) {}
+  constructor(
+    private readonly tagService: TagService,
+    private readonly tagGroupService: TagGroupService,
+  ) {}
 
   /**
    * Queries

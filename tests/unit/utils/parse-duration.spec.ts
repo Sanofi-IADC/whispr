@@ -8,7 +8,7 @@ describe('parse-duration', () => {
   });
 
   it('crazy parsing feature', () => {
-    expect(parse('i\'m not sure but 128 min -8min would be great', 'm')).toBe(120);
+    expect(parse("i'm not sure but 128 min -8min would be great", 'm')).toBe(120);
     expect(parse('120min  40min  -1hour', 'm')).toBe(100);
   });
 

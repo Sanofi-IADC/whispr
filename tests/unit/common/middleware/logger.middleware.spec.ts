@@ -11,7 +11,9 @@ describe('Logger Middleware', () => {
     const next = jest.fn() as unknown as NextFunction;
     const res = jest.fn() as unknown as Response;
 
-    const req = { headers: { atest: 'aValue', authorization: 'Bearer thatShouldBeHidden' } } as unknown as Request;
+    const req = {
+      headers: { atest: 'aValue', authorization: 'Bearer thatShouldBeHidden' },
+    } as unknown as Request;
     logger(req, res, next);
     expect(next).toHaveBeenCalled();
   });

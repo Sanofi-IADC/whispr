@@ -21,9 +21,10 @@ describe('WhispService', () => {
 
   beforeEach(async () => {
     // function to retrieve input of the called function
-    const passThrough = (data) => new Promise((resolve) => {
-      resolve(data);
-    });
+    const passThrough = (data) =>
+      new Promise((resolve) => {
+        resolve(data);
+      });
 
     const moduleRef = await Test.createTestingModule({
       providers: [
@@ -186,7 +187,10 @@ describe('WhispService', () => {
     });
 
     it('calls mongo aggregate with given group when defined', async () => {
-      const groupParam = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
+      const groupParam = {
+        mainGrouping: '$data.customData.id',
+        secondaryGrouping: '$data.customData.description',
+      };
 
       await whispService.countWhispsGroup(undefined, groupParam);
       const expectedMatch = { $match: {} };
@@ -215,7 +219,10 @@ describe('WhispService', () => {
           'data.customData.id': '504',
         },
       ];
-      const groupParam = { mainGrouping: '$data.customData.id', secondaryGrouping: '$data.customData.description' };
+      const groupParam = {
+        mainGrouping: '$data.customData.id',
+        secondaryGrouping: '$data.customData.description',
+      };
       await whispService.countWhispsGroup(matchParam, groupParam);
 
       const expectedMatch = {

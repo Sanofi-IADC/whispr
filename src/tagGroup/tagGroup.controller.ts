@@ -42,14 +42,20 @@ export class TagGroupController {
   @Patch(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async updateTagGroup(@Param('id') id: string, @Body() tagGroup: TagGroupInputType): Promise<ITagGroup> {
+  async updateTagGroup(
+    @Param('id') id: string,
+    @Body() tagGroup: TagGroupInputType,
+  ): Promise<ITagGroup> {
     return this.tagGroupService.update(id, tagGroup);
   }
 
   @Put(':id')
   @HttpCode(204)
   @UsePipes(new ValidationPipe({ whitelist: true }))
-  async replaceTagGroup(@Param('id') id: string, @Body() tagGroup: TagGroupInputType): Promise<ITagGroup> {
+  async replaceTagGroup(
+    @Param('id') id: string,
+    @Body() tagGroup: TagGroupInputType,
+  ): Promise<ITagGroup> {
     return this.tagGroupService.replace(id, tagGroup);
   }
 

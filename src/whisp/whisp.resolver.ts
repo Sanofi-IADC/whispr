@@ -1,6 +1,13 @@
 import { Inject, UseGuards } from '@nestjs/common';
 import {
-  Args, Int, Mutation, Query, ResolveField, Resolver, Root, Subscription,
+  Args,
+  Int,
+  Mutation,
+  Query,
+  ResolveField,
+  Resolver,
+  Root,
+  Subscription,
 } from '@nestjs/graphql';
 import { PubSubEngine } from 'graphql-subscriptions';
 import { GraphQLJSONObject } from 'graphql-type-json';
@@ -40,9 +47,9 @@ export class WhispResolver {
   @Query(() => [Whisp], { nullable: true })
   async whisps(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
-      filter?: Record<string, unknown>,
+    filter?: Record<string, unknown>,
     @Args('sort', { type: () => GraphQLJSONObject, nullable: true })
-      sort?: Record<string, unknown>,
+    sort?: Record<string, unknown>,
     @Args('limit', { type: () => Int, nullable: true }) limit?: number,
   ): Promise<IWhisp[]> {
     return this.whispService.findAll(filter, sort, limit);
@@ -51,9 +58,9 @@ export class WhispResolver {
   @Query(() => [Whisp], { nullable: true })
   async whispsAuthBeta(
     @Args('filter', { type: () => GraphQLJSONObject, nullable: true })
-      filter?: Record<string, unknown>,
+    filter?: Record<string, unknown>,
     @Args('sort', { type: () => GraphQLJSONObject, nullable: true })
-      sort?: Record<string, unknown>,
+    sort?: Record<string, unknown>,
     @Args('limit', { type: () => Int, nullable: true }) limit?: number,
   ): Promise<IWhisp[]> {
     return this.whispService.findAll(filter, sort, limit);
@@ -62,9 +69,9 @@ export class WhispResolver {
   @Query(() => [WhispCount])
   async countWhisps(
     @Args('filter', { type: () => [GraphQLJSONObject], nullable: true })
-      filter: Record<string, unknown>[],
+    filter: Record<string, unknown>[],
     @Args('group', { type: () => GraphQLJSONObject, nullable: true })
-      group: Record<string, unknown>,
+    group: Record<string, unknown>,
   ): Promise<WhispCount[]> {
     return this.whispService.countWhispsGroup(filter, group);
   }
@@ -84,7 +91,10 @@ export class WhispResolver {
   }
 
   @Mutation(() => Whisp)
-  async replaceWhisp(@Args('id') id: string, @Args('whisp') whisp: WhispInputType): Promise<IWhisp> {
+  async replaceWhisp(
+    @Args('id') id: string,
+    @Args('whisp') whisp: WhispInputType,
+  ): Promise<IWhisp> {
     return this.whispService.replace(id, whisp);
   }
 

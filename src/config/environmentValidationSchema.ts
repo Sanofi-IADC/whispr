@@ -20,8 +20,18 @@ const jwtFromRequest = Joi.object({
   funcName: Joi.string()
     .required()
     // fromExtractors function is not currently supported due to implementation complexity
-    .valid('fromHeader', 'fromBodyField', 'fromUrlQueryParameter', 'fromAuthHeaderWithScheme', 'fromAuthHeaderAsBearerToken'),
-  args: Joi.string().when('funcName', { is: 'fromAuthHeaderAsBearerToken', then: Joi.optional(), otherwise: Joi.required() }),
+    .valid(
+      'fromHeader',
+      'fromBodyField',
+      'fromUrlQueryParameter',
+      'fromAuthHeaderWithScheme',
+      'fromAuthHeaderAsBearerToken',
+    ),
+  args: Joi.string().when('funcName', {
+    is: 'fromAuthHeaderAsBearerToken',
+    then: Joi.optional(),
+    otherwise: Joi.required(),
+  }),
 }).required();
 
 const authConfig = Joi.array()

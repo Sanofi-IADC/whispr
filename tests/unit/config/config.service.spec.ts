@@ -69,7 +69,6 @@ describe('ConfigService', () => {
       await getConfigService();
     } catch (err) {
       // Then a 'must be of type object' error should be thrown
-      console.log(err);
       expect(err.stack).toContain('ValidationError');
       expect(err.stack).toContain('AUTH_CONFIG_SECRET');
       expect(err.stack).toContain('must be of type object');
@@ -85,7 +84,6 @@ describe('ConfigService', () => {
       await getConfigService();
     } catch (err) {
       // Then a 'must be an array' error should be thrown
-      console.log(err);
       expect(err.stack).toContain('ValidationError');
       expect(err.stack).toContain('AUTH_CONFIG_SECRET.config');
       expect(err.stack).toContain('must be an array');
