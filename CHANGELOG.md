@@ -1,3 +1,10 @@
+# [4.8.0](https://github.com/Sanofi-IADC/whispr/compare/v4.7.1...v4.8.0) (2022-08-17)
+
+
+### Features
+
+* **coding-standard:** update .eslintrc.js and .prettierrc ([0dfe94e](https://github.com/Sanofi-IADC/whispr/commit/0dfe94ee7fcd9743fce0afd0b54a489b51a7a34b))
+
 ## [4.7.1](https://github.com/Sanofi-IADC/whispr/compare/v4.7.0...v4.7.1) (2022-07-04)
 
 
