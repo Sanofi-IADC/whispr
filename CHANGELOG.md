@@ -1,3 +1,10 @@
+## [4.8.1](https://github.com/Sanofi-IADC/whispr/compare/v4.8.0...v4.8.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* docker image repository for instana layer ([ed1d783](https://github.com/Sanofi-IADC/whispr/commit/ed1d7831bf13738aca250011eb61536ddae1b8e7))
+
 # [4.8.0](https://github.com/Sanofi-IADC/whispr/compare/v4.7.1...v4.8.0) (2022-08-17)
 
 
