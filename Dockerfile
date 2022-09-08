@@ -32,7 +32,7 @@ COPY package*.json ./
 RUN npm ci --quiet --only=production
 
 # Add the Instana APM layer
-COPY --from=instana/aws-fargate-nodejs /instana /instana
+COPY --from=icr.io/instana/aws-fargate-nodejs:latest /instana /instana
 RUN /instana/setup.sh
 ENV NODE_OPTIONS="--require /instana/node_modules/@instana/aws-fargate"
 
