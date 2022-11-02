@@ -17,6 +17,10 @@ The provided configuration is very similar to the NestJS passport-jwt example wi
 - the `jwtFromRequest` function which tells passport-jwt where to find the JWT in the request (usually the `Authorization` header) function must be deconstructed into an object containing funcName and args properties
 - `passportJwtSecret` function should not be written in the configuration file, only the arguments are required in the `passportJwtSecret` object
 
+### passthrough (disable authentication)
+
+For debug purpose or deployability (feature flag). Authentication can be disable by providing to passport-multi-jwt a "passthrough":true to a given configuration
+
 ### Examples
 
 This is an example for multiple passport JWT configurations as they would be configured in Javascript.

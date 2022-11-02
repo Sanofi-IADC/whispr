@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 import * as fs from 'fs';
 import { Agent } from 'http';
 import * as tunnel from 'tunnel';
-import { ExtractJwt } from '@mestrak/passport-multi-jwt';
+import { ExtractJwt } from '@sanofi-iadc/passport-multi-jwt';
 import { passportJwtSecret, ExpressJwtOptions } from 'jwks-rsa';
 import createHttpsProxyAgent from 'https-proxy-agent';
 import validationSchema from './environmentValidationSchema';

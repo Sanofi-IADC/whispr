@@ -1,5 +1,6 @@
+import { getConnectionToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
-
+import { ConnectionStates } from 'mongoose';
 import { AppController } from '../../src/app.controller';
 import { AppService } from '../../src/app.service';
 
@@ -10,7 +11,15 @@ describe('AppController', () => {
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [
+        AppService,
+        {
+          provide: getConnectionToken(),
+          useValue: {
+            readyState: ConnectionStates.connected,
+          },
+        },
+      ],
     }).compile();
 
     appService = moduleRef.get<AppService>(AppService);

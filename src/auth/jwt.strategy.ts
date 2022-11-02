@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import { Strategy } from '@mestrak/passport-multi-jwt';
+import { Strategy } from '@sanofi-iadc/passport-multi-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '../config/config.service';

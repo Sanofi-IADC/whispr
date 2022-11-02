@@ -19,6 +19,7 @@ services:
       REDIS_PORT: 6379
       REDIS_HOST_READ: redis
       REDIS_PORT_READ: 6379
+      NODE_ENV: local
       # COGNITO_ADMIN_USER:
       # COGNITO_ADMIN_PW:
       # COGNITO_USER_POOL_ID:
@@ -28,6 +29,31 @@ services:
       # AWS_CONTAINER_CREDENTIALS_RELATIVE_URI:
       # AWS_S3_ENDPOINT:
       # AWS_BUCKET_NAME:
+      
+      # auth configuration that accept JWT signé with a secret value "test"
+      AUTH_CONFIG_SECRET: '{"config":[{"ignoreExpiration":false,"jwtFromRequest":{"funcName":"fromAuthHeaderAsBearerToken"},"secretOrKeyFromEnv":"JWT_SECRET_EOEE"}]}'
+      JWT_SECRET_EOEE: "test"
+
+      # auth configuration that disable ahtuentication
+      #AUTH_CONFIG_SECRET: '{"config":[{"passthrough":"true","ignoreExpiration":false,"jwtFromRequest":{"funcName":"fromAuthHeaderAsBearerToken"},"secretOrKeyFromEnv":"JWT_SECRET_EOEE"}]}'
+      #JWT_SECRET_EOEE: "test"
+      
+      # disable color when your terminal doesn't handle it
+      NO_COLOR: "true"
+      
+      # NODE_TLS_REJECT_UNAUTHORIZED: 0 # disable ssl cert check
+      
+      # Certificate configuration example
+      #CA_CERTIFICATE_PATH: "/app/ca.pem,/app/DigiCert-SHA2-High-Assurance-Server-CA.cer,/app/DigiCert-High-Assurance-EV-Root-CA.cer,/app/DigiCert-TLS-RSA-SHA256-2020-CA1.crt"
+      
+      # Way to add certificate directly to nodejs
+      #NODE_EXTRA_CA_CERTS: "/app/ca.pem"
+      
+      # local proxy configuration for debug (e.g squid)
+      # HTTP_PROXY: http://myproxy.local:3128
+      # HTTPS_PROXY: http://myproxy.local:3128
+      # HOST_HOSTNAME: myproxy.local
+      # NO_PROXY: "localhost"
     networks: ["stack"]
   mongo1:
     hostname: mongo1
