@@ -1,0 +1,13 @@
+# helps to construct deployable image to AWS embeding mandatory files
+FROM whispr-build
+
+COPY ca.pem /app/ca.pem
+COPY DigiCert-TLS-RSA-SHA256-2020-CA1.crt /app/DigiCert-TLS-RSA-SHA256-2020-CA1.crt
+COPY DigiCert-SHA2-High-Assurance-Server-CA.cer /app/DigiCert-SHA2-High-Assurance-Server-CA.cer
+COPY DigiCert-High-Assurance-EV-Root-CA.cer /app/DigiCert-High-Assurance-EV-Root-CA.cer
+COPY rds-combined-ca-bundle.pem /app/rds-combined-ca-bundle.pem
+
+RUN apk add curl
+
+EXPOSE 3000
+CMD [ "pm2-runtime", "--json", "pm2.config.js" ]

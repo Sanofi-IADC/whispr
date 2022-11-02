@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { ExtractJwt } from '@mestrak/passport-multi-jwt';
+import { ExtractJwt } from '@sanofi-iadc/passport-multi-jwt';
 import JwksRsa, { passportJwtSecret } from 'jwks-rsa';
 import { AUTH } from '../../testUtils/testingConsts';
 import { ConfigService } from '../../../src/config/config.service';

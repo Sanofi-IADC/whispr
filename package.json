@@ -27,7 +27,7 @@
   "dependencies": {
     "@apollo/gateway": "0.44.1",
     "@instana/collector": "1.140.1",
-    "@mestrak/passport-multi-jwt": "0.0.8",
+    "@sanofi-iadc/passport-multi-jwt": "1.0.0",
     "@nestjs/apollo": "10.0.11",
     "@nestjs/axios": "0.0.7",
     "@nestjs/common": "8.2.6",
