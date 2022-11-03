@@ -1,1 +1,0 @@
-const t={key:"v-76cfe0bc",path:"/contributing/community.html",title:"Community",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:166740794e4,contributors:[{name:"Florent Sithimolada-ext",email:"florent.sithimolada-ext@sanofi.com",commits:1}]},filePathRelative:"contributing/community.md"};export{t as data};
