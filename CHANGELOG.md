@@ -1,3 +1,10 @@
+# [4.9.0](https://github.com/Sanofi-IADC/whispr/compare/v4.8.1...v4.9.0) (2022-11-03)
+
+
+### Features
+
+* **authentication:** passthrough ([99f464b](https://github.com/Sanofi-IADC/whispr/commit/99f464b74f69560fd3ee312f0b15cc88647e1e8f))
+
 ## [4.8.1](https://github.com/Sanofi-IADC/whispr/compare/v4.8.0...v4.8.1) (2022-09-08)
 
 
