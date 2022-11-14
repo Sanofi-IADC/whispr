@@ -32,7 +32,7 @@ jobs:
           SERVICES: s3
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node
         uses: actions/setup-node@v2
@@ -76,7 +76,7 @@ jobs:
       CACHE_IMAGE: sanofiiadc/whispr
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
 
