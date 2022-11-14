@@ -1,0 +1,1 @@
+const e={key:"v-7e30aeec",path:"/contributing/guidelines.html",title:"Guidelines",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1668416158e3,contributors:[{name:"Florent Sithimolada-ext",email:"florent.sithimolada-ext@sanofi.com",commits:1}]},filePathRelative:"contributing/guidelines.md"};export{e as data};
