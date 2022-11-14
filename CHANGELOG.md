@@ -1,3 +1,10 @@
+# [4.10.0](https://github.com/Sanofi-IADC/whispr/compare/v4.9.0...v4.10.0) (2022-11-14)
+
+
+### Features
+
+* **db:** configurable readPreference ([861c875](https://github.com/Sanofi-IADC/whispr/commit/861c875098e428d449b8269df1ace4a37e35bd23))
+
 # [4.9.0](https://github.com/Sanofi-IADC/whispr/compare/v4.8.1...v4.9.0) (2022-11-03)
 
 
