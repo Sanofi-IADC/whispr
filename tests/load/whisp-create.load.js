@@ -51,29 +51,64 @@ export default function () {
   }
   `;
 
+  const query = `
+  query Whisps( $sortTimestamp: JSONObject,$filter:JSONObject) {  
+    whisps(sort:$sortTimestamp,filter:$filter,limit:1000) {    
+      _id    
+      #readableID  
+      type   
+      description 
+      updated
+      timestamp
+      applicationID
+      #data
+      #openedById
+      #openedBy
+      expirationDate
+      timeToLiveSec
+      
+  
+    }
+  }
+  `;
+
+  const variables = `
+  {
+    "sortUpdated": {
+      "updated": "desc"
+    },
+    "sortTimestamp": {
+      "timestamp": "desc"
+    },
+    "filter": {
+      "type": "ACTION"
+    }
+  }
+  `;
+
   const url = __ENV.ENVIRONMENT_URL || 'http://127.0.0.1:3000/graphql';
 
   const headers = {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   };
 
   const response = http.post(url,
-    JSON.stringify({ query: mutationOpen }),
+    JSON.stringify({ query: query,variables:variables }),
     { headers });
 
-  // const result = check(response, {
-  //   'response has status code 200': (r) => r.status === 200,
-  //   'repsonse does not contain error': (r) => r.headers['Retry-After'] === undefined,
-  //   'response does contain data': (r) => {
-  //     try {
-  //       return (r.json() as any).data;
-  //     } catch (error) {
-  //       return false;
-  //     }
-  //   },
-  // });
+  const result = check(response, {
+    'response has status code 200': (r) => r.status === 200,
+    'repsonse does not contain error': (r) => !(r.json().errors && r.json().errors.length !== 0),
+    'response does contain data': (r) => {
+      try {
+        return (r.json() ).data;
+      } catch (error) {
+        return false;
+      }
+    },
+  });
   // // This allows us to have a global check to display the succeeded request ratio in the results
-  // check(response, { 'request succeed': () => result });
+  //check(response, { 'request succeed': () => result });
 
   sleep(1);
 }

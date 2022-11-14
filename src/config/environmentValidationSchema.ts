@@ -84,6 +84,7 @@ export default Joi.object({
   MONGOOSE_PORT_READ: Joi.number().default(27017),
   MONGOOSE_USERNAME: Joi.string(),
   MONGOOSE_PASSWORD: Joi.string(),
+  MONGOOSE_READ_PREFERENCE: Joi.string(),
 
   REDIS_HOST: Joi.string().required(),
   REDIS_PORT: Joi.number().default(6379),

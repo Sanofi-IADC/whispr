@@ -156,11 +156,16 @@ MONGOOSE_HOST = localhost
 MONGOOSE_HOST_READ = localhost
 MONGOOSE_PORT = 27017
 MONGOOSE_PORT_READ = 27018
+MONGOOSE_READ_PREFERENCE = secondaryPreferred
+REPLICASET = rs0
 
 REDIS_HOST = localhost
 REDIS_HOST_READ = localhost
 WHISPR_AUTH_CONFIG_SECRET = (change to your auth server - see [Security](./security.md))
 ```
+
+You can specify a different hosts to spread read access to mongodb replica using MONGOOSE_HOST_READ,MONGOOSE_PORT_READ,REPLICASET and MONGOOSE_READ_PREFERENCE
+see https://www.mongodb.com/docs/manual/core/read-preference/ for more details
 
 ### Setup a local AWS instance with localstack (optional)
 
