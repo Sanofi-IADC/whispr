@@ -58,20 +58,21 @@ export class ConfigService {
 
   getMongooseURI(): string {
     return this.get('REPLICASET') !== undefined
-      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},${this.get(
-        'MONGOOSE_HOST_READ',
-      )}:${this.get('MONGOOSE_PORT_READ')}`
+      ? `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')},`
+          + `${this.get('MONGOOSE_HOST_READ')}:${this.get('MONGOOSE_PORT_READ')}`
       : `mongodb://${this.get('MONGOOSE_HOST')}:${this.get('MONGOOSE_PORT')}`;
   }
 
   getMongooseOptions(): MongooseModuleOptions {
+    const readPreference = this.get('MONGOOSE_READ_PREFERENCE')
+      ? this.get('MONGOOSE_READ_PREFERENCE')
+      : 'secondaryPreferred';
     let options: MongooseModuleOptions = {
       uri: this.getMongooseURI(),
       dbName: 'whisps',
-      readPreference: this.get('REPLICASET') !== undefined ? 'primary' : null,
+      readPreference: this.get('REPLICASET') !== undefined ? readPreference : null,
       user: this.get('MONGOOSE_USERNAME'),
       pass: this.get('MONGOOSE_PASSWORD'),
-      replicaSet: this.get('REPLICASET'),
     };
     if (this.get('SSL_VALIDATE') === true) {
       options = {
