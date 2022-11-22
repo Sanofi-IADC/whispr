@@ -37,7 +37,7 @@
     "@nestjs/jwt": "8.0.0",
     "@nestjs/mongoose": "9.0.3",
     "@nestjs/passport": "8.2.1",
-    "@nestjs/platform-fastify": "8.2.6",
+    "@nestjs/platform-fastify": "9.0.0",
     "@nestjs/platform-socket.io": "8.4.5",
     "@nestjs/terminus": "8.0.6",
     "@nestjs/websockets": "8.2.6",
