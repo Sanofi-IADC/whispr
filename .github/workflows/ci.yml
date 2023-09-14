@@ -78,7 +78,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          token: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v2
@@ -109,5 +109,6 @@ jobs:
         env:
           MDF_BRANCH_TAG: latest
           MDF_BUILD_PARAMS: --cache-from ${{ env.CACHE_IMAGE }}
-          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
         run: npx semantic-release
