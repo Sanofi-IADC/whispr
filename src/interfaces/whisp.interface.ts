@@ -2,6 +2,7 @@ import { Document } from 'mongoose';
 import { TagInputType } from '../tag/tag.input';
 
 export interface IWhisp extends Document {
+  _id: string;
   readableID: string;
   type: string;
   severity: number;
