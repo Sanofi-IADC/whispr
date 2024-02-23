@@ -13,23 +13,22 @@
 name: "CodeQL"
 
 on:
-  pull_request:
-    # The branches below must be a subset of the branches above
+  push:
     branches:
-      - master
+      - "feature/WEB-2070"
 
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
 
-    # strategy:
-    #   fail-fast: false
-    #   matrix:
-    #     language: [ 'javascript' ]
-    #     # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
-    #     # Learn more...
-    #     # https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#overriding-automatic-language-detection
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'javascript' ]
+        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
+        # Learn more...
+        # https://docs.github.com/en/github/finding-security-vulnerabilities-and-errors-in-your-code/configuring-code-scanning#overriding-automatic-language-detection
 
     steps:
     - name: Checkout repository
