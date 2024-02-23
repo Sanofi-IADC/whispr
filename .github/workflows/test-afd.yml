@@ -15,7 +15,7 @@ name: "CodeQL"
 on:
   push:
     branches:
-      - "tesr-afd"
+      - "test-afd"
 
 jobs:
   analyze:
