@@ -1,3 +1,21 @@
+# [4.11.0](https://github.com/Sanofi-IADC/whispr/compare/v4.10.0...v4.11.0) (2024-02-26)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 added a timer for test setup conn close ([6ff3b2f](https://github.com/Sanofi-IADC/whispr/commit/6ff3b2f9209b6e57efe0703efd60352f55ea7dc0))
+* **WEB-2070:** WEB-2070 added a timer for test setup conn close ([6a95d2a](https://github.com/Sanofi-IADC/whispr/commit/6a95d2abf932cac68db70047b2b98d7261bb465a))
+* **WEB-2070:** WEB-2070 added id field in IWhisp interface ([7a0b1a2](https://github.com/Sanofi-IADC/whispr/commit/7a0b1a27b4326c5997c2dfb6b7354a91b5a0a088))
+* **WEB-2070:** WEB-2070 added id field in IWhisp interface ([9df4152](https://github.com/Sanofi-IADC/whispr/commit/9df415241b3f68b1c3541ce0b003afa21c3fff94))
+* **WEB-2070:** WEB-2070 added id field in IWhisp interface ([9921945](https://github.com/Sanofi-IADC/whispr/commit/9921945fb83c6ddb9ee3a5ded94dab70f3917eba))
+* **WEB-2070:** WEB-2070 added id field in IWhisp interface ([54ed592](https://github.com/Sanofi-IADC/whispr/commit/54ed5920b1a494c14671a8ab655d0ceb8ff09a39))
+* **WEB-2070:** WEB-2070 changed codeql worlflow ([38ae17e](https://github.com/Sanofi-IADC/whispr/commit/38ae17e9026a9514b6cd75e44ebc0a1f4f38b717))
+* **WEB-2070:** WEB-2070 changed codeql worlflow ([7709796](https://github.com/Sanofi-IADC/whispr/commit/7709796ee593c962b2e53573c38a2c161b9eb27d))
+* **WEB-2070:** WEB-2070 changed codeql worlflow ([e1b1ae1](https://github.com/Sanofi-IADC/whispr/commit/e1b1ae10048ab0905d05603cf3912e159a6eb1d7))
+* **WEB-2070:** WEB-2070 changed codeql worlflow ([4ef35cc](https://github.com/Sanofi-IADC/whispr/commit/4ef35cc1658864ee6994c51654697b259a626a40))
+* **WEB-2070:** WEB-2070 changed codeql worlflow ([d1a2764](https://github.com/Sanofi-IADC/whispr/commit/d1a27645915640edec51305eb8495c4478d88588))
+* **WEB-2070:** WEB-2070 updated ubuntu runners ([3bf1afa](https://github.com/Sanofi-IADC/whispr/commit/3bf1afab38f4ac9d95a3877f4dd94ce67af44123))
+
 # [4.10.0](https://github.com/Sanofi-IADC/whispr/compare/v4.9.0...v4.10.0) (2022-11-14)
 
 
