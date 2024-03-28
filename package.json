@@ -70,7 +70,7 @@
     "joi": "17.6.0",
     "jwks-rsa": "2.1.2",
     "lodash": "4.17.21",
-    "mongoose": "6.2.11",
+    "mongoose": "6.11.3",
     "mongoose-cast-aggregation": "0.2.1",
     "nock": "13.2.4",
     "parse-duration": "1.0.2",
