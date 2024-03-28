@@ -1,1 +1,0 @@
-const e={key:"v-7e30aeec",path:"/contributing/guidelines.html",title:"Guidelines",lang:"en-US",frontmatter:{},excerpt:"",headers:[],git:{updatedTime:1711599954e3,contributors:[{name:"renovate[bot]",email:"29139614+renovate[bot]@users.noreply.github.com",commits:1}]},filePathRelative:"contributing/guidelines.md"};export{e as data};
