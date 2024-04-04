@@ -1,4 +1,4 @@
-import { Inject, UseGuards } from '@nestjs/common';
+import { Inject, Logger, UseGuards } from '@nestjs/common';
 import {
   Args,
   Int,
@@ -25,6 +25,8 @@ import { WhispCount } from './whispCount.entity';
 @Resolver(() => Whisp)
 @UseGuards(GqlJwtAuthGuard)
 export class WhispResolver {
+  private readonly logger = new Logger(WhispService.name);
+
   constructor(
     private readonly whispService: WhispService,
     private readonly distributionService: DistributionService,
@@ -124,6 +126,7 @@ export class WhispResolver {
   @ResolveField(() => [Tag])
   async tags(@Root() whisp: Whisp): Promise<TagInputType[]> {
     // eslint-disable-next-line no-underscore-dangle
+    this.logger.log('Test logging whisp', JSON.stringify(whisp));
     return this.whispService.findTagsByWhispId(whisp._id);
   }
 }
