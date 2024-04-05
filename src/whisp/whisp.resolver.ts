@@ -33,9 +33,9 @@ export class WhispResolver {
     @Inject('PUB_SUB') private pubSub: PubSubEngine,
   ) {
     this.distributionService.whispSubject.subscribe((whisp) => {
-      setTimeout(()=>{
+      setTimeout(() => {
         pubSub.publish('whispAdded', { whispAdded: whisp });
-      }, 1000)
+      }, 1000);
     });
   }
 
