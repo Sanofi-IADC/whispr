@@ -44,6 +44,7 @@ export class WhispService {
     whisp.timeToLiveSec = timeToLiveSec;
     whisp.expirationDate = expirationDate;
     const createdWhisp = await this.whispModel.create(whisp);
+    await createdWhisp.save();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
     this.distributionService.distributeWhisp(createdWhisp);
 
