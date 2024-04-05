@@ -1,3 +1,11 @@
+# [4.12.0](https://github.com/Sanofi-IADC/whispr/compare/v4.11.1...v4.12.0) (2024-04-04)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 added log statements to check errors ([d605056](https://github.com/Sanofi-IADC/whispr/commit/d6050563f5a74724e1bc217dff6f005052dd941d))
+* **WEB-2070:** WEB-2070 lint fixes ([5b26434](https://github.com/Sanofi-IADC/whispr/commit/5b26434a9d513e7ebd8921d035eb7b522230f825))
+
 ## [4.11.1](https://github.com/Sanofi-IADC/whispr/compare/v4.11.0...v4.11.1) (2024-03-28)
 
 
