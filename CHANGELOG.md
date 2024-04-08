@@ -1,3 +1,13 @@
+# [4.14.0](https://github.com/Sanofi-IADC/whispr/compare/v4.13.0...v4.14.0) (2024-04-08)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 lint fixes ([47df68d](https://github.com/Sanofi-IADC/whispr/commit/47df68d00300c238ddc84a7a388e5fc09f611ab5))
+* **WEB-2070:** WEB-2070 wait for whisp to be written to db ([a456135](https://github.com/Sanofi-IADC/whispr/commit/a4561355f2a0a80baeae7504e6ead842e302b6b5))
+* **WEB-2070:** WEB-2070 wait for whisp to be written to db ([68adf41](https://github.com/Sanofi-IADC/whispr/commit/68adf4172ba7bae2574bac2872e28a647d567ede))
+* **WEB-2070:** WEB-2070 wait for whisp to be written to db ([ed1b2ae](https://github.com/Sanofi-IADC/whispr/commit/ed1b2ae142eef412dae8ae466277a366afeb5b58))
+
 # [4.13.0](https://github.com/Sanofi-IADC/whispr/compare/v4.12.0...v4.13.0) (2024-04-05)
 
 
