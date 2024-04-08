@@ -33,9 +33,7 @@ export class WhispResolver {
     @Inject('PUB_SUB') private pubSub: PubSubEngine,
   ) {
     this.distributionService.whispSubject.subscribe((whisp) => {
-      setTimeout(() => {
-        pubSub.publish('whispAdded', { whispAdded: whisp });
-      }, 1000);
+      pubSub.publish('whispAdded', { whispAdded: whisp });
     });
   }
 
@@ -128,7 +126,6 @@ export class WhispResolver {
   @ResolveField(() => [Tag])
   async tags(@Root() whisp: Whisp): Promise<TagInputType[]> {
     // eslint-disable-next-line no-underscore-dangle
-    this.logger.log(`Test logging whisp ${JSON.stringify(whisp)}`);
     return this.whispService.findTagsByWhispId(whisp._id);
   }
 }

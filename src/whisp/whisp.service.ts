@@ -43,7 +43,8 @@ export class WhispService {
     const { timeToLiveSec, expirationDate } = WhispService.fillTTL(whispIn, now);
     whisp.timeToLiveSec = timeToLiveSec;
     whisp.expirationDate = expirationDate;
-    const createdWhisp = await this.whispModel.create(whisp);
+    const whispInstance = new this.whispModel(whisp);
+    const createdWhisp = await whispInstance.save();
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
     this.distributionService.distributeWhisp(createdWhisp);
 
@@ -127,7 +128,6 @@ export class WhispService {
   }
 
   async findTagsByWhispId(whispId: string): Promise<TagInputType[]> {
-    this.logger.log(`Test logging whispId ${whispId}`);
     const whisps = await this.whispModel.findById(whispId).populate('tags').exec();
     return whisps.tags;
   }
