@@ -14,16 +14,44 @@ jest.mock('../../../src/event/event.service');
 jest.mock('../../../src/file/file.service');
 jest.mock('../../../src/sequence/sequence.service');
 
+// function to retrieve input of the called function
+const passThrough = (data) =>
+new Promise((resolve) => {
+  resolve(data);
+});
+
+const commonProviders = [
+  {
+    provide: getModelToken('Whisp'),
+    useFactory: () => ({
+      findOneAndUpdate: jest.fn().mockReturnThis(),
+      create: jest.fn().mockImplementation(passThrough),
+      save: jest.fn().mockImplementation(passThrough),
+      update: jest.fn(),
+      aggregate: jest.fn().mockReturnThis(),
+      allowDiskUse: jest.fn().mockReturnThis(),
+      exec: jest.fn(),
+      constructor: jest.fn(),
+    }),
+  },
+  WhispService,
+  Logger,
+  {
+    provide: DistributionService,
+    useFactory: () => ({
+      distributeWhisp: jest.fn(() => true),
+    }),
+  },
+  FileService,
+  SequenceService,
+  EventService,
+];
 describe('WhispService', () => {
   let whispService: WhispService;
   let whispModel;
   const OBJECT_ID = '56cb91bdc3464f14678934ca';
 
-  // function to retrieve input of the called function
-  const passThrough = (data) =>
-    new Promise((resolve) => {
-      resolve(data);
-    });
+  
   describe('create Whisp', () => {
     let constructorData:any;
     beforeEach(async () => {
@@ -117,32 +145,7 @@ describe('WhispService', () => {
   describe('Update Whisp', () => {
     beforeEach(async () => {
       const moduleRef = await Test.createTestingModule({
-        providers: [
-          {
-            provide: getModelToken('Whisp'),
-            useFactory: () => ({
-              findOneAndUpdate: jest.fn().mockReturnThis(),
-              create: jest.fn().mockImplementation(passThrough),
-              save: jest.fn().mockImplementation(passThrough),
-              update: jest.fn(),
-              aggregate: jest.fn().mockReturnThis(),
-              allowDiskUse: jest.fn().mockReturnThis(),
-              exec: jest.fn(),
-              constructor: jest.fn(),
-            }),
-          },
-          WhispService,
-          Logger,
-          {
-            provide: DistributionService,
-            useFactory: () => ({
-              distributeWhisp: jest.fn(() => true),
-            }),
-          },
-          FileService,
-          SequenceService,
-          EventService,
-        ],
+        providers: commonProviders
       }).compile();
       whispService = moduleRef.get<WhispService>(WhispService);
       whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
@@ -177,32 +180,7 @@ describe('WhispService', () => {
   describe('Count Whisp', () => {
     beforeEach(async () => {
       const moduleRef = await Test.createTestingModule({
-        providers: [
-          {
-            provide: getModelToken('Whisp'),
-            useFactory: () => ({
-              findOneAndUpdate: jest.fn().mockReturnThis(),
-              create: jest.fn().mockImplementation(passThrough),
-              save: jest.fn().mockImplementation(passThrough),
-              update: jest.fn(),
-              aggregate: jest.fn().mockReturnThis(),
-              allowDiskUse: jest.fn().mockReturnThis(),
-              exec: jest.fn(),
-              constructor: jest.fn(),
-            }),
-          },
-          WhispService,
-          Logger,
-          {
-            provide: DistributionService,
-            useFactory: () => ({
-              distributeWhisp: jest.fn(() => true),
-            }),
-          },
-          FileService,
-          SequenceService,
-          EventService,
-        ],
+        providers: commonProviders,
       }).compile();
       whispService = moduleRef.get<WhispService>(WhispService);
       whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
