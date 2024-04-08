@@ -8,7 +8,6 @@ import { FileService } from '../../../src/file/file.service';
 import { SequenceService } from '../../../src/sequence/sequence.service';
 import { WhispService } from '../../../src/whisp/whisp.service';
 import { DistributionService } from '../../../src/distribution/distribution.service';
-import { Whisp } from '../../../src/whisp/whisp.entity';
 
 jest.mock('../../../src/distribution/distribution.service');
 jest.mock('../../../src/event/event.service');
@@ -25,20 +24,18 @@ describe('WhispService', () => {
     new Promise((resolve) => {
       resolve(data);
     });
-  
   describe('create Whisp', () => {
-    let constructorData = {};
+    let constructorData:any;
     beforeEach(async () => {
-      constructorData = {}
+      constructorData = {};
       class mockModel {
         constructor(public data?: any) {
           constructorData = data;
-          this.data = data
-          
+          this.data = data;
         }
+
         save = jest.fn().mockReturnValue(this.data);
       }
-     
       const moduleRef = await Test.createTestingModule({
         providers: [
           {
@@ -66,7 +63,7 @@ describe('WhispService', () => {
       await whispService.create({});
 
       expect(constructorData).toHaveProperty('timestamp');
-      expect(constructorData['timestamp']).toBeDefined();
+      expect(constructorData.timestamp).toBeDefined();
     });
 
     it('should keep custom timestamp when timestamp is provided', async () => {
@@ -74,7 +71,7 @@ describe('WhispService', () => {
       await whispService.create({ timestamp });
 
       expect(constructorData).toHaveProperty('timestamp');
-      expect(constructorData['timestamp']).toBe(timestamp);
+      expect(constructorData.timestamp).toBe(timestamp);
     });
 
     it('when ttl is provided expirationDate should be generate and be equal to updated date plus ttl duration', async () => {
