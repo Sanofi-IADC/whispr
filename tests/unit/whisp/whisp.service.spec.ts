@@ -16,10 +16,9 @@ jest.mock('../../../src/sequence/sequence.service');
 
 // function to retrieve input of the called function
 const passThrough = (data) =>
-new Promise((resolve) => {
-  resolve(data);
-});
-
+  new Promise((resolve) => {
+    resolve(data);
+  });
 const commonProviders = [
   {
     provide: getModelToken('Whisp'),
@@ -50,8 +49,6 @@ describe('WhispService', () => {
   let whispService: WhispService;
   let whispModel;
   const OBJECT_ID = '56cb91bdc3464f14678934ca';
-
-  
   describe('create Whisp', () => {
     let constructorData:any;
     beforeEach(async () => {
@@ -145,7 +142,7 @@ describe('WhispService', () => {
   describe('Update Whisp', () => {
     beforeEach(async () => {
       const moduleRef = await Test.createTestingModule({
-        providers: commonProviders
+        providers: commonProviders,
       }).compile();
       whispService = moduleRef.get<WhispService>(WhispService);
       whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
