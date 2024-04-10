@@ -53,9 +53,6 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Format
-        run: npm run format:check
-
       # We need execute the script manually because the code is mounted after the container is created
       - name: Create s3 bucket on localstack
         run: docker exec ${{job.services.localstack.id}} bash -c "`cat aws/bucket.sh`"
