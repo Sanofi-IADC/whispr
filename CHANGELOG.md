@@ -1,3 +1,16 @@
+# [4.15.0](https://github.com/Sanofi-IADC/whispr/compare/v4.14.0...v4.15.0) (2024-04-10)
+
+
+### Features
+
+* **WEB-2070:** reduced duplication ([e411b72](https://github.com/Sanofi-IADC/whispr/commit/e411b726582f256d3c751ca9674f4597c69c79fa))
+* **WEB-2070:** WEB-2070 lint fix ([24df059](https://github.com/Sanofi-IADC/whispr/commit/24df059e2ad892c29f0669ac1e9b64d5665f21a9))
+* **WEB-2070:** WEB-2070 lint fixes ([5cba2ac](https://github.com/Sanofi-IADC/whispr/commit/5cba2ac49b8278860df2b883e71f0a956c99ea5c))
+* **WEB-2070:** WEB-2070 lint fixes ([31afac4](https://github.com/Sanofi-IADC/whispr/commit/31afac4c9cbd717da1684e0179ba03c1c5ea4083))
+* **WEB-2070:** WEB-2070 testing removing format ([882923a](https://github.com/Sanofi-IADC/whispr/commit/882923acd26e0f170a5b6139170d0f1061292032))
+* **WEB-2070:** WEB-2070 undo testing removing format ([f785883](https://github.com/Sanofi-IADC/whispr/commit/f78588340548c0ac046ac96869b3b9422f8e5c51))
+* **WEB-2070:** WEB-2070 Wait for db write on whisp create ([feac2d3](https://github.com/Sanofi-IADC/whispr/commit/feac2d3621228bc054a5e03743b7e82bcd31bd6b))
+
 # [4.14.0](https://github.com/Sanofi-IADC/whispr/compare/v4.13.0...v4.14.0) (2024-04-08)
 
 
