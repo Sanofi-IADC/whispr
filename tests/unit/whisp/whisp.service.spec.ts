@@ -50,7 +50,7 @@ describe('WhispService', () => {
   let whispModel;
   const OBJECT_ID = '56cb91bdc3464f14678934ca';
   describe('create Whisp', () => {
-    let constructorData:any;
+    let constructorData: any;
     beforeEach(async () => {
       constructorData = {};
       class mockModel {
