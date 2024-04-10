@@ -1,3 +1,10 @@
+# [4.16.0](https://github.com/Sanofi-IADC/whispr/compare/v4.15.0...v4.16.0) (2024-04-10)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 use primary replica set for subscription callback query ([0c169a4](https://github.com/Sanofi-IADC/whispr/commit/0c169a4847c5fe5953d3bacc9ff20902bcf595c8))
+
 # [4.15.0](https://github.com/Sanofi-IADC/whispr/compare/v4.14.0...v4.15.0) (2024-04-10)
 
 
