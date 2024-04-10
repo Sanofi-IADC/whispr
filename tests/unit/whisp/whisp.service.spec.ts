@@ -14,68 +14,89 @@ jest.mock('../../../src/event/event.service');
 jest.mock('../../../src/file/file.service');
 jest.mock('../../../src/sequence/sequence.service');
 
+// function to retrieve input of the called function
+const passThrough = (data) =>
+  new Promise((resolve) => {
+    resolve(data);
+  });
+const commonProviders = [
+  {
+    provide: getModelToken('Whisp'),
+    useFactory: () => ({
+      findOneAndUpdate: jest.fn().mockReturnThis(),
+      create: jest.fn().mockImplementation(passThrough),
+      save: jest.fn().mockImplementation(passThrough),
+      update: jest.fn(),
+      aggregate: jest.fn().mockReturnThis(),
+      allowDiskUse: jest.fn().mockReturnThis(),
+      exec: jest.fn(),
+      constructor: jest.fn(),
+    }),
+  },
+  WhispService,
+  Logger,
+  {
+    provide: DistributionService,
+    useFactory: () => ({
+      distributeWhisp: jest.fn(() => true),
+    }),
+  },
+  FileService,
+  SequenceService,
+  EventService,
+];
 describe('WhispService', () => {
   let whispService: WhispService;
-  let whispModel: Model<IWhisp>;
+  let whispModel;
   const OBJECT_ID = '56cb91bdc3464f14678934ca';
-
-  beforeEach(async () => {
-    // function to retrieve input of the called function
-    const passThrough = (data) =>
-      new Promise((resolve) => {
-        resolve(data);
-      });
-
-    const moduleRef = await Test.createTestingModule({
-      providers: [
-        {
-          provide: getModelToken('Whisp'),
-          useFactory: () => ({
-            findOneAndUpdate: jest.fn().mockReturnThis(),
-            create: jest.fn().mockImplementation(passThrough),
-            update: jest.fn(),
-            aggregate: jest.fn().mockReturnThis(),
-            allowDiskUse: jest.fn().mockReturnThis(),
-            exec: jest.fn(),
-          }),
-        },
-        WhispService,
-        Logger,
-        {
-          provide: DistributionService,
-          useFactory: () => ({
-            distributeWhisp: jest.fn(() => true),
-          }),
-        },
-        FileService,
-        SequenceService,
-        EventService,
-      ],
-    }).compile();
-    whispService = moduleRef.get<WhispService>(WhispService);
-    whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
-  });
-
   describe('create Whisp', () => {
+    let constructorData: any;
+    beforeEach(async () => {
+      constructorData = {};
+      class mockModel {
+        constructor(public data?: any) {
+          constructorData = data;
+          this.data = data;
+        }
+
+        save = jest.fn().mockReturnValue(this.data);
+      }
+      const moduleRef = await Test.createTestingModule({
+        providers: [
+          {
+            provide: getModelToken('Whisp'),
+            useValue: mockModel,
+          },
+          WhispService,
+          Logger,
+          {
+            provide: DistributionService,
+            useFactory: () => ({
+              distributeWhisp: jest.fn(() => true),
+            }),
+          },
+          FileService,
+          SequenceService,
+          EventService,
+        ],
+      }).compile();
+      whispService = moduleRef.get<WhispService>(WhispService);
+      whispModel = moduleRef.get(getModelToken('Whisp'));
+    });
+
     it('should set Timestamp when no timestamp is provided', async () => {
       await whispService.create({});
 
-      expect(whispModel.create).toBeCalledWith(
-        expect.objectContaining({
-          timestamp: expect.any(Date),
-        }),
-      );
+      expect(constructorData).toHaveProperty('timestamp');
+      expect(constructorData.timestamp).toBeDefined();
     });
 
     it('should keep custom timestamp when timestamp is provided', async () => {
       const timestamp = new Date();
       await whispService.create({ timestamp });
 
-      expect(whispModel.create).toBeCalledWith(
-        expect.objectContaining({
-          timestamp,
-        }),
-      );
+      expect(constructorData).toHaveProperty('timestamp');
+      expect(constructorData.timestamp).toBe(timestamp);
     });
 
     it('when ttl is provided expirationDate should be generate and be equal to updated date plus ttl duration', async () => {
@@ -106,6 +127,7 @@ describe('WhispService', () => {
         'time to live must be positive number of seconds or a parsable time string like 2min,1hour',
       );
     });
+
     it('expirationDate override ttl', async () => {
       const now = new Date();
       now.setSeconds(now.getSeconds() + 2);
@@ -118,6 +140,14 @@ describe('WhispService', () => {
   });
 
   describe('Update Whisp', () => {
+    beforeEach(async () => {
+      const moduleRef = await Test.createTestingModule({
+        providers: commonProviders,
+      }).compile();
+      whispService = moduleRef.get<WhispService>(WhispService);
+      whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
+    });
+
     it('should update timestamp when it is provided', async () => {
       const timestamp = new Date();
       timestamp.setHours(timestamp.getHours() + 1);
@@ -145,6 +175,14 @@ describe('WhispService', () => {
   });
 
   describe('Count Whisp', () => {
+    beforeEach(async () => {
+      const moduleRef = await Test.createTestingModule({
+        providers: commonProviders,
+      }).compile();
+      whispService = moduleRef.get<WhispService>(WhispService);
+      whispModel = moduleRef.get<Model<IWhisp>>(getModelToken('Whisp'));
+    });
+
     it('calls mongo aggregate with empty match and group when they are not passed as parameters', async () => {
       await whispService.countWhispsGroup();
       const expectedMatch = { $match: {} };
