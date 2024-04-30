@@ -1,3 +1,11 @@
+# [4.17.0](https://github.com/Sanofi-IADC/whispr/compare/v4.16.0...v4.17.0) (2024-04-10)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 lint fix ([1c9ba8d](https://github.com/Sanofi-IADC/whispr/commit/1c9ba8d9b976092feedab00025c699f4f27ba196))
+* **WEB-2070:** WEB-2070 undo model save with model create in mongoose ([7b525fc](https://github.com/Sanofi-IADC/whispr/commit/7b525fcab74dc223b02633e69e0459028e734cfc))
+
 # [4.16.0](https://github.com/Sanofi-IADC/whispr/compare/v4.15.0...v4.16.0) (2024-04-10)
 
 
