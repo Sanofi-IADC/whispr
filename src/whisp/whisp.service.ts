@@ -128,6 +128,7 @@ export class WhispService {
 
   async findTagsByWhispId(whispId: string): Promise<TagInputType[]> {
     const query = this.whispModel.findById(whispId).populate('tags');
+    // To avoid using secondary node which is set by default to overcome data inconsistencies
     query.read('primaryPreferred');
     const whisps = await query.exec();
     return whisps.tags;
