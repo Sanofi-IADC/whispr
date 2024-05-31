@@ -33,6 +33,7 @@ export class WebhookService {
   getCallFunction(webhook: IWebhook) {
     return async (event: Event): Promise<void> => {
       Logger.log(`Trying to send webhook to ${webhook.url}`, 'Webhook');
+      console.log('NODE_EXTRA_CA_CERTS:', process.env.NODE_EXTRA_CA_CERTS);
 
       await this.httpService
         .post(webhook.url, {
@@ -50,7 +51,7 @@ export class WebhookService {
             );
           },
           (error) => {
-            Logger.error(stringify(error), error.stack, 'Webhook');
+            Logger.error(stringify(error), error.stack, `Webhook - ${webhook.url}`, );
           },
         );
     };
