@@ -50,7 +50,7 @@ export class WebhookService {
             );
           },
           (error) => {
-            Logger.error(stringify(error), error.stack, 'Webhook');
+            Logger.error(stringify(error), error.stack, `Webhook - ${webhook.url}`, );
           },
         );
     };
