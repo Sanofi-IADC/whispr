@@ -1,3 +1,10 @@
+## [4.17.1](https://github.com/Sanofi-IADC/whispr/compare/v4.17.0...v4.17.1) (2024-05-21)
+
+
+### Bug Fixes
+
+* **WEB-2070:** WEB-2070 added comments for db node change ([2954ceb](https://github.com/Sanofi-IADC/whispr/commit/2954ceb4cd9e173ecccc055917a4f91a4059e3ff))
+
 # [4.17.0](https://github.com/Sanofi-IADC/whispr/compare/v4.16.0...v4.17.0) (2024-04-10)
 
 
