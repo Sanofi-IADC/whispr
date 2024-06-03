@@ -1,3 +1,10 @@
+## [4.17.3](https://github.com/Sanofi-IADC/whispr/compare/v4.17.2...v4.17.3) (2024-06-03)
+
+
+### Bug Fixes
+
+* WEB-2246 remove some mongoose options ([42341d7](https://github.com/Sanofi-IADC/whispr/commit/42341d7ff3dda6e87ad7b25fa314e537585f4785))
+
 ## [4.17.2](https://github.com/Sanofi-IADC/whispr/compare/v4.17.1...v4.17.2) (2024-06-03)
 
 
