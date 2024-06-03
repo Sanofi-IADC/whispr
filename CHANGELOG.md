@@ -1,3 +1,12 @@
+## [4.17.4](https://github.com/Sanofi-IADC/whispr/compare/v4.17.3...v4.17.4) (2024-06-03)
+
+
+### Bug Fixes
+
+* WEB-2246 code formatted ([3e10c65](https://github.com/Sanofi-IADC/whispr/commit/3e10c65050a3b765128f1c17e5d422b52980d7ae))
+* WEB-2246 parse pool size ([b7bc5ba](https://github.com/Sanofi-IADC/whispr/commit/b7bc5bac38aa29fb98cee67dc807838ffa775251))
+* WEB-2246 parse pool size ([91a60c4](https://github.com/Sanofi-IADC/whispr/commit/91a60c464331cbd0d1cd333a7f2302b72a702eb2))
+
 ## [4.17.3](https://github.com/Sanofi-IADC/whispr/compare/v4.17.2...v4.17.3) (2024-06-03)
 
 
