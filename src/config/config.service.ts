@@ -75,10 +75,10 @@ export class ConfigService {
       pass: this.get('MONGOOSE_PASSWORD'),
       maxPoolSize: this.get('MONGOOSE_POOL_SIZE') || 20,
       retryAttempts: 2,
-      connectTimeoutMS: 30000,
+      connectTimeoutMS: 60000,
       useUnifiedTopology: true,
       useNewUrlParser: true,
-      socketTimeoutMS: 30000,
+      socketTimeoutMS: 60000,
     };
     if (this.get('SSL_VALIDATE') === true) {
       options = {
