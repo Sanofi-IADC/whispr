@@ -1,3 +1,13 @@
+## [4.17.2](https://github.com/Sanofi-IADC/whispr/compare/v4.17.1...v4.17.2) (2024-06-03)
+
+
+### Bug Fixes
+
+* WEB-2246 added pool size option mongoose to handle memory ([8681c66](https://github.com/Sanofi-IADC/whispr/commit/8681c66dd440cd79862bc50b6fd458ef320873dc))
+* WEB-2246 added pool size option mongoose to handle memory ([cce17b2](https://github.com/Sanofi-IADC/whispr/commit/cce17b2a303c1994585e48e5b8d3796e829137b2))
+* WEB-2246 added pool size option mongoose to handle memory ([a07c838](https://github.com/Sanofi-IADC/whispr/commit/a07c8381f0f31827b34507df53e54fc86cf76cff))
+* WEB-2246 lint fix ([314a33e](https://github.com/Sanofi-IADC/whispr/commit/314a33e4ff173866c736530e89a2fd1d3bb898a1))
+
 ## [4.17.1](https://github.com/Sanofi-IADC/whispr/compare/v4.17.0...v4.17.1) (2024-05-21)
 
 
