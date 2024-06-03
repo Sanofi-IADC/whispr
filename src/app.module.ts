@@ -23,6 +23,7 @@ import { TagModule } from './tag/tag.module';
 import { HealthController } from './health/health.controller';
 import { AuthModule } from './auth/auth.module';
 import { GqlContext } from './auth/gql-context';
+import { DatabaseService } from './common/DatabaseService';
 
 @Module({
   imports: [
@@ -91,7 +92,7 @@ import { GqlContext } from './auth/gql-context';
     WebhookModule,
     AuthModule,
   ],
-  providers: [AppService],
+  providers: [AppService, DatabaseService],
   controllers: [AppController, HealthController],
 })
 export class AppModule {}
