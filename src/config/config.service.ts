@@ -73,6 +73,9 @@ export class ConfigService {
       readPreference: this.get('REPLICASET') !== undefined ? readPreference : null,
       user: this.get('MONGOOSE_USERNAME'),
       pass: this.get('MONGOOSE_PASSWORD'),
+      maxPoolSize: this.get('MONGOOSE_POOL_SIZE') || 20,
+      retryAttempts: 2,
+      connectTimeoutMS: 30000,
     };
     if (this.get('SSL_VALIDATE') === true) {
       options = {
