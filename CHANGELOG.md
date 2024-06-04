@@ -1,3 +1,11 @@
+## [4.17.5](https://github.com/Sanofi-IADC/whispr/compare/v4.17.4...v4.17.5) (2024-06-04)
+
+
+### Bug Fixes
+
+* WEB-2246 remove reading primary replica ([8d022db](https://github.com/Sanofi-IADC/whispr/commit/8d022dbd0b4f759b7b8d0fca595251b2a8cb9ae6))
+* WEB-2246 remove reading primary replica ([9da237b](https://github.com/Sanofi-IADC/whispr/commit/9da237b911f73aeb5bd5f058630a39963f7b31e2))
+
 ## [4.17.4](https://github.com/Sanofi-IADC/whispr/compare/v4.17.3...v4.17.4) (2024-06-03)
 
 
