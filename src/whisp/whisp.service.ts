@@ -127,8 +127,8 @@ export class WhispService {
   }
 
   async findTagsByWhispId(whispId: string): Promise<TagInputType[]> {
-    Logger.log('Test logging whispId', whispId );
-    const whisps = await this.whispModel.findById(whispId).populate('tags').exec();
+    const query = this.whispModel.findById(whispId).populate('tags');
+    const whisps = await query.exec();
     return whisps.tags;
   }
 

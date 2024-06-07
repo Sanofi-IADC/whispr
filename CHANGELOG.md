@@ -1,3 +1,104 @@
+## [4.17.5](https://github.com/Sanofi-IADC/whispr/compare/v4.17.4...v4.17.5) (2024-06-04)
+
+
+### Bug Fixes
+
+* WEB-2246 remove reading primary replica ([8d022db](https://github.com/Sanofi-IADC/whispr/commit/8d022dbd0b4f759b7b8d0fca595251b2a8cb9ae6))
+* WEB-2246 remove reading primary replica ([9da237b](https://github.com/Sanofi-IADC/whispr/commit/9da237b911f73aeb5bd5f058630a39963f7b31e2))
+
+## [4.17.4](https://github.com/Sanofi-IADC/whispr/compare/v4.17.3...v4.17.4) (2024-06-03)
+
+
+### Bug Fixes
+
+* WEB-2246 code formatted ([3e10c65](https://github.com/Sanofi-IADC/whispr/commit/3e10c65050a3b765128f1c17e5d422b52980d7ae))
+* WEB-2246 parse pool size ([b7bc5ba](https://github.com/Sanofi-IADC/whispr/commit/b7bc5bac38aa29fb98cee67dc807838ffa775251))
+* WEB-2246 parse pool size ([91a60c4](https://github.com/Sanofi-IADC/whispr/commit/91a60c464331cbd0d1cd333a7f2302b72a702eb2))
+
+## [4.17.3](https://github.com/Sanofi-IADC/whispr/compare/v4.17.2...v4.17.3) (2024-06-03)
+
+
+### Bug Fixes
+
+* WEB-2246 remove some mongoose options ([42341d7](https://github.com/Sanofi-IADC/whispr/commit/42341d7ff3dda6e87ad7b25fa314e537585f4785))
+
+## [4.17.2](https://github.com/Sanofi-IADC/whispr/compare/v4.17.1...v4.17.2) (2024-06-03)
+
+
+### Bug Fixes
+
+* WEB-2246 added pool size option mongoose to handle memory ([8681c66](https://github.com/Sanofi-IADC/whispr/commit/8681c66dd440cd79862bc50b6fd458ef320873dc))
+* WEB-2246 added pool size option mongoose to handle memory ([cce17b2](https://github.com/Sanofi-IADC/whispr/commit/cce17b2a303c1994585e48e5b8d3796e829137b2))
+* WEB-2246 added pool size option mongoose to handle memory ([a07c838](https://github.com/Sanofi-IADC/whispr/commit/a07c8381f0f31827b34507df53e54fc86cf76cff))
+* WEB-2246 lint fix ([314a33e](https://github.com/Sanofi-IADC/whispr/commit/314a33e4ff173866c736530e89a2fd1d3bb898a1))
+
+## [4.17.1](https://github.com/Sanofi-IADC/whispr/compare/v4.17.0...v4.17.1) (2024-05-21)
+
+
+### Bug Fixes
+
+* **WEB-2070:** WEB-2070 added comments for db node change ([2954ceb](https://github.com/Sanofi-IADC/whispr/commit/2954ceb4cd9e173ecccc055917a4f91a4059e3ff))
+
+# [4.17.0](https://github.com/Sanofi-IADC/whispr/compare/v4.16.0...v4.17.0) (2024-04-10)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 lint fix ([1c9ba8d](https://github.com/Sanofi-IADC/whispr/commit/1c9ba8d9b976092feedab00025c699f4f27ba196))
+* **WEB-2070:** WEB-2070 undo model save with model create in mongoose ([7b525fc](https://github.com/Sanofi-IADC/whispr/commit/7b525fcab74dc223b02633e69e0459028e734cfc))
+
+# [4.16.0](https://github.com/Sanofi-IADC/whispr/compare/v4.15.0...v4.16.0) (2024-04-10)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 use primary replica set for subscription callback query ([0c169a4](https://github.com/Sanofi-IADC/whispr/commit/0c169a4847c5fe5953d3bacc9ff20902bcf595c8))
+
+# [4.15.0](https://github.com/Sanofi-IADC/whispr/compare/v4.14.0...v4.15.0) (2024-04-10)
+
+
+### Features
+
+* **WEB-2070:** reduced duplication ([e411b72](https://github.com/Sanofi-IADC/whispr/commit/e411b726582f256d3c751ca9674f4597c69c79fa))
+* **WEB-2070:** WEB-2070 lint fix ([24df059](https://github.com/Sanofi-IADC/whispr/commit/24df059e2ad892c29f0669ac1e9b64d5665f21a9))
+* **WEB-2070:** WEB-2070 lint fixes ([5cba2ac](https://github.com/Sanofi-IADC/whispr/commit/5cba2ac49b8278860df2b883e71f0a956c99ea5c))
+* **WEB-2070:** WEB-2070 lint fixes ([31afac4](https://github.com/Sanofi-IADC/whispr/commit/31afac4c9cbd717da1684e0179ba03c1c5ea4083))
+* **WEB-2070:** WEB-2070 testing removing format ([882923a](https://github.com/Sanofi-IADC/whispr/commit/882923acd26e0f170a5b6139170d0f1061292032))
+* **WEB-2070:** WEB-2070 undo testing removing format ([f785883](https://github.com/Sanofi-IADC/whispr/commit/f78588340548c0ac046ac96869b3b9422f8e5c51))
+* **WEB-2070:** WEB-2070 Wait for db write on whisp create ([feac2d3](https://github.com/Sanofi-IADC/whispr/commit/feac2d3621228bc054a5e03743b7e82bcd31bd6b))
+
+# [4.14.0](https://github.com/Sanofi-IADC/whispr/compare/v4.13.0...v4.14.0) (2024-04-08)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 lint fixes ([47df68d](https://github.com/Sanofi-IADC/whispr/commit/47df68d00300c238ddc84a7a388e5fc09f611ab5))
+* **WEB-2070:** WEB-2070 wait for whisp to be written to db ([a456135](https://github.com/Sanofi-IADC/whispr/commit/a4561355f2a0a80baeae7504e6ead842e302b6b5))
+* **WEB-2070:** WEB-2070 wait for whisp to be written to db ([68adf41](https://github.com/Sanofi-IADC/whispr/commit/68adf4172ba7bae2574bac2872e28a647d567ede))
+* **WEB-2070:** WEB-2070 wait for whisp to be written to db ([ed1b2ae](https://github.com/Sanofi-IADC/whispr/commit/ed1b2ae142eef412dae8ae466277a366afeb5b58))
+
+# [4.13.0](https://github.com/Sanofi-IADC/whispr/compare/v4.12.0...v4.13.0) (2024-04-05)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 added log statements to check errors ([d925805](https://github.com/Sanofi-IADC/whispr/commit/d9258053164ea1f28d27fa1c6ec9f07862f45834))
+
+# [4.12.0](https://github.com/Sanofi-IADC/whispr/compare/v4.11.1...v4.12.0) (2024-04-04)
+
+
+### Features
+
+* **WEB-2070:** WEB-2070 added log statements to check errors ([d605056](https://github.com/Sanofi-IADC/whispr/commit/d6050563f5a74724e1bc217dff6f005052dd941d))
+* **WEB-2070:** WEB-2070 lint fixes ([5b26434](https://github.com/Sanofi-IADC/whispr/commit/5b26434a9d513e7ebd8921d035eb7b522230f825))
+
+## [4.11.1](https://github.com/Sanofi-IADC/whispr/compare/v4.11.0...v4.11.1) (2024-03-28)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency express to v4.19.2 [security] ([16916af](https://github.com/Sanofi-IADC/whispr/commit/16916afae9a490c3f5f756a11d874318cdee07f7))
+
 # [4.11.0](https://github.com/Sanofi-IADC/whispr/compare/v4.10.0...v4.11.0) (2024-02-26)
 
 
