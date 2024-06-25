@@ -16,6 +16,7 @@ export const whispSchema = new mongoose.Schema({
   closedById: String,
   timestamp: Date,
   updated: Date,
+  dataIndexKey: String,
   expirationDate: { type: Date, expires: 0 },
   timeToLiveSec: Number,
   data: Object,
@@ -33,6 +34,14 @@ whispSchema.index({
   closed: 1,
   timestamp: 1,
   type: 1,
+  dataIndexKey: 1
+});
+
+whispSchema.index({
+  dataIndexKey: 1,
+  applicationID: 1,
+  closed: 1,
+  type: 1
 });
 
 mongoose.model('Whisp', whispSchema);
