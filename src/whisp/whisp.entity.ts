@@ -70,4 +70,7 @@ export class Whisp {
 
   @Field(() => [WhispAttachment], { nullable: true })
   attachments?: WhispAttachment[];
+
+  @Field({ nullable: true })
+  dataIndexKey?: string;
 }

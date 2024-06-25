@@ -60,6 +60,7 @@ type Whisp {
   tags: [Tag!]
   data: JSONObject
   attachments: [WhispAttachment!]
+  dataIndexKey: String
 }
 
 """
@@ -129,6 +130,7 @@ input WhispInputType {
   applicationID: String
   plantID: String
   locationID: String
+  dataIndexKey: String
   manual: Boolean
   openedBy: String
   openedById: String

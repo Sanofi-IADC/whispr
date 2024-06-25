@@ -16,6 +16,7 @@ export interface IWhisp extends Document {
   openedById: string;
   closedBy: string;
   closedById: string;
+  dataIndexKey: string;
   timestamp: Date;
   updated: Date;
   expirationDate?: Date;
