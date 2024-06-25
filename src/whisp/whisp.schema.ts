@@ -34,7 +34,13 @@ whispSchema.index({
   closed: 1,
   timestamp: 1,
   type: 1,
+});
+
+whispSchema.index({
   dataIndexKey: 1,
+  applicationID: 1,
+  closed: 1,
+  type: 1
 });
 
 mongoose.model('Whisp', whispSchema);
