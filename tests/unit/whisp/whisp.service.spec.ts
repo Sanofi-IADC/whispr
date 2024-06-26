@@ -259,6 +259,5 @@ describe('WhispService', () => {
 
       expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
     });
-
   });
 });
