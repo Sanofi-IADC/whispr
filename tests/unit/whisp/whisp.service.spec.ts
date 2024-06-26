@@ -115,6 +115,13 @@ describe('WhispService', () => {
       expect(expirationDate).toStrictEqual(expirationDateField);
       expect(timeToLiveSec).toBeNull();
     });
+
+    it('create whisp with data index key', async () => {
+      const dataIndexKey = 'test';
+      const whisp = await whispService.create({ dataIndexKey });
+
+      expect(whisp.dataIndexKey).toBe(dataIndexKey);
+    });
   });
 
   describe('Update Whisp', () => {
