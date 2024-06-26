@@ -70,7 +70,7 @@ describe('WhispService', () => {
     it('should create whisp data index key', async () => {
       const result = await whispService.create({ dataIndexKey: 'test' });
 
-      expect(result.timestamp.valueOf()).toEqual('test');
+      expect(result.dataIndexKey.valueOf()).toEqual('test');
     });
   });
   describe('Update Whisp', () => {
@@ -97,7 +97,7 @@ describe('WhispService', () => {
       const initialWhisp = await whispService.create({ dataIndexKey: 'test' });
       const result = await whispService.update(initialWhisp._id, { dataIndexKey: 'test2' });
 
-      expect(result.timestamp.valueOf()).toEqual('test2');
+      expect(result.dataIndexKey.valueOf()).toEqual('test2');
     });
   });
 
