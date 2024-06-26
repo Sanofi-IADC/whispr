@@ -1,3 +1,14 @@
+# [4.18.0](https://github.com/Sanofi-IADC/whispr/compare/v4.17.5...v4.18.0) (2024-06-25)
+
+
+### Features
+
+* WEB-2336 added a new key to whisp data structure ([d79278f](https://github.com/Sanofi-IADC/whispr/commit/d79278f75bcaebb5aba6afa2678f920cfbc3fb46))
+* WEB-2336 lint fix ([ebfbc52](https://github.com/Sanofi-IADC/whispr/commit/ebfbc52a39e74b92f4ef09d9fcb62e5830c1ff65))
+* WEB-2336 lint fix ([6ab0a3b](https://github.com/Sanofi-IADC/whispr/commit/6ab0a3b610faca26c9e175eb39f485ec88a28be9))
+* WEB-2336 removed dataindex from default index ([1aa1ff2](https://github.com/Sanofi-IADC/whispr/commit/1aa1ff2550415bba294297b27f85696de99289c0))
+* WEB-2336 removed extra index ([768a4bf](https://github.com/Sanofi-IADC/whispr/commit/768a4bf99872b926122e5b0a4b64ba0414e92a44))
+
 ## [4.17.5](https://github.com/Sanofi-IADC/whispr/compare/v4.17.4...v4.17.5) (2024-06-04)
 
 
