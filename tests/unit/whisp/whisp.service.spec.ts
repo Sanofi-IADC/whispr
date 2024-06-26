@@ -115,6 +115,13 @@ describe('WhispService', () => {
       expect(expirationDate).toStrictEqual(expirationDateField);
       expect(timeToLiveSec).toBeNull();
     });
+
+    it('create whisp with data index key', async () => {
+      const dataIndexKey = 'test';
+      const whisp = await whispService.create({ dataIndexKey });
+
+      expect(whisp.dataIndexKey).toBe(dataIndexKey);
+    });
   });
 
   describe('Update Whisp', () => {
@@ -251,6 +258,16 @@ describe('WhispService', () => {
       };
 
       expect(whispModel.aggregate).toBeCalledWith([expectedMatch, expectedGroup]);
+    });
+
+    it('count whisps based on data index key', async () => {
+      const dataIndexKey = 'test';
+      const whisp = await whispService.create({ dataIndexKey });
+
+      const result = await whispService.countWhispsGroup([{ dataIndexKey }]);
+
+      expect(result.length).toBeGreaterThan(0);
+      expect(result[0].count.valueOf()).toEqual(1);
     });
   });
 });

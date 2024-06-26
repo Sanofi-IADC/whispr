@@ -67,6 +67,11 @@ describe('WhispService', () => {
 
       expect(result.timestamp.valueOf()).toEqual(timestamp.valueOf());
     });
+    it('should create whisp data index key', async () => {
+      const result = await whispService.create({ dataIndexKey: 'test' });
+
+      expect(result.timestamp.valueOf()).toEqual('test');
+    });
   });
   describe('Update Whisp', () => {
     it('should update timestamp when it is provided', async () => {
@@ -86,6 +91,13 @@ describe('WhispService', () => {
       const result = await whispService.update(initialWhisp._id, {});
 
       expect(result.timestamp.valueOf()).toEqual(initialWhisp.timestamp.valueOf());
+    });
+
+    it('should update whisp data index key', async () => {
+      const initialWhisp = await whispService.create({ dataIndexKey: 'test' });
+      const result = await whispService.update(initialWhisp._id, { dataIndexKey: 'test2' });
+
+      expect(result.timestamp.valueOf()).toEqual('test2');
     });
   });
 
@@ -199,6 +211,23 @@ describe('WhispService', () => {
       // expect(result2.valueOf()).toEqual(6);
       expect(result.length).toBeGreaterThan(0);
       expect(result[0].count.valueOf()).toEqual(6);
+    });
+
+    it('should count whisps based on data index key', async () => {
+      await whispService.create({ dataIndexKey: 'test' });
+      await whispService.create({ dataIndexKey: 'test' });
+      await whispService.create({ dataIndexKey: 'test' });
+
+      const filter: Record<string, unknown>[] = [
+        {
+          dataIndexKey: 'test',
+        },
+      ];
+
+      const result = await whispService.countWhispsGroup(filter);
+
+      expect(result.length).toBeGreaterThan(0);
+      expect(result[0].count.valueOf()).toEqual(3);
     });
   });
 });
