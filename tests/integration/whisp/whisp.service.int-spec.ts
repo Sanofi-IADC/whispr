@@ -226,7 +226,6 @@ describe('WhispService', () => {
 
       const result = await whispService.countWhispsGroup(filter);
 
-      expect(result.length).toBeGreaterThan(0);
       expect(result[0].count.valueOf()).toEqual(3);
     });
   });
