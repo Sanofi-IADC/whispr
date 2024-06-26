@@ -1,3 +1,14 @@
+## [4.18.1](https://github.com/Sanofi-IADC/whispr/compare/v4.18.0...v4.18.1) (2024-06-26)
+
+
+### Bug Fixes
+
+* WEB-2336 added test cases for data index changes ([e335fe5](https://github.com/Sanofi-IADC/whispr/commit/e335fe5976f4393db0a03aa8446a34c09c005486))
+* WEB-2336 added test cases for data index changes ([3cd9be4](https://github.com/Sanofi-IADC/whispr/commit/3cd9be4da4cb84647100fd25c03dd200ff912361))
+* WEB-2336 added test cases for data index changes ([623c8b9](https://github.com/Sanofi-IADC/whispr/commit/623c8b9da8390a850c1e1a56037018392cc589ad))
+* WEB-2336 fixed test cases ([f8065cc](https://github.com/Sanofi-IADC/whispr/commit/f8065cc1e5e10e855c7ed215d331c4ccea0aafab))
+* WEB-2336 fixed test cases ([c34c5db](https://github.com/Sanofi-IADC/whispr/commit/c34c5dbb54ae41477ddcbdd65d09dbca8be280e6))
+
 # [4.18.0](https://github.com/Sanofi-IADC/whispr/compare/v4.17.5...v4.18.0) (2024-06-25)
 
 
