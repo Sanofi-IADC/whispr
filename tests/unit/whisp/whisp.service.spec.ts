@@ -262,7 +262,7 @@ describe('WhispService', () => {
 
     it('count whisps based on data index key', async () => {
       const dataIndexKey = 'test';
-      const whisp = await whispService.create({ dataIndexKey });
+      await whispService.create({ dataIndexKey });
 
       const result = await whispService.countWhispsGroup([{ dataIndexKey }]);
 
