@@ -61,6 +61,11 @@ export class WhispInputType {
   @IsOptional()
   locationID?: string;
 
+  @Field(() => String, { nullable: true })
+  @IsString()
+  @IsOptional()
+  dataIndexKey?: string;
+
   @Field(() => Boolean, { nullable: true })
   @IsBoolean()
   @IsOptional()
