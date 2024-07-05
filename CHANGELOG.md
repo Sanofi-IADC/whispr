@@ -1,3 +1,10 @@
+## [4.18.2](https://github.com/Sanofi-IADC/whispr/compare/v4.18.1...v4.18.2) (2024-07-05)
+
+
+### Bug Fixes
+
+* WEB-2351 fixed whisp delete webhook filter issue ([44ffb41](https://github.com/Sanofi-IADC/whispr/commit/44ffb41506f32a92592c21082c06309c3dc1a8a1))
+
 ## [4.18.1](https://github.com/Sanofi-IADC/whispr/compare/v4.18.0...v4.18.1) (2024-06-26)
 
 
