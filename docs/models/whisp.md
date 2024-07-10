@@ -115,3 +115,9 @@ Description: The date after which the whisp will be deleted automatically. defin
 Type: JSONObject
 
 Description: An object containing the details of the whisp specific to the application
+
+## dataIndexKey
+
+Type: String
+
+Description: A string which represent your data. You can store strings which are most used inside and represents your data. You can use this key in filter to query whisps instead of running complex queries on top of data object. This is an indexed field.
