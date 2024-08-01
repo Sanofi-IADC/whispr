@@ -1,3 +1,11 @@
+# [4.19.0](https://github.com/Sanofi-IADC/whispr/compare/v4.18.2...v4.19.0) (2024-08-01)
+
+
+### Features
+
+* WEB-2335 Proxy decom test ([890182e](https://github.com/Sanofi-IADC/whispr/commit/890182eccea58dc765de40f672f9a8b899bf2894))
+* WEB-2335 Proxy decom test new version ([805f3d7](https://github.com/Sanofi-IADC/whispr/commit/805f3d7fe5f5d262b9f17f1d477fb234f7c4c0be))
+
 ## [4.18.2](https://github.com/Sanofi-IADC/whispr/compare/v4.18.1...v4.18.2) (2024-07-05)
 
 
