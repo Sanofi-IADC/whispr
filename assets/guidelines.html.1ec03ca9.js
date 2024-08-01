@@ -1,1 +1,0 @@
-import{_ as e,o as s,a as t,b as a,e as i}from"./app.69c33e28.js";const n={},o={id:"guidelines",tabindex:"-1"},_=a("a",{class:"header-anchor",href:"#guidelines","aria-hidden":"true"},"#",-1),c=i(" Guidelines"),d=[_,c];function r(l,h){return s(),t("h1",o,d)}var f=e(n,[["render",r],["__file","guidelines.html.vue"]]);export{f as default};
