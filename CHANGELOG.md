@@ -1,3 +1,11 @@
+# [4.21.0](https://github.com/Sanofi-IADC/whispr/compare/v4.20.0...v4.21.0) (2024-08-01)
+
+
+### Features
+
+* WEB-2355 increase version ([b330dc7](https://github.com/Sanofi-IADC/whispr/commit/b330dc7d3c3a6f519c982eb94023d4333c1064fb))
+* WEB-2355 increase version ([2383931](https://github.com/Sanofi-IADC/whispr/commit/2383931704a21543b60c4817e2256ec0d7847961))
+
 # [4.20.0](https://github.com/Sanofi-IADC/whispr/compare/v4.19.0...v4.20.0) (2024-08-01)
 
 
