@@ -46,6 +46,7 @@ export class WhispService {
     const createdWhisp = await this.whispModel.create(whisp);
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
     this.distributionService.distributeWhisp(createdWhisp);
+
     return createdWhisp;
   }
 
