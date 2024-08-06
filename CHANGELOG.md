@@ -1,3 +1,10 @@
+## [4.21.1](https://github.com/Sanofi-IADC/whispr/compare/v4.21.0...v4.21.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency apollo-server-core to v3.12.1 [security] ([c1a35b6](https://github.com/Sanofi-IADC/whispr/commit/c1a35b6406ebdaf0ae70ab442de5f0b0a2529a31))
+
 # [4.21.0](https://github.com/Sanofi-IADC/whispr/compare/v4.20.0...v4.21.0) (2024-08-01)
 
 
