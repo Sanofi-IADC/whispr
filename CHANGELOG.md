@@ -1,3 +1,11 @@
+# [4.22.0](https://github.com/Sanofi-IADC/whispr/compare/v4.21.1...v4.22.0) (2024-08-23)
+
+
+### Features
+
+* WEB-2355 prepare cmd update ([bb2cb72](https://github.com/Sanofi-IADC/whispr/commit/bb2cb7252f3209fdf3a01e7fb526bebc01fa3dd1))
+* WEB-2355 prepare cmd update ([670d0c1](https://github.com/Sanofi-IADC/whispr/commit/670d0c18b94d95a290975628becea8378d1a4096))
+
 ## [4.21.1](https://github.com/Sanofi-IADC/whispr/compare/v4.21.0...v4.21.1) (2024-08-06)
 
 
