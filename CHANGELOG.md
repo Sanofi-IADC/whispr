@@ -1,3 +1,11 @@
+# [4.23.0](https://github.com/Sanofi-IADC/whispr/compare/v4.22.0...v4.23.0) (2024-08-23)
+
+
+### Features
+
+* WEB-2355 Trigger new version ([f99d742](https://github.com/Sanofi-IADC/whispr/commit/f99d742361c31b85782bf8a13f63ffb2f70eb1d8))
+* WEB-2355 Trigger new version ([82d7aec](https://github.com/Sanofi-IADC/whispr/commit/82d7aec6fb3320ad01fa8ff0c3b878ac0f75c648))
+
 # [4.22.0](https://github.com/Sanofi-IADC/whispr/compare/v4.21.1...v4.22.0) (2024-08-23)
 
 
