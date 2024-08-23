@@ -10,4 +10,5 @@ COPY rds-combined-ca-bundle.pem /app/rds-combined-ca-bundle.pem
 RUN apk add curl
 
 EXPOSE 3000
+
 CMD [ "pm2-runtime", "--json", "pm2.config.js" ]
