@@ -9,7 +9,7 @@
       "npmPublish": false
     }],
     ["@semantic-release/exec", {
-      "prepareCmd": "make release branch-tag version-tag"
+      "prepareCmd": "curl -o rds-combined-ca-bundle.pem https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem && make release branch-tag version-tag"
     }],
     ["@semantic-release/git", {
       "assets": ["package.json", "CHANGELOG.md"],
