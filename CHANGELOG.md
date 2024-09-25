@@ -1,3 +1,10 @@
+## [4.23.2](https://github.com/Sanofi-IADC/whispr/compare/v4.23.1...v4.23.2) (2024-09-25)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency express to v4.21.0 [security] ([db6b863](https://github.com/Sanofi-IADC/whispr/commit/db6b8635db076b212cca9d21f1a17f232f3b8eff))
+
 ## [4.23.1](https://github.com/Sanofi-IADC/whispr/compare/v4.23.0...v4.23.1) (2024-09-16)
 
 
