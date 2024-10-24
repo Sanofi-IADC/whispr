@@ -73,7 +73,7 @@ export class ConfigService {
       readPreference: this.get('REPLICASET') !== undefined ? readPreference : null,
       user: this.get('MONGOOSE_USERNAME'),
       pass: this.get('MONGOOSE_PASSWORD'),
-      replicaSet: this.get('REPLICASET')
+      replicaSet: this.get('REPLICASET'),
     };
     if (this.get('SSL_VALIDATE') === true) {
       options = {
