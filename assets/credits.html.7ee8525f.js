@@ -1,0 +1,1 @@
+import{_ as e,o as t,a as s,b as r,e as c}from"./app.0d836ab3.js";const a={},o={id:"credits",tabindex:"-1"},_=r("a",{class:"header-anchor",href:"#credits","aria-hidden":"true"},"#",-1),d=c(" Credits"),i=[_,d];function n(h,f){return t(),s("h1",o,i)}var m=e(a,[["render",n],["__file","credits.html.vue"]]);export{m as default};
