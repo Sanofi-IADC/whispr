@@ -1,3 +1,13 @@
+## [4.23.3](https://github.com/Sanofi-IADC/whispr/compare/v4.23.2...v4.23.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* WEB-2413 added replica set option to mongodb connect options ([c50c76c](https://github.com/Sanofi-IADC/whispr/commit/c50c76ca5bdceae0f7aaa95749922f7134c1fb8a))
+* WEB-2413 lint fix ([3ca3f24](https://github.com/Sanofi-IADC/whispr/commit/3ca3f245d272d2f1d5603252c61ecbf75e0ecdc4))
+* WEB-2413 lint fix ([9d654d5](https://github.com/Sanofi-IADC/whispr/commit/9d654d5b52a618ee415455b5f6ab0551830118d1))
+* WEB-2413 undo change ([137d889](https://github.com/Sanofi-IADC/whispr/commit/137d8898239948d8df8b19e4c1a28f1d14cc0027))
+
 ## [4.23.2](https://github.com/Sanofi-IADC/whispr/compare/v4.23.1...v4.23.2) (2024-09-25)
 
 
