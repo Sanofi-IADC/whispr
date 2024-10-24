@@ -46,7 +46,6 @@ export class WhispService {
     const createdWhisp = await this.whispModel.create(whisp);
     await this.eventService.triggerEvent(new Event(EventNames.WHISP_CREATED, createdWhisp));
     this.distributionService.distributeWhisp(createdWhisp);
-
     return createdWhisp;
   }
 
@@ -174,13 +173,14 @@ export class WhispService {
   }
 
   async delete(id: string): Promise<boolean> {
+    const whisp = await this.whispModel.findById(id).exec();
     const { deletedCount: countOfDeletedWhisp } = await this.whispModel
       .deleteOne({ _id: id })
       .exec();
     if (countOfDeletedWhisp <= 0) {
       return false;
     }
-    await this.eventService.triggerEvent(new Event(EventNames.WHISP_DELETED, id));
+    await this.eventService.triggerEvent(new Event(EventNames.WHISP_DELETED, whisp));
 
     return true;
   }

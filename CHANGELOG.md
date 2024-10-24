@@ -1,3 +1,71 @@
+## [4.23.2](https://github.com/Sanofi-IADC/whispr/compare/v4.23.1...v4.23.2) (2024-09-25)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency express to v4.21.0 [security] ([db6b863](https://github.com/Sanofi-IADC/whispr/commit/db6b8635db076b212cca9d21f1a17f232f3b8eff))
+
+## [4.23.1](https://github.com/Sanofi-IADC/whispr/compare/v4.23.0...v4.23.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency express to v4.20.0 [security] ([cca06ec](https://github.com/Sanofi-IADC/whispr/commit/cca06ec4bbf81f3d7c76d0787ac67a915cb76ead))
+
+# [4.23.0](https://github.com/Sanofi-IADC/whispr/compare/v4.22.0...v4.23.0) (2024-08-23)
+
+
+### Features
+
+* WEB-2355 Trigger new version ([f99d742](https://github.com/Sanofi-IADC/whispr/commit/f99d742361c31b85782bf8a13f63ffb2f70eb1d8))
+* WEB-2355 Trigger new version ([82d7aec](https://github.com/Sanofi-IADC/whispr/commit/82d7aec6fb3320ad01fa8ff0c3b878ac0f75c648))
+
+# [4.22.0](https://github.com/Sanofi-IADC/whispr/compare/v4.21.1...v4.22.0) (2024-08-23)
+
+
+### Features
+
+* WEB-2355 prepare cmd update ([bb2cb72](https://github.com/Sanofi-IADC/whispr/commit/bb2cb7252f3209fdf3a01e7fb526bebc01fa3dd1))
+* WEB-2355 prepare cmd update ([670d0c1](https://github.com/Sanofi-IADC/whispr/commit/670d0c18b94d95a290975628becea8378d1a4096))
+
+## [4.21.1](https://github.com/Sanofi-IADC/whispr/compare/v4.21.0...v4.21.1) (2024-08-06)
+
+
+### Bug Fixes
+
+* **dependency maintenance:** update dependency apollo-server-core to v3.12.1 [security] ([c1a35b6](https://github.com/Sanofi-IADC/whispr/commit/c1a35b6406ebdaf0ae70ab442de5f0b0a2529a31))
+
+# [4.21.0](https://github.com/Sanofi-IADC/whispr/compare/v4.20.0...v4.21.0) (2024-08-01)
+
+
+### Features
+
+* WEB-2355 increase version ([b330dc7](https://github.com/Sanofi-IADC/whispr/commit/b330dc7d3c3a6f519c982eb94023d4333c1064fb))
+* WEB-2355 increase version ([2383931](https://github.com/Sanofi-IADC/whispr/commit/2383931704a21543b60c4817e2256ec0d7847961))
+
+# [4.20.0](https://github.com/Sanofi-IADC/whispr/compare/v4.19.0...v4.20.0) (2024-08-01)
+
+
+### Features
+
+* WEB-2335 Proxy decom test release without proxy and different docker file ([92ee081](https://github.com/Sanofi-IADC/whispr/commit/92ee081b26d9820257867b6f8b5538c536cbad36))
+* WEB-2335 Proxy decom test release without proxy and different docker file ([297b543](https://github.com/Sanofi-IADC/whispr/commit/297b543e4e6a01b71fd6de554f8d3836f3475c62))
+
+# [4.19.0](https://github.com/Sanofi-IADC/whispr/compare/v4.18.2...v4.19.0) (2024-08-01)
+
+
+### Features
+
+* WEB-2335 Proxy decom test ([890182e](https://github.com/Sanofi-IADC/whispr/commit/890182eccea58dc765de40f672f9a8b899bf2894))
+* WEB-2335 Proxy decom test new version ([805f3d7](https://github.com/Sanofi-IADC/whispr/commit/805f3d7fe5f5d262b9f17f1d477fb234f7c4c0be))
+
+## [4.18.2](https://github.com/Sanofi-IADC/whispr/compare/v4.18.1...v4.18.2) (2024-07-05)
+
+
+### Bug Fixes
+
+* WEB-2351 fixed whisp delete webhook filter issue ([44ffb41](https://github.com/Sanofi-IADC/whispr/commit/44ffb41506f32a92592c21082c06309c3dc1a8a1))
+
 ## [4.18.1](https://github.com/Sanofi-IADC/whispr/compare/v4.18.0...v4.18.1) (2024-06-26)
 
 
