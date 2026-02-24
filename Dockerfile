@@ -31,10 +31,9 @@ RUN npm install -g pm2
 COPY package*.json ./
 RUN npm ci --quiet --only=production
 
-# Add the Instana APM layer
-COPY --from=icr.io/instana/aws-fargate-nodejs:latest /instana /instana
-RUN /instana/setup.sh
-ENV NODE_OPTIONS="--require /instana/node_modules/@instana/aws-fargate"
+# Add Datadog APM tracing
+RUN npm install dd-trace@4 --save
+ENV NODE_OPTIONS="--require dd-trace/init"
 
 # Build artifacts
 COPY --from=builder /app/pm2.config.js ./pm2.config.js
