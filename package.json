@@ -25,7 +25,7 @@
     "test:e2e:debug": "node --inspect-brk=0.0.0.0 -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand --config jest-e2e.json"
   },
   "dependencies": {
-    "@apollo/gateway": "0.44.1",
+    "@apollo/gateway": "2.10.1",
     "@instana/collector": "1.140.1",
     "@sanofi-iadc/passport-multi-jwt": "1.0.0",
     "@nestjs/apollo": "10.0.11",
