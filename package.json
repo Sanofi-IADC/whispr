@@ -98,7 +98,7 @@
     "@semantic-release/github": "8.0.4",
     "@types/jest": "27.5.1",
     "@types/node": "16.11.36",
-    "@types/socket.io": "3.0.1",
+    "@types/socket.io": "3.0.2",
     "@types/supertest": "2.0.12",
     "@types/tunnel": "0.0.3",
     "@typescript-eslint/eslint-plugin": "5.25.0",
