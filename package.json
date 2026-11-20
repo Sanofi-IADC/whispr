@@ -69,7 +69,7 @@
     "ioredis": "4.28.5",
     "joi": "17.6.0",
     "jwks-rsa": "2.1.2",
-    "lodash": "4.17.21",
+    "lodash": "4.18.1",
     "mongoose": "6.2.11",
     "mongoose-cast-aggregation": "0.2.1",
     "nock": "13.2.4",
